@@ -1,5 +1,6 @@
 package Vistas_Ciudadano;
 
+import Conexion.CiudadanoData;
 import Conexion.PatologiaData;
 import Entidades.Ciudadano;
 import javax.swing.ButtonGroup;
@@ -9,10 +10,12 @@ public class Patologias_IF extends javax.swing.JInternalFrame {
 
     private Ciudadano c1;
     private PatologiaData pD;
+    private CiudadanoData cD;
 
-    public Patologias_IF(Ciudadano c1, PatologiaData pD) {
+    public Patologias_IF(Ciudadano c1, PatologiaData pD, CiudadanoData cD) {
         this.c1 = c1;
         this.pD = pD;
+        this.cD = cD;
         initComponents();
         armadoVista();
     }
@@ -285,9 +288,7 @@ public class Patologias_IF extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,10 +297,11 @@ public class Patologias_IF extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton17)
-                            .addComponent(jRadioButton18))))
-                .addGap(18, 18, 18)
+                            .addComponent(jRadioButton18)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19)
                 .addComponent(jButton1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -421,7 +423,7 @@ public class Patologias_IF extends javax.swing.JInternalFrame {
     }
 
     private void patologiaUpdate() {
-        pD.patologias(c1,
+        cD.patologias(c1,
                 jRadioButton1.isSelected(),
                 jRadioButton3.isSelected(),
                 jRadioButton5.isSelected(),

@@ -130,7 +130,7 @@ public class Test extends javax.swing.JFrame {
 
 public void cargarPatologiasPane(Ciudadano c1){
     System.out.println("Check3");
-    Patologias_IF ps = new Patologias_IF(c1, pD);
+    Patologias_IF ps = new Patologias_IF(c1, pD, cD);
         jDesktopPane1.add(ps);
         ps.setVisible(true);
 }

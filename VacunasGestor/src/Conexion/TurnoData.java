@@ -86,19 +86,8 @@ public class TurnoData {
         int check = 0; int cupos = 0;
         PreparedStatement ps = null;        
         String sql1 = "SELECT * FROM turnero WHERE fecha = ?";
-        String sql2;
-        switch (tur.getHorario()){
-            case "8_9":  sql2 = "UPDATE turnero SET 8_9 = ? WHERE fecha = ?";break;
-            case "9_10":  sql2 = "UPDATE turnero SET 9_10 = ? WHERE fecha = ?";break;
-            case "10_11":  sql2 = "UPDATE turnero SET 10_11 = ? WHERE fecha = ?";break;
-            case "11_12":  sql2 = "UPDATE turnero SET 11_12 = ? WHERE fecha = ?";break;
-            case "12_13":  sql2 = "UPDATE turnero SET 12_13 = ? WHERE fecha = ?";break;
-            case "13_14":  sql2 = "UPDATE turnero SET 13_14 = ? WHERE fecha = ?";break;
-            case "14_15":  sql2 = "UPDATE turnero SET 14_15 = ? WHERE fecha = ?";break;
-            case "15_16":  sql2 = "UPDATE turnero SET 15_16 = ? WHERE fecha = ?";break;
-            default:  sql2 = "UPDATE turnero SET 16_17 = ? WHERE fecha = ?";break;
-        }
-  
+        String sql2 = "UPDATE turnero SET " + tur.getHorario() + " = ? WHERE fecha = ?";
+ 
         try {
             ps = con.prepareStatement(sql1);
             ps.setString(1, tur.getFecha().toString());
