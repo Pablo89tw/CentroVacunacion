@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Ciudadano {
@@ -9,18 +10,24 @@ public class Ciudadano {
     private String nombre;
     private String apellido;
     private String email;
-    private int Celular;
-    protected ArrayList<Patologias> patologia;
+    private int celular;
     private String ambitoTrabajo;
+    private LocalDate proximoTurno;
+    private int dosisAplicadas;
+    private Coordenadas cordenadas;
+    private ArrayList<Patologias> patologias;
 
-    public Ciudadano(int DNI, String nombre, String apellido, String email, int Celular, ArrayList<Patologias> patologia, String ambitoTrabajo) {
+    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, LocalDate proximoTurno, int dosisAplicadas, Coordenadas cordenadas, ArrayList<Patologias> patologias) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.Celular = Celular;
-        this.patologia = patologia;
+        this.celular = celular;
         this.ambitoTrabajo = ambitoTrabajo;
+        this.proximoTurno = proximoTurno;
+        this.dosisAplicadas = dosisAplicadas;
+        this.cordenadas = cordenadas;
+        this.patologias = patologias;
     }
 
     public Ciudadano() {
@@ -67,19 +74,11 @@ public class Ciudadano {
     }
 
     public int getCelular() {
-        return Celular;
+        return celular;
     }
 
-    public void setCelular(int Celular) {
-        this.Celular = Celular;
-    }
-
-    public ArrayList<Patologias> getPatologia() {
-        return patologia;
-    }
-
-    public void setPatologia(ArrayList<Patologias> patologia) {
-        this.patologia = patologia;
+    public void setCelular(int celular) {
+        this.celular = celular;
     }
 
     public String getAmbitoTrabajo() {
@@ -90,8 +89,45 @@ public class Ciudadano {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
+    public LocalDate getProximoTurno() {
+        return proximoTurno;
+    }
+
+    public void setProximoTurno(LocalDate proximoTurno) {
+        this.proximoTurno = proximoTurno;
+    }
+
+    public int getDosisAplicadas() {
+        return dosisAplicadas;
+    }
+
+    public void setDosisAplicadas(int dosisAplicadas) {
+        this.dosisAplicadas = dosisAplicadas;
+    }
+
+    public Coordenadas getCordenadas() {
+        return cordenadas;
+    }
+
+    public void setCordenadas(Coordenadas cordenadas) {
+        this.cordenadas = cordenadas;
+    }
+
+    public ArrayList<Patologias> getPatologias() {
+        return patologias;
+    }
+
+    public void setPatologias(ArrayList<Patologias> patologias) {
+        this.patologias = patologias;
+    }
+
     @Override
     public String toString() {
-        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", Celular=" + Celular + ", patologia=" + patologia + ", ambitoTrabajo=" + ambitoTrabajo + '}';
+        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", celular=" + celular + ", ambitoTrabajo=" + ambitoTrabajo + ", proximoTurno=" + proximoTurno + ", dosisAplicadas=" + dosisAplicadas + ", cordenadas=" + cordenadas + ", patologias=" + patologias + '}';
     }
+
+    
+    
 }
+    
+   

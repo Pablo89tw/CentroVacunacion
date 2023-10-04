@@ -38,21 +38,17 @@ public class Test extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                    .addContainerGap(161, Short.MAX_VALUE)
-                    .addComponent(jButton2)
-                    .addContainerGap(162, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(919, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(24, 24, 24))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                    .addContainerGap(73, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(138, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(438, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,21 +66,12 @@ public class Test extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//  Inscripcion in = new Inscripcion(cD);
-//        jDesktopPane1.add(in);
-//        in.setVisible(true);  
+         Inscripcion in = new Inscripcion(cD);
+         jDesktopPane1.add(in);
+         in.setVisible(true);  
         
-//        Ciudadano c1 = new Ciudadano();
-//        c1.setDNI(10000001);
-//        c1.setNombre("Felipe");
-//        c1.setApellido("Mantaras");
-//        Patologias_IF ps = new Patologias_IF(c1, pD);
-//        jDesktopPane1.add(ps);
-//        ps.setVisible(true);// TODO add your handling code here:
-        
-          Solicitar_Turno sT = new Solicitar_Turno(tD);
-         jDesktopPane1.add(sT);
-        sT.setVisible(true); 
+
+
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -129,9 +116,6 @@ public class Test extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public void cargarPatologiasPane(Ciudadano c1){
-    System.out.println("Check3");
-    Patologias_IF ps = new Patologias_IF(c1, pD, cD);
-        jDesktopPane1.add(ps);
-        ps.setVisible(true);
+  
 }
 }

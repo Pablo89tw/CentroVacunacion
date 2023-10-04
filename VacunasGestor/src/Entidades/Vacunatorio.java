@@ -4,12 +4,12 @@ public class Vacunatorio {
     
     private int idVacunatorio;
     private String nombre;
-    private String ubicacion;
+    private Coordenadas ubicacion;
     private boolean estado;
     private Vial vial;
     private Medico medico;
 
-    public Vacunatorio(String nombre, String ubicacion, boolean estado, Vial vial, Medico medico) {
+    public Vacunatorio(String nombre, Coordenadas ubicacion, boolean estado, Vial vial, Medico medico) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.estado = estado;
@@ -36,11 +36,11 @@ public class Vacunatorio {
         this.nombre = nombre;
     }
 
-    public String getUbicacion() {
+    public Coordenadas getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
+    public void setUbicacion(Coordenadas ubicacion) {
         this.ubicacion = ubicacion;
     }
 

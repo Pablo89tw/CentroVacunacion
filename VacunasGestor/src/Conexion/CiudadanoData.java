@@ -11,15 +11,19 @@ public class CiudadanoData {
     
     public int cargaCiudadano(Ciudadano c1){
     int updates = 0;
-    String sql = "INSERT INTO ciudadano (dni,apellido,nombre,email,celular,ambitoTrabajo) VALUES (?,?,?,?,?,?)";
+    String sql = "INSERT INTO ciudadano (dni,apellido,nombre,direccion,email,celular,ambitoTrabajo,dosisAplcadas,fechaProxCita) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, c1.getDNI());
             ps.setString(2, c1.getApellido());
             ps.setString(3, c1.getNombre());
-            ps.setString(4, c1.getEmail());
-            ps.setInt(5, c1.getCelular());
-            ps.setString(6, c1.getAmbitoTrabajo());
+            String coordenada = "POINT(" + c1.getCordenadas().getLatitud() + " " + c1.getCordenadas().getLongitud() + ")";
+            ps.setString(4, coordenada);
+            ps.setString(5, c1.getEmail());
+            ps.setInt(6, c1.getCelular());
+            ps.setString(7, c1.getAmbitoTrabajo());
+            ps.setInt(8, 1);
+            ps.setString(9, c1.getProximoTurno().toString());
            
             updates = ps.executeUpdate();;
             if (updates > 0) {
