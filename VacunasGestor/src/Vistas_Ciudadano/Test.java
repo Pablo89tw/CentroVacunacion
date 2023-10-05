@@ -4,9 +4,14 @@ public class Test extends javax.swing.JFrame {
 
     public Test() {
         initComponents();
-        DireccionMapa dM = new DireccionMapa();
-        jDesktopPane1.add(dM);
-        dM.setVisible(true);
+        
+        Inscripcion_solapas iS = new Inscripcion_solapas();
+        jDesktopPane1.add(iS);
+        iS.setVisible(true);
+        
+//        DireccionMapa dM = new DireccionMapa();
+//        jDesktopPane1.add(dM);
+//        dM.setVisible(true);
      }
 
     /**

@@ -30,7 +30,7 @@ public class geoData {
                         rs.getFloat("latitud"),
                         rs.getFloat("longitud"));
                 ArrayCoor.add(coordenadas);
-            }
+           }
         } catch (SQLException ex) {
         }
         return ArrayCoor;

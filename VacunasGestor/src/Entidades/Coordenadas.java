@@ -38,6 +38,11 @@ public class Coordenadas {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Coordenadas{" + "nombre=" + nombre + ", latitud=" + latitud + ", longitud=" + longitud + '}';
+    }
     
     
     

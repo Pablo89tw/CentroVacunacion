@@ -40,7 +40,7 @@ public class CiudadanoData {
         return updates;
     }
     
-    public void patologias(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN) {
+    public void patologias(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN, String otra) {
         int exito = 0, comas = 0, sqlPosicion = 1, DNI = ciudadano.getDNI();
         String sql = "INSERT INTO patologias (DNI";
             
@@ -53,6 +53,7 @@ public class CiudadanoData {
         if (E != false) {sql += ", Embarazo";comas++;}
         if (EHC != false) {sql += ", Hepaticas_cronicas";comas++;}
         if (EN != false) {sql += ", Neurologicas";comas++;}
+        if (otra != null) {sql += ", otra";comas++;}
 
         sql += ") VALUES (?,";
         for (int i = 1; i < comas; i++) {
@@ -74,6 +75,10 @@ public class CiudadanoData {
                     ps.setBoolean(sqlPosicion, valores[i]);
                 }
             }
+            if (otra != null) {
+                sqlPosicion++;
+                ps.setString(sqlPosicion, otra);
+                }
 
             exito = ps.executeUpdate();
 
