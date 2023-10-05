@@ -5,7 +5,7 @@ public class Test extends javax.swing.JFrame {
     public Test() {
         initComponents();
         
-        Inscripcion_solapas iS = new Inscripcion_solapas();
+        Inscripcion iS = new Inscripcion();
         jDesktopPane1.add(iS);
         iS.setVisible(true);
         

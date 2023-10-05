@@ -14,7 +14,7 @@ public class VacunasGestor {
         
         StockData aD = new StockData();
         for (int i = 0; i < 600; i++) {
-            aD.armarStocks();
+            aD.cargarViales();
         }
        
         

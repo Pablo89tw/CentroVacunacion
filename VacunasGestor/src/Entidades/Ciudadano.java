@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,12 +13,12 @@ public class Ciudadano {
     private String email;
     private int celular;
     private String ambitoTrabajo;
-    private LocalDate proximoTurno;
+    private Date proximoTurno = null;
     private int dosisAplicadas;
     private Coordenadas cordenadas;
-    private ArrayList<Patologias> patologias;
+    private ArrayList<String> patologias;
 
-    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, LocalDate proximoTurno, int dosisAplicadas, Coordenadas cordenadas, ArrayList<Patologias> patologias) {
+    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, Date proximoTurno, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -89,11 +90,11 @@ public class Ciudadano {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
-    public LocalDate getProximoTurno() {
+    public Date getProximoTurno() {
         return proximoTurno;
     }
 
-    public void setProximoTurno(LocalDate proximoTurno) {
+    public void setProximoTurno(Date proximoTurno) {
         this.proximoTurno = proximoTurno;
     }
 
@@ -113,11 +114,11 @@ public class Ciudadano {
         this.cordenadas = cordenadas;
     }
 
-    public ArrayList<Patologias> getPatologias() {
+    public ArrayList<String> getPatologias() {
         return patologias;
     }
 
-    public void setPatologias(ArrayList<Patologias> patologias) {
+    public void setPatologias(ArrayList<String> patologias) {
         this.patologias = patologias;
     }
 

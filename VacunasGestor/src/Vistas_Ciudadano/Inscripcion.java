@@ -1,19 +1,23 @@
 package Vistas_Ciudadano;
 
 import Conexion.CiudadanoData;
+import Conexion.TurnoData;
 import Conexion.geoData;
 import Entidades.Ciudadano;
 import Entidades.Coordenadas;
+import Entidades.Turno;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
 import org.jxmapviewer.JXMapKit;
 import org.jxmapviewer.viewer.DefaultWaypoint;
@@ -21,18 +25,22 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
 
-public class Inscripcion_solapas extends javax.swing.JInternalFrame {
+public class Inscripcion extends javax.swing.JInternalFrame {
 
     geoData gD = new geoData();
-    
-    
-    private CiudadanoData cD;
+
+    TurnoData tD = new TurnoData();
+    private CiudadanoData cD = new CiudadanoData();
     private Coordenadas dtaCorda = new Coordenadas();
-    private Ciudadano c1 = new Ciudadano();;
+    private Ciudadano c1 = new Ciudadano();
+    private Turno turno1;
+    ;
  
-    public Inscripcion_solapas() {
+    private String columnas;
+    public Inscripcion() {
         initComponents();
         armarElementos();
+        armadoVista();
     }
 
     @SuppressWarnings("unchecked")
@@ -94,13 +102,11 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
         otras_Patologias = new javax.swing.JTextField();
         scrollPane1 = new java.awt.ScrollPane();
         jPanel3 = new javax.swing.JPanel();
-        diaPosterior_fecha1 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        diaAnterior_fecha1 = new javax.swing.JButton();
+        tomarTurno = new javax.swing.JButton();
 
         TextoApellido1.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         TextoApellido1.setText("APELLIDO");
@@ -188,7 +194,7 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("Mapa");
+        jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -351,7 +357,12 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
 
         jLabel30.setText("Otros");
 
-        jButton4.setText("ACEPTO");
+        jButton4.setText("Cargar Datos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel31.setText("Inmunosupresion");
 
@@ -554,60 +565,49 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
 
         Turno.addTab("Patologias Previas", jPanel2);
 
-        diaPosterior_fecha1.setText("Dia ->");
-
-        jButton5.setText("Proximo turno libre");
-
         jLabel4.setText("1° Dosis");
 
         jLabel10.setText("Centro Vacunacion:");
 
-        diaAnterior_fecha1.setText("<- Día");
+        tomarTurno.setText("Finalizar");
+        tomarTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tomarTurnoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(diaAnterior_fecha1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(diaPosterior_fecha1))
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tomarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(diaPosterior_fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(diaAnterior_fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(1, 1, 1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
-                .addContainerGap(263, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(tomarTurno)
+                .addContainerGap(326, Short.MAX_VALUE))
         );
 
         Turno.addTab("Turno", jPanel3);
@@ -627,11 +627,11 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-     int filaSeleccionada = jTable1.getSelectedRow();
+        int filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {
             dtaCorda.setNombre(jTable1.getValueAt(filaSeleccionada, 0).toString());
         }
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
@@ -643,12 +643,23 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTexto_ciudadKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         init(gD.buscarCiudad(dtaCorda.getNombre()).get(0));
+        armarCoodenadas(gD.buscarCiudad(dtaCorda.getNombre()).get(0));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Siguiente_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Siguiente_DataActionPerformed
-        cargarDatosMariaDB();
+        armarCiudadano();
     }//GEN-LAST:event_Siguiente_DataActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        patologiaUpdate();
+        ciudadanoUpdate();
+        proximoTurnoLibre();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tomarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarTurnoActionPerformed
+        armarDataTurno();
+        actualizarTurnero();
+    }//GEN-LAST:event_tomarTurnoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -658,12 +669,9 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextoDni;
     private javax.swing.JTextField TextoNombre;
     private javax.swing.JTabbedPane Turno;
-    private javax.swing.JButton diaAnterior_fecha1;
-    private javax.swing.JButton diaPosterior_fecha1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -714,15 +722,16 @@ public class Inscripcion_solapas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTexto_email;
     private javax.swing.JTextField otras_Patologias;
     private java.awt.ScrollPane scrollPane1;
+    private javax.swing.JButton tomarTurno;
     // End of variables declaration//GEN-END:variables
 
- DefaultTableModel modelo = new DefaultTableModel() {
+    DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
 
-private void armarElementos() {
+    private void armarElementos() {
         String[] trabajos = {"Sanidad y Medicina", "Educación", "Servicios Financieros", "Gobierno y Administración Pública", "Arte y Entretenimiento",
             "Agricultura y Agroindustria", "Construcción y Arquitectura", "Monotributista", "Trabajo Informal", "Privado"};
         DefaultComboBoxModel ambitos = new DefaultComboBoxModel(trabajos);
@@ -732,28 +741,31 @@ private void armarElementos() {
         modelo.addColumn("Ciudad");
         jTable1.setModel(modelo);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jDateChooser1.setEnabled(false);
     }
 
-private void cargarDatosMariaDB() {
+    private void armarCiudadano() {
         c1.setDNI(Integer.parseInt(TextoDni.getText()));
         c1.setNombre(TextoNombre.getText());
         c1.setApellido(jTextoApellido.getText());
         c1.setEmail(jTexto_email.getText());
+        c1.setCelular(Integer.parseInt(jTexto_celular1.getText()));
+        c1.setAmbitoTrabajo(jComboBox1.getSelectedItem().toString());
     }
 
-private void completarTabla(ArrayList<Coordenadas> ArrayCord) {
-       int filas = jTable1.getRowCount() - 1;
+    private void completarTabla(ArrayList<Coordenadas> ArrayCord) {
+        int filas = jTable1.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
             modelo.removeRow(f);
         }
-        
+
         for (Coordenadas coor : ArrayCord) {
             modelo.addRow(new Object[]{coor.getNombre()});
         }
     }
-    
-public void init(Coordenadas coord) {
-         JXMapKit mapKit = new JXMapKit();
+
+    public void armarCoodenadas(Coordenadas coord) {
+        JXMapKit mapKit = new JXMapKit();
         mapKit.setDefaultProvider(JXMapKit.DefaultProviders.OpenStreetMaps);
 
         // Establece la ubicación inicial y el nivel de zoom
@@ -778,7 +790,7 @@ public void init(Coordenadas coord) {
                 GeoPosition coordenadas1 = mapKit.getMainMap().convertPointToGeoPosition(point);
                 Waypoint waypoint = new DefaultWaypoint(coordenadas1);
                 waypointPainter.setWaypoints(Collections.singleton(waypoint));
-                
+
                 JOptionPane.showMessageDialog(frame, "Coordenadas: Latitud " + coordenadas1.getLatitude() + ", Longitud " + coordenadas1.getLongitude());
                 dtaCorda.setLatitud(coordenadas1.getLatitude());
                 dtaCorda.setLongitud(coordenadas1.getLongitude());
@@ -787,13 +799,10 @@ public void init(Coordenadas coord) {
         });
         frame.getContentPane().add(mapKit);
         frame.setVisible(true);
-    }
- 
-private MouseInputListener PanMouseInputListener(JFrame frame) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        c1.setCordenadas(dtaCorda);
     }
 
- private void armadoVista() {
+    private void armadoVista() {
         ButtonGroup buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);
@@ -846,11 +855,69 @@ private MouseInputListener PanMouseInputListener(JFrame frame) {
                 jRadioButton15.isSelected(),
                 jRadioButton17.isSelected(),
                 otras_Patologias.getText());
-        
 
         JOptionPane.showMessageDialog(null, "En caso de error, comunicarse con el Astronauta Daniel Vidaurre.");
         this.dispose();
+      
+        ArrayList<String> patolo = new ArrayList<>();
+        if (jRadioButton1.isSelected()) {patolo.add("Enfermedades Cardiobasculares");}
+        if (jRadioButton3.isSelected()){patolo.add("Diabetes");}
+        if (jRadioButton5.isSelected()) {patolo.add("Enfermedades Respiratorias Crónicas");}
+        if (jRadioButton7.isSelected()){patolo.add("Inmunosupresion");}
+        if (jRadioButton9.isSelected()){patolo.add("Obesidad");}
+        if (jRadioButton11.isSelected()){patolo.add("Enfermedades Renales Crónicas");}
+        if (jRadioButton13.isSelected()){patolo.add("Embarazo");}
+        if (jRadioButton15.isSelected()){patolo.add("Enfermedades Hepáticas");}
+        if (jRadioButton17.isSelected()){patolo.add("Enfermedades Neurológicas");}
+        if (otras_Patologias.getText()!= null) {patolo.add(otras_Patologias.getText());}
+
+        c1.setPatologias(patolo);
     }
+    
+    private void ciudadanoUpdate(){
+        
+    }
+    
+    private void armarDataTurno(){
+        Date fecha = (Date) jDateChooser1.getDate();
+        
+        switch (jComboBox1.getSelectedItem().toString()){
+            case "8 a 9": fecha.setHours(8);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "8_9";break;
+            case "9 a 10": fecha.setHours(9);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "9_10";break;
+            case "10 a 11": fecha.setHours(10);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "10_11";break;
+            case "11 a 12": fecha.setHours(11);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "11_12";break;
+            case "12 a 13": fecha.setHours(12);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "12_13";break;
+            case "13 a 14": fecha.setHours(13);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "13_14";break;
+            case "14 a 15": fecha.setHours(14);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "14_15";break;
+            case "15 a 16": fecha.setHours(15);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "15_16";break;
+            case "16 a 17": fecha.setHours(16);fecha.setMinutes(0);fecha.setSeconds(0);columnas = "16_17";break;
+        }
+        c1.setProximoTurno(fecha);
+    }
+
+    private void proximoTurnoLibre() {
+        ArrayList<String> horarios;
+        LocalDate fecha = LocalDate.now();
+        do {
+            horarios = tD.turnosLibres(fecha);
+            fecha = fecha.plusDays(1);
+        } while (horarios.isEmpty());
+        jDateChooser1.setDate(java.sql.Date.valueOf(fecha.minusDays(1)));
+        buscarHorariosLibres(fecha.minusDays(1));
+    }
+
+    private void buscarHorariosLibres(LocalDate date) {
+        ArrayList<String> turnos = tD.turnosLibres(date);
+        DefaultComboBoxModel<String> cbModel;
+
+        if (!turnos.isEmpty()) {
+            cbModel = new DefaultComboBoxModel<>(turnos.toArray(new String[0]));
+        }
+    }
+    
+    private void actualizarTurnero(){
+        turno1 = new Turno(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),columnas);
+        tD.actualizarVacunatorio(turno1);
+    }
+    
 }
-
-

@@ -22,8 +22,8 @@ public class CiudadanoData {
             ps.setString(5, c1.getEmail());
             ps.setInt(6, c1.getCelular());
             ps.setString(7, c1.getAmbitoTrabajo());
-            ps.setInt(8, 1);
-            ps.setString(9, c1.getProximoTurno().toString());
+            ps.setInt(8,0);
+            ps.setDate(9, c1.getProximoTurno());
            
             updates = ps.executeUpdate();;
             if (updates > 0) {

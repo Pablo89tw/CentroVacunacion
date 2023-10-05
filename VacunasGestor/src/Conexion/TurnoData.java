@@ -32,15 +32,15 @@ public class TurnoData {
            
           rs = ps.executeQuery();
           if (rs.next()) {
-            if(rs.getInt("8_9")>0){horarios.add("8_9");}
-            if(rs.getInt("9_10")>0){horarios.add("9_10");}
-            if(rs.getInt("10_11")>0){horarios.add("10_11");}
-            if(rs.getInt("11_12")>0){horarios.add("11_12");}
-            if(rs.getInt("12_13")>0){horarios.add("12_13");}
-            if(rs.getInt("13_14")>0){horarios.add("13_14");}
-            if(rs.getInt("14_15")>0){horarios.add("14_15");}
-            if(rs.getInt("15_16")>0){horarios.add("15_16");}
-            if(rs.getInt("16_17")>0){horarios.add("16_17");}
+            if(rs.getInt("8_9")>0){horarios.add("8 a 9");}
+            if(rs.getInt("9_10")>0){horarios.add("9 a 10");}
+            if(rs.getInt("10_11")>0){horarios.add("10 a 11");}
+            if(rs.getInt("11_12")>0){horarios.add("11 a 12");}
+            if(rs.getInt("12_13")>0){horarios.add("12 a 13");}
+            if(rs.getInt("13_14")>0){horarios.add("13 a 14");}
+            if(rs.getInt("14_15")>0){horarios.add("14 a 15");}
+            if(rs.getInt("15_16")>0){horarios.add("15 a 16");}
+            if(rs.getInt("16_17")>0){horarios.add("16 a 17");}
 }
         } catch(SQLException ex){
             System.out.println("pepe");
@@ -67,7 +67,7 @@ public class TurnoData {
                 Turno tur_2daDosis = planVacunatorio(tur);
                 actualizarVacunatorio(tur_2daDosis);
                 
-                //JOptionPane.showMessageDialog(null, "El alumno " + alumno.getApellido() + " " + alumno.getNombre() + " ha sido cargado con exito");
+                
             }
             if (updates == 0) {
                 JOptionPane.showMessageDialog(null, "El alumno no ha sido cargado.");
