@@ -1,6 +1,5 @@
 package Vistas_Ciudadano;
 
-import Vistas_Ciudadano.Test;
 import Conexion.CiudadanoData;
 import Conexion.PatologiaData;
 import Conexion.geoData;
