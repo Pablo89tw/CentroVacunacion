@@ -1,6 +1,5 @@
 package Entidades;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class Ciudadano {
@@ -12,27 +11,29 @@ public class Ciudadano {
     private String email;
     private int celular;
     private String ambitoTrabajo;
-    private Date proximoTurno = null;
     private int dosisAplicadas;
     private Coordenadas cordenadas;
     private ArrayList<String> patologias;
+    private Turno turno;
 
-    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, Date proximoTurno, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias) {
+    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias, Turno turno) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.celular = celular;
         this.ambitoTrabajo = ambitoTrabajo;
-        this.proximoTurno = proximoTurno;
         this.dosisAplicadas = dosisAplicadas;
         this.cordenadas = cordenadas;
         this.patologias = patologias;
+        this.turno = turno;
     }
 
     public Ciudadano() {
     }
 
+    
+    
     public int getIdCiudadano() {
         return idCiudadano;
     }
@@ -89,14 +90,6 @@ public class Ciudadano {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
-    public Date getProximoTurno() {
-        return proximoTurno;
-    }
-
-    public void setProximoTurno(Date proximoTurno) {
-        this.proximoTurno = proximoTurno;
-    }
-
     public int getDosisAplicadas() {
         return dosisAplicadas;
     }
@@ -121,13 +114,19 @@ public class Ciudadano {
         this.patologias = patologias;
     }
 
-    @Override
-    public String toString() {
-        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", celular=" + celular + ", ambitoTrabajo=" + ambitoTrabajo + ", proximoTurno=" + proximoTurno + ", dosisAplicadas=" + dosisAplicadas + ", cordenadas=" + cordenadas + ", patologias=" + patologias + '}';
+    public Turno getTurno() {
+        return turno;
     }
 
-    
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
+
+    @Override
+    public String toString() {
+        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", celular=" + celular + ", ambitoTrabajo=" + ambitoTrabajo + ", dosisAplicadas=" + dosisAplicadas + ", cordenadas=" + cordenadas + ", patologias=" + patologias + ", turno=" + turno + '}';
+    }
     
 }
-    
+
    

@@ -1,6 +1,8 @@
 package vacunasgestor;
 
 import Conexion.StockData;
+import Conexion.TurnoData;
+import Entidades.Turno;
 
 public class VacunasGestor {
 
@@ -16,8 +18,7 @@ public class VacunasGestor {
         for (int i = 0; i < 600; i++) {
             aD.cargarViales();
         }
-       
-        
+    
     }
     
 }

@@ -8,7 +8,6 @@ public class Turno_Activo {
     private Vacunatorio cVacunacion;
     private LocalDate fecha;
     private Vial vial;
-    private Medico medico;
-   
+      
     
 }

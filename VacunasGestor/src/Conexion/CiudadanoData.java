@@ -1,19 +1,42 @@
 package Conexion;
 
 import Entidades.Ciudadano;
+import Entidades.Turno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 public class CiudadanoData {
     
     private Connection con = Conectar.getConectar();
+    private TurnoData tD = new TurnoData();
     
     public int cargaCiudadano(Ciudadano c1){
-    int updates = 0;
-    String sql = "INSERT INTO ciudadano (dni,apellido,nombre,latitud,longitud,email,celular,ambitoTrabajo,dosisAplicadas,fechaProxCita) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        try {
+    int updates = 0, comas =0;
+    
+    String sql = "INSERT INTO ciudadano (dni";
+        if (c1.getApellido() != null) {sql += ", apellido";comas++;}
+        if (c1.getNombre() != null) {sql += ", nombre";comas++;}
+        if (c1.getCordenadas().getLatitud() != 0) {sql += ", latitud";comas++;}
+        if (c1.getCordenadas().getLongitud() != 0) {sql += ", longitud";comas++;}
+        if (c1.getEmail() != null) {sql += ", email";comas++;}
+        if (c1.getCelular() != 0) {sql += ", celular";comas++;}
+        if (c1.getAmbitoTrabajo() != null) {sql += ", ambitoTrabajo";comas++;}
+        if (c1.getDosisAplicadas() != -1) {sql += ", dosisAplicadas";comas++;}
+               
+        sql += ") VALUES (?";
+        if (comas!=0){sql +=",";}      
+        for (int i = 1; i < comas; i++) {
+            sql += "?,";
+        }
+        sql += "?)";
+        
+        System.out.println(sql);
+       
+    try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, c1.getDNI());
             ps.setString(2, c1.getApellido());
@@ -24,8 +47,7 @@ public class CiudadanoData {
             ps.setInt(7, c1.getCelular());
             ps.setString(8, c1.getAmbitoTrabajo());
             ps.setInt(9,0);
-            ps.setDate(10, c1.getProximoTurno());
-           
+                      
             updates = ps.executeUpdate();;
             if (updates > 0) {
                 JOptionPane.showMessageDialog(null, "Inscripcion Correcta");
@@ -64,8 +86,6 @@ public class CiudadanoData {
         }
         sql += "?)";
         
-        System.out.println(sql);
-       
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -97,9 +117,54 @@ public class CiudadanoData {
             }
         }
     }
+    
+    public int dosisAplicadas(Ciudadano ciudadano){
+        int dosis = 0;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT dosisAplicadas FROM ciudano WHERE DNI = ?";
+        
+         try {
+          ps = con.prepareStatement(sql);
+          ps.setInt(1, ciudadano.getDNI());
+          rs = ps.executeQuery();
+          if (rs.next()) {
+            dosis = rs.getInt("dosisAplicadas");
+}
+        } catch(SQLException ex){
+            System.out.println("pepe");
+        } 
+        return dosis;
+    }
+     
+    public void cargarTurno(Ciudadano ciu, Turno tur, int refuerzo){
+        String sql = "INSERT INTO turno (dni,fechaTurno,fechaColocacion,idCentro,codigoRefuerzo,estado) VALUES (?,?,?,?,?,?)";
+        System.out.println(tur);
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, ciu.getDNI());
+            ps.setTimestamp(2, Timestamp.valueOf(tur.getFecha()));
+            ps.setDate(3,null);
+            ps.setInt(4, tur.getVacunatorio().getIdVacunatorio());
+            ps.setInt(5, ciu.getDosisAplicadas());  
+            ps.setInt(6,0);
 
-     
-     
+            int updates = ps.executeUpdate();
+            if (updates > 0) {
+                tD.actualizarTurneroVacunatorio(tur);                 
+            }
+            if (updates == 0) {
+                JOptionPane.showMessageDialog(null, "Turno Tomado");
+            }
+        } catch (SQLException e) {
+            if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "Turno ya ocupado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, tome un nuevo turno");
+            }
+        }
+    }
      
      
 }
