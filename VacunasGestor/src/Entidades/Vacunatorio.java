@@ -8,13 +8,17 @@ public class Vacunatorio {
     private boolean estado;
     private Vial vial;
     private Medico medico;
+    private String direccion;
+    
 
-    public Vacunatorio(String nombre, Coordenadas ubicacion, boolean estado, Vial vial, Medico medico) {
+    public Vacunatorio(String nombre, Coordenadas ubicacion, boolean estado, Vial vial, Medico medico, String direccion) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.estado = estado;
         this.vial = vial;
         this.medico = medico;
+        this.direccion = direccion;
+        
     }
 
     public Vacunatorio() {
@@ -68,11 +72,19 @@ public class Vacunatorio {
         this.medico = medico;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     @Override
     public String toString() {
-        return "Vacunatorio{" + "idVacunatorio=" + idVacunatorio + ", nombre=" + nombre + ", ubicacion=" + ubicacion + ", estado=" + estado + ", vial=" + vial + ", medico=" + medico + '}';
+        return "Vacunatorio{" + "idVacunatorio=" + idVacunatorio + ", nombre=" + nombre + ", ubicacion=" + ubicacion + ", estado=" + estado + ", vial=" + vial + ", medico=" + medico + ", direccion=" + direccion + '}';
     }
-    
+
     
     
 }

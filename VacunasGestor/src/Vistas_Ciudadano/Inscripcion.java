@@ -2,10 +2,12 @@ package Vistas_Ciudadano;
 
 import Conexion.CiudadanoData;
 import Conexion.TurnoData;
+import Conexion.VacunatorioData;
 import Conexion.geoData;
 import Entidades.Ciudadano;
 import Entidades.Coordenadas;
 import Entidades.Turno;
+import Entidades.Vacunatorio;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,12 +30,14 @@ import org.jxmapviewer.viewer.WaypointPainter;
 public class Inscripcion extends javax.swing.JInternalFrame {
 
     geoData gD = new geoData();
+    VacunatorioData vD = new VacunatorioData();
 
     TurnoData tD = new TurnoData();
     private CiudadanoData cD = new CiudadanoData();
     private Coordenadas dtaCorda = new Coordenadas();
     private Ciudadano c1 = new Ciudadano();
     private Turno turno1;
+    private Vacunatorio masCercano;
     ;
  
     private String columnas;
@@ -107,6 +111,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         tomarTurno = new javax.swing.JButton();
+        nombreVacunatorio = new javax.swing.JLabel();
+        nombreVacunatorio1 = new javax.swing.JLabel();
 
         TextoApellido1.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         TextoApellido1.setText("APELLIDO");
@@ -264,7 +270,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2)))))
-                .addGap(5, 64, Short.MAX_VALUE))
+                .addGap(5, 71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,7 +401,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         jLabel33.setText("Enfermedades Neurológicas");
 
-        otras_Patologias.setText("jTextField1");
+        otras_Patologias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otras_PatologiasActionPerformed(evt);
+            }
+        });
 
         scrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         scrollPane1.setVisible(false);
@@ -560,7 +570,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addComponent(jButton4)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         Turno.addTab("Patologias Previas", jPanel2);
@@ -582,32 +592,46 @@ public class Inscripcion extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tomarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 40, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreVacunatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tomarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(nombreVacunatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tomarTurno)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         Turno.addTab("Turno", jPanel3);
@@ -647,11 +671,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Siguiente_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Siguiente_DataActionPerformed
+        vacunatorioProximo();
         armarCiudadano();
+        cD.cargaCiudadano(c1);
     }//GEN-LAST:event_Siguiente_DataActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        patologiaUpdate();
+       /// patologiaUpdate();
         ciudadanoUpdate();
         proximoTurnoLibre();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -660,6 +686,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         armarDataTurno();
         actualizarTurnero();
     }//GEN-LAST:event_tomarTurnoActionPerformed
+
+    private void otras_PatologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otras_PatologiasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otras_PatologiasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -720,6 +750,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTexto_celular1;
     private javax.swing.JTextField jTexto_ciudad;
     private javax.swing.JTextField jTexto_email;
+    private javax.swing.JLabel nombreVacunatorio;
+    private javax.swing.JLabel nombreVacunatorio1;
     private javax.swing.JTextField otras_Patologias;
     private java.awt.ScrollPane scrollPane1;
     private javax.swing.JButton tomarTurno;
@@ -771,12 +803,12 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         // Establece la ubicación inicial y el nivel de zoom
         GeoPosition centerPosition = new GeoPosition(coord.getLatitud(), coord.getLongitud());
         mapKit.setCenterPosition(centerPosition);
-        mapKit.setZoom(40);
+        mapKit.setZoom(100);
 
         // Crea un JFrame para contener el mapKit
         JFrame frame = new JFrame("Mapa");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 900);
+        frame.setSize(800, 600);
 
         // Crea un WaypointPainter para gestionar las marcas
         WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
@@ -858,21 +890,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         JOptionPane.showMessageDialog(null, "En caso de error, comunicarse con el Astronauta Daniel Vidaurre.");
         this.dispose();
-      
-        ArrayList<String> patolo = new ArrayList<>();
-        if (jRadioButton1.isSelected()) {patolo.add("Enfermedades Cardiobasculares");}
-        if (jRadioButton3.isSelected()){patolo.add("Diabetes");}
-        if (jRadioButton5.isSelected()) {patolo.add("Enfermedades Respiratorias Crónicas");}
-        if (jRadioButton7.isSelected()){patolo.add("Inmunosupresion");}
-        if (jRadioButton9.isSelected()){patolo.add("Obesidad");}
-        if (jRadioButton11.isSelected()){patolo.add("Enfermedades Renales Crónicas");}
-        if (jRadioButton13.isSelected()){patolo.add("Embarazo");}
-        if (jRadioButton15.isSelected()){patolo.add("Enfermedades Hepáticas");}
-        if (jRadioButton17.isSelected()){patolo.add("Enfermedades Neurológicas");}
-        if (otras_Patologias.getText()!= null) {patolo.add(otras_Patologias.getText());}
-
-        c1.setPatologias(patolo);
-    }
+        }
     
     private void ciudadanoUpdate(){
         
@@ -899,7 +917,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         ArrayList<String> horarios;
         LocalDate fecha = LocalDate.now();
         do {
-            horarios = tD.turnosLibres(fecha);
+            horarios = tD.turnosLibres(fecha,masCercano);
             fecha = fecha.plusDays(1);
         } while (horarios.isEmpty());
         jDateChooser1.setDate(java.sql.Date.valueOf(fecha.minusDays(1)));
@@ -907,7 +925,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }
 
     private void buscarHorariosLibres(LocalDate date) {
-        ArrayList<String> turnos = tD.turnosLibres(date);
+        ArrayList<String> turnos = tD.turnosLibres(date,masCercano);
         DefaultComboBoxModel<String> cbModel;
 
         if (!turnos.isEmpty()) {
@@ -916,8 +934,28 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }
     
     private void actualizarTurnero(){
-        turno1 = new Turno(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),columnas);
-        tD.actualizarVacunatorio(turno1);
+        turno1 = new Turno(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),columnas,masCercano);
+        turno1.setVacunatorio(masCercano);
+        tD.actualizarVacunatorioT(turno1);
     }
+    
+    private void vacunatorioProximo(){
+        double distancia; double min;
+        
+        Vacunatorio vac1 = vD.listarVacunatorio().get(0);
+        
+            min = Math.sqrt(((vac1.getUbicacion().getLatitud()-dtaCorda.getLatitud())*(vac1.getUbicacion().getLatitud()-dtaCorda.getLatitud()))+((vac1.getUbicacion().getLongitud()-dtaCorda.getLongitud())*(vac1.getUbicacion().getLongitud()-dtaCorda.getLongitud())));
+
+        for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
+            distancia = Math.sqrt(((vacunatorio.getUbicacion().getLatitud()-dtaCorda.getLatitud())*(vacunatorio.getUbicacion().getLatitud()-dtaCorda.getLatitud()))+((vacunatorio.getUbicacion().getLongitud()-dtaCorda.getLongitud())*(vacunatorio.getUbicacion().getLongitud()-dtaCorda.getLongitud())));
+            System.out.println(distancia);
+            if (min == distancia){
+                masCercano = vacunatorio;
+                nombreVacunatorio.setText(masCercano.getNombre());
+                nombreVacunatorio1.setText(masCercano.getDireccion());
+            }
+        }
+    }
+    
     
 }

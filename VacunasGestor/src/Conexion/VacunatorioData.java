@@ -1,58 +1,49 @@
 package Conexion;
 
-import Entidades.Medico;
-import Entidades.Vial;
+
+import Entidades.Coordenadas;
+import Entidades.Vacunatorio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 public class VacunatorioData {
     private Connection con = Conectar.getConectar();
+    private ArrayList<Vacunatorio> arrayVacunatorios;
       
-    public void cargarcentro(String nombre, String ubicacion, String turno, String estado, Vial vial, Medico medico) {
-        int comas = 0, conDatos = 1, sqlValores = 1;
+    public ArrayList<Vacunatorio> listarVacunatorio(){
+        arrayVacunatorios = new ArrayList<>();
+        PreparedStatement ps = null;
 
-        String sql = "INSERT INTO vacunatorio (";
+        String sql = "SELECT * FROM vacunatorio";
 
-        if (nombre != null) {sql += "nombre";comas++;conDatos++;}
-        if (ubicacion != null) {sql += ((comas > 0) ? "," : " ") + "ubicacion";comas++;conDatos++;}
-        if (turno != null) {sql += ((comas > 0) ? "," : " ") + "turno";comas++;conDatos++;}
-        if (estado != null) {sql += ((comas > 0) ? "," : " ") + "estado";comas++;conDatos++;}
-        if (vial != null) {sql += ((comas > 0) ? "," : " ") + "iDvial";comas++;conDatos++;}
-        if (medico != null) {sql += ((comas > 0) ? "," : " ") + "idMedico";comas++;conDatos++;}
-        
-        sql += ") VALUES (";
+        try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
-        for (int i = 1; i < conDatos - 1; i++) {
-            sql += "?,";
+            while (rs.next()) {
+                Vacunatorio vac = new Vacunatorio();
+                vac.setNombre(rs.getString("Nombre"));
+                Coordenadas cord1 = new Coordenadas();
+                cord1.setLatitud(rs.getDouble("latitud"));
+                cord1.setLongitud(rs.getDouble("longitud"));
+                vac.setUbicacion(cord1);
+                vac.setDireccion(rs.getString("direccion"));
+                
+                arrayVacunatorios.add(vac);
+            }
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
         }
+        return arrayVacunatorios;
+    }
         
-        sql += "?)";
-    }}
+ 
+  }
+    
 
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            if (dni != null) {
-//                ps.setInt(sqlValores, Integer.parseInt(dni));
-//                sqlValores++;
-//            }
-//            if (apellido != null) {
-//                ps.setString(sqlValores, apellido);
-//                sqlValores++;
-//            }
-//            if (nombre != null) {
-//                ps.setString(sqlValores, nombre);
-//                sqlValores++;
-//            }
-//            //if (fechaNacimiento != null) { ps.setDate(sqlValores, fechaNacimiento);sqlValores++;}
-//            //if (estado != null) {ps.setBoolean(sqlValores, estado);sqlValores++}
-//            if (anio != null) {
-//                ps.setInt(sqlValores, Integer.parseInt(anio));
-//                sqlValores++;
-//            }
-//
-//         
-//       
-//    }
-//}
-//
-//}
+

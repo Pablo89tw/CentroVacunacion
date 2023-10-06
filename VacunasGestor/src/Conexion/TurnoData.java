@@ -18,10 +18,15 @@ import javax.swing.JOptionPane;
 public class TurnoData {
     private Connection con = Conectar.getConectar();
     
-    public ArrayList<String> turnosLibres(LocalDate fecha) {
+    public ArrayList<String> turnosLibres(LocalDate fecha, Vacunatorio vac) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM turnero WHERE fecha LIKE (?)";
+        String sql = "SELECT * FROM";
+                 switch (vac.getIdVacunatorio()){
+                case 1: sql += " turnero_1 WHERE fecha = ?";break;
+                case 2: sql += " turnero_2 WHERE fecha = ?";break;
+                case 3: sql += " turnero_2 WHERE fecha = ?";break;
+            } 
         
         ArrayList<String> horarios =  new ArrayList();
         
@@ -63,11 +68,7 @@ public class TurnoData {
 
             int updates = ps.executeUpdate();
             if (updates > 0) {
-                actualizarVacunatorio(tur);                
-                Turno tur_2daDosis = planVacunatorio(tur);
-                actualizarVacunatorio(tur_2daDosis);
-                
-                
+                actualizarVacunatorioT(tur);                 
             }
             if (updates == 0) {
                 JOptionPane.showMessageDialog(null, "El alumno no ha sido cargado.");
@@ -79,15 +80,26 @@ public class TurnoData {
                 JOptionPane.showMessageDialog(null, "El alumno no ha sido cargado");
             }
         }
-  
     }
     
-    public void actualizarVacunatorio(Turno tur){
+    public void actualizarVacunatorioT(Turno tur){
         int check = 0; int cupos = 0;
         PreparedStatement ps = null;        
-        String sql1 = "SELECT * FROM turnero WHERE fecha = ?";
-        String sql2 = "UPDATE turnero SET " + tur.getHorario() + " = ? WHERE fecha = ?";
- 
+        String sql1 = "SELECT * FROM ";
+        
+        switch (tur.getVacunatorio().getIdVacunatorio()){
+                case 1: sql1 += " turnero_1 WHERE fecha = ?";break;
+                case 2: sql1 += " turnero_2 WHERE fecha = ?";break;
+                case 3: sql1 += " turnero_2 WHERE fecha = ?";break;
+            } 
+             
+        String sql2 = "UPDATE"; 
+            
+            switch (tur.getVacunatorio().getIdVacunatorio()){
+                case 1: sql2 += " turnero_1 SET "+ tur.getHorario() + " = ? WHERE fecha = ?";break;
+                case 2: sql2 += " turnero_3 SET "+ tur.getHorario() + " = ? WHERE fecha = ?";break;
+                case 3: sql2 += " turnero_4 SET "+ tur.getHorario() + " = ? WHERE fecha = ?";break;
+            }  
         try {
             ps = con.prepareStatement(sql1);
             ps.setString(1, tur.getFecha().toString());
@@ -120,10 +132,10 @@ public class TurnoData {
         ArrayList<String> horarios;
         LocalDate fecha = turno.getFecha().plusDays(21);
         do {
-            horarios = turnosLibres(turno.getFecha());
+            horarios = turnosLibres(turno.getFecha(),turno.getVacunatorio());
             fecha = fecha.plusDays(1);
         } while (horarios.isEmpty());
-        Turno tur2 = new Turno(fecha, null);
+        Turno tur2 = new Turno(fecha, null,null);
         return tur2;
     }
 }
