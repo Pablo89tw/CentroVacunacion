@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 03:05:47
+-- Tiempo de generación: 06-10-2023 a las 19:23:11
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -29,32 +29,38 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ciudadano` (
   `idCiudadano` tinyint(20) NOT NULL,
-  `DNI` int(100) NOT NULL,
+  `DNI` int(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `latitud` double NOT NULL,
   `longitud` double NOT NULL,
   `email` varchar(20) NOT NULL,
-  `celular` int(11) NOT NULL,
+  `celular` int(20) NOT NULL,
   `ambitoTrabajo` varchar(20) NOT NULL,
-  `dosisAplicadas` tinyint(10) NOT NULL,
-  `fechaProxCita` datetime DEFAULT NULL
+  `dosisAplicadas` tinyint(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `ciudadano`
 --
 
-INSERT INTO `ciudadano` (`idCiudadano`, `DNI`, `apellido`, `nombre`, `latitud`, `longitud`, `email`, `celular`, `ambitoTrabajo`, `dosisAplicadas`, `fechaProxCita`) VALUES
-(19, 34585965, 'Falopa', 'Treinta', 0, 0, 'manarata', 64532165, 'Arte y Entretenimien', 0, '0000-00-00 00:00:00'),
-(20, 1412312, 'sdas', 'asdas', -31.610045314497373, -60.66770553588867, 'asddsa', 12412312, 'Arte y Entretenimien', 0, NULL),
-(21, 41231, 'sdasd', 'sadas', -31.631460102558652, -60.68787384033203, 'sadsa', 412321, 'Gobierno y Administr', 0, NULL),
-(23, 3, 'sdsad', 'sadas', -31.670914715537975, -60.72418212890625, 'sadas', 12312, 'Gobierno y Administr', 0, NULL),
-(25, 21312312, 'Marica', 'Ferrera', -31.634090931085215, -60.64659118652344, 'maricaFerrera@gmail.', 4123123, 'Agricultura y Agroin', 0, NULL),
-(26, 2312, 'd', 's', -31.626198222280603, -60.76263427734375, 's', 2312, 'Gobierno y Administr', 0, NULL),
-(27, 21312, 'fas', 'fas', -31.63730628711834, -60.69414138793945, 'sadas', 2412, 'Arte y Entretenimien', 0, NULL),
-(28, 34508715, 'Torti', 'Juan', -31.640210973410955, -60.690568685531616, 'juantorti1964@hotmai', 14122312, 'Arte y Entretenimien', 0, NULL),
-(29, 412312312, 'Massa', 'Felipe', -31.61106865879486, -60.69972038269043, 'dasdasdas', 421312312, 'Construcción y Arqui', 0, NULL);
+INSERT INTO `ciudadano` (`idCiudadano`, `DNI`, `apellido`, `nombre`, `latitud`, `longitud`, `email`, `celular`, `ambitoTrabajo`, `dosisAplicadas`) VALUES
+(30, 25896532, 'Scalso', 'Victor', -31.616258303112566, -60.67302703857422, 'vic_elone@gmail.com', 15465322, 'Arte y Entretenimien', 0),
+(31, 29856532, 'Mollo', 'Ariel', -31.611580326725143, -60.66822052001953, 'mollo@ariel.com.ar', 15436153, 'Arte y Entretenimien', 0),
+(32, 45623522, 'Geronimo', 'Sanjo', -31.613334595420888, -60.670108795166016, 'pablo@geronimo.com', 11546876, 'Agricultura y Agroin', 0),
+(33, 45326125, 'Dekanty', 'Andres', -31.65075111691189, -60.71113586425781, 'dandres@gmail.com', 15465485, 'Agricultura y Agroin', 0),
+(34, 666555444, 'Stanley', 'Cabeza Termo', -31.651700949825617, -60.72023391723633, 'stanely@gmail.com', 12312312, 'Educación', 0),
+(35, 12412312, 'Lopez', 'Obrador', -31.664851484757968, -60.70796012878418, 'dasdas', 21421312, 'Arte y Entretenimien', 0),
+(36, 1, 'l', 'o', -31.643444385392208, -60.68504333496094, 'p', 2, 'Gobierno y Administr', 0),
+(37, 341231, 'mollo', 'ariel', -31.666239488179905, -60.71388244628906, 'fasdsa', 1323213, 'Agricultura y Agroin', 0),
+(38, 231241231, 'Mollo', 'ariela', -31.7234948028286, -60.7489013671875, 'fasdas', 13412312, 'Sanidad y Medicina', 0),
+(39, 24123, 'sdas', 'asfasdas', -31.7234948028286, -60.75439453125, 'asdas', 124123, 'Gobierno y Administr', 0),
+(40, 123123, 'Mollo', 'torti', -31.670914715537975, -60.733795166015625, 'dasdas', 3124213, 'Sanidad y Medicina', 0),
+(41, 1234213, 'Zapata', 'Emapta', -31.707139746814615, -60.79559326171875, 'dasdsa', 4112312, 'Arte y Entretenimien', 0),
+(43, 11448004, 'Quiberoni', 'Andrea', -31.821564514920727, -60.8587646484375, 'andre@gmail.com', 3456859, 'Arte y Entretenimien', 0),
+(44, 34508714, 'Torti', 'Pablo', -31.82389824052694, -60.8203125, 'gato', 1412312, 'Arte y Entretenimien', 0),
+(45, 412312, 'Dani', 'INLAIN', -31.69078180613681, -60.721435546875, 'pepe', 1421312, 'Gobierno y Administr', 0),
+(46, 1412312, 'falopa', 'dulce', -31.566250263423655, -60.71937561035156, 'asfasdas', 12412312, 'Gobierno y Administr', 0);
 
 -- --------------------------------------------------------
 
@@ -94,8 +100,8 @@ INSERT INTO `fabricante` (`idEmpresa`, `Cuit`, `Nombre`, `País`, `Direccion`, `
 CREATE TABLE `geo` (
   `idGeo` tinyint(4) NOT NULL,
   `nombre` varchar(40) NOT NULL,
-  `latitud` float NOT NULL,
-  `longitud` float NOT NULL
+  `latitud` double NOT NULL,
+  `longitud` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -103,39 +109,39 @@ CREATE TABLE `geo` (
 --
 
 INSERT INTO `geo` (`idGeo`, `nombre`, `latitud`, `longitud`) VALUES
-(1, 'CABA', -34.6118, -58.4173),
-(2, 'La Plata', -34.9206, -57.9536),
-(3, 'San Miguel de Tucumán', -26.8083, -65.2226),
-(4, 'Salta', -24.7829, -65.4129),
-(5, 'San Salvador de Jujuy', -24.1858, -65.2995),
-(6, 'San Fernando del Valle de Catamarca', -28.4696, -65.7852),
-(7, 'Resistencia', -27.4512, -58.9866),
-(8, 'Santa Rosa', -36.6174, -64.2882),
-(9, 'Neuquén', -38.9516, -68.0591),
-(10, 'Viedma', -40.8113, -63.0017),
-(11, 'Rawson', -43.3, -65.1023),
-(12, 'Ushuaia', -54.804, -68.3073),
-(13, 'La Rioja', -29.4111, -66.8567),
-(14, 'San Juan', -31.5375, -68.5364),
-(15, 'San Luis', -33.3017, -66.3378),
-(16, 'Santa Fe', -31.6182, -60.6995),
-(17, 'Córdoba', -31.4201, -64.1888),
-(18, 'Rosario', -32.9422, -60.6618),
-(19, 'Mendoza', -32.8894, -68.8458),
-(20, 'San Carlos de Bariloche', -41.1334, -71.3103),
-(21, 'Mar del Plata', -38.0055, -57.5426),
-(22, 'Gran Salta', -24.7801, -65.4117),
-(23, 'Gran Santa Rosa', -36.6167, -64.2872),
-(24, 'San Rafael', -34.6177, -68.3303),
-(25, 'Gran San Juan', -31.5357, -68.5364),
-(26, 'Tandil', -37.3217, -59.1332),
-(27, 'Gran Neuquén', -38.9489, -68.105),
-(28, 'Comodoro Rivadavia', -45.8644, -67.4965),
-(29, 'Gran Junín', -34.5832, -60.945),
-(30, 'Gran Bahía Blanca', -38.7167, -62.2833),
-(31, 'Santiago del Estero', -27.7951, -64.2615),
-(32, 'Corrientes', -27.4698, -58.8301),
-(33, 'Posadas', -27.3671, -55.8961);
+(1, 'CABA', -34.61180114746094, -58.417301177978516),
+(2, 'La Plata', -34.92060089111328, -57.9536018371582),
+(3, 'San Miguel de Tucumán', -26.808300018310547, -65.22260284423828),
+(4, 'Salta', -24.782899856567383, -65.41290283203125),
+(5, 'San Salvador de Jujuy', -24.185800552368164, -65.29949951171875),
+(6, 'San Fernando del Valle de Catamarca', -28.469600677490234, -65.78520202636719),
+(7, 'Resistencia', -27.451200485229492, -58.98659896850586),
+(8, 'Santa Rosa', -36.617401123046875, -64.28820037841797),
+(9, 'Neuquén', -38.95159912109375, -68.05909729003906),
+(10, 'Viedma', -40.81129837036133, -63.00170135498047),
+(11, 'Rawson', -43.29999923706055, -65.10230255126953),
+(12, 'Ushuaia', -54.80400085449219, -68.30729675292969),
+(13, 'La Rioja', -29.411100387573242, -66.85669708251953),
+(14, 'San Juan', -31.537500381469727, -68.5363998413086),
+(15, 'San Luis', -33.301700592041016, -66.33779907226562),
+(16, 'Santa Fe', -31.618200302124023, -60.699501037597656),
+(17, 'Córdoba', -31.42009925842285, -64.18879699707031),
+(18, 'Rosario', -32.94219970703125, -60.661800384521484),
+(19, 'Mendoza', -32.889400482177734, -68.8458023071289),
+(20, 'San Carlos de Bariloche', -41.133399963378906, -71.310302734375),
+(21, 'Mar del Plata', -38.00550079345703, -57.542598724365234),
+(22, 'Gran Salta', -24.780099868774414, -65.41169738769531),
+(23, 'Gran Santa Rosa', -36.61669921875, -64.28720092773438),
+(24, 'San Rafael', -34.617698669433594, -68.3302993774414),
+(25, 'Gran San Juan', -31.53569984436035, -68.5363998413086),
+(26, 'Tandil', -37.32170104980469, -59.133201599121094),
+(27, 'Gran Neuquén', -38.94889831542969, -68.1050033569336),
+(28, 'Comodoro Rivadavia', -45.86439895629883, -67.49649810791016),
+(29, 'Gran Junín', -34.58319854736328, -60.94499969482422),
+(30, 'Gran Bahía Blanca', -38.71670150756836, -62.28329849243164),
+(31, 'Santiago del Estero', -27.79509925842285, -64.2614974975586),
+(32, 'Corrientes', -27.46980094909668, -58.830101013183594),
+(33, 'Posadas', -27.36709976196289, -55.89609909057617);
 
 -- --------------------------------------------------------
 
@@ -162,7 +168,22 @@ CREATE TABLE `patologias` (
 --
 
 INSERT INTO `patologias` (`DNI`, `Cardiovasculares`, `Diabetes`, `Respiratorias_Cronicas`, `Inmunosupresion`, `Obesidad`, `Renales_cronicas`, `Embarazo`, `Hepaticas_cronicas`, `Neurologicas`, `otra`) VALUES
-(34585965, 0, 0, 1, 0, 0, 0, 0, 0, 0, 'pepas');
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(24123, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(123123, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(341231, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(412312, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(1234213, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(1412312, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(11448004, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(12412312, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(25896532, 0, 0, 0, 0, 1, 0, 0, 0, 0, 'adicto a java'),
+(29856532, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'daniel'),
+(34508714, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(45326125, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(45623522, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(231241231, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(666555444, 0, 0, 0, 0, 0, 0, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -195,7 +216,7 @@ INSERT INTO `turnero_1` (`idTurnos`, `fecha`, `idCentro`, `8_9`, `9_10`, `10_11`
 (3, '2023-10-03', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (4, '2023-10-04', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (5, '2023-10-05', 1, 0, 0, 0, 0, 3, 5, 2, 4, 4),
-(6, '2023-10-06', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(6, '2023-10-06', 1, 4, 5, 5, 5, 5, 5, 5, 5, 5),
 (7, '2023-10-07', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
 (8, '2023-10-08', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
 (9, '2023-10-09', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
@@ -314,8 +335,8 @@ INSERT INTO `turnero_2` (`idTurnos`, `fecha`, `idCentro`, `8_9`, `9_10`, `10_11`
 (3, '2023-10-03', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (4, '2023-10-04', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (5, '2023-10-05', 1, 0, 0, 0, 0, 3, 5, 2, 4, 4),
-(6, '2023-10-06', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
-(7, '2023-10-07', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(6, '2023-10-06', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, '2023-10-07', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
 (8, '2023-10-08', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
 (9, '2023-10-09', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
 (10, '2023-10-10', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
@@ -433,7 +454,7 @@ INSERT INTO `turnero_3` (`idTurnos`, `fecha`, `idCentro`, `8_9`, `9_10`, `10_11`
 (3, '2023-10-03', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (4, '2023-10-04', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (5, '2023-10-05', 1, 0, 0, 0, 0, 3, 5, 2, 4, 4),
-(6, '2023-10-06', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(6, '2023-10-06', 1, 5, 5, 5, 5, 4, 5, 5, 5, 5),
 (7, '2023-10-07', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
 (8, '2023-10-08', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
 (9, '2023-10-09', 1, 5, 5, 5, 5, 5, 5, 5, 5, 5),
@@ -528,16 +549,27 @@ INSERT INTO `turnero_3` (`idTurnos`, `fecha`, `idCentro`, `8_9`, `9_10`, `10_11`
 --
 
 CREATE TABLE `turno` (
-  `idCitaVacunacion` tinyint(100) NOT NULL,
+  `idTurno` int(30) NOT NULL,
   `DNI` int(20) NOT NULL,
-  `fecha` datetime NOT NULL,
-  `horario` varchar(20) NOT NULL,
+  `fechaTurno` datetime NOT NULL,
+  `fechaColocacion` datetime DEFAULT NULL,
   `idCentro` tinyint(20) NOT NULL,
   `codigoRefuerzo` varchar(20) NOT NULL,
-  `idVial` tinyint(20) NOT NULL,
-  `idTurno` tinyint(20) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `turno`
+--
+
+INSERT INTO `turno` (`idTurno`, `DNI`, `fechaTurno`, `fechaColocacion`, `idCentro`, `codigoRefuerzo`, `estado`) VALUES
+(1, 123123, '2023-10-06 00:00:00', NULL, 3, '0', '0'),
+(2, 1234213, '2023-10-06 00:00:00', NULL, 3, '0', '0'),
+(3, 11448004, '2023-10-06 16:00:00', NULL, 3, '0', '0'),
+(4, 34508714, '2023-10-06 13:00:00', NULL, 3, '0', '0'),
+(5, 34508714, '2023-10-06 13:00:00', NULL, 3, '0', '0'),
+(6, 412312, '2023-10-06 12:00:00', NULL, 3, '0', '0'),
+(7, 1412312, '2023-10-06 08:00:00', NULL, 1, '0', '0');
 
 -- --------------------------------------------------------
 
@@ -562,7 +594,7 @@ CREATE TABLE `vacunatorio` (
 --
 
 INSERT INTO `vacunatorio` (`idCentro`, `Nombre`, `Direccion`, `latitud`, `longitud`, `Citas`, `Estado`, `idVial`, `tipo`) VALUES
-(1, 'Esquina encendida', 'Avenida Facundo Zuviria 3200', -31.65474161037564, -60.723938556304304, 4, 0, 27, 'dani'),
+(1, 'Esquina encendida', 'Avenida Facundo Zuviria 3200', -31.60337301024548, -60.70347099780419, 4, 0, 27, 'dani'),
 (2, 'La redonda', 'Salvador del Carril 3000', -31.619257404754777, -60.69506533559279, 1, 0, 28, 'si'),
 (3, 'El Birri', 'Av. Gral. Lopez 3699-3641', -31.654640004725557, -60.724482201066316, 1, 0, 16, '0');
 
@@ -763,12 +795,7 @@ ALTER TABLE `turnero_3`
 -- Indices de la tabla `turno`
 --
 ALTER TABLE `turno`
-  ADD PRIMARY KEY (`idCitaVacunacion`),
-  ADD UNIQUE KEY `idCitaVacunacion` (`idCitaVacunacion`),
-  ADD UNIQUE KEY `idTurno` (`idTurno`),
-  ADD KEY `idCentro` (`idCentro`),
-  ADD KEY `citavacunacion_ibfk_1` (`idVial`),
-  ADD KEY `DNI` (`DNI`);
+  ADD PRIMARY KEY (`idTurno`);
 
 --
 -- Indices de la tabla `vacunatorio`
@@ -797,7 +824,7 @@ ALTER TABLE `viales`
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  MODIFY `idCiudadano` tinyint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idCiudadano` tinyint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `fabricante`
@@ -833,7 +860,7 @@ ALTER TABLE `turnero_3`
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `idCitaVacunacion` tinyint(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTurno` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `vacunatorio`
@@ -856,14 +883,6 @@ ALTER TABLE `viales`
 --
 ALTER TABLE `patologias`
   ADD CONSTRAINT `patologias_ibfk_1` FOREIGN KEY (`DNI`) REFERENCES `ciudadano` (`DNI`);
-
---
--- Filtros para la tabla `turno`
---
-ALTER TABLE `turno`
-  ADD CONSTRAINT `turno_ibfk_3` FOREIGN KEY (`idCentro`) REFERENCES `vacunatorio` (`idCentro`),
-  ADD CONSTRAINT `turno_ibfk_6` FOREIGN KEY (`idTurno`) REFERENCES `turnero_1` (`idTurnos`),
-  ADD CONSTRAINT `turno_ibfk_7` FOREIGN KEY (`DNI`) REFERENCES `ciudadano` (`DNI`);
 
 --
 -- Filtros para la tabla `viales`
