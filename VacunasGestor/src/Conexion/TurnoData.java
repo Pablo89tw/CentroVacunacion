@@ -99,7 +99,7 @@ public class TurnoData {
       Turno turno1 = new Turno();
       PreparedStatement ps;  
       try{
-         ps = con.prepareCall(sql2);
+         ps = con.prepareStatement(sql2);
          ps.setInt(1,dni_ciudadano);
          
          ResultSet rs2 = ps.executeQuery();

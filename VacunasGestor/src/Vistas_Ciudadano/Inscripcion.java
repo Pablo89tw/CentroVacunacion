@@ -978,6 +978,4 @@ public class Inscripcion extends javax.swing.JInternalFrame {
             }
         }
     }
-
-   
 }

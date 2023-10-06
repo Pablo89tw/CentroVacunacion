@@ -7,8 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.HashSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class CiudadanoData {
@@ -173,28 +172,54 @@ public class CiudadanoData {
     public Ciudadano datosCiudadano(int dni_ciudadano){
      Ciudadano c1 = new Ciudadano();
      PreparedStatement ps;   
-     
+     ResultSet rs;
      String sql = "SELECT * FROM ciudadano WHERE DNI = ?";
      
      try{
-         ps = con.prepareCall(sql);
+         ps = con.prepareStatement(sql);
          ps.setInt(1,dni_ciudadano);
          
-         ResultSet rs = ps.executeQuery();
-         
+         rs = ps.executeQuery();
+        
          if (rs.next()){
+       
              c1.setApellido(rs.getString("apellido"));
              c1.setNombre(rs.getString("nombre"));
              c1.setDNI(dni_ciudadano); 
              c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
-             c1.setDosisAplicadas(rs.getInt("dosisAplicadsa"));
+             c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
              c1.setCelular(rs.getInt("celular"));
-        } 
+         } 
        } catch (SQLException e){}
-     return c1;
+        return c1;
     }
  
-    
+    public ArrayList<String> patologiasLista(int dni_ciudadano){
+     ArrayList<String> patologias = new ArrayList();
+     PreparedStatement ps;   
+     ResultSet rs;
+     String sql = "SELECT * FROM patologias WHERE DNI = ?";
+     
+     try{
+         ps = con.prepareStatement(sql);
+         ps.setInt(1,dni_ciudadano);
+        
+         rs = ps.executeQuery();
+         
+         if (rs.next()){
+             String[] patologiasString = {"Cardiovasculares","Diabetes","Respiratorias_Cronicas","Inmunosupresion","Obesidad","Renales_cronicas","Embarazo","Hepaticas_cronicas","Neurologicas"};
+             for (String string : patologiasString) {
+                 if (rs.getBoolean(string)){
+                  patologias.add(string); 
+                }
+             }
+                if (rs.getString("otra") != null){
+                patologias.add(rs.getString("otra"));
+             }
+          } 
+       } catch (SQLException e){}
+        return patologias;
+    }
     
      
 }
