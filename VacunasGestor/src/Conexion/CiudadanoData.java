@@ -7,12 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 public class CiudadanoData {
     
     private Connection con = Conectar.getConectar();
     private TurnoData tD = new TurnoData();
+    private LoginData lD = new LoginData();
+    private VacunatorioData vD = new VacunatorioData();
     
     public int cargaCiudadano(Ciudadano c1){
     int updates = 0, comas =0;
@@ -34,8 +38,7 @@ public class CiudadanoData {
         }
         sql += "?)";
         
-        System.out.println(sql);
-       
+              
     try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, c1.getDNI());
@@ -51,6 +54,7 @@ public class CiudadanoData {
             updates = ps.executeUpdate();;
             if (updates > 0) {
                 JOptionPane.showMessageDialog(null, "Inscripcion Correcta");
+                lD.activarUsuarioLogIN(comas, updates);
             }
             if (updates == 0) {
                 JOptionPane.showMessageDialog(null, "No ha podido inscribirse. Reintente.");
@@ -166,5 +170,31 @@ public class CiudadanoData {
         }
     }
      
+    public Ciudadano datosCiudadano(int dni_ciudadano){
+     Ciudadano c1 = new Ciudadano();
+     PreparedStatement ps;   
+     
+     String sql = "SELECT * FROM ciudadano WHERE DNI = ?";
+     
+     try{
+         ps = con.prepareCall(sql);
+         ps.setInt(1,dni_ciudadano);
+         
+         ResultSet rs = ps.executeQuery();
+         
+         if (rs.next()){
+             c1.setApellido(rs.getString("apellido"));
+             c1.setNombre(rs.getString("nombre"));
+             c1.setDNI(dni_ciudadano); 
+             c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+             c1.setDosisAplicadas(rs.getInt("dosisAplicadsa"));
+             c1.setCelular(rs.getInt("celular"));
+        } 
+       } catch (SQLException e){}
+     return c1;
+    }
+ 
+    
+    
      
 }

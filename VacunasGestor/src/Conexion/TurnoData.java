@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
 public class TurnoData {
     private Connection con = Conectar.getConectar();
     
+    private VacunatorioData vD = new VacunatorioData();
     public ArrayList<String> turnosLibres(LocalDate fecha, Vacunatorio vac) {
         
         PreparedStatement ps = null;
@@ -89,6 +92,31 @@ public class TurnoData {
             JOptionPane.showMessageDialog(null, "");
         } 
     }
+    
+      
+    public Turno datosTurno(int dni_ciudadano){
+      String sql2 = "SELECT * FROM turno WHERE DNI = ?";  
+      Turno turno1 = new Turno();
+      PreparedStatement ps;  
+      try{
+         ps = con.prepareCall(sql2);
+         ps.setInt(1,dni_ciudadano);
+         
+         ResultSet rs2 = ps.executeQuery();
+         
+         if (rs2.next()){
+             Object fechaTurnoObjeto = rs2.getObject("fechaTurno");
+             if (fechaTurnoObjeto != null) {
+             LocalDateTime fechaTurno = ((Timestamp) fechaTurnoObjeto).toLocalDateTime();
+             turno1.setFecha(fechaTurno);
+             }
+             turno1.setVacunatorio(vD.buscarVacunatorio(rs2.getInt("idCentro")));
+         }
+        } catch (SQLException e){}
+        return turno1;
+    }
+    
+    
     
 //    public Turno planVacunatorio(Turno turno){
 //        ArrayList<String> horarios;

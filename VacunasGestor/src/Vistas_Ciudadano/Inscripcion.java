@@ -1,6 +1,7 @@
 package Vistas_Ciudadano;
 
 import Conexion.CiudadanoData;
+import Conexion.LoginData;
 import Conexion.TurnoData;
 import Conexion.VacunatorioData;
 import Conexion.geoData;
@@ -33,6 +34,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     geoData gD = new geoData();
     VacunatorioData vD = new VacunatorioData();
     TurnoData tD = new TurnoData();
+    LoginData lD = new LoginData();
     private CiudadanoData cD = new CiudadanoData();
     private Coordenadas dtaCorda = new Coordenadas();
     private Ciudadano c1 = new Ciudadano();
@@ -618,14 +620,15 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                     .addComponent(nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(nombreVacunatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(29, 29, 29)
                 .addComponent(Actualizar_3)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         Turno.addTab("Turno", jPanel3);
@@ -673,6 +676,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private void Actualizar_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actualizar_2ActionPerformed
         cD.cargaCiudadano(c1);
         patologiaUpdate();
+        lD.cargarLogin(c1.getDNI());
     }//GEN-LAST:event_Actualizar_2ActionPerformed
 
     private void Actualizar_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actualizar_3ActionPerformed
