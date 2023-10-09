@@ -172,7 +172,7 @@ public class TurnoData {
     
     private void confirmacionTurno_2(Vial vial, Ciudadano c1){
         
-        String sql2 = "UPDATE turno SET idVial = ?, estado = ? WHERE DNI = ?";
+        String sql2 = "UPDATE turno SET idVial = ?, estado = ?, codigoRefuerzo = codigoRefuerzo + 1 WHERE DNI = ?";
         String sql3 = "UPDATE viales SET estado = 1, fechaColocacion = ? WHERE idVial = ?";
         String sql4 = "UPDATE ciudadano SET dosisAplicadas = dosisAplicadas + 1 WHERE DNI = ?";
         PreparedStatement ps;

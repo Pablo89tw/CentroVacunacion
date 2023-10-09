@@ -2,6 +2,8 @@
 
 import Entidades.Ciudadano;
 import Entidades.Turno;
+import Entidades.Vacunatorio;
+import Entidades.Vial;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -293,5 +295,54 @@ public class CiudadanoData {
              JOptionPane.showMessageDialog(null, "Error al actualizar la base de datos de patologias");
         }  
          
+    }
+
+    public ArrayList<Vial> consultarDatosVacunacion(Ciudadano c1){
+        ArrayList <Vial> viales = new ArrayList(); 
+        Vial vial;
+        PreparedStatement ps;
+        
+        String sql = "SELECT * FROM viales INNER JOIN turno ON turno.idVial = viales.idVial WHERE turno.DNI = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, c1.getDNI());
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                vial = new Vial();
+                vial.setIdVial(rs.getInt("idVial"));
+                vial.setMarca(rs.getString("Marca"));
+                vial.setAntigeno(rs.getString("Antigeno"));
+                vial.setNumeroSerie(rs.getInt("numeroSerie"));
+                vial.setFechaColocacion(rs.getTimestamp("fechaColocacion").toLocalDateTime());
+                vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
+                Vacunatorio vac = vD.buscarVacunatorio(rs.getInt("idVacunatorio"));
+                vial.setVacunatorio(vac);
+                viales.add(vial);
+            }
+            
+        } catch (SQLException e) {}
+        return viales;
+    }
+
+    public int numeroDosis_x_vial(int idVial){
+        int dosis = 0;
+        PreparedStatement ps = null;
+       
+        String sql = "SELECT * FROM turno WHERE idVial = ?";
+        
+         try {
+          ps = con.prepareStatement(sql);
+          ps.setInt(1, idVial);
+          ResultSet rs = ps.executeQuery();
+          
+          if (rs.next()) {
+            dosis = rs.getInt("codigoRefuerzo");
+           }
+        } catch(SQLException ex){
+           
+        } 
+        return dosis;
     }
 }

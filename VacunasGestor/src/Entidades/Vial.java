@@ -1,6 +1,7 @@
 package Entidades;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Vial {
     
@@ -12,8 +13,10 @@ public class Vial {
     private int volumenVial;
     private boolean estado;
     private int volumenVacuna;
+    private LocalDateTime fechaColocacion;
+    private Vacunatorio vacunatorio;
 
-    public Vial(int idVial, int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna) {
+    public Vial(int idVial, int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna, LocalDateTime fechaColocacion, Vacunatorio vacunatorio) {
         this.idVial = idVial;
         this.numeroSerie = numeroSerie;
         this.marca = marca;
@@ -22,9 +25,11 @@ public class Vial {
         this.volumenVial = volumenVial;
         this.estado = estado;
         this.volumenVacuna = volumenVacuna;
+        this.fechaColocacion = fechaColocacion;
+        this.vacunatorio = vacunatorio;
     }
 
-    public Vial(int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna) {
+    public Vial(int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna, LocalDateTime fechaColocacion, Vacunatorio vacunatorio) {
         this.numeroSerie = numeroSerie;
         this.marca = marca;
         this.antigeno = antigeno;
@@ -32,13 +37,21 @@ public class Vial {
         this.volumenVial = volumenVial;
         this.estado = estado;
         this.volumenVacuna = volumenVacuna;
+        this.fechaColocacion = fechaColocacion;
+        this.vacunatorio = vacunatorio;
     }
-
-    
 
     public Vial() {
     }
-        
+
+    public int getIdVial() {
+        return idVial;
+    }
+
+    public void setIdVial(int idVial) {
+        this.idVial = idVial;
+    }
+
     public int getNumeroSerie() {
         return numeroSerie;
     }
@@ -95,23 +108,25 @@ public class Vial {
         this.volumenVacuna = volumenVacuna;
     }
 
-    public int getIdVial() {
-        return idVial;
+    public LocalDateTime getFechaColocacion() {
+        return fechaColocacion;
     }
 
-    public void setIdVial(int idVial) {
-        this.idVial = idVial;
+    public void setFechaColocacion(LocalDateTime fechaColocacion) {
+        this.fechaColocacion = fechaColocacion;
     }
 
+    public Vacunatorio getVacunatorio() {
+        return vacunatorio;
+    }
+
+    public void setVacunatorio(Vacunatorio vacunatorio) {
+        this.vacunatorio = vacunatorio;
+    }
 
     @Override
     public String toString() {
-        return "Vial{" + "numeroSerie=" + numeroSerie + ", marca=" + marca + ", antigeno=" + antigeno + ", fechaVencimiento=" + fechaVencimiento + ", volumenVial=" + volumenVial + ", estado=" + estado + ", volumenVacuna=" + volumenVacuna + '}';
+        return "Vial{" + "idVial=" + idVial + ", numeroSerie=" + numeroSerie + ", marca=" + marca + ", antigeno=" + antigeno + ", fechaVencimiento=" + fechaVencimiento + ", volumenVial=" + volumenVial + ", estado=" + estado + ", volumenVacuna=" + volumenVacuna + ", fechaColocacion=" + fechaColocacion + ", vacunatorio=" + vacunatorio + '}';
     }
 
-    
-    
-    
-    
-    
 }
