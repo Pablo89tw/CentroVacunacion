@@ -3,6 +3,7 @@ package Entidades;
 import Conexion.*;
 
 public class LogIN {
+    
     private int usuario;
     private String clave;
     private int estado;

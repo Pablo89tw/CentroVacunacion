@@ -66,31 +66,34 @@ public class CiudadanoData {
         return updates;
     }
     
-    public void patologias(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN, String otra) {
+    public void patologia(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN, String otra) {
         
         int exito = 0, comas = 0, sqlPosicion = 1;
         String sql = "INSERT INTO patologias (DNI";
             
-        if (EC != false) {sql += ", Cardiovasculares";comas++;}
-        if (D != false) {sql += ", Diabetes";comas++;}
-        if (EResC != false) {sql += ", Respiratorias_cronicas";comas++;}
-        if (I != false) {sql += ", Inmunosupresion";comas++;}
-        if (O != false) {sql += ", Obesidad";comas++;}
-        if (ERenC != false) {sql += ", Renales_cronicas";comas++;}
-        if (E != false) {sql += ", Embarazo";comas++;}
-        if (EHC != false) {sql += ", Hepaticas_cronicas";comas++;}
-        if (EN != false) {sql += ", Neurologicas";comas++;}
-        if (otra != null) {sql += ", otra";comas++;}
+        if (EC) {sql += ", Cardiovasculares";comas++;}
+        if (D) {sql += ", Diabetes";comas++;}
+        if (EResC) {sql += ", Respiratorias_cronicas";comas++;}
+        if (I) {sql += ", Inmunosupresion";comas++;}
+        if (O) {sql += ", Obesidad";comas++;}
+        if (ERenC) {sql += ", Renales_cronicas";comas++;}
+        if (E) {sql += ", Embarazo";comas++;}
+        if (EHC) {sql += ", Hepaticas_cronicas";comas++;}
+        if (EN) {sql += ", Neurologicas";comas++;}
+        if (!otra.isEmpty()) {sql += ", otra";comas++;}
 
-        sql += ") VALUES (?";
-        if (comas!=0){sql +=",";}
+        sql += ") VALUES (";
+        if (comas!=0){sql +="?,";
         for (int i = 1; i < comas; i++) {
             sql += "?,";
         }
+        }
         sql += "?)";
+        
         
         PreparedStatement ps = null;
         try {
+          
             ps = con.prepareStatement(sql);
             ps.setInt(1, ciudadano.getDNI());
             
@@ -135,14 +138,15 @@ public class CiudadanoData {
             dosis = rs.getInt("dosisAplicadas");
 }
         } catch(SQLException ex){
-            System.out.println("pepe");
+           
         } 
         return dosis;
     }
      
     public void cargarTurno(Ciudadano ciu, Turno tur, int refuerzo){
+        int updates = 0;
         String sql = "INSERT INTO turno (dni,fechaTurno,fechaColocacion,idCentro,codigoRefuerzo,estado) VALUES (?,?,?,?,?,?)";
-        System.out.println(tur);
+       
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -153,12 +157,13 @@ public class CiudadanoData {
             ps.setInt(5, ciu.getDosisAplicadas());  
             ps.setInt(6,0);
 
-            int updates = ps.executeUpdate();
+            updates = ps.executeUpdate();
             if (updates > 0) {
-                tD.actualizarTurneroVacunatorio(tur);                 
+                tD.actualizarTurneroVacunatorio(tur); 
+                JOptionPane.showMessageDialog(null, "Turno Tomado");                
             }
             if (updates == 0) {
-                JOptionPane.showMessageDialog(null, "Turno Tomado");
+                
             }
         } catch (SQLException e) {
             if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
@@ -189,6 +194,7 @@ public class CiudadanoData {
              c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
              c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
              c1.setCelular(rs.getInt("celular"));
+             c1.setEmail(rs.getString("email"));
          } 
        } catch (SQLException e){}
         return c1;
@@ -221,5 +227,71 @@ public class CiudadanoData {
         return patologias;
     }
     
-     
+    public void actualizarDatosCiudadano(Ciudadano c1, String apellido, boolean ape, String nombre, boolean nom, String celular, boolean cel, String dosis, boolean dos, String ocupacion, boolean ocup, String email, boolean mail){
+        int comas = 0, sql_p = 1;
+        
+        String sql = "UPDATE ciudadano SET";
+        PreparedStatement ps;
+        if (ape) { sql += " apellido = ? "; comas++;}
+        if (nom) {sql += ((comas > 0)? ",":""); sql += " nombre = ? "; comas++;}
+        if (cel) { sql += ((comas > 0)? ",":""); sql += " celular = ? "; comas++;}
+        if (dos) { sql += ((comas > 0)? ",":""); sql += " dosis = ? "; comas++;}
+        if (ocup) { sql += ((comas > 0)? ",":""); sql += " ocupacion = ? "; comas++;}
+        if (mail) { sql += ((comas > 0)? ",":""); sql += " email = ? "; comas++;}
+        
+        sql += "WHERE DNI = ?";
+        
+       
+            
+        try {
+            ps = con.prepareStatement(sql);
+            
+            if (ape) {ps.setString(sql_p, apellido);sql_p++;}
+            if (nom) {ps.setString(sql_p, nombre);sql_p++;}
+            if (cel) {ps.setString(sql_p, celular);sql_p++;}
+            if (dos) {ps.setString(sql_p, dosis);sql_p++;}
+            if (ocup) {ps.setString(sql_p,ocupacion); sql_p++;}
+            if (mail) {ps.setString(sql_p,email); sql_p++;}
+            ps.setInt(sql_p, c1.getDNI());
+             
+            int resultado = ps.executeUpdate();
+            
+        } catch (SQLException e){
+             JOptionPane.showMessageDialog(null, "Error al actualizar la base de datos");
+        }  
+    }
+    
+    public void actualiarPatologias(int DNI, ArrayList<String> agregar, ArrayList<String> sacar, String otra){
+        int comas = 0, sql_p = 1;
+        PreparedStatement ps;
+        String [] patologias = {"Cardiovasculares","Diabetes","Respiratorias_Cronicas","Inmunosupresion","Obesidad","Renales_Cronicas","Embarazo","Hepaticas_cronicas","Neurologicas"};
+
+        String sql = "UPDATE patologias SET ";
+        for (String patologia : patologias) {
+            if (agregar.contains(patologia) || sacar.contains(patologia)) {sql += ((comas > 0)? ", ":""); sql +=  patologia + " = ?";comas++;}
+            
+        }
+        sql += " WHERE DNI = ?";
+       
+        try {
+            ps = con.prepareStatement(sql);
+            
+            
+               for (String patologia : patologias) {
+                     if (agregar.contains(patologia)) {
+                       ps.setBoolean(sql_p,true); sql_p++;
+                   } else if (sacar.contains(patologia)){
+                   ps.setBoolean(sql_p,false);sql_p++;
+                   }
+               }    
+               
+               ps.setInt(sql_p, DNI);
+               
+        int resultado = ps.executeUpdate();
+            
+        } catch (SQLException e){
+             JOptionPane.showMessageDialog(null, "Error al actualizar la base de datos de patologias");
+        }  
+         
+    }
 }

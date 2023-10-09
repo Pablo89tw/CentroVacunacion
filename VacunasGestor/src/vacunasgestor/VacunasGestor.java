@@ -1,8 +1,6 @@
 package vacunasgestor;
 
 import Conexion.StockData;
-import Conexion.TurnoData;
-import Entidades.Turno;
 
 public class VacunasGestor {
 

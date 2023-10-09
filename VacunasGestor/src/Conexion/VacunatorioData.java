@@ -2,7 +2,6 @@ package Conexion;
 
 import Entidades.Coordenadas;
 import Entidades.Vacunatorio;
-import Entidades.Vial;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -67,5 +66,7 @@ public class VacunatorioData {
         }
         return vac;
     }
+    
+     
 
 }

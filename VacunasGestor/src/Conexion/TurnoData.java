@@ -1,7 +1,9 @@
 package Conexion;
 
+import Entidades.Ciudadano;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
+import Entidades.Vial;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +19,7 @@ public class TurnoData {
     private Connection con = Conectar.getConectar();
     
     private VacunatorioData vD = new VacunatorioData();
+    
     public ArrayList<String> turnosLibres(LocalDate fecha, Vacunatorio vac) {
         
         PreparedStatement ps = null;
@@ -92,8 +95,7 @@ public class TurnoData {
             JOptionPane.showMessageDialog(null, "");
         } 
     }
-    
-      
+          
     public Turno datosTurno(int dni_ciudadano){
       String sql2 = "SELECT * FROM turno WHERE DNI = ?";  
       Turno turno1 = new Turno();
@@ -116,7 +118,102 @@ public class TurnoData {
         return turno1;
     }
     
+    public Vacunatorio buscarVacunatorioDNI(int DNI) {
+        PreparedStatement ps = null;
+        Vacunatorio vac = null;
+        String sql = "SELECT idCentro FROM turno WHERE DNI = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, DNI);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+               vac = new Vacunatorio();
+               vac.setIdVacunatorio(rs.getInt("idCentro"));
+                }
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }
+        return vac;
+    }
     
+    
+    public Vial confirmacionTurno_1(Ciudadano c1){
+        Vial vial = new Vial();
+        ArrayList<Vial> lista_viales = new ArrayList<>();
+        String sql1 = "SELECT * FROM viales WHERE Estado = 0 AND idVacunatorio = ?";
+               
+        PreparedStatement ps;
+        
+        try{
+            ps = con.prepareStatement(sql1);
+            ps.setInt(1,buscarVacunatorioDNI(c1.getDNI()).getIdVacunatorio());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                vial.setIdVial(rs.getInt("idVial"));
+                vial.setNumeroSerie(rs.getInt("numeroSerie"));
+                vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
+                vial.setMarca(rs.getString("marca"));
+                vial.setAntigeno(rs.getString("antigeno"));
+                lista_viales.add(vial);
+            } 
+                if (lista_viales.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Faltante de STOCK");
+            }
+                confirmacionTurno_2(lista_viales.get(0), c1);
+        }catch (SQLException e){}
+        
+        return vial;  
+    }
+    
+    private void confirmacionTurno_2(Vial vial, Ciudadano c1){
+        
+        String sql2 = "UPDATE turno SET idVial = ?, estado = ? WHERE DNI = ?";
+        String sql3 = "UPDATE viales SET estado = 1, fechaColocacion = ? WHERE idVial = ?";
+        String sql4 = "UPDATE ciudadano SET dosisAplicadas = dosisAplicadas + 1 WHERE DNI = ?";
+        PreparedStatement ps;
+        
+        try {
+            ps = con.prepareStatement(sql2);
+            ps.setInt(1, vial.getIdVial());
+            ps.setInt(2,1);
+            ps.setInt(3, c1.getDNI());
+            
+            int resultado = ps.executeUpdate();
+                        
+        } catch (SQLException e){System.out.println("Error 1");}
+        
+        ps = null;
+        
+        try {
+            ps = con.prepareStatement(sql3);
+            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+            ps.setTimestamp(1, timestamp);
+            ps.setInt(2,vial.getIdVial());
+            
+            int resultade = ps.executeUpdate();
+        } catch (SQLException e){System.out.println("Error2");}
+        
+    
+        ps = null;
+        
+        try {
+            ps = con.prepareStatement(sql4);
+            ps.setInt(1,c1.getDNI());
+            
+            int resultade = ps.executeUpdate();
+        } catch (SQLException e){System.out.println("Error3");}
+        }
+    }
+    
+    
+
+
+
     
 //    public Turno planVacunatorio(Turno turno){
 //        ArrayList<String> horarios;
@@ -128,5 +225,5 @@ public class TurnoData {
 //        Turno tur2 = new Turno(fecha, null,null);
 //        return tur2;
 //    }
-}
+
 

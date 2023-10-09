@@ -23,12 +23,12 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Cerrar = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         Nombre_Apellido = new javax.swing.JTextField();
         Fecha_ProximoTurno = new javax.swing.JTextField();
         Dosis = new javax.swing.JTextField();
         Centro_Vacunacion = new javax.swing.JTextField();
-        Cerrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPatologias = new javax.swing.JTable();
 
@@ -56,7 +56,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(Fecha_ProximoTurno, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(Dosis, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(Centro_Vacunacion, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(Cerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -71,9 +70,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                     .addComponent(Nombre_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Dosis, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cerrar))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -90,9 +87,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Dosis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(Cerrar)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,8 +132,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         modelo.addColumn("Patologias");
 
         for (String patologias : cD.patologiasLista(cd1.getDNI())) {
-            System.out.println(patologias);
-            modelo.addRow(new Object[]{patologias});
+           modelo.addRow(new Object[]{patologias});
         }
         if (modelo.getRowCount() == 0){
             modelo.addRow(new Object[]{"No hay patologias declaradas"});

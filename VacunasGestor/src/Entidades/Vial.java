@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Vial {
     
+    private int idVial;
     private int numeroSerie;
     private String marca;
     private String antigeno;
@@ -11,6 +12,17 @@ public class Vial {
     private int volumenVial;
     private boolean estado;
     private int volumenVacuna;
+
+    public Vial(int idVial, int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna) {
+        this.idVial = idVial;
+        this.numeroSerie = numeroSerie;
+        this.marca = marca;
+        this.antigeno = antigeno;
+        this.fechaVencimiento = fechaVencimiento;
+        this.volumenVial = volumenVial;
+        this.estado = estado;
+        this.volumenVacuna = volumenVacuna;
+    }
 
     public Vial(int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna) {
         this.numeroSerie = numeroSerie;
@@ -21,6 +33,8 @@ public class Vial {
         this.estado = estado;
         this.volumenVacuna = volumenVacuna;
     }
+
+    
 
     public Vial() {
     }
@@ -80,6 +94,15 @@ public class Vial {
     public void setVolumenVacuna(int volumenVacuna) {
         this.volumenVacuna = volumenVacuna;
     }
+
+    public int getIdVial() {
+        return idVial;
+    }
+
+    public void setIdVial(int idVial) {
+        this.idVial = idVial;
+    }
+
 
     @Override
     public String toString() {

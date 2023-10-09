@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ButtonGroup;
@@ -114,6 +115,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         Actualizar_3 = new javax.swing.JButton();
         nombreVacunatorio = new javax.swing.JLabel();
         nombreVacunatorio1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jRadio_si = new javax.swing.JRadioButton();
+        jRadio_no = new javax.swing.JRadioButton();
+        jLabel11 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         TextoApellido1.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         TextoApellido1.setText("APELLIDO");
@@ -583,6 +589,30 @@ public class Inscripcion extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("¿Fuiste diagnosticado con COVID-19 en el último mes? ");
+
+        jRadio_si.setText("Si");
+        jRadio_si.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadio_siActionPerformed(evt);
+            }
+        });
+
+        jRadio_no.setText("No");
+        jRadio_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadio_noActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("¿Cuando recibiste el alta medica?");
+
+        jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser2PropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -591,30 +621,50 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel1))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jRadio_si)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadio_no))
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 155, Short.MAX_VALUE)
+                        .addGap(0, 187, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nombreVacunatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(Actualizar_3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84)))
-                        .addGap(32, 32, 32))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(84, 84, 84))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jRadio_si)
+                    .addComponent(jRadio_no))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -625,10 +675,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addComponent(Actualizar_3)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         Turno.addTab("Turno", jPanel3);
@@ -637,7 +687,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Turno)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Turno)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,7 +723,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private void Actualizar_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actualizar_1ActionPerformed
         vacunatorioCercano();
         armarCiudadano();
-        proximoTurnoLibre();
     }//GEN-LAST:event_Actualizar_1ActionPerformed
 
     private void Actualizar_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actualizar_2ActionPerformed
@@ -682,11 +734,27 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private void Actualizar_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actualizar_3ActionPerformed
         armarDataTurno();
         cD.cargarTurno(c1, turno1, 0);
+        
     }//GEN-LAST:event_Actualizar_3ActionPerformed
 
     private void otras_PatologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otras_PatologiasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_otras_PatologiasActionPerformed
+
+    private void jDateChooser2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser2PropertyChange
+        if (jDateChooser2.getDate() != null){
+        proximoTurnoLibre(jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(14));
+        }
+    }//GEN-LAST:event_jDateChooser2PropertyChange
+
+    private void jRadio_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadio_noActionPerformed
+       proximoTurnoLibre(LocalDate.now());
+       jDateChooser2.setEnabled(false); 
+    }//GEN-LAST:event_jRadio_noActionPerformed
+
+    private void jRadio_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadio_siActionPerformed
+            jDateChooser2.setEnabled(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadio_siActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -703,7 +771,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -742,6 +813,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JRadioButton jRadio_no;
+    private javax.swing.JRadioButton jRadio_si;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextoApellido;
@@ -772,7 +845,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jDateChooser1.setEnabled(false);
         jButton2.setEnabled(false);
-       
     }
 
     private void armadoVista() {
@@ -803,6 +875,9 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         ButtonGroup buttonGroup9 = new ButtonGroup();
         buttonGroup9.add(jRadioButton17);
         buttonGroup9.add(jRadioButton18);
+        ButtonGroup buttonGroup10 = new ButtonGroup();
+        buttonGroup10.add(jRadio_si);
+        buttonGroup10.add(jRadio_no);
 
         jRadioButton2.setSelected(true);
         jRadioButton4.setSelected(true);
@@ -813,7 +888,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jRadioButton14.setSelected(true);
         jRadioButton16.setSelected(true);
         jRadioButton18.setSelected(true);
-
+        
+         jDateChooser2.setEnabled(false); 
     }
 
     private void completarTabla(ArrayList<Coordenadas> ArrayCord) {
@@ -875,7 +951,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }
 
     private void patologiaUpdate() {
-        cD.patologias(c1,
+        cD.patologia(c1,
                 jRadioButton1.isSelected(),
                 jRadioButton3.isSelected(),
                 jRadioButton5.isSelected(),
@@ -886,8 +962,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton15.isSelected(),
                 jRadioButton17.isSelected(),
                 otras_Patologias.getText());
-
-        JOptionPane.showMessageDialog(null, "En caso de error, comunicarse con el Astronauta Daniel Vidaurre.");
     }
 
     private void armarDataTurno() {
@@ -938,15 +1012,21 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         c1.setTurno(turno1);
     }
 
-    private void proximoTurnoLibre() {
+    private void proximoTurnoLibre(LocalDate fecha) {
+        LocalDate fecha1;
+        if (ChronoUnit.DAYS.between(fecha, LocalDate.now())<0){
+            fecha1 = fecha;
+        } else {
+            fecha1 = LocalDate.now();
+        }
+        
         ArrayList<String> turnos;
-        LocalDate fecha = LocalDate.now();
         do {
-            turnos = tD.turnosLibres(fecha, masCercano);
-            fecha = fecha.plusDays(1);
+            turnos = tD.turnosLibres(fecha1, masCercano);
+            fecha1 = fecha1.plusDays(1);
         } while (turnos.isEmpty());
-        jDateChooser1.setDate(java.sql.Date.valueOf(fecha.minusDays(1)));
-        buscarHorariosLibres(fecha.minusDays(1));
+        jDateChooser1.setDate(java.sql.Date.valueOf(fecha1.minusDays(1)));
+        buscarHorariosLibres(fecha1.minusDays(1));
     }
 
     private void buscarHorariosLibres(LocalDate date) {
@@ -974,8 +1054,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 masCercano = vacunatorio;
                 nombreVacunatorio.setText(masCercano.getNombre());
                 nombreVacunatorio1.setText(masCercano.getDireccion());
-                proximoTurnoLibre();
-            }
+             }
         }
     }
 }

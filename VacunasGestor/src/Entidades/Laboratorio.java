@@ -5,20 +5,22 @@ public class Laboratorio {
     private String cuit;
     private String nombre;
     private String pais;
-    private String direccion;
+    private Coordenadas coordenadas; 
     private int stock;
     private Vial vial;
     private boolean estado;
 
-    public Laboratorio(String cuit, String nombre, String pais, String direccion, int stock, Vial vial, boolean estado) {
+    public Laboratorio(String cuit, String nombre, String pais, Coordenadas coordenadas, int stock, Vial vial, boolean estado) {
         this.cuit = cuit;
         this.nombre = nombre;
         this.pais = pais;
-        this.direccion = direccion;
+        this.coordenadas = coordenadas;
         this.stock = stock;
         this.vial = vial;
         this.estado = estado;
     }
+
+    
 
     public String getCuit() {
         return cuit;
@@ -44,12 +46,12 @@ public class Laboratorio {
         this.pais = pais;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public Coordenadas getCoordenadas() {
+        return coordenadas;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setCoordenadas(Coordenadas coordenadas) {
+        this.coordenadas = coordenadas;
     }
 
     public int getStock() {
@@ -78,9 +80,9 @@ public class Laboratorio {
 
     @Override
     public String toString() {
-        return "Laboratorio{" + "cuit=" + cuit + ", nombre=" + nombre + ", pais=" + pais + ", direccion=" + direccion + ", stock=" + stock + ", vial=" + vial + ", estado=" + estado + '}';
+        return "Laboratorio{" + "cuit=" + cuit + ", nombre=" + nombre + ", pais=" + pais + ", coordenadas=" + coordenadas + ", stock=" + stock + ", vial=" + vial + ", estado=" + estado + '}';
     }
-    
+
     
   
 }
