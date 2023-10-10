@@ -729,12 +729,17 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         for (Turno turno : arrayTurnos) {
             if ((turno.getCodigoRefuerzo()) == 1) {
                 turno1 = turno;
+               
             } else if (turno.getCodigoRefuerzo() == 2) {
                 turno2 = turno;
+                
             } else if (turno.getCodigoRefuerzo() == 3) {
                 turno3 = turno;
             }
         }
+        
+        System.out.println("1" + turno1);
+        System.out.println("2 "+ turno2);
 
         if (turno1.getVacunatorio() != null) {
             jTextField9.setText(turno1.getVacunatorio().getNombre());
@@ -759,7 +764,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
 
         if (turno2.getVacunatorio() != null) {
             jTextField15.setText(turno2.getVacunatorio().getNombre());
-        } else {
             if (turno2.getVial() != null) {
                 jTextField5.setText(turno2.getVial().getMarca());
                 jTextField7.setText(Integer.toString(turno2.getVial().getNumeroSerie()));
@@ -780,7 +784,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
 
         if (turno3.getVacunatorio() != null) {
             jTextField21.setText(turno3.getVacunatorio().getNombre());
-        } else {
             if (turno3.getVial() != null) {
                 jTextField17.setText(turno3.getVial().getMarca());
                 jTextField18.setText(Integer.toString(turno3.getVial().getNumeroSerie()));
