@@ -15,7 +15,7 @@ public class Patologias_ADM extends javax.swing.JInternalFrame {
     public Patologias_ADM(int DNI) {
         this.DNI = DNI;
         initComponents();
-        this.patologias = cD.patologiasLista(DNI);
+        this.patologias = cD.consultaPatologias(DNI);
         armadoComponentes();
     }
 

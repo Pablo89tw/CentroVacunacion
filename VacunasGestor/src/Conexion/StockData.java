@@ -1,7 +1,10 @@
 package Conexion;
 
+import Entidades.Vacunatorio;
+import Entidades.Vial;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
@@ -9,6 +12,7 @@ import javax.swing.JOptionPane;
 public class StockData {
 
     private Connection con = Conectar.getConectar();
+    private VacunatorioData vD = new VacunatorioData();
 
     public void cargarViales() {
         String sql = "INSERT INTO viales (numeroSerie,Marca,Antigeno,fechaVencimiento,idLaboratorio,estado,idVacunatorio,fechaColocacion) VALUES (?,?,?,?,?,?,?,?)";
@@ -67,6 +71,34 @@ public class StockData {
         }
     }
     
-  
+    public Vial buscarVial(int idVial){
+        PreparedStatement ps;
+        Vial vial = new Vial();
+        String sql = "SELECT * FROM viales WHERE idVial = ?";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idVial);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                vial.setAntigeno(rs.getString("antigeno"));
+                vial.setEstado(rs.getInt("estado"));
+                vial.setMarca(rs.getString("marca"));
+                vial.setNumeroSerie(rs.getInt("numeroSerie"));
+                vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
+                if (rs.getDate("fechaColocacion") != null){
+                vial.setFechaColocacion(rs.getTimestamp("fechaColocacion").toLocalDateTime());
+                } else {
+                    vial.setFechaColocacion(null);
+                   }
+                Vacunatorio vac = vD.buscarVacunatorio(rs.getInt("idVacunatorio"));
+                vial.setVacunatorio(vac);
+            }
+            
+        }catch (SQLException e){}
+        return vial;
     }
+}
 

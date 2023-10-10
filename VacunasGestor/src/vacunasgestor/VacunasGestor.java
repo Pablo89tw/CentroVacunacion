@@ -1,6 +1,8 @@
 package vacunasgestor;
 
 import Conexion.StockData;
+import Conexion.TurnoData;
+import java.time.LocalDate;
 
 public class VacunasGestor {
 
@@ -12,10 +14,20 @@ public class VacunasGestor {
 //             
 //        pg.patologias(c1, false, false, true, false, true, true, false, false, true);
         
-        StockData aD = new StockData();
-        for (int i = 0; i < 600; i++) {
-            aD.cargarViales();
+//        StockData aD = new StockData();
+//        for (int i = 0; i < 600; i++) {
+//            aD.cargarViales();
+//        }
+
+            TurnoData tD = new TurnoData();
+            LocalDate fecha = LocalDate.now().minusDays(8);
+                      
+            for (int i = 1; i < 150; i++) {
+             tD.acomodarTurnero(fecha);
+             fecha = fecha.plusDays(1);
         }
+            
+            
     
     }
     

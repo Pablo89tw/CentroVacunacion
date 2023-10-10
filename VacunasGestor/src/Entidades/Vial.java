@@ -11,12 +11,12 @@ public class Vial {
     private String antigeno;
     private LocalDate fechaVencimiento;
     private int volumenVial;
-    private boolean estado;
+    private int estado;
     private int volumenVacuna;
     private LocalDateTime fechaColocacion;
     private Vacunatorio vacunatorio;
 
-    public Vial(int idVial, int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna, LocalDateTime fechaColocacion, Vacunatorio vacunatorio) {
+    public Vial(int idVial, int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, int estado, int volumenVacuna, LocalDateTime fechaColocacion, Vacunatorio vacunatorio) {
         this.idVial = idVial;
         this.numeroSerie = numeroSerie;
         this.marca = marca;
@@ -29,7 +29,7 @@ public class Vial {
         this.vacunatorio = vacunatorio;
     }
 
-    public Vial(int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, boolean estado, int volumenVacuna, LocalDateTime fechaColocacion, Vacunatorio vacunatorio) {
+    public Vial(int numeroSerie, String marca, String antigeno, LocalDate fechaVencimiento, int volumenVial, int estado, int volumenVacuna, LocalDateTime fechaColocacion, Vacunatorio vacunatorio) {
         this.numeroSerie = numeroSerie;
         this.marca = marca;
         this.antigeno = antigeno;
@@ -92,11 +92,11 @@ public class Vial {
         this.volumenVial = volumenVial;
     }
 
-    public boolean isEstado() {
+    public int isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

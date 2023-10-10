@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,13 +20,15 @@ public class TurnoData {
     private Connection con = Conectar.getConectar();
     
     private VacunatorioData vD = new VacunatorioData();
+    private StockData sD = new StockData();
+        
     
-    public ArrayList<String> turnosLibres(LocalDate fecha, Vacunatorio vac) {
+    public ArrayList<String> armarArrayHorariosLibres(LocalDate fecha, Vacunatorio vac) {
         
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM";
-                 switch (vac.getIdVacunatorio()){
+            switch (vac.getIdVacunatorio()){
                 case 1: sql += " turnero_1 WHERE fecha = ?";break;
                 case 2: sql += " turnero_2 WHERE fecha = ?";break;
                 case 3: sql += " turnero_3 WHERE fecha = ?";break;
@@ -39,24 +42,48 @@ public class TurnoData {
            
           rs = ps.executeQuery();
           if (rs.next()) {
-            if(rs.getInt("8_9")>0){horarios.add("8 a 9");}
-            if(rs.getInt("9_10")>0){horarios.add("9 a 10");}
-            if(rs.getInt("10_11")>0){horarios.add("10 a 11");}
-            if(rs.getInt("11_12")>0){horarios.add("11 a 12");}
-            if(rs.getInt("12_13")>0){horarios.add("12 a 13");}
-            if(rs.getInt("13_14")>0){horarios.add("13 a 14");}
-            if(rs.getInt("14_15")>0){horarios.add("14 a 15");}
-            if(rs.getInt("15_16")>0){horarios.add("15 a 16");}
-            if(rs.getInt("16_17")>0){horarios.add("16 a 17");}
-}
+                if(rs.getInt("8_9")>0){horarios.add("8 a 9");}
+                if(rs.getInt("9_10")>0){horarios.add("9 a 10");}
+                if(rs.getInt("10_11")>0){horarios.add("10 a 11");}
+                if(rs.getInt("11_12")>0){horarios.add("11 a 12");}
+                if(rs.getInt("12_13")>0){horarios.add("12 a 13");}
+                if(rs.getInt("13_14")>0){horarios.add("13 a 14");}
+                if(rs.getInt("14_15")>0){horarios.add("14 a 15");}
+                if(rs.getInt("15_16")>0){horarios.add("15 a 16");}
+                if(rs.getInt("16_17")>0){horarios.add("16 a 17");}
+                    
+            }
         } catch(SQLException ex){
             System.out.println("pepe");
         } 
         return horarios;
     } 
+    
+    public int buscarTurnoLibre_porTurnosLibres(LocalDate fecha, Vacunatorio vac){
+        int turnos_libres = 0;
+        String sql = "SELECT turnos_libres FROM";
+         switch (vac.getIdVacunatorio()){
+                case 1: sql += " turnero_1 WHERE fecha = ?";break;
+                case 2: sql += " turnero_2 WHERE fecha = ?";break;
+                case 3: sql += " turnero_3 WHERE fecha = ?";break;
+            } 
+                       
+        PreparedStatement ps;
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setString(1, fecha.toString());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                turnos_libres = (rs.getInt("turnos_libres"));
+            } 
+        }catch (SQLException e){}
+        return turnos_libres;  
+    }
        
-    public void actualizarTurneroVacunatorio(Turno tur){
-        int check = 0; int cupos = 0;
+    public void actualizarTurnero_Hora(Turno tur){
         PreparedStatement ps = null; 
                    
         String sql2 = "UPDATE"; 
@@ -95,85 +122,116 @@ public class TurnoData {
             JOptionPane.showMessageDialog(null, "");
         } 
     }
+    
+    public void actualizarTurnero_SoloTurnosLibres(Turno tur){
+         PreparedStatement ps = null; 
+                   
+        String sql2 = "UPDATE"; 
+        switch (tur.getVacunatorio().getIdVacunatorio()){
+                case 1: sql2 += " turnero_1 SET ";break;
+                case 2: sql2 += " turnero_2 SET ";break;
+                case 3: sql2 += " turnero_3 SET ";break;
+            }  
+  
+            sql2 += "turnos_libres = turnos_libres - 1 WHERE fecha = ?";
+           
+        try {
+           ps = con.prepareStatement(sql2);
+           ps.setString(1, tur.getFecha().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString());
+            
+            int fila = ps.executeUpdate();
+            
+            if (fila == 0) {
+                System.out.println("No se editó el turnero");
+            } else if (fila > 0){
+                 System.out.println("turnero actualizado");
+             }
+            
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "");
+        } 
+        
+    }
+    
+    public void actualizarHora_Turno(Turno turno){
+      
+       String sql = "UPDATE turno SET fechaTurno = ? WHERE idTurno = ?";
+       PreparedStatement ps;
+       
+       try{
+           ps = con.prepareStatement(sql);
+           ps.setObject(1, turno.getFecha());
+           ps.setInt(2, turno.getIdTurno());
+         
+           int filasActualizadas = ps.executeUpdate();
+       } catch (SQLException e){}
+    }
           
-    public Turno datosTurno(int dni_ciudadano){
-      String sql2 = "SELECT * FROM turno WHERE DNI = ?";  
-      Turno turno1 = new Turno();
+    public ArrayList<Turno> buscarTurno(int dni_ciudadano){
+      ArrayList<Turno> arrayTurnos = new ArrayList();
+      arrayTurnos.clear();
+      String sql = "SELECT * FROM turno WHERE DNI = ?";  
       PreparedStatement ps;  
       try{
-         ps = con.prepareStatement(sql2);
+         ps = con.prepareStatement(sql);
          ps.setInt(1,dni_ciudadano);
          
-         ResultSet rs2 = ps.executeQuery();
+         ResultSet rs = ps.executeQuery();
          
-         if (rs2.next()){
-             Object fechaTurnoObjeto = rs2.getObject("fechaTurno");
+         while (rs.next()){
+             Turno turno1 = new Turno();
+             turno1.setVacunatorio(vD.buscarVacunatorio(rs.getInt("idCentro")));
+             turno1.setIdTurno(rs.getInt("idTurno"));
+                       
+             Object fechaTurnoObjeto = rs.getObject("fechaTurno");
              if (fechaTurnoObjeto != null) {
              LocalDateTime fechaTurno = ((Timestamp) fechaTurnoObjeto).toLocalDateTime();
              turno1.setFecha(fechaTurno);
              }
-             turno1.setVacunatorio(vD.buscarVacunatorio(rs2.getInt("idCentro")));
+             turno1.setCodigoRefuerzo(rs.getInt("codigoRefuerzo"));
+             turno1.setEstado(rs.getBoolean("estado"));
+             
+             int idVial = rs.getInt("idVial");
+             if (!rs.wasNull()){
+             turno1.setVial(sD.buscarVial(idVial));
+             }
+             arrayTurnos.add(turno1);
          }
         } catch (SQLException e){}
-        return turno1;
+        return arrayTurnos;
     }
-    
-    public Vacunatorio buscarVacunatorioDNI(int DNI) {
-        PreparedStatement ps = null;
-        Vacunatorio vac = null;
-        String sql = "SELECT idCentro FROM turno WHERE DNI = ?";
-        
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, DNI);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            if (rs.next()) {
-               vac = new Vacunatorio();
-               vac.setIdVacunatorio(rs.getInt("idCentro"));
-                }
-        } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "Error busqueda");
-        }
-        return vac;
-    }
-    
-    
-    public Vial confirmacionTurno_1(Ciudadano c1){
-        Vial vial = new Vial();
-        ArrayList<Vial> lista_viales = new ArrayList<>();
+       
+    public ArrayList<Vial> buscar_VialParaAsignar(Ciudadano c1){
+        ArrayList<Vial> arrayViales = new ArrayList();
+        arrayViales.clear();
         String sql1 = "SELECT * FROM viales WHERE Estado = 0 AND idVacunatorio = ?";
                
         PreparedStatement ps;
         
         try{
             ps = con.prepareStatement(sql1);
-            ps.setInt(1,buscarVacunatorioDNI(c1.getDNI()).getIdVacunatorio());
+            ps.setInt(1,vD.buscarVacunatorio_xCiudadano(c1.getDNI()).getIdVacunatorio());
             
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
+                Vial vial = new Vial();
                 vial.setIdVial(rs.getInt("idVial"));
                 vial.setNumeroSerie(rs.getInt("numeroSerie"));
                 vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
                 vial.setMarca(rs.getString("marca"));
                 vial.setAntigeno(rs.getString("antigeno"));
-                lista_viales.add(vial);
+                vial.setEstado(rs.getInt("Estado"));
+                vial.setVacunatorio(vD.buscarVacunatorio(rs.getInt("idVacunatorio")));
+                arrayViales.add(vial);
             } 
-                if (lista_viales.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Faltante de STOCK");
-            }
-                confirmacionTurno_2(lista_viales.get(0), c1);
         }catch (SQLException e){}
-        
-        return vial;  
+        return arrayViales;  
     }
     
-    private void confirmacionTurno_2(Vial vial, Ciudadano c1){
-        
-        String sql2 = "UPDATE turno SET idVial = ?, estado = ?, codigoRefuerzo = codigoRefuerzo + 1 WHERE DNI = ?";
-        String sql3 = "UPDATE viales SET estado = 1, fechaColocacion = ? WHERE idVial = ?";
+    public void actualizar_VialFecha_TurnoData(Vial vial, Turno turno, Ciudadano c1 ){
+        String sql2 = "UPDATE turno SET idVial = ?, estado = ? WHERE idTurno = ?";
+        String sql3 = "UPDATE viales SET Estado = 1, fechaColocacion = ? WHERE idVial = ?";
         String sql4 = "UPDATE ciudadano SET dosisAplicadas = dosisAplicadas + 1 WHERE DNI = ?";
         PreparedStatement ps;
         
@@ -181,11 +239,12 @@ public class TurnoData {
             ps = con.prepareStatement(sql2);
             ps.setInt(1, vial.getIdVial());
             ps.setInt(2,1);
-            ps.setInt(3, c1.getDNI());
+            ps.setInt(3, turno.getIdTurno());
             
             int resultado = ps.executeUpdate();
                         
-        } catch (SQLException e){System.out.println("Error 1");}
+        } catch (SQLException e){System.out.println("Error 1");
+        }
         
         ps = null;
         
@@ -207,19 +266,114 @@ public class TurnoData {
             
             int resultade = ps.executeUpdate();
         } catch (SQLException e){System.out.println("Error3");}
+       }
+    
+    public void acomodarTurnero(LocalDate fecha){
+    int total = 0;
+    PreparedStatement ps;
+    String sql = "SELECT * FROM turnero_3 WHERE fecha = ?";
+     
+    try{
+        ps = con.prepareStatement(sql);
+        ps.setString(1, fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString());
+                
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()){
+        String[] values = {"8_9","9_10","10_11","11_12","12_13","13_14","14_15","15_16","16_17"};
+        for (String value : values) {
+            total += rs.getInt(value);
         }
+        }
+        ps = null;
+        
+        String sql2 = "UPDATE turnero_3 SET turnos_libres = ? WHERE fecha = ?";
+        
+        ps = con.prepareStatement(sql2);
+        ps.setInt(1, total);
+        ps.setDate(2, java.sql.Date.valueOf(fecha));
+       
+       int resultado2 = ps.executeUpdate();
+       
+       
+        
+    } catch (SQLException e){}
+    
+    }
+
+    public void updateTurnos_Libres(LocalDate fecha, Turno turno){
+    PreparedStatement ps;
+    String sql = "UPDATE ";
+    
+            switch (turno.getVacunatorio().getIdVacunatorio()){
+                case 1: sql += "turnero_1";break;
+                case 2: sql += "turnero_2";break;
+                case 3: sql += "turnero_3";break;     
+            }
+         
+        sql += " SET turnos_libres = turnos_libres - 1 WHERE fecha = ?";
+        System.out.println(sql);
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setString(1, fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString());
+            
+            int resultados = ps.executeUpdate();
+            
+        }catch (SQLException e){}
+        }
+    
+    public LocalDateTime colocarHora_aFecha(LocalDate fecha, String codigo) {
+        LocalDateTime fechaTime = fecha.atStartOfDay();
+        LocalTime horaEspecifica;
+        switch (codigo) {
+            case "8 a 9":
+                horaEspecifica = LocalTime.of(8, 00, 0);
+                //columnas = "8_9";
+                break;
+            case "9 a 10":
+                horaEspecifica = LocalTime.of(9, 00, 0);
+               // columnas = "9_10";
+                break;
+            case "10 a 11":
+               horaEspecifica = LocalTime.of(10, 00, 0);
+//                columnas = "10_11";
+                break;
+            case "11 a 12":
+                horaEspecifica = LocalTime.of(11, 00, 0);
+               // columnas = "11_12";
+                break;
+            case "12 a 13":
+              horaEspecifica = LocalTime.of(12, 00, 0);
+             //  columnas = "12_13";
+                break;
+            case "13 a 14":
+              horaEspecifica = LocalTime.of(13, 00, 0);
+                // columnas = "13_14";
+                break;
+            case "14 a 15":
+             horaEspecifica = LocalTime.of(14, 00, 0);
+               //  columnas = "14_15";
+                break;
+            case "15 a 16":
+            horaEspecifica = LocalTime.of(15, 00, 0);
+               // columnas = "15_16";
+                break;
+            default :
+              horaEspecifica = LocalTime.of(16, 00, 0);
+               //  columnas = "16_17";
+                break;
+        }
+        fechaTime = fecha.atTime(horaEspecifica);
+        return fechaTime;
     }
     
-    
-
-
-
-    
+}
 //    public Turno planVacunatorio(Turno turno){
 //        ArrayList<String> horarios;
 //        LocalDateTime fecha = turno.getFecha().plusDays(21);
 //        do {
-//            horarios = turnosLibres(turno.getFecha().toLocalDate(),turno.getVacunatorio());
+//            horarios = armarArrayHorariosLibres(turno.getFecha().toLocalDate(),turno.getVacunatorio());
 //            fecha = fecha.plusDays(1);
 //        } while (horarios.isEmpty());
 //        Turno tur2 = new Turno(fecha, null,null);

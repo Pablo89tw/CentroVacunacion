@@ -5,7 +5,9 @@ import Conexion.TurnoData;
 import Entidades.Ciudadano;
 import Entidades.Turno;
 import Entidades.Vial;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import javax.swing.DefaultListModel;
 
 
@@ -14,8 +16,8 @@ public class Administrador extends javax.swing.JInternalFrame {
     private CiudadanoData cD = new CiudadanoData();
     private TurnoData tD = new TurnoData();
     private Ciudadano c1 = new Ciudadano();
-    private Turno turno = new Turno();
-    private Vial vial = new Vial();
+    private Turno turno1 = new Turno();
+    private Vial vial2;
 
     public Administrador() {
         initComponents();
@@ -74,7 +76,11 @@ public class Administrador extends javax.swing.JInternalFrame {
         jTextField8 = new javax.swing.JTextField();
         Marca = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
-        Marca2 = new javax.swing.JLabel();
+        Marca3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        Marca4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel13.setText("Numero Serie");
 
@@ -140,6 +146,11 @@ public class Administrador extends javax.swing.JInternalFrame {
         jLabel8.setText("Control Datos Turno:");
 
         Continuar.setText("Continuar");
+        Continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContinuarActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Modificar Datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +218,7 @@ public class Administrador extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 388, Short.MAX_VALUE))
+                .addGap(12, 352, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -366,19 +377,17 @@ public class Administrador extends javax.swing.JInternalFrame {
 
         Marca.setText("Antigeno");
 
-        Marca2.setText("Fecha Vencimento");
+        Marca3.setText("Fecha Vencimento");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,21 +397,19 @@ public class Administrador extends javax.swing.JInternalFrame {
                                 .addGap(52, 52, 52)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Marca2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Marca3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jButton3)
-                .addGap(49, 49, 49)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -416,12 +423,53 @@ public class Administrador extends javax.swing.JInternalFrame {
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(312, Short.MAX_VALUE))
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Marca3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(jButton3)
+                .addContainerGap(343, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Confirmacion Turno", jPanel2);
+
+        Marca4.setText("Nueva Fecha");
+
+        jButton2.setText("Programar Nuevo Turno");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(Marca4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Marca4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addComponent(jButton2)
+                .addContainerGap(409, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Proximo Turno", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -431,7 +479,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -495,7 +543,7 @@ public class Administrador extends javax.swing.JInternalFrame {
             jButton4.setEnabled(true);
         } else if (!jCheckBox_nombre.isSelected()) {
             jTextField5.setEditable(false);
-            jTextField5.setText(Integer.toString(c1.getDosisAplicadas()));
+            jTextField5.setText(c1.getNombre());
              if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
             jButton4.setEnabled(false);
             }
@@ -504,11 +552,11 @@ public class Administrador extends javax.swing.JInternalFrame {
 
     private void jCheckBox_ocupacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_ocupacionActionPerformed
         if (jCheckBox_ocupacion.isSelected()) {
-            jTextField5.setEditable(true);
+            jTextField2.setEditable(true);
             jButton4.setEnabled(true);
         } else if (!jCheckBox_ocupacion.isSelected()) {
-            jTextField5.setEditable(false);
-            jTextField5.setText(c1.getAmbitoTrabajo());
+            jTextField2.setEditable(false);
+            jTextField2.setText(c1.getAmbitoTrabajo());
              if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
             jButton4.setEnabled(false);
             }
@@ -542,8 +590,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox_mailActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         vial = tD.confirmacionTurno_1(c1);
-         completarDatosFinales(vial);
+        nuevoTurno();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -563,15 +610,28 @@ public class Administrador extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jList1ComponentShown
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            tomarNuevoTurno(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinuarActionPerformed
+            
+            this.vial2 = tD.buscar_VialParaAsignar(c1).get(0);
+            completarDatosFinales(vial2);
+            tD.actualizar_VialFecha_TurnoData(vial2, turno1, c1);    
+    }//GEN-LAST:event_ContinuarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Continuar;
     private javax.swing.JLabel Edad;
     private javax.swing.JLabel Marca;
     private javax.swing.JLabel Marca1;
-    private javax.swing.JLabel Marca2;
+    private javax.swing.JLabel Marca3;
+    private javax.swing.JLabel Marca4;
     private javax.swing.JLabel Nombre;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox_apellido;
@@ -581,6 +641,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox_nombre;
     private javax.swing.JCheckBox jCheckBox_ocupacion;
     private javax.swing.JCheckBox jCheckBox_patologias;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -597,6 +658,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
@@ -640,9 +702,8 @@ public class Administrador extends javax.swing.JInternalFrame {
     private void buscarTurnosPersona() {
         jButton1.setEnabled(true);
         
-        this.c1 = cD.datosCiudadano(Integer.parseInt(jText_ingresoDNI.getText()));
-        
-        
+        this.c1 = cD.buscarCiudadanos(Integer.parseInt(jText_ingresoDNI.getText())).get(0);
+                
         jTextField1.setText(c1.getApellido());
         jTextField5.setText(c1.getNombre());
         jTextField2.setText(c1.getAmbitoTrabajo());
@@ -651,20 +712,27 @@ public class Administrador extends javax.swing.JInternalFrame {
         jTextField_mail.setText(c1.getEmail());
         
         armarListaPatologias();
-        turno = tD.datosTurno(Integer.parseInt(jText_ingresoDNI.getText()));
-
-        jText_vacunatorio.setText(turno.getVacunatorio().getNombre());
-        jText_fecha.setText(turno.getFecha().toString());
+        
+       
+        turno1 = tD.buscarTurno(Integer.parseInt(jText_ingresoDNI.getText())).get(0);
+        
+        for (Turno turno : tD.buscarTurno(Integer.parseInt(jText_ingresoDNI.getText()))) {
+            if (turno.getFecha().isAfter(turno1.getFecha())) {
+                this.turno1 = turno;
+           }
+   
+         jText_vacunatorio.setText(turno1.getVacunatorio().getNombre());
+        jText_fecha.setText(turno1.getFecha().toString());
 
         if (!(LocalDateTime.now().isBefore(turno.getFecha().minusMinutes(15)) && LocalDateTime.now().isBefore(turno.getFecha().plusMinutes(45)))) {
             System.out.println("FUERA DE HORARIO");
         }
-
+    }
     }
     
     public void armarListaPatologias(){
         DefaultListModel<String> modelo = new DefaultListModel<>();
-        for (String patologias : cD.patologiasLista(c1.getDNI())) {
+        for (String patologias : cD.consultaPatologias(c1.getDNI())) {
             modelo.addElement(patologias);
         }
         if (modelo.getSize() == 0) {
@@ -697,5 +765,30 @@ public class Administrador extends javax.swing.JInternalFrame {
         jTextField6.setText(Integer.toString(vial.getNumeroSerie()));
         jTextField4.setText(vial.getMarca());
         jTextField10.setText(vial.getFechaVencimiento().toString());
+    }
+    
+    private LocalDate nuevoTurno(){
+       int turnos_libres;
+       LocalDate fecha1 = LocalDate.now().plusDays(28);
+            
+        do {
+            turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha1,turno1.getVacunatorio());
+            fecha1 = fecha1.plusDays(1);
+        } while (turnos_libres <= 0);
+        
+        jDateChooser1.setDate(java.sql.Date.valueOf(fecha1.minusDays(1)));
+        return fecha1.minusDays(1);
+        }
+     
+    private void tomarNuevoTurno(LocalDate fecha1){
+        Turno nuevo_turno = new Turno();
+         nuevo_turno.setFecha(fecha1.atStartOfDay());
+         nuevo_turno.setVacunatorio(turno1.getVacunatorio());
+      
+        tD.updateTurnos_Libres(fecha1,nuevo_turno);
+        
+        c1.setTurno(nuevo_turno);
+        c1.setDosisAplicadas(c1.getDosisAplicadas()+1);
+        cD.cargarTurno(c1);
     }
 }

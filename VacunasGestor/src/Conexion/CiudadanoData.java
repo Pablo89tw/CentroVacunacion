@@ -1,7 +1,6 @@
     package Conexion;
 
 import Entidades.Ciudadano;
-import Entidades.Turno;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
 import java.sql.Connection;
@@ -54,9 +53,9 @@ public class CiudadanoData {
                       
             updates = ps.executeUpdate();;
             if (updates > 0) {
+                lD.cargarLogin(c1.getDNI());
                 JOptionPane.showMessageDialog(null, "Inscripcion Correcta");
-                lD.activarUsuarioLogIN(comas, updates);
-            }
+                }
             if (updates == 0) {
                 JOptionPane.showMessageDialog(null, "No ha podido inscribirse. Reintente.");
             }
@@ -68,7 +67,7 @@ public class CiudadanoData {
         return updates;
     }
     
-    public void patologia(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN, String otra) {
+    public void cargarPatologia(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN, String otra) {
         
         int exito = 0, comas = 0, sqlPosicion = 1;
         String sql = "INSERT INTO patologias (DNI";
@@ -125,43 +124,23 @@ public class CiudadanoData {
             }
         }
     }
-    
-    public int dosisAplicadas(Ciudadano ciudadano){
-        int dosis = 0;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        String sql = "SELECT dosisAplicadas FROM ciudano WHERE DNI = ?";
-        
-         try {
-          ps = con.prepareStatement(sql);
-          ps.setInt(1, ciudadano.getDNI());
-          rs = ps.executeQuery();
-          if (rs.next()) {
-            dosis = rs.getInt("dosisAplicadas");
-}
-        } catch(SQLException ex){
-           
-        } 
-        return dosis;
-    }
-     
-    public void cargarTurno(Ciudadano ciu, Turno tur, int refuerzo){
+       
+    public void cargarTurno(Ciudadano ciu){
         int updates = 0;
-        String sql = "INSERT INTO turno (dni,fechaTurno,fechaColocacion,idCentro,codigoRefuerzo,estado) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO turno (DNI,fechaTurno,idCentro,codigoRefuerzo,estado) VALUES (?,?,?,?,?)";
        
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, ciu.getDNI());
-            ps.setTimestamp(2, Timestamp.valueOf(tur.getFecha()));
-            ps.setDate(3,null);
-            ps.setInt(4, tur.getVacunatorio().getIdVacunatorio());
-            ps.setInt(5, ciu.getDosisAplicadas());  
-            ps.setInt(6,0);
+            ps.setTimestamp(2, Timestamp.valueOf(ciu.getTurno().getFecha()));
+            ps.setInt(3, ciu.getTurno().getVacunatorio().getIdVacunatorio());
+            ps.setInt(4, ciu.getDosisAplicadas()+1);  
+            ps.setInt(5,0);
 
             updates = ps.executeUpdate();
             if (updates > 0) {
-                tD.actualizarTurneroVacunatorio(tur); 
+                tD.actualizarTurnero_Hora(ciu.getTurno()); 
                 JOptionPane.showMessageDialog(null, "Turno Tomado");                
             }
             if (updates == 0) {
@@ -176,8 +155,9 @@ public class CiudadanoData {
         }
     }
      
-    public Ciudadano datosCiudadano(int dni_ciudadano){
-     Ciudadano c1 = new Ciudadano();
+    public ArrayList<Ciudadano> buscarCiudadanos(int dni_ciudadano){
+     ArrayList<Ciudadano> arrayCiudadano = new ArrayList();
+     Ciudadano c1;
      PreparedStatement ps;   
      ResultSet rs;
      String sql = "SELECT * FROM ciudadano WHERE DNI = ?";
@@ -188,8 +168,8 @@ public class CiudadanoData {
          
          rs = ps.executeQuery();
         
-         if (rs.next()){
-       
+         while (rs.next()){
+             c1 = new Ciudadano();
              c1.setApellido(rs.getString("apellido"));
              c1.setNombre(rs.getString("nombre"));
              c1.setDNI(dni_ciudadano); 
@@ -197,12 +177,13 @@ public class CiudadanoData {
              c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
              c1.setCelular(rs.getInt("celular"));
              c1.setEmail(rs.getString("email"));
+             arrayCiudadano.add(c1);
          } 
        } catch (SQLException e){}
-        return c1;
+        return arrayCiudadano;
     }
  
-    public ArrayList<String> patologiasLista(int dni_ciudadano){
+    public ArrayList<String> consultaPatologias(int dni_ciudadano){
      ArrayList<String> patologias = new ArrayList();
      PreparedStatement ps;   
      ResultSet rs;
@@ -242,8 +223,6 @@ public class CiudadanoData {
         if (mail) { sql += ((comas > 0)? ",":""); sql += " email = ? "; comas++;}
         
         sql += "WHERE DNI = ?";
-        
-       
             
         try {
             ps = con.prepareStatement(sql);
@@ -297,34 +276,34 @@ public class CiudadanoData {
          
     }
 
-    public ArrayList<Vial> consultarDatosVacunacion(Ciudadano c1){
-        ArrayList <Vial> viales = new ArrayList(); 
-        Vial vial;
-        PreparedStatement ps;
-        
-        String sql = "SELECT * FROM viales INNER JOIN turno ON turno.idVial = viales.idVial WHERE turno.DNI = ?";
-        
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, c1.getDNI());
-            ResultSet rs = ps.executeQuery();
-            
-            while (rs.next()){
-                vial = new Vial();
-                vial.setIdVial(rs.getInt("idVial"));
-                vial.setMarca(rs.getString("Marca"));
-                vial.setAntigeno(rs.getString("Antigeno"));
-                vial.setNumeroSerie(rs.getInt("numeroSerie"));
-                vial.setFechaColocacion(rs.getTimestamp("fechaColocacion").toLocalDateTime());
-                vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
-                Vacunatorio vac = vD.buscarVacunatorio(rs.getInt("idVacunatorio"));
-                vial.setVacunatorio(vac);
-                viales.add(vial);
-            }
-            
-        } catch (SQLException e) {}
-        return viales;
-    }
+//    public ArrayList<Vial> consultarViales_x_Ciudadano(Ciudadano c1){
+//        ArrayList <Vial> viales = new ArrayList(); 
+//        Vial vial;
+//        PreparedStatement ps;
+//        
+//        String sql = "SELECT * FROM viales INNER JOIN turno ON turno.idVial = viales.idVial WHERE turno.DNI = ?";
+//        
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, c1.getDNI());
+//            ResultSet rs = ps.executeQuery();
+//            
+//            while (rs.next()){
+//                vial = new Vial();
+//                vial.setIdVial(rs.getInt("idVial"));
+//                vial.setMarca(rs.getString("Marca"));
+//                vial.setAntigeno(rs.getString("Antigeno"));
+//                vial.setNumeroSerie(rs.getInt("numeroSerie"));
+//                vial.setFechaColocacion(rs.getTimestamp("fechaColocacion").toLocalDateTime());
+//                vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
+//                Vacunatorio vac = vD.buscarVacunatorio(rs.getInt("idVacunatorio"));
+//                vial.setVacunatorio(vac);
+//                viales.add(vial);
+//            }
+//            
+//        } catch (SQLException e) {}
+//        return viales;
+//    }
 
     public int numeroDosis_x_vial(int idVial){
         int dosis = 0;

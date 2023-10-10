@@ -7,10 +7,19 @@ public class Turno {
     private int idTurno;
     private LocalDateTime fecha;
     private Vacunatorio vacunatorio;
+    private int codigoRefuerzo;
+    private boolean estado;
+    private Vial vial;
 
-    public Turno(LocalDateTime fecha, Vacunatorio vacunatorio) {
+    public Turno(LocalDateTime fecha, Vacunatorio vacunatorio, int codigoRefuerzo, boolean estado, Vial vial) {
         this.fecha = fecha;
         this.vacunatorio = vacunatorio;
+        this.codigoRefuerzo = codigoRefuerzo;
+        this.estado = estado;
+        this.vial = vial;
+    }
+
+    public Turno() {
     }
 
     public int getIdTurno() {
@@ -29,7 +38,7 @@ public class Turno {
         this.fecha = fecha;
     }
 
-     public Vacunatorio getVacunatorio() {
+    public Vacunatorio getVacunatorio() {
         return vacunatorio;
     }
 
@@ -37,34 +46,36 @@ public class Turno {
         this.vacunatorio = vacunatorio;
     }
 
-    public Turno() {
+    public int getCodigoRefuerzo() {
+        return codigoRefuerzo;
     }
 
-    public Turno(int idTurno, LocalDateTime fecha, Vacunatorio vacunatorio) {
-        this.idTurno = idTurno;
-        this.fecha = fecha;
-        this.vacunatorio = vacunatorio;
+    public void setCodigoRefuerzo(int codigoRefuerzo) {
+        this.codigoRefuerzo = codigoRefuerzo;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Vial getVial() {
+        return vial;
+    }
+
+    public void setVial(Vial vial) {
+        this.vial = vial;
     }
 
     @Override
     public String toString() {
-        return "Turno{" + "idTurno=" + idTurno + ", fecha=" + fecha + ",hora" + fecha.getHour() +  ", vacunatorio=" + vacunatorio + '}';
+        return "Turno{" + "idTurno=" + idTurno + ", fecha=" + fecha + ", vacunatorio=" + vacunatorio + ", codigoRefuerzo=" + codigoRefuerzo + ", estado=" + estado + ", vial=" + vial + '}';
     }
-
-    
-    
-   
-
-    
-
-  
-   
-
-    
-    
-    
-
-    
-    
     
 }
+    
+
+   

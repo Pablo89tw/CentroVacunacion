@@ -223,19 +223,6 @@ public class LoginData {
         return resultado;
     }
 
-    public void activarUsuarioLogIN(int data, int usuario) {
-        String sql = "UPDATE login SET estado = ? WHERE usuario = ?";
-        PreparedStatement ps2 = null;
-
-        try {
-            ps2 = con.prepareStatement(sql);
-            ps2.setInt(1, data);
-            ps2.setInt(2, usuario);
-            int resultado = ps2.executeUpdate();
-        } catch (SQLException sqlE) {
-        }
-    }
-
     public ArrayList<LogIN> cuentasA_Recordar() {
         ArrayList<LogIN> logIN_array = new ArrayList<>();
         LogIN log;
@@ -288,12 +275,13 @@ public class LoginData {
     public void cargarLogin(int usuario){
         PreparedStatement ps;
         
-        String sql = "INSERT INTO login (usuario,clave) VALUES (?,?)";
+        String sql = "INSERT INTO login (usuario,clave,estado) VALUES (?,?,?)";
         
          try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, usuario);
             ps.setInt(2, ((int) usuario/1000));
+            ps.setInt(3,0);
            
                       
             int updates = ps.executeUpdate();;

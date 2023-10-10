@@ -67,6 +67,25 @@ public class VacunatorioData {
         return vac;
     }
     
-     
+    public Vacunatorio buscarVacunatorio_xCiudadano(int DNI) {
+        PreparedStatement ps = null;
+        Vacunatorio vac = null;
+        String sql = "SELECT idCentro FROM turno WHERE DNI = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, DNI);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+               vac = new Vacunatorio();
+               vac.setIdVacunatorio(rs.getInt("idCentro"));
+                }
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }
+        return vac;
+    }
 
 }
