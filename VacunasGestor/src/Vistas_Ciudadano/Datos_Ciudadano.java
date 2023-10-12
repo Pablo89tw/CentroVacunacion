@@ -801,7 +801,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     }
     
     private void cancelarTurno(){
-        tD.cancelarTurno(turno2.getIdTurno());
+        tD.cancelarTurno(turno2.getIdTurno());  /// chequear
     }
     
     private void cargadoJCBhorarios(){

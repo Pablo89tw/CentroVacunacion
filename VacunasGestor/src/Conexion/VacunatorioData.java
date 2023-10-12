@@ -111,4 +111,35 @@ public class VacunatorioData {
         }
         return vac;
     }
+    
+     public ArrayList<Vacunatorio> listarVacunatorioNombre(String nombre){
+        arrayVacunatorios = new ArrayList<>();
+        PreparedStatement ps = null;
+        Vacunatorio vac;
+        Coordenadas cord1;
+        String sql = "SELECT * FROM vacunatorio WHERE Nombre = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1,nombre);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                vac = new Vacunatorio();
+                vac.setIdVacunatorio(rs.getInt("idCentro"));
+                vac.setNombre(rs.getString("Nombre"));
+                    cord1 = new Coordenadas();
+                    cord1.setLatitud(rs.getDouble("latitud"));
+                    cord1.setLongitud(rs.getDouble("longitud"));
+                vac.setUbicacion(cord1);
+                vac.setDireccion(rs.getString("direccion"));
+                arrayVacunatorios.add(vac);
+            }
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }
+        return arrayVacunatorios;
+    }
+    
 }
