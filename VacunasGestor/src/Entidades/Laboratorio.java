@@ -20,7 +20,8 @@ public class Laboratorio {
         this.estado = estado;
     }
 
-    
+    public Laboratorio() {
+    }
 
     public String getCuit() {
         return cuit;

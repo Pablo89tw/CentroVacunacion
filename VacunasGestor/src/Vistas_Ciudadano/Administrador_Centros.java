@@ -2,18 +2,29 @@ package Vistas_Ciudadano;
 
 import Conexion.TurnoData;
 import Conexion.VacunatorioData;
+import Conexion.VialData;
+import Entidades.Laboratorio;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
+import Entidades.Vial;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.ButtonGroup;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 public class Administrador_Centros extends javax.swing.JInternalFrame {
-
+    private VialData sD = new VialData();
     private VacunatorioData vD = new VacunatorioData();
     private Vacunatorio vac = new Vacunatorio();
     private TurnoData tD;
+    private DefaultTableModel model5 = new DefaultTableModel();
+    private DefaultTableModel model4 = new DefaultTableModel();
+    private DefaultTableModel model3 = new DefaultTableModel();
+    private DefaultTableModel model2 = new DefaultTableModel();
+    private DefaultTableModel model = new DefaultTableModel();
+ 
 
     public Administrador_Centros(TurnoData tD) {
         this.tD = tD;
@@ -44,6 +55,25 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jTable3 = new javax.swing.JTable();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         Buscar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+
+        jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane1FocusGained(evt);
+            }
+        });
 
         jRadioButton1.setText("Vencidas ");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +245,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -232,19 +262,130 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addComponent(Buscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resumen del día", jPanel2);
+
+        jPanel3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel3FocusGained(evt);
+            }
+        });
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable4);
+
+        jLabel2.setText("Reasignar Stocks");
+
+        jLabel3.setText("REASIGNAR DEL CENTRO");
+
+        jLabel4.setText("AL CENTRO");
+
+        jLabel5.setText("CANTIDAD ");
+
+        jLabel6.setText("VIALES DE LA MARCA");
+
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Reasignar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(62, 62, 62)
+                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel5)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSpinner1)
+                                    .addComponent(jComboBox4, 0, 185, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Stocks", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,14 +464,40 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void jPanel3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel3FocusGained
+        calcularStocks();
+    }//GEN-LAST:event_jPanel3FocusGained
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+       
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        reasingarStocks();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
@@ -339,13 +506,23 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
 
     private void armarComponentes() {
+        jTabbedPane1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                 if(jTabbedPane1.getSelectedIndex()+1 == 3){calcularStocks();}
+            }          
+        });
+        
         jRadioButton1.setEnabled(false);
         jRadioButton2.setEnabled(false);
         jRadioButton3.setEnabled(false);
@@ -366,28 +543,38 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
             jComboBox1.addItem(vacunatorio.getNombre());
         }
+        
+        for (Vacunatorio vacunatorio : vD.listarVacunatorio()){
+           jComboBox2.addItem(vacunatorio.getNombre());
+           jComboBox3.addItem(vacunatorio.getNombre());
+        }
+        
+      
+        jComboBox4.addItem("Sputnik V");
+        jComboBox4.addItem("Pfizer");
+        jComboBox4.addItem("Sinopharm y Sinovac");
+        jComboBox4.addItem("Johnson_Johnson");
+        jComboBox4.addItem("AstraZeneca");
+              
     }
 
     private void armarTabla(String codigo_estadoCita) {
          int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0;
-         
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("DNI");
-        model.addColumn("N° Dosis");
-        model.addColumn("Fecha");
-        model.addColumn("Vial");
-        model.setRowCount(0);
+                model.addColumn("DNI");
+                model.addColumn("N° Dosis");
+                model.addColumn("Fecha");
+                model.addColumn("Vial");
+                model.setRowCount(0);
 
-        DefaultTableModel model2 = new DefaultTableModel();
-        model2.addColumn("DNI");
-        model2.addColumn("N° Dosis");
-        model2.addColumn("Fecha");
-        model2.setRowCount(0);
+                model2.addColumn("DNI");
+                model2.addColumn("N° Dosis");
+                model2.addColumn("Fecha");
+                model2.setRowCount(0);
         
-        DefaultTableModel model3 = new DefaultTableModel();
-         model3.addColumn("Vacuna");
-         model3.addColumn("Cantidad Aplicadas");
-        jTable2.setModel(model3);
+                model3.addColumn("Vacuna");
+                model3.addColumn("Cantidad Aplicadas");
+                model3.setRowCount(0);
+       
                 
         if (jRadioButton2.isSelected()) {
             jTable1.setModel(model);
@@ -395,6 +582,8 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             jTable1.setModel(model2);
         }
 
+        jTable2.setModel(model3);
+        
         if (jRadioButton4.isSelected()) {
             for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
                 if (vacunatorio.getNombre().equals(jComboBox1.getSelectedItem().toString())) {
@@ -451,7 +640,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     }
     
     public void listarDosis_x_Centro(LocalDate fecha){
-        DefaultTableModel model4 = new DefaultTableModel();
         model4.addColumn("Nombre");
         model4.addColumn("Total");
         model4.addColumn("Sputnik V");
@@ -476,5 +664,53 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 model4.addRow(new Object[]{vacunatorio.getNombre(),total,Sputnik,Pfizer,Sinopharm,Johnson,AstraZeneca});
             }
         }
+    
+    private void calcularStocks(){
+        model5.addColumn("Nombre");
+        model5.addColumn("Total");
+        model5.addColumn("Sputnik V");
+        model5.addColumn("Pfizer");
+        model5.addColumn("Sinopharm");
+        model5.addColumn("Johnson");
+        model5.addColumn("AstraZeneca");
+        model5.setRowCount(0);
+        jTable4.setModel(model5);
+        
+         for (Vacunatorio vacunatorio : vD.listarVacunatorio()){
+            int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
+                for (Vial viales : sD.listarViales(0)){
+                            switch (viales.getMarca()){
+                               case "Sputnik V": Sputnik++; total++; break;
+                               case "Pfizer": Pfizer++;total++; break;
+                               case "Sinopharm y Sinovac": Sinopharm++;total++; break;
+                               case "Johnson_Johnson": Johnson++; total++;break;
+                               case "AstraZeneca": AstraZeneca++;total++;break;      
+                                }                 
+                    }
+           model5.addRow(new Object[]{vacunatorio.getNombre(),total,Sputnik,Pfizer,Sinopharm,Johnson,AstraZeneca});
+
+            }
+         
+        } 
+    
+
+    private void reasingarStocks(){
+        Vacunatorio donante = null; 
+        Vacunatorio aceptor = null;
+        for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
+            if (vacunatorio.getNombre().equals(jComboBox2.getSelectedItem().toString())){
+                donante = vD.buscarVacunatorio(vacunatorio.getIdVacunatorio());
+            } else if (vacunatorio.getNombre().equalsIgnoreCase(jComboBox3.getSelectedItem().toString())){
+                aceptor = vD.buscarVacunatorio(vacunatorio.getIdVacunatorio());
+               }
+        }
+        
+        Vial vial = new Vial();
+        vial.setMarca(jComboBox4.getSelectedItem().toString());
+        for (int i = 0; i < Integer.parseInt(jSpinner1.getValue().toString()); i++) {
+            sD.reasignarViales(donante, aceptor, vial);
+        }
+    }
 }
+
 

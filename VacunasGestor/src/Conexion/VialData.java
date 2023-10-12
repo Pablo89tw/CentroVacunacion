@@ -1,5 +1,6 @@
 package Conexion;
 
+import Entidades.Laboratorio;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
 import java.sql.Connection;
@@ -7,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class VialData {
@@ -101,5 +105,81 @@ public class VialData {
         }catch (SQLException e){}
         return vial;
     }
+    
+    public ArrayList<Vial> listarViales(int estado){
+        PreparedStatement ps;
+        Vial vial;
+        ArrayList<Vial> arrayViales = new ArrayList();
+               
+        String sql = "SELECT * FROM viales WHERE estado = ?";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,estado);
+                       
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                vial = new Vial();
+                vial.setAntigeno(rs.getString("antigeno"));
+                vial.setEstado(rs.getInt("estado"));
+                vial.setMarca(rs.getString("marca"));
+                vial.setNumeroSerie(rs.getInt("numeroSerie"));
+                vial.setFechaVencimiento(rs.getDate("FechaVencimiento").toLocalDate());
+                if (rs.getDate("fechaColocacion") != null){
+                vial.setFechaColocacion(rs.getTimestamp("fechaColocacion").toLocalDateTime());
+                } else {
+                    vial.setFechaColocacion(null);
+                   }
+                Vacunatorio vac = vD.buscarVacunatorio(rs.getInt("idVacunatorio"));
+                vial.setVacunatorio(vac);
+                arrayViales.add(vial);
+            }
+            
+        }catch (SQLException e){}
+        return arrayViales;
+    }
+         
+    public ArrayList<Laboratorio> listarLaboratorio(){
+        PreparedStatement ps;
+        Laboratorio lab;
+        ArrayList<Laboratorio> arrayLaboratorios = new ArrayList();
+        Vial vial;
+               
+        String sql = "SELECT * FROM fabricante";
+        
+        try{
+            ps = con.prepareStatement(sql);      
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+               lab = new Laboratorio();
+               lab.setPais(rs.getString("País"));
+               lab.setNombre(rs.getString("Nombre"));
+               lab.setCuit(rs.getString("Cuit"));
+               vial = new Vial();
+               vial.setMarca(rs.getString("Viales"));
+               lab.setVial(vial);
+                }
+            
+        }catch (SQLException e){}
+        return arrayLaboratorios;
+    }
+    
+   public void reasignarViales(Vacunatorio donante, Vacunatorio aceptor, Vial viales){
+       PreparedStatement ps;
+       String sql = "UPDATE viales SET idVacunatorio = ? WHERE marca = ? AND idVacunatorio = ? AND estado = 0";
+  
+       try{
+           ps = con.prepareStatement(sql);
+           ps.setInt(1, aceptor.getIdVacunatorio());
+           ps.setString(2,viales.getMarca());
+           ps.setInt(3,donante.getIdVacunatorio());
+         
+          int update = ps.executeUpdate();
+        } catch (SQLException e){}
+   }
+
+   
 }
 

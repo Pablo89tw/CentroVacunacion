@@ -45,7 +45,7 @@ public class VacunatorioData {
     }
     
     public Vacunatorio buscarVacunatorio(int idVacunatorio) {
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         Vacunatorio vac = null;
         String sql = "SELECT * FROM vacunatorio WHERE idCentro = ?";
         
@@ -56,7 +56,7 @@ public class VacunatorioData {
             ResultSet rs = ps.executeQuery();
             
             if (rs.next()) {
-                vac = new Vacunatorio();
+               vac = new Vacunatorio();
                vac.setNombre(rs.getString("nombre"));
                vac.setDireccion(rs.getString("direccion"));
                vac.setEstado(rs.getBoolean("estado"));
