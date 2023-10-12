@@ -10,15 +10,17 @@ public class Turno {
     private int codigoRefuerzo;
     private String estado;
     private Vial vial;
+    private Ciudadano ciudadano;
 
-    public Turno(LocalDateTime fecha, Vacunatorio vacunatorio, int codigoRefuerzo, String estado, Vial vial) {
+    public Turno(LocalDateTime fecha, Vacunatorio vacunatorio, int codigoRefuerzo, String estado, Vial vial, Ciudadano ciudadano) {
         this.fecha = fecha;
         this.vacunatorio = vacunatorio;
         this.codigoRefuerzo = codigoRefuerzo;
         this.estado = estado;
         this.vial = vial;
+        this.ciudadano = ciudadano;
     }
-
+    
     public Turno() {
     }
 
@@ -70,6 +72,14 @@ public class Turno {
         this.vial = vial;
     }
 
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+    
     @Override
     public String toString() {
         return "Turno{" + "idTurno=" + idTurno + ", fecha=" + fecha + ", vacunatorio=" + vacunatorio + ", codigoRefuerzo=" + codigoRefuerzo + ", estado=" + estado + ", vial=" + vial + '}';

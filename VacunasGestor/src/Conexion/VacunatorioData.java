@@ -1,7 +1,7 @@
 package Conexion;
 
+import Entidades.Ciudadano;
 import Entidades.Coordenadas;
-import Entidades.Turno;
 import Entidades.Vacunatorio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ public class VacunatorioData {
 
     private Connection con = Conectar.getConectar();
     private ArrayList<Vacunatorio> arrayVacunatorios;
-    
+       
     public ArrayList<Vacunatorio> listarVacunatorio() {
         arrayVacunatorios = new ArrayList<>();
         PreparedStatement ps = null;
@@ -89,4 +89,26 @@ public class VacunatorioData {
         return vac;
     }
 
+    public Vacunatorio vacunatorioCercano(Ciudadano c1) {
+        double distancia;
+        double min;
+        Vacunatorio vac = new Vacunatorio();
+
+        Vacunatorio vac1 = listarVacunatorio().get(0);
+        min = Math.sqrt(((vac1.getUbicacion().getLatitud() - c1.getCordenadas().getLatitud()) * (vac1.getUbicacion().getLatitud() - c1.getCordenadas().getLatitud())) + ((vac1.getUbicacion().getLongitud() - c1.getCordenadas().getLongitud()) * (vac1.getUbicacion().getLongitud() -  c1.getCordenadas().getLongitud())));
+
+        for (Vacunatorio vacunatorio : listarVacunatorio()) {
+            distancia = Math.sqrt(((vacunatorio.getUbicacion().getLatitud() - c1.getCordenadas().getLatitud()) * (vacunatorio.getUbicacion().getLatitud() - c1.getCordenadas().getLatitud())) + ((vacunatorio.getUbicacion().getLongitud() - c1.getCordenadas().getLongitud()) * (vacunatorio.getUbicacion().getLongitud() - c1.getCordenadas().getLongitud())));
+            if (min > distancia) {
+                min = distancia;
+            }
+        }
+        for (Vacunatorio vacunatorio : listarVacunatorio()) {
+            distancia = Math.sqrt(((vacunatorio.getUbicacion().getLatitud() - c1.getCordenadas().getLatitud()) * (vacunatorio.getUbicacion().getLatitud() - c1.getCordenadas().getLatitud())) + ((vacunatorio.getUbicacion().getLongitud() - c1.getCordenadas().getLongitud()) * (vacunatorio.getUbicacion().getLongitud() - c1.getCordenadas().getLongitud())));
+            if (distancia == min) {
+                vac = vacunatorio; 
+             }
+        }
+        return vac;
+    }
 }

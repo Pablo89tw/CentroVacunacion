@@ -13,13 +13,15 @@ import javax.swing.DefaultListModel;
 
 public class Administrador extends javax.swing.JInternalFrame {
 
-    private CiudadanoData cD = new CiudadanoData();
-    private TurnoData tD = new TurnoData();
+    private CiudadanoData cD;
+    private TurnoData tD;
     private Ciudadano c1 = new Ciudadano();
     private Turno turno1 = new Turno();
     private Vial vial2;
 
-    public Administrador() {
+    public Administrador(CiudadanoData cD, TurnoData tD) {
+        this.cD = cD;
+        this.tD = tD;
         initComponents();
         armarComponentesVisuales();
     }
@@ -599,7 +601,7 @@ public class Administrador extends javax.swing.JInternalFrame {
 
     private void jCheckBox_patologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_patologiasActionPerformed
          if (jCheckBox_patologias.isSelected()) {
-             Patologias_ADM pAD = new Patologias_ADM(c1.getDNI());
+             Patologias_ADM pAD = new Patologias_ADM(c1.getDNI(),cD);
              pAD.setVisible(true);
              jPanel1.add(pAD);
              pAD.moveToFront();     
@@ -789,6 +791,9 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         c1.setTurno(nuevo_turno);
         c1.setDosisAplicadas(c1.getDosisAplicadas()+1);
-        cD.cargarTurno(c1);
+        int updates = cD.cargarTurno(c1);
+        if (updates > 0){
+            tD.actualizarTurnero_Hora(c1.getTurno());
+        } 
     }
 }

@@ -9,10 +9,10 @@ public class Patologias_ADM extends javax.swing.JInternalFrame {
 
     private int DNI;
     private ArrayList<String> patologias = new ArrayList();
-    CiudadanoData cD = new CiudadanoData();
-    Administrador aR = new Administrador();
-   
-    public Patologias_ADM(int DNI) {
+    CiudadanoData cD;
+       
+    public Patologias_ADM(int DNI, CiudadanoData cD) {
+        this.cD = cD;
         this.DNI = DNI;
         initComponents();
         this.patologias = cD.consultaPatologias(DNI);

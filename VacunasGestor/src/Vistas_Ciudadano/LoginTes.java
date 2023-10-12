@@ -1,17 +1,31 @@
 
 package Vistas_Ciudadano;
 
+import Conexion.CiudadanoData;
+import Conexion.Conectar;
 import Conexion.LoginData;
+import Conexion.TurnoData;
+import Conexion.VacunatorioData;
+import Conexion.VialData;
+import Conexion.geoData;
 import Entidades.LogIN;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class LoginTes extends javax.swing.JFrame {
 
+    private Connection con = Conectar.getConectar();
     private ArrayList<LogIN> logIN = new ArrayList();
-    LoginData iN = new LoginData();
+    private LoginData lD = new LoginData();
+    private TurnoData tD = new TurnoData();
+    private CiudadanoData cD = new CiudadanoData();
+    private VacunatorioData vD = new VacunatorioData();
+    private geoData gD = new geoData();
+   
+    
     public LoginTes() {
-        initComponents();
+       initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -169,7 +183,7 @@ public class LoginTes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jText_usuLINFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jText_usuLINFocusGained
-        logIN = iN.cuentasA_Recordar();
+        logIN = lD.cuentasA_Recordar();
     }//GEN-LAST:event_jText_usuLINFocusGained
 
     private void jText_usuLINFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jText_usuLINFocusLost
@@ -198,7 +212,7 @@ public class LoginTes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Inscripcion admin = new Inscripcion();
+        Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD);
         jDesktopPane1.add(admin);
         admin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -228,17 +242,17 @@ private void inicioSesion() {
             int usuario = Integer.parseInt(jText_usuLIN.getText());
             String clave = String.valueOf(jPas_logIN.getPassword());
           
-            if (iN.logIN(usuario, clave) == 1) {
+            if (lD.logIN(usuario, clave) == 1) {
                 if (!jCheckBox1.isSelected()) {
-                iN.actualizarRecordar(0, usuario);
-                logIN = iN.cuentasA_Recordar();
+                lD.actualizarRecordar(0, usuario);
+                logIN = lD.cuentasA_Recordar();
                 } else if (jCheckBox1.isSelected()){
-                iN.actualizarRecordar(1, usuario);
-                logIN = iN.cuentasA_Recordar();    
+                lD.actualizarRecordar(1, usuario);
+                logIN = lD.cuentasA_Recordar();    
                 }
                 
                 System.out.println(usuario);
-                Datos_Ciudadano dC = new Datos_Ciudadano(usuario);
+                Datos_Ciudadano dC = new Datos_Ciudadano(cD, tD, usuario);
                 jDesktopPane1.add(dC);
                 dC.setVisible(true);
                 jDesktopPane1.moveToFront(dC);

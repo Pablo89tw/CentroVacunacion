@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
 public class TurnoData {
     
     private Connection con = Conectar.getConectar();
-    
     private VacunatorioData vD = new VacunatorioData();
     private VialData sD = new VialData();
+    private CiudadanoData cD = new CiudadanoData();
         
     
     public ArrayList<String> armarArrayHorariosLibres(LocalDate fecha, Vacunatorio vac) {
@@ -201,6 +201,37 @@ public class TurnoData {
         } catch (SQLException e){}
         return arrayTurnos;
     }
+    
+    public Turno buscarTurno_iD(int idTurno){
+      String sql = "SELECT * FROM turno WHERE idTurno = ?";  
+      PreparedStatement ps; 
+      Turno turno1 = new Turno(); 
+      try{
+         ps = con.prepareStatement(sql);
+         ps.setInt(1,idTurno);
+         
+         ResultSet rs = ps.executeQuery();
+         
+         if (rs.next()){
+             turno1.setVacunatorio(vD.buscarVacunatorio(rs.getInt("idCentro")));
+             turno1.setIdTurno(rs.getInt("idTurno"));
+                       
+             Object fechaTurnoObjeto = rs.getObject("fechaTurno");
+             if (fechaTurnoObjeto != null) {
+             LocalDateTime fechaTurno = ((Timestamp) fechaTurnoObjeto).toLocalDateTime();
+             turno1.setFecha(fechaTurno);
+             }
+             turno1.setCodigoRefuerzo(rs.getInt("codigoRefuerzo"));
+             turno1.setEstado(rs.getString("estado"));
+             
+             int idVial = rs.getInt("idVial");
+             if (!rs.wasNull()){
+             turno1.setVial(sD.buscarVial(idVial));
+             }
+                      }
+        } catch (SQLException e){}
+        return turno1;
+    }
        
     public ArrayList<Vial> buscar_VialParaAsignar(Ciudadano c1){
         ArrayList<Vial> arrayViales = new ArrayList();
@@ -235,7 +266,7 @@ public class TurnoData {
         String sql3 = "UPDATE viales SET Estado = 1, fechaColocacion = ? WHERE idVial = ?";
         String sql4 = "UPDATE ciudadano SET dosisAplicadas = dosisAplicadas + 1 WHERE DNI = ?";
         PreparedStatement ps;
-        
+      
         try {
             ps = con.prepareStatement(sql2);
             ps.setInt(1, vial.getIdVial());
@@ -268,39 +299,6 @@ public class TurnoData {
             int resultade = ps.executeUpdate();
         } catch (SQLException e){System.out.println("Error3");}
        }
-    
-    public void acomodarTurnero(LocalDate fecha){
-    int total = 0;
-    PreparedStatement ps;
-    String sql = "SELECT * FROM turnero_3 WHERE fecha = ?";
-     
-    try{
-        ps = con.prepareStatement(sql);
-        ps.setString(1, fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString());
-                
-        ResultSet rs = ps.executeQuery();
-        
-        if (rs.next()){
-        String[] values = {"8_9","9_10","10_11","11_12","12_13","13_14","14_15","15_16","16_17"};
-        for (String value : values) {
-            total += rs.getInt(value);
-        }
-        }
-        ps = null;
-        
-        String sql2 = "UPDATE turnero_3 SET turnos_libres = ? WHERE fecha = ?";
-        
-        ps = con.prepareStatement(sql2);
-        ps.setInt(1, total);
-        ps.setDate(2, java.sql.Date.valueOf(fecha));
-       
-       int resultado2 = ps.executeUpdate();
-       
-       
-        
-    } catch (SQLException e){}
-    
-    }
 
     public void updateTurnos_Libres(LocalDate fecha, Turno turno){
     PreparedStatement ps;
@@ -371,21 +369,33 @@ public class TurnoData {
     
     public ArrayList<Turno> listar_Turnos(LocalDate fecha, Vacunatorio vac, String estado){
         ArrayList<Turno> arrayTurnos = new ArrayList();
+        int cod = 0;
         Turno t1;
-                       
-        String sql = "SELECT * FROM turno WHERE MONTH(fechaTurno) = ? AND idCentro = ? AND estado = ?";
-        
+        String sql;
+        switch (estado){
+            case "porDia": sql = "SELECT * FROM turno WHERE DAY(fechaTurno) = ? AND MONTH(fechaTurno) = ? AND idCentro = ? AND estado = 'completo'"; cod = 2; break;
+            default: sql = "SELECT * FROM turno WHERE MONTH(fechaTurno) = ? AND idCentro = ? AND estado = ?";cod = 1; break;
+        }
+       
         try{
           PreparedStatement ps = con.prepareStatement(sql);
+          if (cod == 1){
           ps.setInt(1, fecha.getMonthValue());
           ps.setInt(2, vac.getIdVacunatorio());
           ps.setString(3, estado);
           
+          } else if (cod == 2){
+          ps.setInt(1, fecha.getDayOfMonth());
+          ps.setInt(2, fecha.getMonthValue());
+          ps.setInt(3, vac.getIdVacunatorio());
+          }
             
+          
            ResultSet rs = ps.executeQuery();
             
             while (rs.next()){
              t1 = new Turno();  
+              t1.setCiudadano(cD.buscarCiudadanos(rs.getInt("DNI")).get(0));
               t1.setCodigoRefuerzo(rs.getInt("codigoRefuerzo"));
               t1.setEstado(rs.getString("estado"));
               t1.setFecha(rs.getTimestamp("fechaTurno").toLocalDateTime());
@@ -427,20 +437,7 @@ public class TurnoData {
             
         } catch (SQLException e){}
       }
-    }
 
-//    public Turno planVacunatorio(Turno turno){
-
-
-
-//        ArrayList<String> horarios;
-//        LocalDateTime fecha = turno.getFecha().plusDays(21);
-//        do {
-//            horarios = armarArrayHorariosLibres(turno.getFecha().toLocalDate(),turno.getVacunatorio());
-//            fecha = fecha.plusDays(1);
-//        } while (horarios.isEmpty());
-//        Turno tur2 = new Turno(fecha, null,null);
-//        return tur2;
-//    }
-
+}   
+   
 

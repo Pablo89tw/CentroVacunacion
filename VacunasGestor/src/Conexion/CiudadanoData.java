@@ -1,6 +1,7 @@
-    package Conexion;
+package Conexion;
 
 import Entidades.Ciudadano;
+import Entidades.Coordenadas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +10,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class CiudadanoData {
-    private TurnoData tD = new TurnoData();
+public class CiudadanoData{
+    
     private Connection con = Conectar.getConectar();
     private LoginData lD = new LoginData();
       
@@ -121,7 +122,7 @@ public class CiudadanoData {
         }
     }
        
-    public void cargarTurno(Ciudadano ciu){
+    public int cargarTurno(Ciudadano ciu){
         int updates = 0;
         String sql = "INSERT INTO turno (DNI,fechaTurno,idCentro,codigoRefuerzo,estado) VALUES (?,?,?,?,?)";
        
@@ -136,19 +137,15 @@ public class CiudadanoData {
 
             updates = ps.executeUpdate();
             if (updates > 0) {
-                tD.actualizarTurnero_Hora(ciu.getTurno()); 
-                JOptionPane.showMessageDialog(null, "Turno Tomado");                
+               // JOptionPane.showMessageDialog(null, "Turno Tomado");                
             }
-            if (updates == 0) {
-                
-            }
-        } catch (SQLException e) {
+               } catch (SQLException e) {
             if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "Turno ya ocupado");
             } else {
                 JOptionPane.showMessageDialog(null, "Error, tome un nuevo turno");
             }
-        }
+        } return updates;
     }
      
     public ArrayList<Ciudadano> buscarCiudadanos(int dni_ciudadano){
@@ -272,4 +269,37 @@ public class CiudadanoData {
          
     }
 
+    public ArrayList<Ciudadano> listarTODOSciudadanos(){
+     ArrayList<Ciudadano> arrayCiudadano = new ArrayList();
+     Ciudadano c1;
+     Coordenadas cord;
+     PreparedStatement ps;   
+     ResultSet rs;
+     
+     String sql = "SELECT * FROM ciudadano";
+     
+     try{
+         ps = con.prepareStatement(sql);
+              
+         rs = ps.executeQuery();
+        
+         while (rs.next()){
+             c1 = new Ciudadano();
+             c1.setApellido(rs.getString("apellido"));
+             c1.setNombre(rs.getString("nombre"));
+             c1.setDNI(rs.getInt("DNI")); 
+             c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+             c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
+             c1.setCelular(rs.getInt("celular"));
+             c1.setEmail(rs.getString("email"));
+             cord = new Coordenadas();
+             cord.setLatitud(rs.getDouble("latitud"));
+             cord.setLongitud(rs.getDouble("longitud"));
+             c1.setCordenadas(cord);
+             arrayCiudadano.add(c1);
+         } 
+       } catch (SQLException e){}
+        return arrayCiudadano;
+     }
+    
 }

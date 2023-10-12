@@ -1,11 +1,15 @@
 package Vistas_Ciudadano;
 
+import Conexion.TurnoData;
+
 public class Test extends javax.swing.JFrame {
 
+    TurnoData tD = new TurnoData();
+    
     public Test() {
         initComponents();
         
-        Administrador_Centros iS = new Administrador_Centros();
+        Administrador_Centros iS = new Administrador_Centros(tD);
         jDesktopPane1.add(iS);
         iS.setVisible(true);
         

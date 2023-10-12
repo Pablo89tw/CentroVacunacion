@@ -11,15 +11,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class Datos_Ciudadano extends javax.swing.JInternalFrame {
 
-    CiudadanoData cD = new CiudadanoData();
-    TurnoData tD = new TurnoData();
-
+    private CiudadanoData cD;
+    private TurnoData tD;
     private Ciudadano c1;
     private Turno turno1;
     private ArrayList<Turno> arrayTurnos;
     private Turno turno2;
 
-    public Datos_Ciudadano(int dni_usuario) {
+    public Datos_Ciudadano(CiudadanoData cD, TurnoData tD, int dni_usuario) {
         this.c1 = cD.buscarCiudadanos(dni_usuario).get(0);
         this.arrayTurnos = tD.buscarTurno(dni_usuario);
         initComponents();

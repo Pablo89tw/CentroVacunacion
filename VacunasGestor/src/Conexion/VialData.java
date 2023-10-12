@@ -13,7 +13,8 @@ public class VialData {
 
     private Connection con = Conectar.getConectar();
     private VacunatorioData vD = new VacunatorioData();
-
+    
+  
     public void cargarViales() {
         String sql = "INSERT INTO viales (numeroSerie,Marca,Antigeno,fechaVencimiento,idLaboratorio,estado,idVacunatorio,fechaColocacion) VALUES (?,?,?,?,?,?,?,?)";
         try {

@@ -30,18 +30,22 @@ import org.jxmapviewer.viewer.WaypointPainter;
 
 public class Inscripcion extends javax.swing.JInternalFrame {
 
-    geoData gD = new geoData();
-    VacunatorioData vD = new VacunatorioData();
-    TurnoData tD = new TurnoData();
-    LoginData lD = new LoginData();
-    private CiudadanoData cD = new CiudadanoData();
-    private Coordenadas dtaCorda = new Coordenadas();
-    private Ciudadano c1 = new Ciudadano();
-    private Turno turno1 = new Turno();
-    private Vacunatorio masCercano;
-    private String columnas;
-
-    public Inscripcion() {
+   private geoData gD;
+   private VacunatorioData vD;
+   private TurnoData tD;
+   private LoginData lD;
+   private CiudadanoData cD;  
+   private Coordenadas dtaCorda = new Coordenadas();
+   private Ciudadano c1 = new Ciudadano();
+   private Turno turno1 = new Turno();
+   private Vacunatorio masCercano;
+  
+    public Inscripcion(geoData gD, VacunatorioData vD, TurnoData tD, LoginData lD, CiudadanoData cD) {
+        this.gD = gD;
+        this.vD = vD;
+        this.cD = cD;
+        this.tD = tD;
+        this.lD = lD;
         initComponents();
         armarElementos();
     }
@@ -226,19 +230,14 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(175, 175, 175)
-                                    .addComponent(TextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(175, 175, 175)
-                                    .addComponent(jTextoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(175, 175, 175)
-                                    .addComponent(TextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(175, 175, 175)
-                                    .addComponent(jTexto_email, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTexto_email, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -677,7 +676,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Turno)
+            .addComponent(Turno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
         );
 
         pack();
@@ -718,7 +717,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         turno1.setFecha(tD.colocarHora_aFecha(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),jComboBox2.getSelectedItem().toString()));
         turno1.setVacunatorio(masCercano);
         c1.setTurno(turno1);
-        cD.cargarTurno(c1);    
+         int updates = cD.cargarTurno(c1); 
+        if (updates>0){
+        tD.actualizarTurnero_Hora(c1.getTurno()); 
+        }
     }//GEN-LAST:event_Actualizar_3ActionPerformed
 
     private void jDateChooser2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser2PropertyChange
@@ -947,8 +949,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 otras_Patologias.getText());
     }
 
-  
-
     private void proximo_Turnoslibres(LocalDate fecha) {
         LocalDate fecha1;
         if (ChronoUnit.DAYS.between(fecha, LocalDate.now())<0){
@@ -973,7 +973,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jComboBox2.setModel(cbModel);
     }
 
-    private void vacunatorioCercano() {
+    public void vacunatorioCercano() {
         double distancia;
         double min;
 
