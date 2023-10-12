@@ -17,6 +17,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     private Ciudadano c1;
     private Turno turno1;
     private ArrayList<Turno> arrayTurnos;
+    private Turno turno2;
 
     public Datos_Ciudadano(int dni_usuario) {
         this.c1 = cD.buscarCiudadanos(dni_usuario).get(0);
@@ -688,7 +689,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armadoTextos() {
-        Turno turno2 = new Turno(); 
+        turno2 = new Turno(); 
         
         Nombre_Apellido.setText(c1.getApellido() + " " + c1.getNombre());
         Dosis.setText(Integer.toString(c1.getDosisAplicadas()));
@@ -738,9 +739,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
             }
         }
         
-        System.out.println("1" + turno1);
-        System.out.println("2 "+ turno2);
-
         if (turno1.getVacunatorio() != null) {
             jTextField9.setText(turno1.getVacunatorio().getNombre());
             if (turno1.getVial() != null) {
@@ -803,20 +801,22 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         }
     }
     
-    private void cancelarTurno(){}
+    private void cancelarTurno(){
+        tD.cancelarTurno(turno2.getIdTurno());
+    }
     
     private void cargadoJCBhorarios(){
        ArrayList<Turno> arrayTurnos = tD.buscarTurno(c1.getDNI());
         
         for (Turno turno : arrayTurnos) {
-            if ((turno.getCodigoRefuerzo() == 2) && (turno.getFecha().getHour() == 0) && !turno.isEstado()){
+            if ((turno.getCodigoRefuerzo() == 2) && (turno.getFecha().getHour() == 0)){
                 this.turno1 = turno;
                 jComboBox1.setEnabled(true);
                 ArrayList<String> horarios_libres = tD.armarArrayHorariosLibres(turno.getFecha().toLocalDate(), turno.getVacunatorio());
                 DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>(horarios_libres.toArray(new String[0]));
                 jComboBox1.setModel(cbModel);  
             }
-            if ((turno.getCodigoRefuerzo() == 3) && (turno.getFecha().getHour()==0) && !turno.isEstado()){
+            if ((turno.getCodigoRefuerzo() == 3) && (turno.getFecha().getHour()==0)){
                 this.turno1 = turno;
                 jComboBox2.setEnabled(true);
                 ArrayList<String> horarios_libres = tD.armarArrayHorariosLibres(turno.getFecha().toLocalDate(), turno.getVacunatorio());

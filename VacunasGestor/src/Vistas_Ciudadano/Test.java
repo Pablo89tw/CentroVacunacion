@@ -5,7 +5,7 @@ public class Test extends javax.swing.JFrame {
     public Test() {
         initComponents();
         
-        Administrador iS = new Administrador();
+        Administrador_Centros iS = new Administrador_Centros();
         jDesktopPane1.add(iS);
         iS.setVisible(true);
         

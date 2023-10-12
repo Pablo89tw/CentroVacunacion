@@ -1,6 +1,7 @@
 package Conexion;
 
 import Entidades.Coordenadas;
+import Entidades.Turno;
 import Entidades.Vacunatorio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

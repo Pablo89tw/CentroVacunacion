@@ -8,10 +8,10 @@ public class Turno {
     private LocalDateTime fecha;
     private Vacunatorio vacunatorio;
     private int codigoRefuerzo;
-    private boolean estado;
+    private String estado;
     private Vial vial;
 
-    public Turno(LocalDateTime fecha, Vacunatorio vacunatorio, int codigoRefuerzo, boolean estado, Vial vial) {
+    public Turno(LocalDateTime fecha, Vacunatorio vacunatorio, int codigoRefuerzo, String estado, Vial vial) {
         this.fecha = fecha;
         this.vacunatorio = vacunatorio;
         this.codigoRefuerzo = codigoRefuerzo;
@@ -54,11 +54,11 @@ public class Turno {
         this.codigoRefuerzo = codigoRefuerzo;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

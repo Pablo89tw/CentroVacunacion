@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
-public class StockData {
+public class VialData {
 
     private Connection con = Conectar.getConectar();
     private VacunatorioData vD = new VacunatorioData();
