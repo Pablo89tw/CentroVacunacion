@@ -110,39 +110,6 @@ public class LoginData {
         return resultado;
     }
 
-    public void resteoClave(int idAlumno) {
-        int alumno_dni = 0;
-        String sql = "SELECT dni FROM alumno WHERE idAlumno = ?";
-        String sql2 = "UPDATE login SET Clave = ? WHERE usuario LIKE ?";
-
-        PreparedStatement ps = null;
-
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, idAlumno);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                alumno_dni = rs.getInt("dni");
-            }
-            String clave_n = Integer.toString((int) alumno_dni / 1000);
-
-            ps = con.prepareStatement(sql2);
-            ps.setString(1, clave_n);
-            ps.setInt(2, alumno_dni);
-
-            int resultado = ps.executeUpdate();
-
-            if (resultado == 1) {
-                JOptionPane.showMessageDialog(null, "La clave ha sido prestablecida correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "La clave NO se ha restablecida");
-            }
-        } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "Error busqueda");
-        }
-    }
-
     public void ingresoFallido(int usuario) {
         int ingreso_n;
         String sql = "SELECT * FROM login WHERE Usuario = ?";
@@ -273,27 +240,7 @@ public class LoginData {
             } catch (SQLException sqlE) {
         }
     }
-    
-    public void cargarLogin(int usuario){
-        PreparedStatement ps;
-        
-        String sql = "INSERT INTO login (usuario,clave,estado) VALUES (?,?,?)";
-        
-         try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, usuario);
-            ps.setInt(2, ((int) usuario/1000));
-            ps.setInt(3,0);
-           
-                      
-            int updates = ps.executeUpdate();;
-            } catch (SQLException e) {
-            if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
-                JOptionPane.showMessageDialog(null, "El DNI ya se encuentra cargado en la bsae datos.");
-            }
-        }
-    }
-    
+       
     public boolean analisisFaseIngreso(int dni){
         PreparedStatement ps;
         boolean resultado = true;
@@ -313,22 +260,7 @@ public class LoginData {
         return resultado;
     }
     
-    public void derivacionIngreso(int dni){
-        PreparedStatement ps;
-        String sql = "UPDATE login SET etapa_ingreso = ? WHERE DNI = ?";
-        
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setBoolean(1,true);
-            ps.setInt(2,dni);
-            
-            int update = ps.executeUpdate();
-            
-        } catch (SQLException e){}
-        
-        
-    }
-    
+      
     public void armarClavesRandom(int dni){
         PreparedStatement ps;
         String sql = "INSERT INTO login (`usuario`,`clave`) VALUES (?,?)";

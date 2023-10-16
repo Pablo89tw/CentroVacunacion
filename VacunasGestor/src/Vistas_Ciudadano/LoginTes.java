@@ -11,6 +11,8 @@ import Entidades.LogIN;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class LoginTes extends javax.swing.JFrame {
 
@@ -223,18 +225,25 @@ private void inicioSesion() {
             if (lD.logIN(usuario, clave)) {
                 boolean data = lD.analisisFaseIngreso(usuario);
                 if (!data) {
-                    cambioClave();
-                    
-                    lD.actualizarRecordar(0, usuario);
-                    logIN = lD.cuentasA_Recordar();
-                    } else if (jCheckBox1.isSelected()){
-                    lD.actualizarRecordar(1, usuario);
-                    logIN = lD.cuentasA_Recordar();    
-                    
-                    Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD);
-                    jDesktopPane1.add(admin);
-                    admin.setVisible(true);
-                   
+                    ModificlarClaveIF mC = new ModificlarClaveIF(usuario);
+                    jDesktopPane1.add(mC);
+                    mC.setVisible(true);
+                    mC.addInternalFrameListener(new InternalFrameAdapter() {
+                     @Override
+                     public void internalFrameClosed(InternalFrameEvent e) {
+                            if (!jCheckBox1.isSelected()){
+                            lD.actualizarRecordar(0, usuario);
+                            logIN = lD.cuentasA_Recordar();
+                            } else if (jCheckBox1.isSelected()){
+                            lD.actualizarRecordar(1, usuario);
+                            logIN = lD.cuentasA_Recordar();    
+                            }
+
+                            Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD, usuario);
+                            jDesktopPane1.add(admin);
+                            admin.setVisible(true);
+                     }
+                     });
                 } else if (data){
                     
                 if (!jCheckBox1.isSelected()) {
@@ -244,8 +253,6 @@ private void inicioSesion() {
                     lD.actualizarRecordar(1, usuario);
                     logIN = lD.cuentasA_Recordar();    
                     }
-                
-                                
                     Datos_Ciudadano dC = new Datos_Ciudadano(cD, tD, usuario);
                     jDesktopPane1.add(dC);
                     dC.setVisible(true);
@@ -253,9 +260,9 @@ private void inicioSesion() {
                 
                     jPas_logIN.setText("");
                     jText_usuLIN.setText("");
-                     jCheckBox1.setSelected(false);
+                    jCheckBox1.setSelected(false);
                 } 
-    
+                
             }
         } catch (NumberFormatException ex) {
             jText_usuLIN.setText("");
@@ -265,15 +272,5 @@ private void inicioSesion() {
             JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
         }
     }
-
-
-    private void cambioClave(){
-    Modificar_Clave mC = new Modificar_Clave(ERROR);
-    
-    
-}
-    
-    
-
 }
 

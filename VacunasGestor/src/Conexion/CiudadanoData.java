@@ -15,42 +15,23 @@ public class CiudadanoData{
     private Connection con = Conectar.getConectar();
     private LoginData lD = new LoginData();
       
-    public int cargaCiudadano(Ciudadano c1){
+    public int cargaNuevosDatosCiudadano(Ciudadano c1){
     int updates = 0, comas =0;
     
-    String sql = "INSERT INTO ciudadano (dni";
-        if (c1.getApellido() != null) {sql += ", apellido";comas++;}
-        if (c1.getNombre() != null) {sql += ", nombre";comas++;}
-        if (c1.getCordenadas().getLatitud() != 0) {sql += ", latitud";comas++;}
-        if (c1.getCordenadas().getLongitud() != 0) {sql += ", longitud";comas++;}
-        if (c1.getEmail() != null) {sql += ", email";comas++;}
-        if (c1.getCelular() != 0) {sql += ", celular";comas++;}
-        if (c1.getAmbitoTrabajo() != null) {sql += ", ambitoTrabajo";comas++;}
-        if (c1.getDosisAplicadas() != -1) {sql += ", dosisAplicadas";comas++;}
-               
-        sql += ") VALUES (?";
-        if (comas!=0){sql +=",";}      
-        for (int i = 1; i < comas; i++) {
-            sql += "?,";
-        }
-        sql += "?)";
-        
-              
+    String sql = "UPDATE ciudadano SET `latitud` = ?,`longitud` = ?, `email` = ?, `celular` = ?, `ambitoTrabajo` = ?, `dosisAplicadas` = ? WHERE DNI = ?";
+
     try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, c1.getDNI());
-            ps.setString(2, c1.getApellido());
-            ps.setString(3, c1.getNombre());
-            ps.setDouble(4,c1.getCordenadas().getLatitud());
-            ps.setDouble(5,c1.getCordenadas().getLongitud());
-            ps.setString(6, c1.getEmail());
-            ps.setInt(7, c1.getCelular());
-            ps.setString(8, c1.getAmbitoTrabajo());
-            ps.setInt(9,0);
+            ps.setDouble(1,c1.getCordenadas().getLatitud());
+            ps.setDouble(2,c1.getCordenadas().getLongitud());
+            ps.setString(3, c1.getEmail());
+            ps.setInt(4, c1.getCelular());
+            ps.setString(5, c1.getAmbitoTrabajo());
+            ps.setInt(6,0);
+            ps.setInt(7,c1.getDNI());
                       
             updates = ps.executeUpdate();;
             if (updates > 0) {
-                lD.cargarLogin(c1.getDNI());
                 JOptionPane.showMessageDialog(null, "Inscripcion Correcta");
                 }
             if (updates == 0) {

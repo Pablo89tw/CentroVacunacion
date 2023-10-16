@@ -20,7 +20,9 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
 
     public Datos_Ciudadano(CiudadanoData cD, TurnoData tD, int dni_usuario) {
         this.c1 = cD.buscarCiudadanos(dni_usuario, "DNI").get(0);
+        c1.setPatologias(cD.consultaPatologias(dni_usuario));
         this.arrayTurnos = tD.buscarTurno(dni_usuario);
+        this.tD = tD;
         initComponents();
         armadoTextos();
         armadoDosis();
@@ -700,7 +702,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         TablaPatologias.setModel(modelo);
         modelo.addColumn("Patologias");
 
-        for (String patologias : cD.consultaPatologias(c1.getDNI())) {
+        for (String patologias : c1.getPatologias()) {
             modelo.addRow(new Object[]{patologias});
         }
         if (modelo.getRowCount() == 0) {
@@ -806,7 +808,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     
     private void cargadoJCBhorarios(){
        ArrayList<Turno> arrayTurnos = tD.buscarTurno(c1.getDNI());
-        
+       
         for (Turno turno : arrayTurnos) {
             if ((turno.getCodigoRefuerzo() == 2) && (turno.getFecha().getHour() == 0)){
                 this.turno1 = turno;

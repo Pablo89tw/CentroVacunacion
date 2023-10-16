@@ -8,10 +8,11 @@ public class Test extends javax.swing.JFrame {
     
     public Test() {
         initComponents();
+        Administrador_Centros aC = new Administrador_Centros(tD);
+        jDesktopPane1.add(aC);
+        aC.setVisible(true);
+            
         
-        Administrador_Centros iS = new Administrador_Centros(tD);
-        jDesktopPane1.add(iS);
-        iS.setVisible(true);
         
 //        DireccionMapa dM = new DireccionMapa();
 //        jDesktopPane1.add(dM);

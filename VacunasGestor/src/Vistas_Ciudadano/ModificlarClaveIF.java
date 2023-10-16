@@ -1,38 +1,24 @@
 package Vistas_Ciudadano;
 
 import Conexion.LoginData;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 
-public class Modificar_Clave extends javax.swing.JInternalFrame {
+public class ModificlarClaveIF extends javax.swing.JInternalFrame {
 
     LoginData lD = new LoginData();
-   
-    private int usuario;
+    
+     private int usuario;
     private String clave_nueva;
     
-    public Modificar_Clave(int usuario) {
+    public ModificlarClaveIF(int usuario) {
         initComponents();
         this.usuario = usuario;
         jLabel5.setVisible(false);
-        
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-    }
-  
-    @SuppressWarnings("unchecked")
+       }
+
+     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon20 = new ImageIcon(getClass().getResource("/Visual/visual_General/Img/FONDO PRINCIPAL 02.jpg"));
-        Image image20 = icon20.getImage();
-        jPanel1 = new javax.swing.JPanel(){
-
-            public void paintComponent(Graphics g){
-                g.drawImage(image20,0,0,getWidth(),getHeight(),this);
-            }
-
-        };
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jP_cV = new javax.swing.JPasswordField();
@@ -46,12 +32,6 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
         showPass = new javax.swing.JToggleButton();
         showPass1 = new javax.swing.JToggleButton();
         showPass2 = new javax.swing.JToggleButton();
-
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 102), 6));
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 350));
-
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
         jLabel4.setBackground(new java.awt.Color(255, 51, 102));
         jLabel4.setFont(new java.awt.Font("ArianLT-Bold", 3, 18)); // NOI18N
@@ -121,15 +101,12 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
 
         showPass.setBackground(new java.awt.Color(0, 102, 0));
         showPass.setForeground(new java.awt.Color(255, 102, 0));
-        showPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo2.png"))); // NOI18N
         showPass.setToolTipText("");
         showPass.setBorder(null);
         showPass.setBorderPainted(false);
         showPass.setContentAreaFilled(false);
-        showPass.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo2.png"))); // NOI18N
         showPass.setFocusPainted(false);
         showPass.setFocusable(false);
-        showPass.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo1.png"))); // NOI18N
         showPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showPassActionPerformed(evt);
@@ -138,15 +115,12 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
 
         showPass1.setBackground(new java.awt.Color(0, 102, 0));
         showPass1.setForeground(new java.awt.Color(255, 102, 0));
-        showPass1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo2.png"))); // NOI18N
         showPass1.setToolTipText("");
         showPass1.setBorder(null);
         showPass1.setBorderPainted(false);
         showPass1.setContentAreaFilled(false);
-        showPass1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo2.png"))); // NOI18N
         showPass1.setFocusPainted(false);
         showPass1.setFocusable(false);
-        showPass1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo1.png"))); // NOI18N
         showPass1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showPass1ActionPerformed(evt);
@@ -155,127 +129,121 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
 
         showPass2.setBackground(new java.awt.Color(0, 102, 0));
         showPass2.setForeground(new java.awt.Color(255, 102, 0));
-        showPass2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo2.png"))); // NOI18N
         showPass2.setToolTipText("");
         showPass2.setBorder(null);
         showPass2.setBorderPainted(false);
         showPass2.setContentAreaFilled(false);
-        showPass2.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo2.png"))); // NOI18N
         showPass2.setFocusPainted(false);
         showPass2.setFocusable(false);
-        showPass2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/visual_General/Img/ojo1.png"))); // NOI18N
         showPass2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showPass2ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                         .addGap(50, 50, 50))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jP_cN2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jP_cN1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jP_cV, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(showPass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(showPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(showPass2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
                                         .addComponent(jP_cV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(showPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(37, 37, 37)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(jP_cN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(showPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jP_cN2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(showPass2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(23, 23, 23))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!(jP_cN1.getText().equals(jP_cN2.getText()))){
-            jLabel5.setVisible(true);
-        } else if ((jP_cN1.getText().equals(jP_cN2.getText())) && (!(jP_cV.equals("")))){
-        String contraseniaVieja = jP_cV.getText();
-        String contraseniaN1 = jP_cN1.getText();
-        int ret = lD.modificarClave(contraseniaVieja, contraseniaN1, usuario);
-        
-        if (ret == 0)
-            this.dispose();
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jP_cN1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jP_cN1KeyReleased
+        jLabel5.setVisible(false);
+    }//GEN-LAST:event_jP_cN1KeyReleased
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jP_cN2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_cN2MouseExited
+
+    }//GEN-LAST:event_jP_cN2MouseExited
+
+    private void jP_cN2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jP_cN2KeyReleased
+        jLabel5.setVisible(false);
+    }//GEN-LAST:event_jP_cN2KeyReleased
 
     private void jLabel5ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel5ComponentShown
 
     }//GEN-LAST:event_jLabel5ComponentShown
 
-    private void jP_cN2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_cN2MouseExited
-        
-    }//GEN-LAST:event_jP_cN2MouseExited
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!(jP_cN1.getText().equals(jP_cN2.getText()))){
+            jLabel5.setVisible(true);
+        } else if ((jP_cN1.getText().equals(jP_cN2.getText())) && (!(jP_cV.equals("")))){
+            String contraseniaVieja = jP_cV.getText();
+            String contraseniaN1 = jP_cN1.getText();
+            int ret = lD.modificarClave(contraseniaVieja, contraseniaN1, usuario);
+
+            if (ret == 0)
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
         if (showPass.isSelected()) {
@@ -288,7 +256,7 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_showPassActionPerformed
 
     private void showPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPass1ActionPerformed
-        
+
         if (showPass1.isSelected()) {
             // Mostrar caracteres de la contraseña
             jP_cN1.setEchoChar((char) 0); // Esto quita el carácter oculto
@@ -296,13 +264,11 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
             // Ocultar caracteres de la contraseña
             jP_cN1.setEchoChar('•');
         }
-        
-        
-        
+
     }//GEN-LAST:event_showPass1ActionPerformed
 
     private void showPass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPass2ActionPerformed
-        
+
         if (showPass2.isSelected()) {
             // Mostrar caracteres de la contraseña
             jP_cN2.setEchoChar((char) 0); // Esto quita el carácter oculto
@@ -310,20 +276,9 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
             // Ocultar caracteres de la contraseña
             jP_cN2.setEchoChar('•');
         }
-        
-        
-        
+
     }//GEN-LAST:event_showPass2ActionPerformed
 
-    private void jP_cN1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jP_cN1KeyReleased
-        jLabel5.setVisible(false);
-    }//GEN-LAST:event_jP_cN1KeyReleased
-
-    private void jP_cN2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jP_cN2KeyReleased
-        jLabel5.setVisible(false);
-    }//GEN-LAST:event_jP_cN2KeyReleased
-
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -336,7 +291,6 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField jP_cN1;
     private javax.swing.JPasswordField jP_cN2;
     private javax.swing.JPasswordField jP_cV;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton showPass;
     private javax.swing.JToggleButton showPass1;
     private javax.swing.JToggleButton showPass2;

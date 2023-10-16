@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class VialData {
@@ -19,39 +17,30 @@ public class VialData {
     private VacunatorioData vD = new VacunatorioData();
     
   
-    public void cargarViales() {
+    public void cargarViales(String marca) {
         String sql = "INSERT INTO viales (numeroSerie,Marca,Antigeno,fechaVencimiento,idLaboratorio,estado,idVacunatorio,fechaColocacion) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             
             
-            String marca; String antigeno; int idLabora;
-            switch ((int) (Math.random() * 10)) {
-                case 0:
-                case 1:
-                    marca = "Pfizer";
+            String antigeno; int idLabora;
+            switch (marca) {
+                case "Pfizer":
                     antigeno = "ARN mensajero (ARNm)";
                     idLabora = 1;
                     break;
-                case 2:
-                case 3:
-                    marca = "Johnson_Johnson";
+                case "Johnson_Johnson":
                     antigeno = "Partículas SARS-CoV-2 desactivadas";
                     idLabora = 2;
                     break;
-                case 4:
-                case 5:
-                    marca = "AstraZeneca";
+                case "AstraZeneca":
                     antigeno = "Proteína de pico del virus SARS-CoV-2";
                     idLabora = 3;
                     break;
-                case 6:
-                case 7:
-                    marca = "Sinopharm y Sinovac";
+                case "Sinopharm y Sinovac":
                     antigeno = "Partículas SARS-CoV-2 desactivadas"; 
                     idLabora = 4;
                     break;
-                case 8:
                 default:
                     marca = "Sputnik V";
                     antigeno = "Adenovirus Ad26 y Ad5";
@@ -65,7 +54,7 @@ public class VialData {
             ps.setString(4, fechaVencimiento.toString());
             ps.setInt(5,idLabora);
             ps.setInt(6,0);
-            ps.setInt(7,(int) Math.floor(Math.random() * 3) + 1);
+            ps.setString(7, null);
             ps.setDate(8,null);
 
             int updates = ps.executeUpdate();;
@@ -106,16 +95,22 @@ public class VialData {
         return vial;
     }
     
-    public ArrayList<Vial> listarViales(int estado){
+    public ArrayList<Vial> listarViales(int estado, int idVacunatorio){
         PreparedStatement ps;
         Vial vial;
         ArrayList<Vial> arrayViales = new ArrayList();
-               
-        String sql = "SELECT * FROM viales WHERE estado = ?";
-        
+        String sql = "";
+        if (idVacunatorio != 0){
+            sql = "SELECT * FROM viales WHERE estado = ? AND idVacunatorio = ?";
+        } else if (idVacunatorio == 0){
+            sql = "SELECT * FROM viales WHERE estado = ? AND idVacunatorio IS NULL";
+         }
         try{
             ps = con.prepareStatement(sql);
             ps.setInt(1,estado);
+            if (idVacunatorio != 0){
+            ps.setInt(2,idVacunatorio);
+            } 
                        
             ResultSet rs = ps.executeQuery();
             
@@ -180,6 +175,7 @@ public class VialData {
         } catch (SQLException e){}
    }
 
+   
    
 }
 
