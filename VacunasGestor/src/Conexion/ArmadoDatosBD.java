@@ -20,7 +20,7 @@ public class ArmadoDatosBD {
     private TurnoData tD = new TurnoData();
 
     public void armarTurnos_COMPLETAR_BASE_DATOS() {
-        ArrayList<Ciudadano> ciudadanos = cD.listarTODOSciudadanos();
+        ArrayList<Ciudadano> ciudadanos = cD.buscarCiudadanos(0,"todos");
         Vacunatorio vac;
         Turno turno;
         LocalDate fecha = LocalDate.of(2023, 10, 1);
@@ -85,7 +85,7 @@ public class ArmadoDatosBD {
     }
 
     public void vacunar_Aleatorios() {
-        ArrayList<Ciudadano> ciudadanos = cD.listarTODOSciudadanos();
+        ArrayList<Ciudadano> ciudadanos = cD.buscarCiudadanos(0, "todos");
 
         for (Ciudadano ciudadano : ciudadanos) {
             for (Turno turno : tD.buscarTurno(ciudadano.getDNI())) {

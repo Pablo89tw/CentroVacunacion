@@ -1,6 +1,8 @@
 package Conexion;
 
 import Entidades.LogIN;
+import static java.lang.Math.random;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +16,12 @@ public class LoginData {
     private Connection con = Conectar.getConectar();
   
 
-    public int logIN(int usuario, String clave_in) {
+    public boolean logIN(int usuario, String clave_in) {
         String sql = "SELECT * FROM login WHERE usuario LIKE (?)";
         PreparedStatement ps = null;
-        categoriaResultado = 0;
+        boolean ingreso = false;
         ResultSet rs = null;
-        ResultSet rs2 = null;
-        try {
+               try {
             ps = con.prepareStatement(sql);
             ps.setString(1, Integer.toString(usuario));
             rs = ps.executeQuery();
@@ -28,7 +29,7 @@ public class LoginData {
             if (rs.next()) {
                 if (rs.getString("Clave").equals(clave_in) && rs.getInt("estado") == 0) {
                     ingresosReseteo(usuario);
-                    categoriaResultado = 1;
+                    ingreso = true;
                 } else if (rs.getInt("estado") == 1) {
                     JOptionPane.showMessageDialog(null, "Usuario Bloqueado");
                 } else if (!rs.getString("Clave").equals(clave_in)) {
@@ -40,7 +41,7 @@ public class LoginData {
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Usuario inexistente");
         }
-        return categoriaResultado;
+        return ingreso;
     }
 
     public int modificarClave(String clave_in, String clave_n, int usuario) {
@@ -291,4 +292,62 @@ public class LoginData {
             }
         }
     }
+    
+    public boolean analisisFaseIngreso(int dni){
+        PreparedStatement ps;
+        boolean resultado = true;
+        String sql = "SELECT etapa_ingreso FROM login WHERE usuario = ?";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+              resultado = rs.getBoolean("etapa_ingreso");
+            }
+        } catch (SQLException e){}
+        
+        return resultado;
+    }
+    
+    public void derivacionIngreso(int dni){
+        PreparedStatement ps;
+        String sql = "UPDATE login SET etapa_ingreso = ? WHERE DNI = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setBoolean(1,true);
+            ps.setInt(2,dni);
+            
+            int update = ps.executeUpdate();
+            
+        } catch (SQLException e){}
+        
+        
+    }
+    
+    public void armarClavesRandom(int dni){
+        PreparedStatement ps;
+        String sql = "INSERT INTO login (`usuario`,`clave`) VALUES (?,?)";
+
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder clave = new StringBuilder();
+        SecureRandom random = new SecureRandom();
+
+        for (int i = 0; i < 9; i++) {
+            int indice = random.nextInt(caracteres.length());
+            clave.append(caracteres.charAt(indice));
+        } 
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(2, clave.toString());
+            ps.setInt(1,dni);
+            
+            int update = ps.executeUpdate();
+            
+        } catch (SQLException e){}
+    }
+
 }

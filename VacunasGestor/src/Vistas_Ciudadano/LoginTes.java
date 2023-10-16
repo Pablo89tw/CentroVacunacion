@@ -6,7 +6,6 @@ import Conexion.Conectar;
 import Conexion.LoginData;
 import Conexion.TurnoData;
 import Conexion.VacunatorioData;
-import Conexion.VialData;
 import Conexion.geoData;
 import Entidades.LogIN;
 import java.sql.Connection;
@@ -39,7 +38,6 @@ public class LoginTes extends javax.swing.JFrame {
         jPas_logIN = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,27 +104,23 @@ public class LoginTes extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("ArianLT-Bold", 2, 14)); // NOI18N
-        jButton2.setText("CREAR CUENTA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jText_usuLIN, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPas_logIN, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(292, 292, 292)
+                .addComponent(jCheckBox1)
+                .addGap(29, 29, 29)
+                .addComponent(jButton1)
+                .addContainerGap(331, Short.MAX_VALUE))
             .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDesktopPane1Layout.createSequentialGroup()
                     .addGap(295, 295, 295)
@@ -134,21 +128,19 @@ public class LoginTes extends javax.swing.JFrame {
                         .addComponent(jText_usuLIN)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                    .addComponent(jButton2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton1)
-                                        .addComponent(jCheckBox1))))
-                            .addGap(0, 13, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 76, Short.MAX_VALUE))
                         .addComponent(jPas_logIN))
                     .addGap(296, 296, 296)))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(336, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jButton1))
+                .addGap(260, 260, 260))
             .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDesktopPane1Layout.createSequentialGroup()
                     .addGap(208, 208, 208)
@@ -159,13 +151,7 @@ public class LoginTes extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jCheckBox1)
-                    .addGap(18, 18, 18)
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton2)
-                        .addComponent(jButton1))
-                    .addContainerGap(209, Short.MAX_VALUE)))
+                    .addContainerGap(290, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,14 +194,8 @@ public class LoginTes extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        inicioSesion();
+       inicioSesion();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD);
-        jDesktopPane1.add(admin);
-        admin.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -227,7 +207,6 @@ public class LoginTes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
@@ -236,32 +215,48 @@ public class LoginTes extends javax.swing.JFrame {
     private javax.swing.JTextField jText_usuLIN;
     // End of variables declaration//GEN-END:variables
 
-
 private void inicioSesion() {
         try {
             int usuario = Integer.parseInt(jText_usuLIN.getText());
             String clave = String.valueOf(jPas_logIN.getPassword());
           
-            if (lD.logIN(usuario, clave) == 1) {
+            if (lD.logIN(usuario, clave)) {
+                boolean data = lD.analisisFaseIngreso(usuario);
+                if (!data) {
+                    cambioClave();
+                    
+                    lD.actualizarRecordar(0, usuario);
+                    logIN = lD.cuentasA_Recordar();
+                    } else if (jCheckBox1.isSelected()){
+                    lD.actualizarRecordar(1, usuario);
+                    logIN = lD.cuentasA_Recordar();    
+                    
+                    Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD);
+                    jDesktopPane1.add(admin);
+                    admin.setVisible(true);
+                   
+                } else if (data){
+                    
                 if (!jCheckBox1.isSelected()) {
-                lD.actualizarRecordar(0, usuario);
-                logIN = lD.cuentasA_Recordar();
-                } else if (jCheckBox1.isSelected()){
-                lD.actualizarRecordar(1, usuario);
-                logIN = lD.cuentasA_Recordar();    
-                }
+                    lD.actualizarRecordar(0, usuario);
+                    logIN = lD.cuentasA_Recordar();
+                    } else if (jCheckBox1.isSelected()){
+                    lD.actualizarRecordar(1, usuario);
+                    logIN = lD.cuentasA_Recordar();    
+                    }
                 
-                System.out.println(usuario);
-                Datos_Ciudadano dC = new Datos_Ciudadano(cD, tD, usuario);
-                jDesktopPane1.add(dC);
-                dC.setVisible(true);
-                jDesktopPane1.moveToFront(dC);
+                                
+                    Datos_Ciudadano dC = new Datos_Ciudadano(cD, tD, usuario);
+                    jDesktopPane1.add(dC);
+                    dC.setVisible(true);
+                    jDesktopPane1.moveToFront(dC);
                 
-                jPas_logIN.setText("");
-                jText_usuLIN.setText("");
-                jCheckBox1.setSelected(false);
+                    jPas_logIN.setText("");
+                    jText_usuLIN.setText("");
+                     jCheckBox1.setSelected(false);
+                } 
+    
             }
-
         } catch (NumberFormatException ex) {
             jText_usuLIN.setText("");
             jPas_logIN.setText("");
@@ -270,5 +265,15 @@ private void inicioSesion() {
             JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
         }
     }
+
+
+    private void cambioClave(){
+    Modificar_Clave mC = new Modificar_Clave(ERROR);
+    
+    
+}
+    
+    
+
 }
 

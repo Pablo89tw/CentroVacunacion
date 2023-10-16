@@ -10,6 +10,8 @@ import Entidades.Coordenadas;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
@@ -19,8 +21,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jxmapviewer.JXMapKit;
 import org.jxmapviewer.viewer.DefaultWaypoint;
@@ -720,6 +725,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
          int updates = cD.cargarTurno(c1); 
         if (updates>0){
         tD.actualizarTurnero_Hora(c1.getTurno()); 
+        lD.
+        
         }
     }//GEN-LAST:event_Actualizar_3ActionPerformed
 
@@ -730,7 +737,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDateChooser2PropertyChange
 
     private void jRadio_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadio_noActionPerformed
-       proximo_Turnoslibres(LocalDate.now());
+       proximo_Turnoslibres(LocalDate.now().plusDays(1));
        jDateChooser2.setEnabled(false); 
     }//GEN-LAST:event_jRadio_noActionPerformed
 
@@ -890,21 +897,21 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     public void armarCoodenadas(Coordenadas coord) {
         JXMapKit mapKit = new JXMapKit();
         mapKit.setDefaultProvider(JXMapKit.DefaultProviders.OpenStreetMaps);
-
+            
         // Establece la ubicación inicial y el nivel de zoom
-        GeoPosition centerPosition = new GeoPosition(coord.getLatitud(), coord.getLongitud());
-        mapKit.setCenterPosition(centerPosition);
+        GeoPosition posicion_inicioMapa = new GeoPosition(coord.getLatitud(), coord.getLongitud());
+        mapKit.setCenterPosition(posicion_inicioMapa);
         mapKit.setZoom(100);
-
+            
         // Crea un JFrame para contener el mapKit
         JFrame frame = new JFrame("Mapa");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
         // Crea un WaypointPainter para gestionar las marcas
-        WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
-        mapKit.getMainMap().setOverlayPainter(waypointPainter);
-
+        WaypointPainter<Waypoint> punto_referencia = new WaypointPainter<Waypoint>();
+        mapKit.getMainMap().setOverlayPainter(punto_referencia);
+        
         // Agregar un escuchador de eventos de clic en el mapa
         mapKit.getMainMap().addMouseListener(new MouseAdapter() {
             @Override
@@ -912,12 +919,37 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 Point point = e.getPoint();
                 GeoPosition coordenadas1 = mapKit.getMainMap().convertPointToGeoPosition(point);
                 Waypoint waypoint = new DefaultWaypoint(coordenadas1);
-                waypointPainter.setWaypoints(Collections.singleton(waypoint));
+                punto_referencia.setWaypoints(Collections.singleton(waypoint));
 
-                JOptionPane.showMessageDialog(frame, "Coordenadas: Latitud " + coordenadas1.getLatitude() + ", Longitud " + coordenadas1.getLongitude());
-                dtaCorda.setLatitud(coordenadas1.getLatitude());
-                dtaCorda.setLongitud(coordenadas1.getLongitude());
-                frame.setVisible(false);
+                mapKit.getMainMap().setOverlayPainter(punto_referencia);
+                           
+                JDialog dialog = new JDialog();
+                dialog.setTitle("Confirmar ubicación");
+                dialog.setSize(300, 100);
+                JPanel panel = new JPanel();
+                
+                panel.add(new JLabel("¿El marcador coincide con su domicilio?"));
+                JButton aceptar = new JButton("SI");
+                JButton rechazar = new JButton("NO");
+                aceptar.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                       dtaCorda.setLatitud(coordenadas1.getLatitude());
+                       dtaCorda.setLongitud(coordenadas1.getLongitude());
+                       dialog.dispose(); 
+                       frame.setVisible(false);
+                    }
+                });
+                
+                rechazar.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                    punto_referencia.setWaypoints(Collections.emptySet());
+                    dialog.dispose();                   
+                    }
+                });
+                panel.add(aceptar);
+                panel.add(rechazar);
+                dialog.add(panel);
+                dialog.setVisible(true);
             }
         });
         frame.getContentPane().add(mapKit);

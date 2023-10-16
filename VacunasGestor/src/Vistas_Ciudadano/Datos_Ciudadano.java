@@ -19,7 +19,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     private Turno turno2;
 
     public Datos_Ciudadano(CiudadanoData cD, TurnoData tD, int dni_usuario) {
-        this.c1 = cD.buscarCiudadanos(dni_usuario).get(0);
+        this.c1 = cD.buscarCiudadanos(dni_usuario, "DNI").get(0);
         this.arrayTurnos = tD.buscarTurno(dni_usuario);
         initComponents();
         armadoTextos();

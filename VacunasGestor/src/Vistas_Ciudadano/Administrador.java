@@ -704,7 +704,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     private void buscarTurnosPersona() {
         jButton1.setEnabled(true);
         
-        this.c1 = cD.buscarCiudadanos(Integer.parseInt(jText_ingresoDNI.getText())).get(0);
+        this.c1 = cD.buscarCiudadanos(Integer.parseInt(jText_ingresoDNI.getText()),"DNI").get(0);
                 
         jTextField1.setText(c1.getApellido());
         jTextField5.setText(c1.getNombre());

@@ -395,7 +395,7 @@ public class TurnoData {
             
             while (rs.next()){
               t1 = new Turno();  
-              t1.setCiudadano(cD.buscarCiudadanos(rs.getInt("DNI")).get(0));
+              t1.setCiudadano(cD.buscarCiudadanos(rs.getInt("DNI"),"DNI").get(0));
               t1.setCodigoRefuerzo(rs.getInt("codigoRefuerzo"));
               t1.setEstado(rs.getString("estado"));
               t1.setFecha(rs.getTimestamp("fechaTurno").toLocalDateTime());

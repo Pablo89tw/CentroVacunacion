@@ -148,12 +148,18 @@ public class CiudadanoData{
         } return updates;
     }
      
-    public ArrayList<Ciudadano> buscarCiudadanos(int dni_ciudadano){
+    public ArrayList<Ciudadano> buscarCiudadanos(int dni_ciudadano, String codigo){
      ArrayList<Ciudadano> arrayCiudadano = new ArrayList();
      Ciudadano c1;
      PreparedStatement ps;   
      ResultSet rs;
-     String sql = "SELECT * FROM ciudadano WHERE DNI = ?";
+     String sql = "";
+     Coordenadas cord;
+      
+     switch (codigo){
+         case "DNI" : sql = "SELECT * FROM ciudadano WHERE DNI = ?"; break;
+         case "todos" : sql = "SELECT * FROM ciudadano"; break;
+     }
      
      try{
          ps = con.prepareStatement(sql);
@@ -165,11 +171,15 @@ public class CiudadanoData{
              c1 = new Ciudadano();
              c1.setApellido(rs.getString("apellido"));
              c1.setNombre(rs.getString("nombre"));
-             c1.setDNI(dni_ciudadano); 
+             c1.setDNI(rs.getInt("DNI")); 
              c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
              c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
              c1.setCelular(rs.getInt("celular"));
              c1.setEmail(rs.getString("email"));
+             cord = new Coordenadas();
+             cord.setLatitud(rs.getDouble("latitud"));
+             cord.setLongitud(rs.getDouble("longitud"));
+             c1.setCordenadas(cord);
              arrayCiudadano.add(c1);
          } 
        } catch (SQLException e){}
@@ -268,38 +278,5 @@ public class CiudadanoData{
         }  
          
     }
-
-    public ArrayList<Ciudadano> listarTODOSciudadanos(){
-     ArrayList<Ciudadano> arrayCiudadano = new ArrayList();
-     Ciudadano c1;
-     Coordenadas cord;
-     PreparedStatement ps;   
-     ResultSet rs;
-     
-     String sql = "SELECT * FROM ciudadano";
-     
-     try{
-         ps = con.prepareStatement(sql);
-              
-         rs = ps.executeQuery();
-        
-         while (rs.next()){
-             c1 = new Ciudadano();
-             c1.setApellido(rs.getString("apellido"));
-             c1.setNombre(rs.getString("nombre"));
-             c1.setDNI(rs.getInt("DNI")); 
-             c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
-             c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
-             c1.setCelular(rs.getInt("celular"));
-             c1.setEmail(rs.getString("email"));
-             cord = new Coordenadas();
-             cord.setLatitud(rs.getDouble("latitud"));
-             cord.setLongitud(rs.getDouble("longitud"));
-             c1.setCordenadas(cord);
-             arrayCiudadano.add(c1);
-         } 
-       } catch (SQLException e){}
-        return arrayCiudadano;
-     }
     
 }
