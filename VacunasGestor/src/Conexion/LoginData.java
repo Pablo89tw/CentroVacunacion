@@ -1,5 +1,6 @@
 package Conexion;
 
+import Entidades.Ciudadano;
 import Entidades.LogIN;
 import static java.lang.Math.random;
 import java.security.SecureRandom;
@@ -350,4 +351,17 @@ public class LoginData {
         } catch (SQLException e){}
     }
 
+    public void actualizarFaseIngreso(Ciudadano c1){
+        PreparedStatement ps;
+        
+        String sql = "UPDATE login SET etapa_ingreso = ? WHERE usuario = ?";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setBoolean(1, true);
+            ps.setInt(2, c1.getDNI());
+            
+            int resultado = ps.executeUpdate();
+        }catch (SQLException e){}
+    }
 }

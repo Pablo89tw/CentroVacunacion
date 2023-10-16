@@ -725,7 +725,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
          int updates = cD.cargarTurno(c1); 
         if (updates>0){
         tD.actualizarTurnero_Hora(c1.getTurno()); 
-        lD.
+        lD.actualizarFaseIngreso(c1);
         
         }
     }//GEN-LAST:event_Actualizar_3ActionPerformed
