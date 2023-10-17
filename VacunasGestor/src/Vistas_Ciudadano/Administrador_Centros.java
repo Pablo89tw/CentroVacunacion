@@ -1,8 +1,12 @@
 package Vistas_Ciudadano;
 
+import Conexion.CiudadanoData;
+import Conexion.LoginData;
 import Conexion.TurnoData;
 import Conexion.VacunatorioData;
 import Conexion.VialData;
+import Entidades.Ciudadano;
+import Entidades.LogIN;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
@@ -20,6 +24,8 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
 
     private VialData sD = new VialData();
     private VacunatorioData vD = new VacunatorioData();
+    private CiudadanoData cD = new CiudadanoData();
+    private LoginData lD = new LoginData();
     private TurnoData tD;
     private DefaultTableModel modelo_tabla6 = new DefaultTableModel();
     private DefaultTableModel modelo_tabla2 = new DefaultTableModel();
@@ -121,6 +127,11 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jButton6 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
 
         jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -237,7 +248,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRB_buscarTodoslosCentros)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +428,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1))
         );
@@ -516,7 +527,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addComponent(jButton5)
                     .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
                 .addComponent(jButton4))
         );
@@ -663,11 +674,51 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Stocks", jPanel3);
+
+        jButton7.setText("Habilitar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Dar login a ");
+
+        jLabel3.setText("ciudadanos");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(34, 34, 34)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(226, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton7)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(488, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Habilitar Ciudadanos", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -836,17 +887,21 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
          jComboBox6.setEnabled(false);
-            jComboBox10.setEnabled(false);
-            jComboBox5.setEnabled(false);
-             jSpinner2.setEnabled(false);
-             jComboBox11.setEnabled(true);
-          jComboBox12.setEnabled(true);
-          jButton6.setEnabled(true);
+         jComboBox10.setEnabled(false);
+         jComboBox5.setEnabled(false);
+         jSpinner2.setEnabled(false);
+         jComboBox11.setEnabled(true);
+         jComboBox12.setEnabled(true);
+         jButton6.setEnabled(true);
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         modelo_tabla6.addRow(new Object[]{jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()}); 
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        habilitarCiudadanos(Integer.parseInt(jSpinner1.getValue().toString()));
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -857,6 +912,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
@@ -875,12 +931,15 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRB_CitasCumplidas;
     private javax.swing.JRadioButton jRB_buscarPorCentro;
     private javax.swing.JRadioButton jRB_buscarTodoslosCentros;
@@ -899,6 +958,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner6;
@@ -1286,5 +1346,27 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             }
         }
         calcularStocks();
+    }
+    
+    private void habilitarCiudadanos(int valor){
+        ArrayList<Ciudadano> sinCuenta = new ArrayList<>();
+        for (Ciudadano ciu : cD.buscarCiudadanos(0, "todos")) {
+            boolean tieneUsuario = false;
+            for (LogIN logIns : lD.listarUsuarios()) {
+               if (ciu.getDNI() == logIns.getUsuario()){
+                   tieneUsuario = true;
+                } 
+            }
+            if (!tieneUsuario){
+                sinCuenta.add(ciu);
+            }
+        }
+        int perro = 0;
+            for (Ciudadano ciudadano : sinCuenta) {
+                while (perro < valor) {
+                lD.armarClavesRandom(ciudadano.getDNI());
+                perro++;
+            }       
+        }
     }
 }

@@ -1,14 +1,16 @@
 package Vistas_Ciudadano;
 
+import Conexion.CiudadanoData;
 import Conexion.TurnoData;
 
 public class Test extends javax.swing.JFrame {
 
     TurnoData tD = new TurnoData();
+    CiudadanoData cD = new CiudadanoData();
     
     public Test() {
         initComponents();
-        Administrador_Centros aC = new Administrador_Centros(tD);
+        Datos_Ciudadano aC = new Datos_Ciudadano(cD, tD,50000002);
         jDesktopPane1.add(aC);
         aC.setVisible(true);
             

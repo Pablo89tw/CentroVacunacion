@@ -22,12 +22,12 @@ public class NewMain {
 //       /// adBS.vacunar_Aleatorios();
 //        tD.ponerAusentes(LocalDate.now().plusDays(30));
 
-//        LoginData lD = new LoginData();
-//        lD.armarClavesRandom(50000001);
+        LoginData lD = new LoginData();
+        lD.armarClavesRandom(50000002);
 
-            VialData vD = new VialData();
-            for (Vial viales : vD.listarViales(0, 1)) {
-                System.out.println(viales);
-            }
+//            VialData vD = new VialData();
+//            for (Vial viales : vD.listarViales(0, 1)) {
+//                System.out.println(viales);
+//            }
 
 }}

@@ -722,7 +722,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         if (updates>0){
         tD.actualizarTurnero_Hora(c1.getTurno()); 
         lD.actualizarFaseIngreso(c1);
-        
         }
     }//GEN-LAST:event_Actualizar_3ActionPerformed
 
@@ -733,7 +732,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDateChooser2PropertyChange
 
     private void jRadio_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadio_noActionPerformed
-       proximo_Turnoslibres(LocalDate.now().plusDays(1));
+       proximo_Turnoslibres(LocalDate.now());
        jDateChooser2.setEnabled(false); 
     }//GEN-LAST:event_jRadio_noActionPerformed
 
@@ -981,13 +980,17 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }
 
     private void proximo_Turnoslibres(LocalDate fecha) {
-        LocalDate fecha1;
+        LocalDate fecha1 = fecha;
         if (ChronoUnit.DAYS.between(fecha, LocalDate.now())<0){
             fecha1 = fecha;
         } else {
             fecha1 = LocalDate.now();
         }
-        
+         if (c1.getAmbitoTrabajo().equals("Educación") || c1.getAmbitoTrabajo().equals("Sanidad y Medicina")){
+           jDateChooser1.setDate(java.sql.Date.valueOf(fecha1));
+           buscarHorariosLibres(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        } else if(!c1.getAmbitoTrabajo().equals("Educación") && !c1.getAmbitoTrabajo().equals("Sanidad y Medicina")){
+               
         int turnos_libres;
         do {
             turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha1, masCercano);
@@ -997,11 +1000,18 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jDateChooser1.setDate(java.sql.Date.valueOf(fecha1.minusDays(1)));
         buscarHorariosLibres(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }
+    }
 
     private void buscarHorariosLibres(LocalDate date) {
+        if (c1.getAmbitoTrabajo().equals("Educación") || c1.getAmbitoTrabajo().equals("Sanidad y Medicina")){
+           String[] horarios = {"8 a 9", "9 a 10", "10 a 11", "11 a 12", "12 a 13", "13 a 14", "14 a 15", "15 a 16", "16 a 17"};
+           DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>(horarios);
+           jComboBox2.setModel(cbModel);
+        } else if(!c1.getAmbitoTrabajo().equals("Educación") && !c1.getAmbitoTrabajo().equals("Sanidad y Medicina")){
         ArrayList<String> turnos = tD.armarArrayHorariosLibres(date, masCercano);
         DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>(turnos.toArray(new String[0]));
         jComboBox2.setModel(cbModel);
+    }
     }
 
     public void vacunatorioCercano() {

@@ -561,7 +561,7 @@ public class TurnoData {
     
     public void cancelarTurno(int idTurno){
         PreparedStatement ps = null;
-        String sql = "UPDATE turno SET estado = 'Cancelador' WHERE idTurno = ?";
+        String sql = "UPDATE turno SET estado = 'Cancelado' WHERE idTurno = ?";
         try{
             ps = con.prepareStatement(sql);
             ps.setInt(1, idTurno);

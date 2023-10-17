@@ -195,7 +195,6 @@ public class LoginData {
     public ArrayList<LogIN> cuentasA_Recordar() {
         ArrayList<LogIN> logIN_array = new ArrayList<>();
         LogIN log;
-        String resultado = null;
         String sql = "SELECT clave,usuario FROM login WHERE recordar = 1";
         PreparedStatement ps = null;
 
@@ -295,5 +294,28 @@ public class LoginData {
             
             int resultado = ps.executeUpdate();
         }catch (SQLException e){}
+    }
+    
+    public ArrayList<LogIN> listarUsuarios(){
+       PreparedStatement ps; 
+       ArrayList<LogIN> usuarios = new ArrayList<>();
+       LogIN lg;
+       String sql = "SELECT * FROM login";
+       
+       try {
+           ps = con.prepareStatement(sql);
+           ResultSet rs = ps.executeQuery();
+           
+           while (rs.next()){
+               lg = new LogIN();
+               lg.setUsuario(rs.getInt("Usuario"));
+               lg.setClave(rs.getString("Clave"));
+               lg.setEstado(rs.getInt("Estado"));
+               lg.setRecordar(rs.getInt("recordar"));
+               usuarios.add(lg);
+           }
+           
+       } catch (SQLException e){}
+       return usuarios;
     }
 }
