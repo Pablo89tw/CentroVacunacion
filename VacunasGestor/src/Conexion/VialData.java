@@ -161,7 +161,7 @@ public class VialData {
         return arrayLaboratorios;
     }
     
-   public void reasignarViales(Vacunatorio donante, Vacunatorio aceptor, Vial viales){
+    public void reasignarViales(Vacunatorio donante, Vacunatorio aceptor, Vial viales){
        PreparedStatement ps;
        String sql = "UPDATE viales SET idVacunatorio = ? WHERE marca = ? AND idVacunatorio = ? AND estado = 0";
   
@@ -175,7 +175,57 @@ public class VialData {
         } catch (SQLException e){}
    }
 
-   
+    public void compraViales(int idVacunatorio, String nombre){
+      
+      String sql = "INSERT INTO viales (numeroSerie,Marca,Antigeno,fechaVencimiento,idLaboratorio,estado,idVacunatorio,fechaColocacion) VALUES (?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            String antigeno; int idLabora;
+            switch (nombre) {
+                case "Pfizer":
+                    antigeno = "ARN mensajero (ARNm)";
+                    idLabora = 1;
+                    break;
+                case "Johnson_Johnson":
+                    antigeno = "Partículas SARS-CoV-2 desactivadas";
+                    idLabora = 2;
+                    break;
+                case "AstraZeneca":
+                    antigeno = "Proteína de pico del virus SARS-CoV-2";
+                    idLabora = 3;
+                    break;
+                case "Sinopharm y Sinovac":
+                    antigeno = "Partículas SARS-CoV-2 desactivadas"; 
+                    idLabora = 4;
+                    break;
+                default:
+                    antigeno = "Adenovirus Ad26 y Ad5";
+                    idLabora = 5;
+                                       
+            }
+            ps.setInt(1, (int) (Math.random() * 1000000));
+            ps.setString(2, nombre);
+            ps.setString(3,antigeno);
+            LocalDate fechaVencimiento = LocalDate.now().plusDays(90);
+            ps.setString(4, fechaVencimiento.toString());
+            ps.setInt(5,idLabora);
+            ps.setInt(6,0);
+            if (idVacunatorio != 0){
+            ps.setInt(7, idVacunatorio);
+            } else if (idVacunatorio == 0){
+                ps.setString(7,null);
+            }
+            ps.setDate(8,null);
+
+            int updates = ps.executeUpdate();;
+            } catch (SQLException e) {
+            if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "El numero serie ya se encuentra cargado en la bsae datos.");
+            }
+        }
+    
+    
+    }
    
 }
 

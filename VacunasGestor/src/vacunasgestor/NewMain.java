@@ -23,10 +23,6 @@ public class NewMain {
 //        LoginData lD = new LoginData();
 //        lD.armarClavesRandom(50000001);
 
-        for (int i = 0; i < 300; i++){
-        VialData vD = new VialData();
-        vD.cargarViales();
-        }
-    }
+     }
     
 }
