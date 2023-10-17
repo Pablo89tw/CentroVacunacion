@@ -32,7 +32,20 @@ public class geoData {
                 ArrayCoor.add(coordenadas);
            }
         } catch (SQLException ex) {
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
         }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return ArrayCoor;
 
     }

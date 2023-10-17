@@ -25,9 +25,9 @@ public class TurnoData {
         
     
     public ArrayList<String> armarArrayHorariosLibres(LocalDate fecha, Vacunatorio vac) {
-        
         PreparedStatement ps = null;
         ResultSet rs = null;
+        
         String sql = "SELECT * FROM";
             switch (vac.getIdVacunatorio()){
                 case 1: sql += " turnero_1 WHERE fecha = ?";break;
@@ -56,31 +56,63 @@ public class TurnoData {
             }
         } catch(SQLException ex){
             System.out.println("pepe");
-        } 
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
         return horarios;
     } 
     
     public int buscarTurnoLibre_porTurnosLibres(LocalDate fecha, Vacunatorio vac){
         int turnos_libres = 0;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
         String sql = "SELECT turnos_libres FROM";
          switch (vac.getIdVacunatorio()){
                 case 1: sql += " turnero_1 WHERE fecha = ?";break;
                 case 2: sql += " turnero_2 WHERE fecha = ?";break;
                 case 3: sql += " turnero_3 WHERE fecha = ?";break;
             } 
-                       
-        PreparedStatement ps;
+        
         
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, fecha.toString());
             
-            ResultSet rs = ps.executeQuery();
-            
+            rs = ps.executeQuery();
             if(rs.next()){
                 turnos_libres = (rs.getInt("turnos_libres"));
             } 
-        }catch (SQLException e){}
+        } catch (SQLException e){
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
         return turnos_libres;  
     }
        
@@ -121,7 +153,15 @@ public class TurnoData {
             
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "");
-        } 
+        } finally {
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
     }
     
     public void actualizarTurnero_SoloTurnosLibres(Turno tur){
@@ -150,14 +190,22 @@ public class TurnoData {
             
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "");
-        } 
+        } finally {
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
         
     }
     
     public void actualizarHora_Turno(Turno turno){
       
        String sql = "UPDATE turno SET fechaTurno = ? WHERE idTurno = ?";
-       PreparedStatement ps;
+       PreparedStatement ps = null;
        
        try{
            ps = con.prepareStatement(sql);
@@ -165,19 +213,30 @@ public class TurnoData {
            ps.setInt(2, turno.getIdTurno());
          
            int filasActualizadas = ps.executeUpdate();
-       } catch (SQLException e){}
+       } catch (SQLException e){
+       }finally {
+         try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
     }
           
     public ArrayList<Turno> buscarTurno(int dni_ciudadano){
       ArrayList<Turno> arrayTurnos = new ArrayList();
       arrayTurnos.clear();
-      String sql = "SELECT * FROM turno WHERE DNI = ?";  
-      PreparedStatement ps;  
+      PreparedStatement ps = null;
+      ResultSet rs = null;
+      
+      String sql = "SELECT * FROM turno WHERE DNI = ?";
       try{
          ps = con.prepareStatement(sql);
          ps.setInt(1,dni_ciudadano);
          
-         ResultSet rs = ps.executeQuery();
+         rs = ps.executeQuery();
          
          while (rs.next()){
              Turno turno1 = new Turno();
@@ -198,19 +257,36 @@ public class TurnoData {
              }
              arrayTurnos.add(turno1);
          }
-        } catch (SQLException e){}
+        } catch (SQLException e){
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
         return arrayTurnos;
     }
     
     public Turno buscarTurno_iD(int idTurno){
       String sql = "SELECT * FROM turno WHERE idTurno = ?";  
-      PreparedStatement ps; 
+      PreparedStatement ps = null; 
+      ResultSet rs = null;
       Turno turno1 = new Turno(); 
       try{
          ps = con.prepareStatement(sql);
          ps.setInt(1,idTurno);
          
-         ResultSet rs = ps.executeQuery();
+         rs = ps.executeQuery();
          
          if (rs.next()){
              turno1.setVacunatorio(vD.buscarVacunatorio(rs.getInt("idCentro")));
@@ -229,22 +305,38 @@ public class TurnoData {
              turno1.setVial(sD.buscarVial(idVial));
              }
                       }
-        } catch (SQLException e){}
+        } catch (SQLException e){
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return turno1;
     }
        
     public ArrayList<Vial> buscar_VialParaAsignar(Ciudadano c1){
         ArrayList<Vial> arrayViales = new ArrayList();
         arrayViales.clear();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
         String sql1 = "SELECT * FROM viales WHERE Estado = 0 AND idVacunatorio = ?";
                
-        PreparedStatement ps;
         
         try{
             ps = con.prepareStatement(sql1);
             ps.setInt(1,vD.buscarVacunatorio_xCiudadano(c1.getDNI()).getIdVacunatorio());
             
-            ResultSet rs = ps.executeQuery();
+             rs = ps.executeQuery();
             
             while(rs.next()){
                 Vial vial = new Vial();
@@ -257,7 +349,21 @@ public class TurnoData {
                 vial.setVacunatorio(vD.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 arrayViales.add(vial);
             } 
-        }catch (SQLException e){}
+        } catch (SQLException e){
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return arrayViales;  
     }
     
@@ -276,7 +382,7 @@ public class TurnoData {
             int resultado = ps.executeUpdate();
                         
         } catch (SQLException e){System.out.println("Error 1");
-        }
+        } 
         
         ps = null;
         
@@ -297,11 +403,19 @@ public class TurnoData {
             ps.setInt(1,c1.getDNI());
             
             int resultade = ps.executeUpdate();
-        } catch (SQLException e){System.out.println("Error3");}
+        } catch (SQLException e){
+        } finally {
+            try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+         }
        }
 
     public void updateTurnos_Libres(LocalDate fecha, Turno turno){
-    PreparedStatement ps;
+    PreparedStatement ps = null;
     String sql = "UPDATE ";
     
             switch (turno.getVacunatorio().getIdVacunatorio()){
@@ -311,15 +425,22 @@ public class TurnoData {
             }
          
         sql += " SET turnos_libres = turnos_libres - 1 WHERE fecha = ?";
-        System.out.println(sql);
-        
+               
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString());
             
             int resultados = ps.executeUpdate();
             
-        }catch (SQLException e){}
+        }catch (SQLException e){
+        }finally {
+            try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         }
     
     public LocalDateTime colocarHora_aFecha(LocalDate fecha, String codigo) {
@@ -328,39 +449,30 @@ public class TurnoData {
         switch (codigo) {
             case "8 a 9":
                 horaEspecifica = LocalTime.of(8, 00, 0);
-                //columnas = "8_9";
                 break;
             case "9 a 10":
                 horaEspecifica = LocalTime.of(9, 00, 0);
-               // columnas = "9_10";
                 break;
             case "10 a 11":
                horaEspecifica = LocalTime.of(10, 00, 0);
-//                columnas = "10_11";
                 break;
             case "11 a 12":
                 horaEspecifica = LocalTime.of(11, 00, 0);
-               // columnas = "11_12";
                 break;
             case "12 a 13":
               horaEspecifica = LocalTime.of(12, 00, 0);
-             //  columnas = "12_13";
                 break;
             case "13 a 14":
               horaEspecifica = LocalTime.of(13, 00, 0);
-                // columnas = "13_14";
                 break;
             case "14 a 15":
              horaEspecifica = LocalTime.of(14, 00, 0);
-               //  columnas = "14_15";
                 break;
             case "15 a 16":
             horaEspecifica = LocalTime.of(15, 00, 0);
-               // columnas = "15_16";
                 break;
             default :
               horaEspecifica = LocalTime.of(16, 00, 0);
-               //  columnas = "16_17";
                 break;
         }
         fechaTime = fecha.atTime(horaEspecifica);
@@ -371,14 +483,17 @@ public class TurnoData {
         ArrayList<Turno> arrayTurnos = new ArrayList();
         int cod = 0;
         Turno t1;
-        String sql;
+        String sql; 
+        PreparedStatement ps = null; 
+        ResultSet rs = null;
+                        
         switch (estado){
             case "porDia": sql = "SELECT * FROM turno WHERE DAY(fechaTurno) = ? AND MONTH(fechaTurno) = ? AND idCentro = ? AND estado = 'completo'"; cod = 2; break;
             default: sql = "SELECT * FROM turno WHERE MONTH(fechaTurno) = ? AND idCentro = ? AND estado = ?";cod = 1; break;
         }
        
         try{
-          PreparedStatement ps = con.prepareStatement(sql);
+        ps = con.prepareStatement(sql);
           if (cod == 1){
           ps.setInt(1, fecha.getMonthValue());
           ps.setInt(2, vac.getIdVacunatorio());
@@ -391,7 +506,7 @@ public class TurnoData {
           }
             
           
-           ResultSet rs = ps.executeQuery();
+          rs = ps.executeQuery();
             
             while (rs.next()){
               t1 = new Turno();  
@@ -404,17 +519,27 @@ public class TurnoData {
               t1.setVial(sD.buscarVial(rs.getInt("idVial")));
               arrayTurnos.add(t1);
             }
-            
-            
         }catch (SQLException e) {
             System.out.println("Error en la busqueda");
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
         }
-       
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return arrayTurnos;
     }
     
     public void ponerAusentes(LocalDate fecha){
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         String sql = "UPDATE turno SET estado = 'Ausente' WHERE MONTH(fechaTurno) = ? AND estado = 'pendiente'";
         
         try{
@@ -423,11 +548,19 @@ public class TurnoData {
                         
             int resultado = ps.executeUpdate();
             
-        } catch (SQLException e){}
+        } catch (SQLException e){
+        }finally {
+            try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
     }
     
     public void cancelarTurno(int idTurno){
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         String sql = "UPDATE turno SET estado = 'Cancelador' WHERE idTurno = ?";
         try{
             ps = con.prepareStatement(sql);
@@ -435,7 +568,15 @@ public class TurnoData {
                         
             int resultado = ps.executeUpdate();
             
-        } catch (SQLException e){}
+        } catch (SQLException e){
+        }finally {
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
       }
 
 }   

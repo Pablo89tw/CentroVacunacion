@@ -17,14 +17,14 @@ public class VacunatorioData {
        
     public ArrayList<Vacunatorio> listarVacunatorio() {
         arrayVacunatorios = new ArrayList<>();
-        PreparedStatement ps = null;
+        PreparedStatement ps = null;ResultSet rs = null;
         Vacunatorio vac;
         Coordenadas cord1;
         String sql = "SELECT * FROM vacunatorio";
         
         try {
             ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             while (rs.next()) {
                 vac = new Vacunatorio();
@@ -40,12 +40,25 @@ public class VacunatorioData {
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
         }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return arrayVacunatorios;
     }
     
     public Vacunatorio buscarVacunatorio(int idVacunatorio) {
-        PreparedStatement ps;
+        PreparedStatement ps = null; ResultSet rs = null;
         Vacunatorio vac = null;
         String sql = "SELECT * FROM vacunatorio WHERE idCentro = ?";
         
@@ -53,7 +66,7 @@ public class VacunatorioData {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idVacunatorio);
             
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             if (rs.next()) {
                vac = new Vacunatorio();
@@ -64,12 +77,25 @@ public class VacunatorioData {
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
         }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return vac;
     }
     
     public Vacunatorio buscarVacunatorio_xCiudadano(int DNI) {
-        PreparedStatement ps = null;
+        PreparedStatement ps = null; ResultSet rs = null;
         Vacunatorio vac = null;
         String sql = "SELECT idCentro FROM turno WHERE DNI = ?";
         
@@ -77,7 +103,7 @@ public class VacunatorioData {
             ps = con.prepareStatement(sql);
             ps.setInt(1, DNI);
             
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             if (rs.next()) {
                vac = new Vacunatorio();
@@ -85,7 +111,20 @@ public class VacunatorioData {
                 }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
         }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return vac;
     }
 
@@ -114,7 +153,7 @@ public class VacunatorioData {
     
      public ArrayList<Vacunatorio> listarVacunatorioNombre(String nombre){
         arrayVacunatorios = new ArrayList<>();
-        PreparedStatement ps = null;
+        PreparedStatement ps = null; ResultSet rs = null;
         Vacunatorio vac;
         Coordenadas cord1;
         String sql = "SELECT * FROM vacunatorio WHERE Nombre = ?";
@@ -123,7 +162,7 @@ public class VacunatorioData {
             ps = con.prepareStatement(sql);
             ps.setString(1,nombre);
             
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             while (rs.next()) {
                 vac = new Vacunatorio();
@@ -138,7 +177,20 @@ public class VacunatorioData {
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
+        } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
         }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return arrayVacunatorios;
     }
     

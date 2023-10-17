@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class VialData {
@@ -18,11 +19,12 @@ public class VialData {
     
   
     public void cargarViales(String marca) {
+        PreparedStatement ps = null;
         String sql = "INSERT INTO viales (numeroSerie,Marca,Antigeno,fechaVencimiento,idLaboratorio,estado,idVacunatorio,fechaColocacion) VALUES (?,?,?,?,?,?,?,?)";
+        
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            
+            ps = con.prepareStatement(sql);
+                      
             String antigeno; int idLabora;
             switch (marca) {
                 case "Pfizer":
@@ -62,11 +64,18 @@ public class VialData {
             if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "El numero serie ya se encuentra cargado en la bsae datos.");
             }
+        } finally {
+            try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
         }
+    }
     }
     
     public Vial buscarVial(int idVial){
-        PreparedStatement ps;
+        PreparedStatement ps = null;ResultSet rs = null;
         Vial vial = new Vial();
         String sql = "SELECT * FROM viales WHERE idVial = ?";
         
@@ -74,9 +83,10 @@ public class VialData {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idVial);
             
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             if (rs.next()){
+                vial.setIdVial(rs.getInt("idVial"));
                 vial.setAntigeno(rs.getString("antigeno"));
                 vial.setEstado(rs.getInt("estado"));
                 vial.setMarca(rs.getString("marca"));
@@ -91,20 +101,35 @@ public class VialData {
                 vial.setVacunatorio(vac);
             }
             
-        }catch (SQLException e){}
+        }catch (SQLException e){
+        }finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return vial;
     }
     
     public ArrayList<Vial> listarViales(int estado, int idVacunatorio){
-        PreparedStatement ps;
+        PreparedStatement ps = null; ResultSet rs = null;
         Vial vial;
-        ArrayList<Vial> arrayViales = new ArrayList();
-        String sql = "";
-        if (idVacunatorio != 0){
-            sql = "SELECT * FROM viales WHERE estado = ? AND idVacunatorio = ?";
-        } else if (idVacunatorio == 0){
-            sql = "SELECT * FROM viales WHERE estado = ? AND idVacunatorio IS NULL";
-         }
+       
+        ArrayList<Vial> arrayViales = new ArrayList<>();
+        String sql;
+        switch(idVacunatorio){
+            case 0: sql = "SELECT * FROM viales WHERE Estado = ? AND idVacunatorio IS NULL"; break;
+            default : sql = "SELECT * FROM viales WHERE Estado = ? AND idVacunatorio = ?"; break;
+        }
+        
         try{
             ps = con.prepareStatement(sql);
             ps.setInt(1,estado);
@@ -112,10 +137,11 @@ public class VialData {
             ps.setInt(2,idVacunatorio);
             } 
                        
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             while (rs.next()){
                 vial = new Vial();
+                vial.setIdVial(rs.getInt("idVial"));
                 vial.setAntigeno(rs.getString("antigeno"));
                 vial.setEstado(rs.getInt("estado"));
                 vial.setMarca(rs.getString("marca"));
@@ -125,18 +151,33 @@ public class VialData {
                 vial.setFechaColocacion(rs.getTimestamp("fechaColocacion").toLocalDateTime());
                 } else {
                     vial.setFechaColocacion(null);
-                   }
+                }
                 Vacunatorio vac = vD.buscarVacunatorio(rs.getInt("idVacunatorio"));
                 vial.setVacunatorio(vac);
+               
                 arrayViales.add(vial);
             }
             
-        }catch (SQLException e){}
+        }catch (SQLException e){
+        }finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
         return arrayViales;
     }
          
     public ArrayList<Laboratorio> listarLaboratorio(){
-        PreparedStatement ps;
+        PreparedStatement ps= null;ResultSet rs = null;
         Laboratorio lab;
         ArrayList<Laboratorio> arrayLaboratorios = new ArrayList();
         Vial vial;
@@ -145,7 +186,7 @@ public class VialData {
         
         try{
             ps = con.prepareStatement(sql);      
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             
             while (rs.next()){
                lab = new Laboratorio();
@@ -162,24 +203,36 @@ public class VialData {
     }
     
     public void reasignarViales(Vacunatorio donante, Vacunatorio aceptor, Vial viales){
-       PreparedStatement ps;
-       String sql = "UPDATE viales SET idVacunatorio = ? WHERE marca = ? AND idVacunatorio = ? AND estado = 0";
+       PreparedStatement ps = null;
+       String sql = "UPDATE viales SET idVacunatorio = ? WHERE idVial = ?";
   
        try{
            ps = con.prepareStatement(sql);
+           if (aceptor.getIdVacunatorio() != 0){
            ps.setInt(1, aceptor.getIdVacunatorio());
-           ps.setString(2,viales.getMarca());
-           ps.setInt(3,donante.getIdVacunatorio());
-         
+           } else if (aceptor.getIdVacunatorio() == 0){
+           ps.setString(1,null);    
+           }
+           ps.setInt(2,viales.getIdVial());
+                    
           int update = ps.executeUpdate();
-        } catch (SQLException e){}
+        }catch (SQLException e){
+        }finally {
+          try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {         
+        }
+    }
    }
 
     public void compraViales(int idVacunatorio, String nombre){
-      
+      PreparedStatement ps = null;
+        
       String sql = "INSERT INTO viales (numeroSerie,Marca,Antigeno,fechaVencimiento,idLaboratorio,estado,idVacunatorio,fechaColocacion) VALUES (?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             String antigeno; int idLabora;
             switch (nombre) {
                 case "Pfizer":
@@ -221,10 +274,15 @@ public class VialData {
             } catch (SQLException e) {
             if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "El numero serie ya se encuentra cargado en la bsae datos.");
+            } 
+        }finally {
+          try {
+            if (ps != null) {
+                ps.close();
             }
+        } catch (SQLException e) {         
         }
-    
-    
+    }
     }
    
 }

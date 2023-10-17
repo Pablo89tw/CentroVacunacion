@@ -3,9 +3,11 @@ package vacunasgestor;
 import Conexion.ArmadoDatosBD;
 import Conexion.LoginData;
 import Conexion.TurnoData;
+import Conexion.VacunatorioData;
 import Conexion.VialData;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
+import Entidades.Vial;
 import java.time.LocalDate;
 
 
@@ -23,6 +25,9 @@ public class NewMain {
 //        LoginData lD = new LoginData();
 //        lD.armarClavesRandom(50000001);
 
-     }
-    
-}
+            VialData vD = new VialData();
+            for (Vial viales : vD.listarViales(0, 1)) {
+                System.out.println(viales);
+            }
+
+}}

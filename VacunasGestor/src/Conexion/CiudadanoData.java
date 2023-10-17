@@ -17,11 +17,11 @@ public class CiudadanoData{
       
     public int cargaNuevosDatosCiudadano(Ciudadano c1){
     int updates = 0, comas =0;
-    
+    PreparedStatement ps = null;
     String sql = "UPDATE ciudadano SET `latitud` = ?,`longitud` = ?, `email` = ?, `celular` = ?, `ambitoTrabajo` = ?, `dosisAplicadas` = ? WHERE DNI = ?";
 
     try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setDouble(1,c1.getCordenadas().getLatitud());
             ps.setDouble(2,c1.getCordenadas().getLongitud());
             ps.setString(3, c1.getEmail());
@@ -41,8 +41,14 @@ public class CiudadanoData{
             if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "El DNI ya se encuentra cargado en la bsae datos.");
             }
-        }
-        return updates;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e){} 
+            }
+    return updates;
     }
     
     public void cargarPatologia(Ciudadano ciudadano, boolean EC, boolean D, boolean EResC, boolean I, boolean O, boolean ERenC, boolean E, boolean EHC, boolean EN, String otra) {
@@ -100,16 +106,22 @@ public class CiudadanoData{
             } else {
                 JOptionPane.showMessageDialog(null, "Error");
             }
-        }
+        }  finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e){}
+    }
     }
        
     public int cargarTurno(Ciudadano ciu){
         int updates = 0;
         String sql = "INSERT INTO turno (DNI,fechaTurno,idCentro,codigoRefuerzo,estado) VALUES (?,?,?,?,?)";
-       
+       PreparedStatement ps = null;
         
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setInt(1, ciu.getDNI());
             ps.setTimestamp(2, Timestamp.valueOf(ciu.getTurno().getFecha()));
             ps.setInt(3, ciu.getTurno().getVacunatorio().getIdVacunatorio());
@@ -126,20 +138,28 @@ public class CiudadanoData{
             } else {
                 JOptionPane.showMessageDialog(null, "Error, tome un nuevo turno");
             }
-        } return updates;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e){}
+        }
+        return updates;
     }
      
     public ArrayList<Ciudadano> buscarCiudadanos(int dni_ciudadano, String codigo){
      ArrayList<Ciudadano> arrayCiudadano = new ArrayList();
      Ciudadano c1;
-     PreparedStatement ps;   
-     ResultSet rs;
-     String sql = "";
+     PreparedStatement ps = null;   
+     ResultSet rs = null;
+     String sql;
      Coordenadas cord;
       
      switch (codigo){
          case "DNI" : sql = "SELECT * FROM ciudadano WHERE DNI = ?"; break;
          case "todos" : sql = "SELECT * FROM ciudadano"; break;
+         default : sql = ""; break;
      }
      
      try{
@@ -163,14 +183,31 @@ public class CiudadanoData{
              c1.setCordenadas(cord);
              arrayCiudadano.add(c1);
          } 
-       } catch (SQLException e){}
-        return arrayCiudadano;
+       } catch (SQLException e){
+       } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+        } 
+     return arrayCiudadano;
+        
     }
  
     public ArrayList<String> consultaPatologias(int dni_ciudadano){
      ArrayList<String> patologias = new ArrayList();
-     PreparedStatement ps;   
-     ResultSet rs;
+     PreparedStatement ps = null;   
+     ResultSet rs = null;
      String sql = "SELECT * FROM patologias WHERE DNI = ?";
      
      try{
@@ -190,15 +227,32 @@ public class CiudadanoData{
                 patologias.add(rs.getString("otra"));
              }
           } 
-       } catch (SQLException e){}
+       } catch (SQLException e){
+       } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); 
+            }
+            }
         return patologias;
     }
     
     public void actualizarDatosCiudadano(Ciudadano c1, String apellido, boolean ape, String nombre, boolean nom, String celular, boolean cel, String dosis, boolean dos, String ocupacion, boolean ocup, String email, boolean mail){
         int comas = 0, sql_p = 1;
+        PreparedStatement ps = null;
         
         String sql = "UPDATE ciudadano SET";
-        PreparedStatement ps;
+        
         if (ape) { sql += " apellido = ? "; comas++;}
         if (nom) {sql += ((comas > 0)? ",":""); sql += " nombre = ? "; comas++;}
         if (cel) { sql += ((comas > 0)? ",":""); sql += " celular = ? "; comas++;}
@@ -223,12 +277,20 @@ public class CiudadanoData{
             
         } catch (SQLException e){
              JOptionPane.showMessageDialog(null, "Error al actualizar la base de datos");
-        }  
+        }  finally {
+              try {
+                if (ps != null) {
+                ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+         }
     }
     
     public void actualiarPatologias(int DNI, ArrayList<String> agregar, ArrayList<String> sacar, String otra){
         int comas = 0, sql_p = 1;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         String [] patologias = {"Cardiovasculares","Diabetes","Respiratorias_Cronicas","Inmunosupresion","Obesidad","Renales_Cronicas","Embarazo","Hepaticas_cronicas","Neurologicas"};
 
         String sql = "UPDATE patologias SET ";
@@ -256,8 +318,14 @@ public class CiudadanoData{
             
         } catch (SQLException e){
              JOptionPane.showMessageDialog(null, "Error al actualizar la base de datos de patologias");
-        }  
-         
+        }  finally {
+              try {
+                if (ps != null) {
+                ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+         }
+        }
     }
-    
-}
