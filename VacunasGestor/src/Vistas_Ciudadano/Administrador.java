@@ -2,14 +2,21 @@ package Vistas_Ciudadano;
 
 import Conexion.CiudadanoData;
 import Conexion.TurnoData;
+import Conexion.VialData;
 import Entidades.Ciudadano;
 import Entidades.Turno;
+import Entidades.Vacunatorio;
 import Entidades.Vial;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import jdk.internal.net.http.common.Pair;
 
 
 public class Administrador extends javax.swing.JInternalFrame {
@@ -19,10 +26,13 @@ public class Administrador extends javax.swing.JInternalFrame {
     private Ciudadano c1 = new Ciudadano();
     private Turno turno1 = new Turno();
     private Vial vial2;
-
-    public Administrador(CiudadanoData cD, TurnoData tD) {
+    private Vacunatorio vac;
+    DefaultTableModel modelo_tabla2 = new DefaultTableModel();
+    VialData sD = new VialData();
+    public Administrador(CiudadanoData cD, TurnoData tD, Vacunatorio vac) {
         this.cD = cD;
         this.tD = tD;
+        this.vac = vac;
         initComponents();
         armarComponentesVisuales();
     }
@@ -87,6 +97,9 @@ public class Administrador extends javax.swing.JInternalFrame {
         Marca4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jLabel13.setText("Numero Serie");
 
@@ -499,6 +512,38 @@ public class Administrador extends javax.swing.JInternalFrame {
 
         jTabbedPane2.addTab("Proximo Turno", jPanel3);
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(423, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Generales", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -696,8 +741,11 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
@@ -734,9 +782,13 @@ public class Administrador extends javax.swing.JInternalFrame {
         jCheckBox_mail.setVisible(false);
         jButton4.setEnabled(false);
         jButton1.setEnabled(false);
-        
-       
-
+          
+        String[] lista_viales = {"Centro","Total","Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
+        for (String lista_viale : lista_viales) {
+           modelo_tabla2.addColumn(lista_viale);
+        }
+        jTable2.setModel(modelo_tabla2);
+        calcularStocks();
     }
 
     private void buscarTurnosPersona() {
@@ -839,7 +891,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         } 
     }
     
-       private void nuevoTurno2(){
+    private void nuevoTurno2(){
        int turnos_libres;
        LocalDate fecha1 = LocalDate.now().plusDays(15);
             
@@ -849,4 +901,57 @@ public class Administrador extends javax.swing.JInternalFrame {
         } while (turnos_libres <= 0);     
         tomarNuevoTurno(fecha1.minusDays(1),turno1);    
         }
-}
+       
+    private void calcularStocks() {
+        modelo_tabla2.setRowCount(0);
+        modelo_tabla2.addRow(new Object[]{"Stock:"});
+           int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
+            for (Vial viales : sD.listarViales(0, vac.getIdVacunatorio())) {
+                switch (viales.getMarca()) {
+                    case "Sputnik V":Sputnik++;total++;break;
+                    case "Pfizer": Pfizer++;total++; break;
+                    case "Sinopharm y Sinovac":Sinopharm++;total++;break;
+                    case "Johnson_Johnson":Johnson++;total++;break;
+                    case "AstraZeneca": AstraZeneca++; total++;break;
+                }
+            }
+            modelo_tabla2.addRow(new Object[]{vac.getNombre(), total, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
+            ArrayList<Integer> turnos_pendientes = new ArrayList<>();
+            LocalDate fecha = LocalDate.now();
+            
+            int totalTur = 0;
+            while (fecha.isBefore(LocalDate.now().plusDays(7))){
+                int turnos = 0;
+                ArrayList<Turno> turnosPordia = tD.listar_Turnos(fecha, vac,"porDia_pendiente" );      
+                    for (Turno turno : turnosPordia) {
+                            turnos++;
+                            totalTur++;
+                        } turnos_pendientes.add(turnos);
+                     fecha = fecha.plusDays(1);
+                }
+                
+            modelo_tabla2.addRow(new Object[]{});
+            modelo_tabla2.addRow(new Object[]{"TURNOS:",});
+            modelo_tabla2.addRow(new Object[]{"Total:", totalTur});
+            
+            fecha = LocalDate.now();
+            modelo_tabla2.addRow(new Object[]{"Pendientes:"});
+            
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d-MMM", Locale.ENGLISH); // Formato "día-mes" en inglés
+            
+         
+             modelo_tabla2.addRow(new Object[]{
+                fecha.format(dateFormatter),
+                fecha.plusDays(1).format(dateFormatter),
+                fecha.plusDays(2).format(dateFormatter),
+                fecha.plusDays(3).format(dateFormatter),
+                fecha.plusDays(4).format(dateFormatter),
+                fecha.plusDays(5).format(dateFormatter),
+                fecha.plusDays(6).format(dateFormatter)
+            });
+            modelo_tabla2.addRow(new Object[]{turnos_pendientes.get(0),turnos_pendientes.get(1),turnos_pendientes.get(2),turnos_pendientes.get(3),turnos_pendientes.get(4),turnos_pendientes.get(5),turnos_pendientes.get(6)});
+            
+                }
+    }
+        
+

@@ -489,6 +489,7 @@ public class TurnoData {
                         
         switch (estado){
             case "porDia": sql = "SELECT * FROM turno WHERE DAY(fechaTurno) = ? AND MONTH(fechaTurno) = ? AND idCentro = ? AND estado = 'completo'"; cod = 2; break;
+            case "porDia_pendiente": sql = "SELECT * FROM turno WHERE DAY(fechaTurno) = ? AND MONTH(fechaTurno) = ? AND idCentro = ? AND estado = 'Pendiente'"; cod = 2; break;
             default: sql = "SELECT * FROM turno WHERE MONTH(fechaTurno) = ? AND idCentro = ? AND estado = ?";cod = 1; break;
         }
        

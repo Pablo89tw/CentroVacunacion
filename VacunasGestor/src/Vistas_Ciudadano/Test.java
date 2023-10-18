@@ -2,6 +2,7 @@ package Vistas_Ciudadano;
 
 import Conexion.CiudadanoData;
 import Conexion.TurnoData;
+import Entidades.Vacunatorio;
 
 public class Test extends javax.swing.JFrame {
 
@@ -10,7 +11,11 @@ public class Test extends javax.swing.JFrame {
     
     public Test() {
         initComponents();
-        Datos_Ciudadano aC = new Datos_Ciudadano(cD, tD,50000002);
+        
+        Vacunatorio vac = new Vacunatorio();
+        vac.setIdVacunatorio(2);
+        vac.setNombre("PezMER");
+        Administrador aC = new Administrador(cD, tD, vac);
         jDesktopPane1.add(aC);
         aC.setVisible(true);
             

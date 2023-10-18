@@ -39,7 +39,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Cerrar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         Nombre_Apellido = new javax.swing.JTextField();
@@ -115,13 +114,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         Centro_Vacunacion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         Fecha_ProximoTurno1 = new javax.swing.JTextField();
-
-        Cerrar.setText("Cerrar");
-        Cerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CerrarActionPerformed(evt);
-            }
-        });
 
         TablaPatologias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -625,10 +617,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_CerrarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cancelarTurno();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -648,7 +636,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Centro_Vacunacion;
-    private javax.swing.JButton Cerrar;
     private javax.swing.JTextField Dosis;
     private javax.swing.JTextField Dosis1;
     private javax.swing.JTextField Fecha_ProximoTurno;
@@ -763,7 +750,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     }
 
     private void armadoDosis() {
-
         Turno turno1 = new Turno();
         Turno turno2 = new Turno();
         Turno turno3 = new Turno();

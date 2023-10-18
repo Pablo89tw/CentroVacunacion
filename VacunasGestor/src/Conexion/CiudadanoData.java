@@ -13,10 +13,9 @@ import javax.swing.JOptionPane;
 public class CiudadanoData{
     
     private Connection con = Conectar.getConectar();
-    private LoginData lD = new LoginData();
-      
+    
     public int cargaNuevosDatosCiudadano(Ciudadano c1){
-    int updates = 0, comas =0;
+    int updates = 0;
     PreparedStatement ps = null;
     String sql = "UPDATE ciudadano SET `latitud` = ?,`longitud` = ?, `email` = ?, `celular` = ?, `ambitoTrabajo` = ?, `dosisAplicadas` = ? WHERE DNI = ?";
 

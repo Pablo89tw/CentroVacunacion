@@ -49,7 +49,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         modelo_tabla5.setRowCount(0);
         jTable5.setModel(modelo_tabla5);
       
-        
         modelo_tabla6.setColumnCount(0);
         modelo_tabla6.addColumn("Donante");
         modelo_tabla6.addColumn("Aceptor");
@@ -865,7 +864,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         } else if (jRadioButton5.isSelected()) {
             asignacionVialesMultiple();
         }
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
@@ -1179,7 +1177,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             modelo_tabla4.addColumn(vial);
         }
         jTable4.setModel(modelo_tabla4);
-        
     }
 
     public void listarDosis_x_Centro(LocalDate fecha) {
