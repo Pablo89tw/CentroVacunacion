@@ -1,8 +1,10 @@
 package Vistas_Ciudadano;
 
+import Conexion.Certificado;
 import Conexion.CiudadanoData;
 import Conexion.TurnoData;
 import Entidades.Vacunatorio;
+import java.time.LocalDate;
 
 public class Test extends javax.swing.JFrame {
 
@@ -10,20 +12,22 @@ public class Test extends javax.swing.JFrame {
     CiudadanoData cD = new CiudadanoData();
     
     public Test() {
-        initComponents();
-        
-        Vacunatorio vac = new Vacunatorio();
-        vac.setIdVacunatorio(2);
-        vac.setNombre("PezMER");
-        Administrador aC = new Administrador(cD, tD, vac);
-        jDesktopPane1.add(aC);
-        aC.setVisible(true);
+//        initComponents();
+//        
+//        Vacunatorio vac = new Vacunatorio();
+//        vac.setIdVacunatorio(2);
+//        vac.setNombre("PezMER");
+//        Administrador aC = new Administrador(cD, tD, vac);
+//        jDesktopPane1.add(aC);
+//        aC.setVisible(true);
             
-        
-        
-//        DireccionMapa dM = new DireccionMapa();
-//        jDesktopPane1.add(dM);
+       
+//        Dato dM = new DireccionMapa();
+//       
+        Administrador_Centros dM = new Administrador_Centros(tD);
+         jDesktopPane1.add(dM);
 //        dM.setVisible(true);
+
      }
 
     /**
