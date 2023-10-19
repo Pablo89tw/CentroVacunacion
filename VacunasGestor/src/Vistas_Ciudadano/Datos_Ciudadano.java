@@ -16,8 +16,10 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     private Ciudadano c1;
     private Turno turno_new;
     private ArrayList<Turno> arrayTurnos;
-   
- 
+    private Turno turno1 = null;
+    private Turno turno2 = null;
+    private Turno turno3 = null;
+     
     public Datos_Ciudadano(CiudadanoData cD, TurnoData tD, int dni_usuario) {
         this.c1 = cD.buscarCiudadanos(dni_usuario, "DNI").get(0);
         c1.setPatologias(cD.consultaPatologias(dni_usuario));
@@ -640,7 +642,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_D1HorarioActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+            cF.ArmarCertificado(c1, turno1, turno2, turno3);
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -759,10 +761,6 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     }
 
     private void armadoDosis() {
-        Turno turno1 = new Turno();
-        Turno turno2 = new Turno();
-        Turno turno3 = new Turno();
-
         for (Turno turno : arrayTurnos) {
             if (turno.getCodigoRefuerzo() == 1 && (turno.isEstado().equals("Pendiente") || turno.isEstado().equals("completo"))) {
                 turno1 = turno;
@@ -772,7 +770,8 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 turno3 = turno;
             } 
         }
-
+        
+        if (turno1 != null){
         if (turno1.getCodigoRefuerzo() == 1) {
             jText_CentroD1.setText(turno1.getVacunatorio().getNombre());
             if (turno1.getVial().getFechaColocacion() != null && (turno1.isEstado().equals("Pendiente") || turno1.isEstado().equals("completo"))) {
@@ -792,7 +791,8 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 jText_CentroD1.setText("Sin Datos");
             }
         }
-
+        }
+        if (turno2 != null){
         if (turno2.getCodigoRefuerzo() == 2) {
             jText_CentroD2.setText(turno2.getVacunatorio().getNombre());
             if (turno2.getVial() != null  && (turno2.isEstado().equals("Pendiente") || turno2.isEstado().equals("completo"))) {
@@ -811,6 +811,8 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 jLabel17.setVisible(true);
             }
         }
+        }
+        if (turno3 != null){
         if (turno3.getCodigoRefuerzo() == 3) {
             jText_CentroD3.setText(turno3.getVacunatorio().getNombre());
             if (turno3.getVial() != null && (turno3.isEstado().equals("Pendiente") || turno3.isEstado().equals("completo"))) {
@@ -829,16 +831,8 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 jLabel18.setVisible(true);
             }
         }
-         if (turno1 != null && (turno1.getVial() == null || turno1.getVial().getIdVial() == 0)) {
-        turno1 = null;
         }
-        if (turno2 != null && (turno2.getVial() == null || turno2.getVial().getIdVial() == 0)) {
-            turno2 = null;
-        }
-        if (turno3 != null && (turno3.getVial() == null || turno3.getVial().getIdVial() == 0)) {
-            turno3 = null;
-        }
-        cF.ArmarCertificado(c1, turno1, turno2, turno3);
+        
     }
     
     private void cancelarTurno(){

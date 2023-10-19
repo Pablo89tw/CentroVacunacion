@@ -225,12 +225,6 @@ private void inicioSesion() {
             if (lD.logIN(usuario, clave)) {
                 boolean data = lD.analisisFaseIngreso(usuario);
                 if (!data) {
-                    ModificlarClaveIF mC = new ModificlarClaveIF(usuario);
-                    jDesktopPane1.add(mC);
-                    mC.setVisible(true);
-                    mC.addInternalFrameListener(new InternalFrameAdapter() {
-                     @Override
-                     public void internalFrameClosed(InternalFrameEvent e) {
                             if (!jCheckBox1.isSelected()){
                             lD.actualizarRecordar(0, usuario);
                             logIN = lD.cuentasA_Recordar();
@@ -242,9 +236,7 @@ private void inicioSesion() {
                             Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD, usuario);
                             jDesktopPane1.add(admin);
                             admin.setVisible(true);
-                     }
-                     });
-                } else if (data){
+                    } else if (data){
                     
                 if (!jCheckBox1.isSelected()) {
                     lD.actualizarRecordar(0, usuario);
