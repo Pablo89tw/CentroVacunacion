@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Ciudadano {
@@ -15,8 +16,9 @@ public class Ciudadano {
     private Coordenadas cordenadas;
     private ArrayList<String> patologias;
     private Turno turno;
+    private LocalDate fechaNacimiento;
 
-    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias, Turno turno) {
+    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias, Turno turno, LocalDate fechaNacimiento) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -27,13 +29,12 @@ public class Ciudadano {
         this.cordenadas = cordenadas;
         this.patologias = patologias;
         this.turno = turno;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public Ciudadano() {
     }
 
-    
-    
     public int getIdCiudadano() {
         return idCiudadano;
     }
@@ -122,11 +123,19 @@ public class Ciudadano {
         this.turno = turno;
     }
 
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     @Override
     public String toString() {
-        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", celular=" + celular + ", ambitoTrabajo=" + ambitoTrabajo + ", dosisAplicadas=" + dosisAplicadas + ", cordenadas=" + cordenadas + ", patologias=" + patologias + ", turno=" + turno + '}';
+        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", DNI=" + DNI + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", celular=" + celular + ", ambitoTrabajo=" + ambitoTrabajo + ", dosisAplicadas=" + dosisAplicadas + ", cordenadas=" + cordenadas + ", patologias=" + patologias + ", turno=" + turno + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
-    
+        
 }
 
    

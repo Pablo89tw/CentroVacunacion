@@ -67,9 +67,109 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" min="-2" pref="234" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel8" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="79" pref="79" max="-2" attributes="0"/>
+                                              <Component id="jText_email" min="-2" pref="403" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jText_Ocupacion" min="-2" pref="403" max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="405" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jCheckBox_ocupacion" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCheckBox_patologias" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCheckBox_mail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jText_Apellido" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jCheckBox_apellido" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Component id="Nombre" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jText_Nombre" min="-2" pref="153" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jText_DNI" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="Edad" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jText_Dosis" min="-2" pref="147" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jCheckBox_dosis" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCheckBox_nombre" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jText_Celular" min="-2" pref="141" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox_celular" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="Edad1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jDC_fechaNac" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox_fechaNac" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -87,101 +187,18 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jText_estadoTur" min="-2" pref="244" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton_nuevoTur_cancelado" max="32767" attributes="0"/>
+                              <Component id="jButton_nuevoTur_cancelado" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="91" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
+                              <Component id="jButton_ModificarDatos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
-                                      <Component id="jButton_ModificarDatos" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="Continuar" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel8" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Component id="jText_DNI" min="-2" pref="405" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="jText_Apellido" min="-2" pref="141" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jCheckBox_apellido" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="Nombre" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="jText_Nombre" min="-2" pref="153" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                          <Component id="jText_email" alignment="1" min="-2" pref="403" max="-2" attributes="0"/>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="jText_Celular" min="-2" pref="141" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                                              <Component id="jCheckBox_celular" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                              <Component id="Edad" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="jText_Dosis" min="-2" pref="131" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jScrollPane2" min="-2" pref="405" max="-2" attributes="0"/>
-                                                  <Component id="jText_Ocupacion" alignment="0" min="-2" pref="403" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jCheckBox_ocupacion" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox_dosis" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox_nombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox_patologias" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox_mail" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Continuar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel5" min="-2" pref="234" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -190,43 +207,66 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jText_DNI" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jText_Apellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jCheckBox_apellido" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace pref="86" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jCheckBox_nombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jText_Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Edad1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox_fechaNac" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jText_DNI" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Edad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jText_Dosis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jText_Apellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jCheckBox_apellido" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jCheckBox_nombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jText_Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jCheckBox_dosis" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jText_Celular" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jCheckBox_celular" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Component id="jDC_fechaNac" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jText_Dosis" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Edad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jText_Celular" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jCheckBox_celular" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox_dosis" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jCheckBox_ocupacion" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jText_Ocupacion" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
@@ -240,9 +280,12 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox_patologias" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jCheckBox_patologias" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="83" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" pref="32" max="-2" attributes="0"/>
@@ -268,7 +311,7 @@
                           <Component id="jButton_ModificarDatos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="147" max="32767" attributes="0"/>
+                      <EmptySpace pref="133" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -458,6 +501,18 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_nuevoTur_canceladoActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Edad1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha Nac."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBox_fechaNac">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_fechaNacActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="jDC_fechaNac">
             </Component>
           </SubComponents>
         </Container>

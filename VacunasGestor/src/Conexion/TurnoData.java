@@ -247,13 +247,15 @@ public class TurnoData {
              if (fechaTurnoObjeto != null) {
              LocalDateTime fechaTurno = ((Timestamp) fechaTurnoObjeto).toLocalDateTime();
              turno1.setFecha(fechaTurno);
-             }
+             }   
              turno1.setCodigoRefuerzo(rs.getInt("codigoRefuerzo"));
              turno1.setEstado(rs.getString("estado"));
              
              int idVial = rs.getInt("idVial");
              if (!rs.wasNull()){
              turno1.setVial(sD.buscarVial(idVial));
+             } else {
+                 turno1.setVial(null);
              }
              arrayTurnos.add(turno1);
          }

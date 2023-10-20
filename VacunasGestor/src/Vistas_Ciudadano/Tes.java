@@ -17,7 +17,7 @@ public class Tes extends java.awt.Frame {
  
     public Tes() {
         initComponents();
-        Datos_Ciudadano dM = new Datos_Ciudadano(cD, tD, 50000002);
+        Inscripcion dM = new Inscripcion(gD, vD, tD, lD, cD, 50000002);
         jDesktopPane2.add(dM);
         dM.setVisible(true);
               

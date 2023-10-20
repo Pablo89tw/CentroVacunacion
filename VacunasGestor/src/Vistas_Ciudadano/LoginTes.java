@@ -11,8 +11,7 @@ import Entidades.LogIN;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
+
 
 public class LoginTes extends javax.swing.JFrame {
 
@@ -217,7 +216,7 @@ public class LoginTes extends javax.swing.JFrame {
     private javax.swing.JTextField jText_usuLIN;
     // End of variables declaration//GEN-END:variables
 
-private void inicioSesion() {
+public void inicioSesion() {
         try {
             int usuario = Integer.parseInt(jText_usuLIN.getText());
             String clave = String.valueOf(jPas_logIN.getPassword());

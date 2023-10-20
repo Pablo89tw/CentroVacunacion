@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class Datos_Ciudadano extends javax.swing.JInternalFrame {
+
     private Certificado cF = new Certificado();
     private TurnoData tD;
     private Ciudadano c1;
@@ -19,7 +20,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     private Turno turno1 = null;
     private Turno turno2 = null;
     private Turno turno3 = null;
-     
+
     public Datos_Ciudadano(CiudadanoData cD, TurnoData tD, int dni_usuario) {
         this.c1 = cD.buscarCiudadanos(dni_usuario, "DNI").get(0);
         c1.setPatologias(cD.consultaPatologias(dni_usuario));
@@ -28,8 +29,8 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         initComponents();
         armadoTextos();
         armadoDosis();
-        cargadoJCBhorarios();   
-    }
+        cargadoJCBhorarios();
+        }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -137,7 +138,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
 
         jLabel9.setText("E-mail");
 
-        jButton5.setText("Certificado");
+        jButton5.setText("Generar Certificado");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -175,10 +176,10 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jText_Nombre_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jText_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 23, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -187,7 +188,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(538, Short.MAX_VALUE)))
+                    .addContainerGap(561, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,14 +215,14 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jText_DosisAplicadas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(30, 30, 30)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(355, Short.MAX_VALUE)))
+                    .addContainerGap(367, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Datos Personales", jPanel1);
@@ -309,7 +310,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addComponent(jLabel10))
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_D1Horario)
                     .addComponent(jCB_HorariosD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,7 +413,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,7 +427,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                     .addComponent(jLabel20)
                     .addComponent(jCB_D2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_D2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_MarcaD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -524,7 +525,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                                         .addComponent(jCB_D3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton_D3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +534,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(jCB_D3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -590,7 +591,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jText_CentroPT, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jText_FechaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +604,7 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
                 .addComponent(jText_CentroPT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Proximo Turno", jPanel5);
@@ -612,14 +613,11 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -638,11 +636,11 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_D2ActionPerformed
 
     private void jButton_D1HorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_D1HorarioActionPerformed
-       tomarHorario(jCB_HorariosD1.getSelectedItem().toString());
+        tomarHorario(jCB_HorariosD1.getSelectedItem().toString());
     }//GEN-LAST:event_jButton_D1HorarioActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            cF.ArmarCertificado(c1, turno1, turno2, turno3);
+        cF.ArmarCertificado(c1, turno1, turno2, turno3);
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -734,7 +732,8 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         jLabel18.setVisible(false);
         jCB_D2.setEnabled(false);
         jCB_D3.setEnabled(false);
-        
+        jButton5.setEnabled(false);
+
         jText_Nombre_Apellido.setText(c1.getApellido() + " " + c1.getNombre());
         jText_DosisAplicadas.setText(Integer.toString(c1.getDosisAplicadas()));
         jText_DNI.setText(Integer.toString(c1.getDNI()));
@@ -750,131 +749,129 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
         if (modelo.getRowCount() == 0) {
             modelo.addRow(new Object[]{"No hay patologias declaradas"});
         }
-    
+
         for (Turno turnos : arrayTurnos) {
-                if (turnos.isEstado().equals("Pendiente")){
-                    jText_FechaPT.setText(turnos.getFecha().toString());
-                    jText_DosisPT.setText(Integer.toString(turnos.getCodigoRefuerzo()+1));
-                    jText_CentroPT.setText(turnos.getVacunatorio().getNombre() + " " + arrayTurnos.get(0).getVacunatorio().getDireccion());
-                 }
-           }
+            if (turnos.isEstado().equals("Pendiente")) {
+                jText_FechaPT.setText(turnos.getFecha().toString());
+                jText_DosisPT.setText(Integer.toString(turnos.getCodigoRefuerzo() + 1));
+                jText_CentroPT.setText(turnos.getVacunatorio().getNombre() + " " + arrayTurnos.get(0).getVacunatorio().getDireccion());
+            }
+        }
     }
 
     private void armadoDosis() {
         for (Turno turno : arrayTurnos) {
-            if (turno.getCodigoRefuerzo() == 1 && (turno.isEstado().equals("Pendiente") || turno.isEstado().equals("completo"))) {
+            if (turno.getCodigoRefuerzo() == 1 && turno.isEstado().equals("completo")) {
                 turno1 = turno;
-            } else if (turno.getCodigoRefuerzo() == 2 && (turno.isEstado().equals("Pendiente") || turno.isEstado().equals("completo"))) {
-                turno2 = turno; 
-            } else if (turno.getCodigoRefuerzo() == 3 && (turno.isEstado().equals("Pendiente") || turno.isEstado().equals("completo"))) {
+            } else if (turno.getCodigoRefuerzo() == 2 && turno.isEstado().equals("completo")) {
+                turno2 = turno;
+            } else if (turno.getCodigoRefuerzo() == 3 && turno.isEstado().equals("completo")) {
                 turno3 = turno;
-            } 
-        }
-        
-        if (turno1 != null){
-        if (turno1.getCodigoRefuerzo() == 1) {
-            jText_CentroD1.setText(turno1.getVacunatorio().getNombre());
-            if (turno1.getVial().getFechaColocacion() != null && (turno1.isEstado().equals("Pendiente") || turno1.isEstado().equals("completo"))) {
-                jText_FechaD1.setText((turno1.getVial().getFechaColocacion()).toString());
-                jText_FechaVencimientoD1.setText(turno1.getVial().getFechaVencimiento().toString());
-                jText_MarcaD1.setText(turno1.getVial().getMarca());
-                jText_AntigenoD1.setText(turno1.getVial().getAntigeno());
-                jText_NumeroD1.setText(Integer.toString(turno1.getVial().getNumeroSerie()));      
-            } else if (turno1.getVial().getFechaColocacion() == null && turno1.isEstado().equals("Pendiente")) {
-                jLabel10.setVisible(true);
-                jLabel19.setText(turno1.getFecha().toString());
-                jText_FechaD1.setText("Sin Datos");
-                jText_FechaVencimientoD1.setText("Sin Datos");
-                jText_MarcaD1.setText("Sin Datos");
-                jText_AntigenoD1.setText("Sin Datos");
-                jText_NumeroD1.setText("Sin Datos");
-                jText_CentroD1.setText("Sin Datos");
             }
         }
-        }
-        if (turno2 != null){
-        if (turno2.getCodigoRefuerzo() == 2) {
-            jText_CentroD2.setText(turno2.getVacunatorio().getNombre());
-            if (turno2.getVial() != null  && (turno2.isEstado().equals("Pendiente") || turno2.isEstado().equals("completo"))) {
-                jText_MarcaD2.setText(turno2.getVial().getMarca());
-                jText_NumeroD2.setText(Integer.toString(turno2.getVial().getNumeroSerie()));
-                jText_AntigenoD2.setText(turno2.getVial().getAntigeno());
-                jText_FechaD2.setText((turno2.getVial().getFechaColocacion()).toString());
-                jText_FechaVencimientoD2.setText(turno2.getVial().getFechaVencimiento().toString());
-            } else if (turno2.getVial() == null && turno2.isEstado().equals("Pendiente")) {
-                jText_MarcaD2.setText("Sin Datos");
-                jText_NumeroD2.setText("Sin Datos");
-                jText_AntigenoD2.setText("Sin Datos");
-                jText_FechaD2.setText("Sin Datos");
-                jText_FechaVencimientoD2.setText("Sin Datos");
-                jText_CentroD2.setText("Sin Datos");
-                jLabel17.setVisible(true);
+
+        if (turno1 != null) {
+            if (turno1.getCodigoRefuerzo() == 1) {
+                jText_CentroD1.setText(turno1.getVacunatorio().getNombre());
+                if (turno1.getVial() != null && turno1.isEstado().equals("completo")) {
+                    jText_FechaD1.setText((turno1.getVial().getFechaColocacion()).toString());
+                    jText_FechaVencimientoD1.setText(turno1.getVial().getFechaVencimiento().toString());
+                    jText_MarcaD1.setText(turno1.getVial().getMarca());
+                    jText_AntigenoD1.setText(turno1.getVial().getAntigeno());
+                    jText_NumeroD1.setText(Integer.toString(turno1.getVial().getNumeroSerie()));
+                    jButton5.setEnabled(true);
+                } else if (turno1.getVial() == null || turno1.isEstado().equals("Pendiente")){
+                    jLabel10.setVisible(true);
+                    jLabel19.setText(turno1.getFecha().toString());
+                    jText_FechaD1.setText("Sin Datos");
+                    jText_FechaVencimientoD1.setText("Sin Datos");
+                    jText_MarcaD1.setText("Sin Datos");
+                    jText_AntigenoD1.setText("Sin Datos");
+                    jText_NumeroD1.setText("Sin Datos");
+                    jText_CentroD1.setText("Sin Datos");
+                }
             }
         }
-        }
-        if (turno3 != null){
-        if (turno3.getCodigoRefuerzo() == 3) {
-            jText_CentroD3.setText(turno3.getVacunatorio().getNombre());
-            if (turno3.getVial() != null && (turno3.isEstado().equals("Pendiente") || turno3.isEstado().equals("completo"))) {
-                jText_MarcaD3.setText(turno3.getVial().getMarca());
-                jText_NumeroD3.setText(Integer.toString(turno3.getVial().getNumeroSerie()));
-                jText_AntigenoD3.setText(turno3.getVial().getAntigeno());
-                jText_FechaD3.setText((turno3.getVial().getFechaColocacion()).toString());
-                jText_FechaVencimientoD3.setText(turno3.getVial().getFechaVencimiento().toString());
-            } else if (turno3.getVial() == null && turno3.isEstado().equals("Pendiente")) {
-                jText_MarcaD3.setText("Sin Datos");
-                jText_NumeroD3.setText("Sin Datos");
-                jText_AntigenoD3.setText("Sin Datos");
-                jText_FechaD3.setText("Sin Datos");
-                jText_FechaVencimientoD3.setText("Sin Datos");
-                jText_CentroD3.setText("Sin Datos");
-                jLabel18.setVisible(true);
+        if (turno2 != null) {
+            if (turno2.getCodigoRefuerzo() == 2) {
+                jText_CentroD2.setText(turno2.getVacunatorio().getNombre());
+                if (turno2.getVial() != null && turno2.isEstado().equals("completo")) {
+                    jText_MarcaD2.setText(turno2.getVial().getMarca());
+                    jText_NumeroD2.setText(Integer.toString(turno2.getVial().getNumeroSerie()));
+                    jText_AntigenoD2.setText(turno2.getVial().getAntigeno());
+                    jText_FechaD2.setText((turno2.getVial().getFechaColocacion()).toString());
+                    jText_FechaVencimientoD2.setText(turno2.getVial().getFechaVencimiento().toString());
+                } else if (turno2.getVial() == null || turno2.isEstado().equals("Pendiente")) {
+                    jText_MarcaD2.setText("Sin Datos");
+                    jText_NumeroD2.setText("Sin Datos");
+                    jText_AntigenoD2.setText("Sin Datos");
+                    jText_FechaD2.setText("Sin Datos");
+                    jText_FechaVencimientoD2.setText("Sin Datos");
+                    jText_CentroD2.setText("Sin Datos");
+                    jLabel17.setVisible(true);
+                }
             }
         }
+        if (turno3 != null) {
+            if (turno3.getCodigoRefuerzo() == 3) {
+                jText_CentroD3.setText(turno3.getVacunatorio().getNombre());
+                if (turno3.getVial() != null && turno3.isEstado().equals("completo")) {
+                    jText_MarcaD3.setText(turno3.getVial().getMarca());
+                    jText_NumeroD3.setText(Integer.toString(turno3.getVial().getNumeroSerie()));
+                    jText_AntigenoD3.setText(turno3.getVial().getAntigeno());
+                    jText_FechaD3.setText((turno3.getVial().getFechaColocacion()).toString());
+                    jText_FechaVencimientoD3.setText(turno3.getVial().getFechaVencimiento().toString());
+                } else if (turno3.getVial() == null && turno3.isEstado().equals("Pendiente")) {
+                    jText_MarcaD3.setText("Sin Datos");
+                    jText_NumeroD3.setText("Sin Datos");
+                    jText_AntigenoD3.setText("Sin Datos");
+                    jText_FechaD3.setText("Sin Datos");
+                    jText_FechaVencimientoD3.setText("Sin Datos");
+                    jText_CentroD3.setText("Sin Datos");
+                    jLabel18.setVisible(true);
+                }
+            }
         }
-        
     }
-    
-    private void cancelarTurno(){
-       
+
+    private void cancelarTurno() {
         for (Turno turnos : arrayTurnos) {
-          if(turnos.isEstado().equalsIgnoreCase("Pendiente")){
-            tD.cancelarTurno(turnos.getIdTurno());
-              
+            if (turnos.isEstado().equalsIgnoreCase("Pendiente")) {
+                tD.cancelarTurno(turnos.getIdTurno());
             }
-        } 
+        }
     }
-    
-    private void cargadoJCBhorarios(){     
+
+    private void cargadoJCBhorarios() {
         for (Turno turno : arrayTurnos) {
-            if ((turno.getCodigoRefuerzo() == 1) && (turno.getFecha().getHour() == 00)){
+            if ((turno.getCodigoRefuerzo() == 1) && (turno.getFecha().getHour() == 00)) {
                 this.turno_new = turno;
-                jCB_HorariosD1.setEnabled(true); 
+                jCB_HorariosD1.setEnabled(true);
                 ArrayList<String> horarios_libres = tD.armarArrayHorariosLibres(turno.getFecha().toLocalDate(), turno.getVacunatorio());
                 DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>(horarios_libres.toArray(new String[0]));
-                jCB_HorariosD1.setModel(cbModel);  
+                jCB_HorariosD1.setModel(cbModel);
                 jButton_D1Horario.setEnabled(true);
-                }
-            if ((turno.getCodigoRefuerzo() == 2) && (turno.getFecha().getHour() == 00)){
+            }
+            if ((turno.getCodigoRefuerzo() == 2) && (turno.getFecha().getHour() == 00)) {
                 this.turno_new = turno;
                 jCB_D2.setEnabled(true);
                 ArrayList<String> horarios_libres = tD.armarArrayHorariosLibres(turno.getFecha().toLocalDate(), turno.getVacunatorio());
                 DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>(horarios_libres.toArray(new String[0]));
                 jCB_D2.setModel(cbModel);
                 jButton_D2.setEnabled(true);
-                }
-            if ((turno.getCodigoRefuerzo() == 3) && (turno.getFecha().getHour()== 00)){
+            }
+            if ((turno.getCodigoRefuerzo() == 3) && (turno.getFecha().getHour() == 00)) {
                 this.turno_new = turno;
                 jCB_D3.setEnabled(true);
                 ArrayList<String> horarios_libres = tD.armarArrayHorariosLibres(turno.getFecha().toLocalDate(), turno.getVacunatorio());
                 DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>(horarios_libres.toArray(new String[0]));
-                jCB_D3.setModel(cbModel); 
+                jCB_D3.setModel(cbModel);
                 jButton_D3.setEnabled(true);
             }
-         }
+        }
     }
-    
-    private void tomarHorario(String horario){
+
+    private void tomarHorario(String horario) {
         LocalDateTime fecha_turno = tD.colocarHora_aFecha(turno_new.getFecha().toLocalDate(), horario);
         turno_new.setFecha(fecha_turno);
         tD.actualizarTurnero_Hora(turno_new);

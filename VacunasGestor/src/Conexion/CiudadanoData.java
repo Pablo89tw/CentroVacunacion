@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class CiudadanoData{
     
@@ -17,7 +19,7 @@ public class CiudadanoData{
     public int cargaNuevosDatosCiudadano(Ciudadano c1){
     int updates = 0;
     PreparedStatement ps = null;
-    String sql = "UPDATE ciudadano SET `latitud` = ?,`longitud` = ?, `email` = ?, `celular` = ?, `ambitoTrabajo` = ?, `dosisAplicadas` = ? WHERE DNI = ?";
+    String sql = "UPDATE ciudadano SET `latitud` = ?,`longitud` = ?, `email` = ?, `celular` = ?, `ambitoTrabajo` = ?, `dosisAplicadas` = ?, fechaNacimiento = ? WHERE DNI = ?";
 
     try {
             ps = con.prepareStatement(sql);
@@ -27,7 +29,9 @@ public class CiudadanoData{
             ps.setInt(4, c1.getCelular());
             ps.setString(5, c1.getAmbitoTrabajo());
             ps.setInt(6,0);
-            ps.setInt(7,c1.getDNI());
+            ps.setDate(7,Date.valueOf(c1.getFechaNacimiento()));
+            ps.setInt(8,c1.getDNI());
+           
                       
             updates = ps.executeUpdate();;
             if (updates > 0) {
@@ -180,6 +184,12 @@ public class CiudadanoData{
              cord.setLatitud(rs.getDouble("latitud"));
              cord.setLongitud(rs.getDouble("longitud"));
              c1.setCordenadas(cord);
+             if (rs.getDate("fechaNacimiento") != null){
+                 c1.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+             } else {
+                 c1.setFechaNacimiento(null);
+             }
+             
              arrayCiudadano.add(c1);
          } 
        } catch (SQLException e){
@@ -246,7 +256,7 @@ public class CiudadanoData{
         return patologias;
     }
     
-    public void actualizarDatosCiudadano(Ciudadano c1, String apellido, boolean ape, String nombre, boolean nom, String celular, boolean cel, String dosis, boolean dos, String ocupacion, boolean ocup, String email, boolean mail){
+    public void actualizarDatosCiudadano(Ciudadano c1, String apellido, boolean ape, String nombre, boolean nom, String celular, boolean cel, String dosis, boolean dos, String ocupacion, boolean ocup, String email, boolean mail, LocalDate fechaNacimiento, boolean fechaN){
         int comas = 0, sql_p = 1;
         PreparedStatement ps = null;
         
@@ -258,7 +268,7 @@ public class CiudadanoData{
         if (dos) { sql += ((comas > 0)? ",":""); sql += " dosis = ? "; comas++;}
         if (ocup) { sql += ((comas > 0)? ",":""); sql += " ocupacion = ? "; comas++;}
         if (mail) { sql += ((comas > 0)? ",":""); sql += " email = ? "; comas++;}
-        
+        if (fechaN) { sql += ((comas > 0)? ",":""); sql += " fechaNacimiento = ? "; comas++;}
         sql += "WHERE DNI = ?";
             
         try {
@@ -270,6 +280,7 @@ public class CiudadanoData{
             if (dos) {ps.setString(sql_p, dosis);sql_p++;}
             if (ocup) {ps.setString(sql_p,ocupacion); sql_p++;}
             if (mail) {ps.setString(sql_p,email); sql_p++;}
+            if (fechaN) {ps.setDate(sql_p,Date.valueOf(fechaNacimiento)); sql_p++;}
             ps.setInt(sql_p, c1.getDNI());
              
             int resultado = ps.executeUpdate();

@@ -2,9 +2,12 @@ package Conexion;
 
 import Entidades.Ciudadano;
 import Entidades.Turno;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -12,177 +15,134 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class Certificado {
 
-    public void ArmarCertificado(Ciudadano c1, Turno t1, Turno t2, Turno t3) {
+      public void ArmarCertificado(Ciudadano c1, Turno t1, Turno t2, Turno t3) throws IOException {
         try {
             PDDocument document = null;
             if (t1 != null && t2 == null && t3 == null) {
-                document = PDDocument.load(new File("D:\\Proyecto Final Java\\Todo_1D.pdf"));
+                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d1.pdf").openStream());
             } else if (t1 != null && t2 != null && t3 == null) {
-                document = PDDocument.load(new File("D:\\Proyecto Final Java\\Todo_2D.pdf"));
+                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d2.pdf").openStream());
             } else if (t1 != null && t2 != null && t3 != null) {
-                document = PDDocument.load(new File("D:\\Proyecto Final Java\\Todo_3D.pdf"));
-            }
-            PDPage page = document.getPage(0);
-            PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
-
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(328, 692);
-            contentStream.showText(c1.getApellido() + " " + c1.getNombre());
-            contentStream.endText();
-
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(328, 647);
-            contentStream.showText(Integer.toString(c1.getDNI()));
-            contentStream.endText();
-
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(328, 612);
-            contentStream.showText(LocalDate.now().toString());
-            contentStream.endText();
-
-            String esquema = "";
-            if (c1.getDosisAplicadas() < 3) {
-                esquema = "Incompleto";
-            }
-            if (c1.getDosisAplicadas() == 3) {
-                esquema = "Completo";
+                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d3.pdf").openStream());
             }
 
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(328, 578);
-            contentStream.showText(esquema);
-            contentStream.endText();
-            contentStream.close();
+            PDPage page1 = document.getPage(0);
+            PDPageContentStream contentStream1 = new PDPageContentStream(document, page1, PDPageContentStream.AppendMode.APPEND, true);
+
+            PDPage page2 = document.getPage(0);
+            PDPageContentStream contentStream2 = null;
+
+            PDPage page3 = document.getPage(1);
+            PDPageContentStream contentStream3 = new PDPageContentStream(document, page3, PDPageContentStream.AppendMode.APPEND, true);
+
+            PDPage page4 = document.getPage(1);
+            PDPageContentStream contentStream4 = null;
+
+            contentStream1.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream1.beginText();
+            contentStream1.newLineAtOffset(294, 585);
+            contentStream1.showText(c1.getApellido() + " " + c1.getNombre());
+            contentStream1.endText();
+
+            contentStream1.beginText();
+            contentStream1.newLineAtOffset(294, 542);
+            contentStream1.showText(Integer.toString(c1.getDNI()));
+            contentStream1.endText();
+
+            contentStream1.beginText();
+            contentStream1.newLineAtOffset(294, 510);
+            if (c1.getFechaNacimiento() != null) {
+                contentStream1.showText(c1.getFechaNacimiento().toString());
+            } else {
+                contentStream1.showText("Sin Datos");
+            }
+            contentStream1.endText();
+
+            String esquema = (c1.getDosisAplicadas() < 3) ? "Esquema Incompleto" : "Esquema Completo";
+            contentStream1.beginText();
+            contentStream1.newLineAtOffset(294, 480);
+            contentStream1.showText(esquema);
+            contentStream1.endText();
+
+            contentStream1.close();
 
             if (t1 != null) {
-                PDPage page2 = document.getPage(1);
-                PDPageContentStream contentStream2 = new PDPageContentStream(document, page2, PDPageContentStream.AppendMode.APPEND, true);
+                contentStream2 = new PDPageContentStream(document, page2, PDPageContentStream.AppendMode.APPEND, true);
 
-                contentStream2.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream2.beginText();
-                contentStream2.newLineAtOffset(222, 692);
-                contentStream2.showText(t1.getVial().getMarca());
-                contentStream2.endText();
-
-                contentStream2.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream2.beginText();
-                contentStream2.newLineAtOffset(222, 647);
-                contentStream2.showText(Integer.toString(t1.getVial().getNumeroSerie()));
-                contentStream2.endText();
-
-                contentStream2.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream2.beginText();
-                contentStream2.newLineAtOffset(222, 600);
-                contentStream2.showText(t1.getVacunatorio().getNombre() + " " + t1.getVacunatorio().getDireccion());
-                contentStream2.endText();
-
-                contentStream2.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream2.beginText();
-                contentStream2.newLineAtOffset(422, 692);
-                contentStream2.showText("Primera");
-                contentStream2.endText();
-
-                contentStream2.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream2.beginText();
-                contentStream2.newLineAtOffset(422, 647);
-                contentStream2.showText(t1.getVial().getFechaColocacion().toLocalDate().toString());
-                contentStream2.endText();
+                generateText(contentStream2, 199, 293, t1.getVial().getMarca());
+                generateText(contentStream2, 199, 250, Integer.toString(t1.getVial().getNumeroSerie()));
+                generateText(contentStream2, 199, 203, t1.getVacunatorio().getNombre() + " " + t1.getVacunatorio().getDireccion());
+                generateText(contentStream2, 392, 294, "Primera");
+                generateText(contentStream2, 392, 250, t1.getVial().getFechaColocacion().toLocalDate().toString());
 
                 contentStream2.close();
-               
-                if (t2 == null) {
-                    String nombreArchivo2 = c1.getApellido() + "_" + c1.getNombre().charAt(0) + "_" + "certificado.pdf";
-                    String rutaCompleta2 = "D:\\Proyecto Final Java\\Certificados\\" + nombreArchivo2;
-                    document.save(rutaCompleta2);
+            }
+
+            if (t2 != null) {
+                contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                contentStream3.beginText();
+                contentStream3.newLineAtOffset(199, 575);
+                contentStream3.showText(t2.getVial().getMarca());
+                contentStream3.endText();
+
+                generateText(contentStream3, 199, 530, Integer.toString(t2.getVial().getNumeroSerie()));
+                generateText(contentStream3, 199, 483, t2.getVacunatorio().getNombre() + " " + t2.getVacunatorio().getDireccion());
+                generateText(contentStream3, 392, 575, "Segunda");
+                generateText(contentStream3, 392, 530, t2.getVial().getFechaColocacion().toLocalDate().toString());
+
+                contentStream3.close();
+            }
+
+            if (t3 != null) {
+                contentStream4 = new PDPageContentStream(document, page4, PDPageContentStream.AppendMode.APPEND, true);
+
+                generateText(contentStream4, 199, 293, t3.getVial().getMarca());
+                generateText(contentStream4, 199, 250, Integer.toString(t3.getVial().getNumeroSerie()));
+                generateText(contentStream4, 199, 203, t3.getVacunatorio().getNombre() + " " + t3.getVacunatorio().getDireccion());
+                generateText(contentStream4, 392, 294, "Tercera");
+                generateText(contentStream4, 392, 250, t3.getVial().getFechaColocacion().toLocalDate().toString());
+
+                contentStream4.close();
+            }
+
+            String nombreArchivo = c1.getApellido() + "_" + c1.getNombre().charAt(0) + "_" + "certificado.pdf";
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccionar ubicación de descarga");
+
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos PDF", "pdf");
+            fileChooser.setFileFilter(filter);
+            fileChooser.setSelectedFile(new File(nombreArchivo));
+
+            int userSelection = fileChooser.showSaveDialog(null);
+            String rutaDescarga = null;
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                rutaDescarga = fileChooser.getSelectedFile().getAbsolutePath();
+                document.save(rutaDescarga);
+            }
+            int opcion = JOptionPane.showConfirmDialog(null, "Descarga completa, ¿Desea abrirlo?", "Abrir", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                try {
+                    File pdfFile = new File(rutaDescarga);
+                    if (pdfFile.exists()) {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El archivo PDF no existe en la ubicación especificada.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                }
-                if (t2 != null) {
-                    PDPage page3 = document.getPage(2);
-                    PDPageContentStream contentStream3 = new PDPageContentStream(document, page3, PDPageContentStream.AppendMode.APPEND, true);
-
-                    contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream3.beginText();
-                    contentStream3.newLineAtOffset(222, 692);
-                    contentStream3.showText(t2.getVial().getMarca());
-                    contentStream3.endText();
-
-                    contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream3.beginText();
-                    contentStream3.newLineAtOffset(222, 647);
-                    contentStream3.showText(Integer.toString(t2.getVial().getNumeroSerie()));
-                    contentStream3.endText();
-
-                    contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream3.beginText();
-                    contentStream3.newLineAtOffset(222, 600);
-                    contentStream3.showText(t2.getVacunatorio().getNombre() + " " + t2.getVacunatorio().getDireccion());
-                    contentStream3.endText();
-
-                    contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream3.beginText();
-                    contentStream3.newLineAtOffset(422, 692);
-                    contentStream3.showText("Segunda");
-                    contentStream3.endText();
-
-                    contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream3.beginText();
-                    contentStream3.newLineAtOffset(422, 647);
-                    contentStream3.showText(t2.getVial().getFechaColocacion().toLocalDate().toString());
-                    contentStream3.endText();
-
-                    contentStream3.close();
-                
-                  if (t3 == null) {
-                    String nombreArchivo2 = c1.getApellido() + "_" + c1.getNombre().charAt(0) + "_" + "certificado.pdf";
-                    String rutaCompleta2 = "D:\\Proyecto Final Java\\Certificados\\" + nombreArchivo2;
-                    document.save(rutaCompleta2);
-                  }
-                }
-                    if (t3 != null) {
-                    PDPage page4 = document.getPage(3);
-                    PDPageContentStream contentStream4 = new PDPageContentStream(document, page4, PDPageContentStream.AppendMode.APPEND, true);
-
-                    contentStream4.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream4.beginText();
-                    contentStream4.newLineAtOffset(222, 692);
-                    contentStream4.showText(t3.getVial().getMarca());
-                    contentStream4.endText();
-
-                    contentStream4.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream4.beginText();
-                    contentStream4.newLineAtOffset(222, 647);
-                    contentStream4.showText(Integer.toString(t3.getVial().getNumeroSerie()));
-                    contentStream4.endText();
-
-                    contentStream4.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream4.beginText();
-                    contentStream4.newLineAtOffset(222, 600);
-                    contentStream4.showText(t3.getVacunatorio().getNombre() + " " + t3.getVacunatorio().getDireccion());
-                    contentStream4.endText();
-
-                    contentStream4.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream4.beginText();
-                    contentStream4.newLineAtOffset(422, 692);
-                    contentStream4.showText("Tercera");
-                    contentStream4.endText();
-
-                    contentStream4.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    contentStream4.beginText();
-                    contentStream4.newLineAtOffset(422, 647);
-                    contentStream4.showText(t3.getVial().getFechaColocacion().toLocalDate().toString());
-                    contentStream4.endText();
-
-                    contentStream4.close();
-                }
-                String nombreArchivo2 = c1.getApellido() + "_" + c1.getNombre().charAt(0) + "_" + "certificado.pdf";
-                String rutaCompleta2 = "D:\\Proyecto Final Java\\Certificados\\" + nombreArchivo2;
-                document.save(rutaCompleta2);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
+      }
+
+ private void generateText(PDPageContentStream contentStream, float x, float y, String text) throws IOException {
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+        contentStream.beginText();
+        contentStream.newLineAtOffset(x, y);
+        contentStream.showText(text);
+        contentStream.endText();
+    }
 }
