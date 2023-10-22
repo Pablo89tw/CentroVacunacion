@@ -173,6 +173,7 @@ public class CiudadanoData{
         
          while (rs.next()){
              c1 = new Ciudadano();
+             c1.setIdCiudadano(rs.getInt("idCiudadano"));
              c1.setApellido(rs.getString("apellido"));
              c1.setNombre(rs.getString("nombre"));
              c1.setDNI(rs.getInt("DNI")); 

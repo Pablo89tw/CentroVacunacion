@@ -19,18 +19,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 public class Certificado {
         GeneradorQR qr = new GeneradorQR();
-    
-       public void ArmarCertificado(Ciudadano c1, Turno t1, Turno t2, Turno t3) throws IOException {
-            try {
-            PDDocument document = null;
-            if (t1 != null && t2 == null && t3 == null) {
-                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d1.pdf").openStream());
-            } else if (t1 != null && t2 != null && t3 == null) {
-                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d2.pdf").openStream());
-            } else if (t1 != null && t2 != null && t3 != null) {
-                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d3.pdf").openStream());
-            }
-            
+       
+    public void ArmarCertificado(Ciudadano c1, Turno t1, Turno t2, Turno t3) throws IOException {
             String codigo = "";
             codigo += "Datos: " + c1.getApellido() + " " + c1.getNombre() + " DNI: "+ c1.getDNI() + " iD: " + c1.getIdCiudadano();
             codigo += "|\n| Dosis 1: " + t1.getVial().getMarca() + "/ /" + t1.getVial().getNumeroSerie() + "/ /" + t1.getVial().getFechaColocacion().toLocalDate() + "/ /" + t1.getVial().getIdVial();
@@ -40,13 +30,25 @@ public class Certificado {
             if (t3 != null) {
                 codigo += "|\n| Dosis 3:" + t3.getVial().getMarca() + "/ /" + t3.getVial().getNumeroSerie() + "/ /" + t3.getVial().getFechaColocacion().toLocalDate() + "/ /" + t3.getVial().getIdVial();
             }
-
+       
+           try {
+            PDDocument document = null;
+            if (t1 != null && t2 == null && t3 == null) {
+                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d1.pdf").openStream());
+            } else if (t1 != null && t2 != null && t3 == null) {
+                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d2.pdf").openStream());
+            } else if (t1 != null && t2 != null && t3 != null) {
+                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d3.pdf").openStream());
+            }
+            
+            
+            BufferedImage qrImage = qr.metodoQr(codigo);
             PDPage page1 = document.getPage(0);
             PDPageContentStream contentStream1 = new PDPageContentStream(document, page1, PDPageContentStream.AppendMode.APPEND, true);
 
-            BufferedImage qrImage = qr.metodoQr(codigo);
+           
             PDImageXObject qrXObject = LosslessFactory.createFromImage(document, qrImage);
-            contentStream1.drawImage(qrXObject, 75, 400, qrImage.getWidth(), qrImage.getHeight());   
+            contentStream1.drawImage(qrXObject, 75, 403, qrImage.getWidth(), qrImage.getHeight());   
             
             PDPage page2 = document.getPage(0);
             PDPageContentStream contentStream2 = null;

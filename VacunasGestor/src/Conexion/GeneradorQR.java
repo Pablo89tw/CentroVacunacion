@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class GeneradorQR {
 
     public BufferedImage metodoQr(String codigo) {
-        int size = 215;
+        int size = 212;
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
         try {
@@ -22,14 +22,13 @@ public class GeneradorQR {
             Logger.getLogger(GeneradorQR.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null; // Devuelve null en caso de error
+        return null;
     }
     
     private static BufferedImage matrixToImage(BitMatrix matrix, int margin) {
      int width = matrix.getWidth();
     int height = matrix.getHeight();
     
-    // Calcula las nuevas dimensiones de la imagen con los márgenes recortados
     int startX = margin;
     int startY = margin;
     int newWidth = width - 2 * margin;
