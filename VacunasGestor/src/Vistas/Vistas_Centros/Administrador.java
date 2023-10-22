@@ -7,7 +7,6 @@ import Entidades.Ciudadano;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
-import Vistas.Vistas_Generales.Patologias_ADM;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;

@@ -1,4 +1,4 @@
-package Vistas.Vistas_Generales;
+package Vistas.Vistas_Centros;
 
 import Conexion.CiudadanoData;
 import java.util.ArrayList;
