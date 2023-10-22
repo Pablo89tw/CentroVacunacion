@@ -43,8 +43,7 @@ public class NewMain {
 //         t1.setVacunatorio(vac1);
 //         
          //cF.ArmadoCertificadoDosis1(c1, t1);
-          GeneradorQR qR = new GeneradorQR();
-          qR.metodoQr();
+        
     }
 }
      

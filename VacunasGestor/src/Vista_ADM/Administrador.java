@@ -1,4 +1,4 @@
-package Vistas_Ciudadano;
+package Vista_ADM;
 
 import Conexion.CiudadanoData;
 import Conexion.TurnoData;
