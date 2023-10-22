@@ -5,8 +5,11 @@ import Conexion.CiudadanoData;
 import Conexion.TurnoData;
 import Entidades.Ciudadano;
 import Entidades.Turno;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -640,7 +643,11 @@ public class Datos_Ciudadano extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_D1HorarioActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        cF.ArmarCertificado(c1, turno1, turno2, turno3);
+        try {
+            cF.ArmarCertificado(c1, turno1, turno2, turno3);
+        } catch (IOException ex) {
+            Logger.getLogger(Datos_Ciudadano.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
 

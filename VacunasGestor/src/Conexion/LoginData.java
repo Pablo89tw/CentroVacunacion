@@ -2,7 +2,6 @@ package Conexion;
 
 import Entidades.Ciudadano;
 import Entidades.LogIN;
-import static java.lang.Math.random;
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

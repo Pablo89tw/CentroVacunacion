@@ -63,6 +63,11 @@ public class LoginTes extends javax.swing.JFrame {
                 jText_usuLINFocusLost(evt);
             }
         });
+        jText_usuLIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jText_usuLINActionPerformed(evt);
+            }
+        });
         jText_usuLIN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jText_usuLINKeyReleased(evt);
@@ -197,6 +202,10 @@ public class LoginTes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        inicioSesion();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jText_usuLINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_usuLINActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jText_usuLINActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

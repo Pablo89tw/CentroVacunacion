@@ -1282,10 +1282,9 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         for (int r = 0; r < renglones; r++) {
             for (int c = 2; c < columnas; c++) {
                 if (modelo_tabla5.getValueAt(r, c) != null) {
-                    if (!modelo_tabla5.getValueAt(r, c).toString().isBlank()) {
+                    if (!modelo_tabla5.getValueAt(r, c).toString().trim().isEmpty()) {
                         int valor = Integer.parseInt(modelo_tabla5.getValueAt(r, c).toString());
-                        System.out.println(valor);
-                        
+                                               
                         ArrayList<Vial> vial_reasignar = sD.listarViales(0, vD.listarVacunatorioNombre(modelo_tabla5.getValueAt(r, 0).toString()).get(0).getIdVacunatorio());
                         int asignacionesRealizadas = 0;
 
@@ -1317,7 +1316,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         for (int r = 0; r < renglones; r++) {
             for (int c = 2; c < columnas; c++) {
                 if (modelo_tabla6.getValueAt(r, c) != null) {
-                    if (!modelo_tabla6.getValueAt(r, c).toString().isBlank()) {
+                    if (!modelo_tabla6.getValueAt(r, c).toString().trim().isEmpty()) {
                         int valor = Integer.parseInt(modelo_tabla6.getValueAt(r, c).toString());
                         System.out.println(valor);
                         
