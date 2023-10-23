@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas.Vistas_Generales;
 
 /**
  *
  * @author MOLLO RAMIREZ
  */
+
+ import Vistas.Vistas_Ciudadano.LoginTes;
+
+
 public class Ventana_Principal extends javax.swing.JFrame {
 
     /**
@@ -28,30 +28,63 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         imagen_Fondo = new javax.swing.JLabel();
+        boton_MINESTERIO = new javax.swing.JButton();
+        boton_CENTRO = new javax.swing.JButton();
+        boton_CIUDADANO = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 300));
+        setTitle("SiVaC-19");
+        setMinimumSize(new java.awt.Dimension(600, 300));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imagen_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/FONDO_PROGRAMA-01.png"))); // NOI18N
         imagen_Fondo.setMaximumSize(new java.awt.Dimension(600, 300));
         imagen_Fondo.setMinimumSize(new java.awt.Dimension(600, 300));
         imagen_Fondo.setPreferredSize(new java.awt.Dimension(600, 300));
+        getContentPane().add(imagen_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imagen_Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imagen_Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        boton_MINESTERIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON MINISTERIO 01-02.png"))); // NOI18N
+        boton_MINESTERIO.setToolTipText("");
+        boton_MINESTERIO.setBorder(null);
+        boton_MINESTERIO.setBorderPainted(false);
+        boton_MINESTERIO.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        boton_MINESTERIO.setPreferredSize(new java.awt.Dimension(480, 75));
+        boton_MINESTERIO.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON MINISTERIO 02-02.png"))); // NOI18N
+        getContentPane().add(boton_MINESTERIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 77, -1, -1));
+
+        boton_CENTRO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CENTRO 01-02.png"))); // NOI18N
+        boton_CENTRO.setToolTipText("");
+        boton_CENTRO.setBorder(null);
+        boton_CENTRO.setBorderPainted(false);
+        boton_CENTRO.setDisabledIcon(null);
+        boton_CENTRO.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        boton_CENTRO.setPreferredSize(new java.awt.Dimension(480, 75));
+        boton_CENTRO.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CENTRO 02-02.png"))); // NOI18N
+        getContentPane().add(boton_CENTRO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 152, -1, -1));
+
+        boton_CIUDADANO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CIUDADANO 01-02.png"))); // NOI18N
+        boton_CIUDADANO.setToolTipText("");
+        boton_CIUDADANO.setBorder(null);
+        boton_CIUDADANO.setBorderPainted(false);
+        boton_CIUDADANO.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        boton_CIUDADANO.setPreferredSize(new java.awt.Dimension(480, 75));
+        boton_CIUDADANO.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CIUDADANO 02-02.png"))); // NOI18N
+        boton_CIUDADANO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_CIUDADANOActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_CIUDADANO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 226, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boton_CIUDADANOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_CIUDADANOActionPerformed
+        Vistas.Vistas_Ciudadano.LoginTes login = new Vistas.Vistas_Ciudadano.LoginTes();
+        login.setVisible(true);
+    }//GEN-LAST:event_boton_CIUDADANOActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +122,9 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_CENTRO;
+    private javax.swing.JButton boton_CIUDADANO;
+    private javax.swing.JButton boton_MINESTERIO;
     private javax.swing.JLabel imagen_Fondo;
     // End of variables declaration//GEN-END:variables
 }
