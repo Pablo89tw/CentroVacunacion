@@ -3,19 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vista_ADM/Administrador.java</file>
             <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Conexion/TurnoData.java</file>
             <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/vacunasgestor/NewMain.java</file>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vista_ADM/Patologias_ADM.java</file>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vista_ADM/Administrador_Centros.java</file>
+            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas/Vistas_ADM/Administrador_Centros.java</file>
             <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Conexion/CiudadanoData.java</file>
             <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Conexion/Certificado.java</file>
             <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Entidades/Coordenadas.java</file>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas_Ciudadano/LoginTes.java</file>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas_Ciudadano/ModificlarClaveIF.java</file>
+            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Conexion/GeneradorQR.java</file>
             <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Entidades/Ciudadano.java</file>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas_Ciudadano/Inscripcion.java</file>
-            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas_Ciudadano/Datos_Ciudadano.java</file>
+            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas/Imagenes/FONDO_PROGRAMA-01.png</file>
+            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas/Vistas_Ciudadano/LoginTes.java</file>
+            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas/Vistas_Ciudadano/Inscripcion.java</file>
+            <file>file:/C:/Users/Pablo/Desktop/programa%204.0/GitHub/CentroVacunacion/VacunasGestor/src/Vistas/Vistas_Ciudadano/Datos_Ciudadano.java</file>
         </group>
     </open-files>
 </project-private>
