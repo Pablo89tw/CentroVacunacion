@@ -243,7 +243,7 @@ public void inicioSesion() {
                     lD.actualizarRecordar(1, usuario);
                     logIN = lD.cuentasA_Recordar();    
                     }
-                    Datos_Ciudadano dC = new Datos_Ciudadano(cD, tD, usuario);
+                    Cuenta_Ciudadano dC = new Cuenta_Ciudadano(cD, tD, usuario);
                     jDesktopPane1.add(dC);
                     dC.setVisible(true);
                     jDesktopPane1.moveToFront(dC);

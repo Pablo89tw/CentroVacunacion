@@ -47,7 +47,7 @@ public class ArmadoDatosBD {
                 int updates = cD.cargarTurno(ciudadano);
                 if (updates > 0) {
                     tD.actualizarTurnero_Hora(ciudadano.getTurno());
-                    tD.updateTurnos_Libres(fecha, ciudadano.getTurno());
+                    tD.updateTurno_Libre(ciudadano.getTurno());
                 }
             }
         }
@@ -88,7 +88,7 @@ public class ArmadoDatosBD {
         ArrayList<Ciudadano> ciudadanos = cD.buscarCiudadanos(0, "todos");
 
         for (Ciudadano ciudadano : ciudadanos) {
-            for (Turno turno : tD.buscarTurno(ciudadano.getDNI())) {
+            for (Turno turno : tD.listar_Turnos(null, null, "DNI", null, ciudadano.getDNI())) {
                 if (turno.isEstado().equalsIgnoreCase("Pendiente")) {
                     int menem = (int) (Math.random() * 10);
                     if (menem < 7) {

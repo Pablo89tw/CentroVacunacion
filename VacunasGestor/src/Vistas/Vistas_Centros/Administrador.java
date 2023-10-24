@@ -108,6 +108,11 @@ public class Administrador extends javax.swing.JInternalFrame {
         jTable2 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel13.setText("Numero Serie");
 
@@ -578,20 +583,48 @@ public class Administrador extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel15.setText("Desde");
+
+        jLabel16.setText("Hasta");
+
+        jButton1.setText("Reprogramar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -602,7 +635,15 @@ public class Administrador extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(294, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Generales", jPanel4);
@@ -765,7 +806,11 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_nuevoTur_canceladoActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        jDateChooser1.setEnabled(true);
+        jDateChooser2.setEnabled(true);
+        jButton1.setEnabled(true);
+        jDateChooser1.setDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        jDateChooser2.setDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jCheckBox_fechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_fechaNacActionPerformed
@@ -777,6 +822,10 @@ public class Administrador extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_jCheckBox_fechaNacActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        reprogramarTurnos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Continuar;
@@ -787,6 +836,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Marca3;
     private javax.swing.JLabel Marca4;
     private javax.swing.JLabel Nombre;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -804,12 +854,16 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox_patologias;
     private com.toedter.calendar.JDateChooser jDC_fechaNac;
     private com.toedter.calendar.JDateChooser jDC_proximoTur;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -878,7 +932,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         jButton_ModificarDatos.setEnabled(true);
         
         c1 = cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()),"DNI").get(0);
-        listaTurnos =tD.buscarTurno(Integer.parseInt(jText_DNI.getText()));
+        listaTurnos =tD.listar_Turnos(null,null,"DNI",null,Integer.parseInt(jText_DNI.getText()));
         
         //se muestra en pantalla los datos del ciudadano
         jText_Apellido.setText(c1.getApellido());
@@ -900,7 +954,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         jList_patologias.setModel(modelo);
         
         turno1 = listaTurnos.get(0);
-        for (Turno turno : tD.buscarTurno(Integer.parseInt(jText_DNI.getText()))) {
+        for (Turno turno : listaTurnos) {
             if (turno.getFecha().isAfter(turno1.getFecha())) {
                 turno1 = turno;
            }
@@ -954,7 +1008,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         turno_nuevo.setFecha(fecha1.atStartOfDay());
         turno_nuevo.setVacunatorio(turno1.getVacunatorio());
       
-        tD.updateTurnos_Libres(fecha1,turno_nuevo);
+        tD.updateTurno_Libre(turno_nuevo);
         
         c1.setTurno(turno_nuevo);
         if (!turno1.isEstado().equalsIgnoreCase("Cancelado")){
@@ -999,7 +1053,7 @@ public class Administrador extends javax.swing.JInternalFrame {
             int totalTur = 0;
             while (fecha.isBefore(LocalDate.now().plusDays(7))){
                 int turnos = 0;
-                ArrayList<Turno> turnosPordia = tD.listar_Turnos(fecha, vac,"porDia_pendiente" );      
+                ArrayList<Turno> turnosPordia = tD.listar_Turnos(fecha, vac,"porDia_pendiente", null,0);      
                     for (Turno turno : turnosPordia) {
                             turnos++;
                             totalTur++;
@@ -1023,6 +1077,20 @@ public class Administrador extends javax.swing.JInternalFrame {
             });
             modelo_tabla2.addRow(new Object[]{turnos_pendientes.get(0),turnos_pendientes.get(1),turnos_pendientes.get(2),turnos_pendientes.get(3),turnos_pendientes.get(4),turnos_pendientes.get(5),turnos_pendientes.get(6)});
             }
-    }
+    
+    private void reprogramarTurnos(){      
+            for (Turno turno : tD.listar_Turnos(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), vac, "postergar", jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),0)) {
+                int turnos_libres = 0;
+                    LocalDate fecha = LocalDate.now().plusDays(14);
+                    while (turnos_libres == 0){
+                        turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha, vac);
+                        fecha = fecha.plusDays(1); 
+                    }
+                    turno.setFecha(fecha.minusDays(1).atStartOfDay());
+                tD.updateTurno_Libre(turno);
+                tD.actualizarFechaTurno(turno);
+            }
+        }
+}
         
 

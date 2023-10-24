@@ -1054,10 +1054,10 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             modelo_tabla1.addColumn("Fecha");
             modelo_tabla1.addColumn("Vial");
             modelo_tabla1.addColumn("Numero Serie");
-            modelo_tabla1.setRowCount(0);
             if (jRB_buscarTodoslosCentros.isSelected()) {
                 modelo_tabla1.addColumn("Centro");
             }
+            modelo_tabla1.setRowCount(0);
         } else {
             modelo_tabla1.setColumnCount(0);
             modelo_tabla1.addColumn("DNI");
@@ -1076,26 +1076,19 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         modelo_tabla0.setRowCount(0);
         jTable0.setModel(modelo_tabla0);
         
+        ArrayList<Turno> listaTurnos = tD.listar_Turnos(LocalDate.now(), vD.listarVacunatorioNombre(jComboBox1.getSelectedItem().toString()).get(0), codigo_estadoCita,null,0);
+        
+        
         if (jRB_buscarPorCentro.isSelected()) {
-            for (Turno turno : tD.listar_Turnos(LocalDate.now(), vD.listarVacunatorioNombre(jComboBox1.getSelectedItem().toString()).get(0), codigo_estadoCita)) {
+            for (Turno turno : listaTurnos) {
                 if (jRB_CitasCumplidas.isSelected()) {
                     modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie()});
                     switch (turno.getVial().getMarca()) {
-                        case "Sputnik V":
-                            Sputnik++;
-                            break;
-                        case "Pfizer":
-                            Pfizer++;
-                            break;
-                        case "Sinopharm y Sinovac":
-                            Sinopharm++;
-                            break;
-                        case "Johnson_Johnson":
-                            Johnson++;
-                            break;
-                        case "AstraZeneca":
-                            AstraZeneca++;
-                            break;
+                            case "Sputnik V":Sputnik++;break;
+                            case "Pfizer":Pfizer++; break;
+                            case "Sinopharm y Sinovac":Sinopharm++;break;
+                            case "Johnson_Johnson":Johnson++;break;
+                            case "AstraZeneca":AstraZeneca++; break;
                     }
                 } else {
                     modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha()});
@@ -1110,25 +1103,15 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             }
         } else if (jRB_buscarTodoslosCentros.isSelected()) {
             for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-                for (Turno turno : tD.listar_Turnos(LocalDate.now(), vD.listarVacunatorioNombre(vacunatorio.getNombre()).get(0), codigo_estadoCita)) {
+                for (Turno turno : tD.listar_Turnos(LocalDate.now(), vacunatorio, codigo_estadoCita,null,0)) {
                     if (jRB_CitasCumplidas.isSelected()) {
-                        modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), vacunatorio.getNombre()});
+                        modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie(), vacunatorio.getNombre()});
                         switch (turno.getVial().getMarca()) {
-                            case "Sputnik V":
-                                Sputnik++;
-                                break;
-                            case "Pfizer":
-                                Pfizer++;
-                                break;
-                            case "Sinopharm y Sinovac":
-                                Sinopharm++;
-                                break;
-                            case "Johnson_Johnson":
-                                Johnson++;
-                                break;
-                            case "AstraZeneca":
-                                AstraZeneca++;
-                                break;
+                            case "Sputnik V":Sputnik++;break;
+                            case "Pfizer":Pfizer++; break;
+                            case "Sinopharm y Sinovac":Sinopharm++;break;
+                            case "Johnson_Johnson":Johnson++;break;
+                            case "AstraZeneca":AstraZeneca++; break;
                         }
                     } else {
                         modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), vacunatorio.getNombre()});
@@ -1184,7 +1167,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
             if (!vacunatorio.getNombre().equals("Gobierno")){
             int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
-            for (Turno turno : tD.listar_Turnos(fecha, vacunatorio, "porDia")) {
+            for (Turno turno : tD.listar_Turnos(fecha, vacunatorio, "porDia",null,0)) {
                 switch (turno.getVial().getMarca()) {
                     case "Sputnik V":Sputnik++;total++;break;
                     case "Pfizer": Pfizer++;total++; break;
