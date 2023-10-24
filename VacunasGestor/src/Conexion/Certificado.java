@@ -34,11 +34,11 @@ public class Certificado {
            try {
             PDDocument document = null;
             if (t1 != null && t2 == null && t3 == null) {
-                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d1.pdf").openStream());
+                document = PDDocument.load(getClass().getResource("/Vistas/Imagenes/certificado_d1.pdf").openStream());
             } else if (t1 != null && t2 != null && t3 == null) {
-                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d2.pdf").openStream());
+                document = PDDocument.load(getClass().getResource("/Vistas/Imagenes/certificado_d2.pdf").openStream());
             } else if (t1 != null && t2 != null && t3 != null) {
-                document = PDDocument.load(getClass().getResource("/Imagenes/certificado_d3.pdf").openStream());
+                document = PDDocument.load(getClass().getResource("/Vistas/Imagenes/certificado_d3.pdf").openStream());
             }
             
             

@@ -34,8 +34,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SiVaC-19");
+        setMaximumSize(new java.awt.Dimension(600, 300));
         setMinimumSize(new java.awt.Dimension(600, 300));
+        setPreferredSize(new java.awt.Dimension(605, 328));
         setResizable(false);
+        setSize(new java.awt.Dimension(605, 328));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imagen_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/FONDO_PROGRAMA-01.png"))); // NOI18N
