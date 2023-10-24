@@ -2,7 +2,6 @@ package vacunasgestor;
 
 import Conexion.ArmadoDatosBD;
 import Conexion.Certificado;
-import Conexion.GeneradorQR;
 import Conexion.LoginData;
 import Conexion.TurnoData;
 import Conexion.VacunatorioData;
