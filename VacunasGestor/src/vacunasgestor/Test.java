@@ -5,6 +5,7 @@ import Conexion.TurnoData;
 import Entidades.Vacunatorio;
 import Vistas.Vistas_ADM.Administrador_Centros;
 import Vistas.Vistas_Centros.Administrador;
+import Vistas.Vistas_Generales.Seleccion_Centros;
 
 public class Test extends java.awt.Frame {
 
@@ -15,9 +16,9 @@ public class Test extends java.awt.Frame {
         CiudadanoData cD = new CiudadanoData();
         TurnoData tD = new TurnoData();
         initComponents();
-        Administrador_Centros ad = new Administrador_Centros(tD);
-        jDesktopPane1.add(ad);
-        ad.setVisible(true);
+        Seleccion_Centros sC = new Seleccion_Centros();
+        jDesktopPane1.add(sC);
+        sC.setVisible(true);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

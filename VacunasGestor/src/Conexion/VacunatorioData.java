@@ -73,7 +73,11 @@ public class VacunatorioData {
                vac.setNombre(rs.getString("nombre"));
                vac.setDireccion(rs.getString("direccion"));
                vac.setEstado(rs.getBoolean("estado"));
-               vac.setIdVacunatorio(rs.getInt("idCentro"));
+               vac.setIdVacunatorio(rs.getInt("idCentro"));    
+               Coordenadas cor1 = new Coordenadas();
+               cor1.setLatitud(rs.getInt("latitud"));
+               cor1.setLongitud(rs.getInt("longitud"));
+               vac.setUbicacion(cor1);
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
@@ -156,11 +160,11 @@ public class VacunatorioData {
         PreparedStatement ps = null; ResultSet rs = null;
         Vacunatorio vac;
         Coordenadas cord1;
-        String sql = "SELECT * FROM vacunatorio WHERE Nombre = ?";
+        String sql = "SELECT * FROM vacunatorio WHERE Nombre LIKE ?";
         
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1,nombre);
+            ps.setString(1,'%' + nombre + '%');
             
             rs = ps.executeQuery();
             
