@@ -9,9 +9,12 @@ import Entidades.Ciudadano;
 import Entidades.Coordenadas;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
+import Entidades.CustomWaypoint;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +26,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -34,6 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.jxmapviewer.JXMapKit;
+import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
@@ -55,6 +60,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     
 
     public Inscripcion(geoData gD, VacunatorioData vD, TurnoData tD, LoginData lD, CiudadanoData cD, int usuario,Point localizacion, Dimension tamanio) {
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.c1 = cD.buscarCiudadanos(usuario, "DNI").get(0);
         this.gD = gD;
         this.vD = vD;
@@ -68,7 +74,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jSolapasTurno.setBorder(null);
         jSolapasTurno.setLocation(localizacion);
         jSolapasTurno.setSize(tamanio);
-       
     }
 
     @SuppressWarnings("unchecked")
@@ -176,10 +181,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jTextoApellido.setOpaque(false);
         jTextoApellido.setSelectedTextColor(new java.awt.Color(204, 204, 204));
 
-        jLabel5.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel5.setBackground(new java.awt.Color(0, 153, 204));
         jLabel5.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("COMPLETAR:");
+        jLabel5.setText(" COMPLETAR:");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setOpaque(true);
 
@@ -290,10 +295,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Ambito Trabajo");
 
-        jLabel18.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel18.setBackground(new java.awt.Color(0, 204, 51));
         jLabel18.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("DATOS:");
+        jLabel18.setText(" DATOS:");
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel18.setOpaque(true);
 
@@ -328,10 +333,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
@@ -339,8 +340,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_Siguiente1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton_Siguiente)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton_Siguiente))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,10 +523,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel19.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel19.setBackground(new java.awt.Color(0, 204, 51));
         jLabel19.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Declaracion jurada de patologias preexistentes:");
+        jLabel19.setText(" Declaracion jurada de patologias preexistentes:");
         jLabel19.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel19.setOpaque(true);
 
@@ -687,7 +693,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         jSolapasTurno.addTab("Patologias Previas", jPanel2);
 
-        jLabel21.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel21.setBackground(new java.awt.Color(0, 204, 51));
         jLabel21.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Declaracion sintomas COVID-19:");
@@ -758,7 +764,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel20.setText("¿Cuando?");
 
-        jLabel22.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel22.setBackground(new java.awt.Color(0, 153, 204));
         jLabel22.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Asignacion turno vacunacion COVID-19:");
@@ -803,8 +809,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                                                 .addComponent(jLabel13)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jDC_covid, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(4, 45, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(24, 24, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1220,10 +1228,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         GeoPosition posicion_inicioMapa = new GeoPosition(-33.300653, -66.3209224);
         mapKit.setCenterPosition(posicion_inicioMapa);
-        mapKit.setZoom(100);
+        mapKit.setZoom(50);
 
         JFrame frame = new JFrame("Mapa");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      
         frame.setSize(tamanio);
         frame.add(panel_busqueda, BorderLayout.NORTH);
         frame.setLocation(localizacion);
@@ -1231,8 +1239,41 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         // Crea un WaypointPainter para gestionar las marcas
         WaypointPainter<Waypoint> punto_referencia = new WaypointPainter<Waypoint>();
         mapKit.getMainMap().setOverlayPainter(punto_referencia);
+        
+         CustomWaypoint waypoint;
+         ArrayList<CustomWaypoint> lista_waypoints = new ArrayList<>();
 
-        // Agregar un escuchador de eventos de clic en el mapa
+    for (Vacunatorio centro : vD.listarVacunatorio()) {
+        waypoint = new CustomWaypoint(centro.getUbicacion().getLatitud(), centro.getUbicacion().getLongitud(), centro.getNombre());
+        lista_waypoints.add(waypoint);
+    }
+
+WaypointPainter<CustomWaypoint> waypointPainter = new WaypointPainter<CustomWaypoint>() {
+    public void paintWaypoint(Graphics2D g, JXMapViewer map, CustomWaypoint wp) {
+        // Obtén el nivel de zoom actual
+        int zoom = map.getZoom();
+
+        // Si el zoom es menor de 50, muestra el marcador con el nombre del vacunatorio
+            int x = (int) map.getTileFactory().geoToPixel(wp.getPosition(), zoom).getX();
+            int y = (int) map.getTileFactory().geoToPixel(wp.getPosition(), zoom).getY();
+
+            // Dibujar un círculo rojo en la posición del waypoint
+            g.setColor(Color.RED);
+            g.fillOval(x - 5, y - 5, 10, 10);
+
+            // Dibujar el nombre del vacunatorio
+            g.setColor(Color.BLACK);
+            g.drawString(wp.getLabel(), x - 5, y - 20);
+        
+    }
+};
+
+mapKit.getMainMap().setOverlayPainter(waypointPainter);
+
+waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
+        
+
+         // Agregar un escuchador de eventos de clic en el mapa
         mapKit.getMainMap().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
