@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 public class Seleccion_Centros extends javax.swing.JInternalFrame {
 
@@ -129,12 +128,14 @@ public class Seleccion_Centros extends javax.swing.JInternalFrame {
                 listModel.addElement(centros.getNombre() + " - " + centros.getIdVacunatorio());
             }
         }
-
+        
         JFrame frame = new JFrame("Ingreso a centro");
         jList1.addMouseListener(new MouseAdapter() {
+            boolean entrada = false;
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
+                if (e.getClickCount() == 2 && !entrada) {
+                entrada = true;
                     int indice = jList1.getSelectedIndex();
                     if (indice != -1) {
                         String selectedValue = jList1.getModel().getElementAt(indice);

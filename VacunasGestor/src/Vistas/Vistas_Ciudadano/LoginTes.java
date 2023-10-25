@@ -43,9 +43,7 @@ public class LoginTes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ciudadano");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 628));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 628));
 
@@ -105,18 +103,21 @@ public class LoginTes extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jCheckBox1))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(INGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(img_Pantalla_Ciudadano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jCheckBox1))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(INGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(img_Pantalla_Ciudadano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +206,7 @@ public void inicioSesion() {
                             logIN = lD.cuentasA_Recordar();    
                             }
 
-                            Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD, usuario);
+                            Inscripcion admin = new Inscripcion(gD, vD, tD, lD, cD, usuario,img_Pantalla_Ciudadano.getLocationOnScreen(),img_Pantalla_Ciudadano.getSize());
                             jDesktopPane1.add(admin);
                             admin.setVisible(true);
                             jDesktopPane1.moveToFront(admin);
@@ -219,7 +220,7 @@ public void inicioSesion() {
                     lD.actualizarRecordar(1, usuario);
                     logIN = lD.cuentasA_Recordar();    
                     }
-                    Cuenta_Ciudadano dC = new Cuenta_Ciudadano(cD, tD, usuario);
+                    Cuenta_Ciudadano dC = new Cuenta_Ciudadano(cD, tD, usuario,img_Pantalla_Ciudadano.getLocationOnScreen(),img_Pantalla_Ciudadano.getSize());
                     jDesktopPane1.add(dC);
                     dC.setVisible(true);
                     jDesktopPane1.moveToFront(dC);
