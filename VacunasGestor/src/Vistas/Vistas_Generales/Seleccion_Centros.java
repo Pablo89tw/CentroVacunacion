@@ -34,6 +34,8 @@ public class Seleccion_Centros extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
+        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 255));
+
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);

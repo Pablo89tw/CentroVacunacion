@@ -39,13 +39,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(605, 328));
         setResizable(false);
         setSize(new java.awt.Dimension(605, 328));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imagen_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/FONDO_PROGRAMA-01.png"))); // NOI18N
         imagen_Fondo.setMaximumSize(new java.awt.Dimension(600, 300));
         imagen_Fondo.setMinimumSize(new java.awt.Dimension(600, 300));
         imagen_Fondo.setPreferredSize(new java.awt.Dimension(600, 300));
-        getContentPane().add(imagen_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         boton_MINESTERIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON MINISTERIO 01-02.png"))); // NOI18N
         boton_MINESTERIO.setToolTipText("");
@@ -54,7 +52,6 @@ public class Ventana_Principal extends javax.swing.JFrame {
         boton_MINESTERIO.setMargin(new java.awt.Insets(0, 0, 0, 0));
         boton_MINESTERIO.setPreferredSize(new java.awt.Dimension(480, 75));
         boton_MINESTERIO.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON MINISTERIO 02-02.png"))); // NOI18N
-        getContentPane().add(boton_MINESTERIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 77, -1, -1));
 
         boton_CENTRO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CENTRO 01-02.png"))); // NOI18N
         boton_CENTRO.setToolTipText("");
@@ -64,7 +61,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
         boton_CENTRO.setMargin(new java.awt.Insets(0, 0, 0, 0));
         boton_CENTRO.setPreferredSize(new java.awt.Dimension(480, 75));
         boton_CENTRO.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CENTRO 02-02.png"))); // NOI18N
-        getContentPane().add(boton_CENTRO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 152, -1, -1));
+        boton_CENTRO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_CENTROActionPerformed(evt);
+            }
+        });
 
         boton_CIUDADANO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CIUDADANO 01-02.png"))); // NOI18N
         boton_CIUDADANO.setToolTipText("");
@@ -78,7 +79,32 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 boton_CIUDADANOActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_CIUDADANO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 226, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagen_Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boton_MINESTERIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_CENTRO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_CIUDADANO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(boton_MINESTERIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imagen_Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(boton_CENTRO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(boton_CIUDADANO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -88,6 +114,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
         Vistas.Vistas_Ciudadano.LoginTes login = new Vistas.Vistas_Ciudadano.LoginTes();
         login.setVisible(true);
     }//GEN-LAST:event_boton_CIUDADANOActionPerformed
+
+    private void boton_CENTROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_CENTROActionPerformed
+       Vistas.Vistas_Centros.Centro_Principal centro = new Vistas.Vistas_Centros.Centro_Principal();
+        centro.setVisible(true);
+    }//GEN-LAST:event_boton_CENTROActionPerformed
 
     /**
      * @param args the command line arguments
