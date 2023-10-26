@@ -20,6 +20,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -27,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -57,9 +62,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private Vacunatorio masCercano;
     private Point localizacion;
     private Dimension tamanio;
-    
 
-    public Inscripcion(geoData gD, VacunatorioData vD, TurnoData tD, LoginData lD, CiudadanoData cD, int usuario,Point localizacion, Dimension tamanio) {
+    public Inscripcion(geoData gD, VacunatorioData vD, TurnoData tD, LoginData lD, CiudadanoData cD, int usuario, Point localizacion, Dimension tamanio) {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.c1 = cD.buscarCiudadanos(usuario, "DNI").get(0);
         this.gD = gD;
@@ -940,7 +944,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_Siguiente2ActionPerformed
 
     private void jDC_fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDC_fechaNacimientoPropertyChange
-          if (jDC_fechaNacimiento.getDate()!=null){
+        if (jDC_fechaNacimiento.getDate() != null) {
             jCB_ambitoTrabajo.setEnabled(true);
             armarjDC_ATr(jDC_fechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
@@ -988,7 +992,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadio_altaMedicaSiActionPerformed
 
     private void jDC_covidPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDC_covidPropertyChange
-        if (jDC_covid.getDate() != null){
+        if (jDC_covid.getDate() != null) {
             proximo_Turnoslibres(jDC_covid.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
     }//GEN-LAST:event_jDC_covidPropertyChange
@@ -1132,11 +1136,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jSolapasTurno.setEnabledAt(2, false);
         jButton_Siguiente.setEnabled(false);
         jCB_ambitoTrabajo.setEnabled(false);
-        
+
         modelo.setColumnCount(0);
         modelo.addColumn("Ciudad");
         jDC_dosis.setEnabled(false);
-        
+
         ButtonGroup buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);
@@ -1170,11 +1174,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         ButtonGroup buttonGroup11 = new ButtonGroup();
         buttonGroup11.add(jCheckBox1);
         buttonGroup11.add(jCheckBox2);
-        
+
         ButtonGroup buttonGroup12 = new ButtonGroup();
         buttonGroup12.add(jRadio_altaMedicaNo);
         buttonGroup12.add(jRadio_altaMedicaSi);
-        
+
         jCheckBox2.setSelected(true);
         jRadioButton2.setSelected(true);
         jRadioButton4.setSelected(true);
@@ -1199,31 +1203,31 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jButton_siguiente2.setEnabled(false);
         jRadio_altaMedicaNo.setEnabled(false);
         jRadio_altaMedicaSi.setEnabled(false);
-        
+
         jDC_fechaNacimiento.setMaxSelectableDate(Date.from((LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())));
         jDC_fechaNacimiento.setMinSelectableDate(Date.from((LocalDate.now().minusYears(100).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-       
+
     }
 
     public void armarCoodenadas() {
         JXMapKit mapKit = new JXMapKit();
-        
-        JPanel panel_busqueda = new JPanel(); 
+
+        JPanel panel_busqueda = new JPanel();
         panel_busqueda.setLayout(new FlowLayout());
         JTextField texto_busqueda = new JTextField(20);
         JButton buscar = new JButton("Buscar");
-       
+
         buscar.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-        Coordenadas cord = gD.buscarCiudad(texto_busqueda.getText()).get(0);
-        GeoPosition posicion_inicioMapa = new GeoPosition(cord.getLatitud(), cord.getLongitud());
-        mapKit.setCenterPosition(posicion_inicioMapa);
-        mapKit.setZoom(50);
-        }
+            public void actionPerformed(ActionEvent e) {
+                Coordenadas cord = gD.buscarCiudad(texto_busqueda.getText()).get(0);
+                GeoPosition posicion_inicioMapa = new GeoPosition(cord.getLatitud(), cord.getLongitud());
+                mapKit.setCenterPosition(posicion_inicioMapa);
+                mapKit.setZoom(50);
+            }
         });
         panel_busqueda.add(texto_busqueda);
         panel_busqueda.add(buscar);
-               
+
         mapKit.setDefaultProvider(JXMapKit.DefaultProviders.OpenStreetMaps);
 
         GeoPosition posicion_inicioMapa = new GeoPosition(-33.300653, -66.3209224);
@@ -1231,64 +1235,42 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         mapKit.setZoom(50);
 
         JFrame frame = new JFrame("Mapa");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(tamanio);
         frame.add(panel_busqueda, BorderLayout.NORTH);
         frame.setLocation(localizacion);
-        
-        // Crea un WaypointPainter para gestionar las marcas
-        WaypointPainter<Waypoint> punto_referencia = new WaypointPainter<Waypoint>();
-        mapKit.getMainMap().setOverlayPainter(punto_referencia);
-        
-         CustomWaypoint waypoint;
-         ArrayList<CustomWaypoint> lista_waypoints = new ArrayList<>();
 
-    for (Vacunatorio centro : vD.listarVacunatorio()) {
-        waypoint = new CustomWaypoint(centro.getUbicacion().getLatitud(), centro.getUbicacion().getLongitud(), centro.getNombre());
-        lista_waypoints.add(waypoint);
-    }
+        ArrayList<CustomWaypoint> lista_waypoints = new ArrayList<>();
 
-WaypointPainter<CustomWaypoint> waypointPainter = new WaypointPainter<CustomWaypoint>() {
-    public void paintWaypoint(Graphics2D g, JXMapViewer map, CustomWaypoint wp) {
-        // Obtén el nivel de zoom actual
-        int zoom = map.getZoom();
+        for (Vacunatorio centro : vD.listarVacunatorio()) {
+            CustomWaypoint waypoint = new CustomWaypoint(centro.getUbicacion().getLatitud(), centro.getUbicacion().getLongitud(), centro.getNombre());
+            lista_waypoints.add(waypoint);
+        }
 
-        // Si el zoom es menor de 50, muestra el marcador con el nombre del vacunatorio
-            int x = (int) map.getTileFactory().geoToPixel(wp.getPosition(), zoom).getX();
-            int y = (int) map.getTileFactory().geoToPixel(wp.getPosition(), zoom).getY();
+        WaypointPainter<CustomWaypoint> waypointPainter = new WaypointPainter<CustomWaypoint>() {
+            public void paintWaypoint(Graphics2D g, JXMapViewer mapKit, CustomWaypoint wp) {
+                wp.paintWaypoint(g, mapKit, wp);
+            }
+        };
+        waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
 
-            // Dibujar un círculo rojo en la posición del waypoint
-            g.setColor(Color.RED);
-            g.fillOval(x - 5, y - 5, 10, 10);
+        mapKit.getMainMap().setOverlayPainter(waypointPainter);
 
-            // Dibujar el nombre del vacunatorio
-            g.setColor(Color.BLACK);
-            g.drawString(wp.getLabel(), x - 5, y - 20);
-        
-    }
-};
-
-mapKit.getMainMap().setOverlayPainter(waypointPainter);
-
-waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
-        
-
-         // Agregar un escuchador de eventos de clic en el mapa
         mapKit.getMainMap().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Point point = e.getPoint();
                 GeoPosition coordenadas1 = mapKit.getMainMap().convertPointToGeoPosition(point);
-                Waypoint waypoint = new DefaultWaypoint(coordenadas1);
-                punto_referencia.setWaypoints(Collections.singleton(waypoint));
-
-                mapKit.getMainMap().setOverlayPainter(punto_referencia);
+                CustomWaypoint waypoint = new CustomWaypoint(coordenadas1.getLatitude(), coordenadas1.getLongitude(), "Nuevo Waypoint");
+                lista_waypoints.add(waypoint); // Agrega el nuevo waypoint a la lista
+                waypointPainter.setWaypoints(new HashSet<>(lista_waypoints)); // Actualiza el WaypointPainter
+                mapKit.getMainMap().setOverlayPainter(waypointPainter); // Actualiza el mapa
 
                 JDialog dialog = new JDialog();
                 dialog.setTitle("Confirmar ubicación");
                 dialog.setSize(300, 100);
                 dialog.setLocation(jSolapasTurno.getLocationOnScreen());
-                                
+
                 JPanel panel = new JPanel();
 
                 panel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -1299,7 +1281,6 @@ waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
                 buttonPanel.add(aceptar);
                 buttonPanel.add(rechazar);
                 panel.add(buttonPanel);
-                           
 
                 aceptar.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -1310,10 +1291,10 @@ waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
                         frame.setVisible(false);
                     }
                 });
-                    
+
                 rechazar.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        punto_referencia.setWaypoints(Collections.emptySet());
+                        waypointPainter.setWaypoints(Collections.emptySet());
                         dialog.dispose();
                     }
                 });
@@ -1326,7 +1307,6 @@ waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
         frame.getContentPane().add(mapKit);
         frame.setVisible(true);
         c1.setCordenadas(dtaCorda);
-
     }
 
     private void armarCiudadano() {
@@ -1353,18 +1333,18 @@ waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
 
     private void proximo_Turnoslibres(LocalDate fecha) {
         LocalDate fecha1 = null;
-        if(jRadio_no.isSelected()){
+        if (jRadio_no.isSelected()) {
             fecha1 = fecha;
-        } else if (jRadio_altaMedicaSi.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) >= 14){
+        } else if (jRadio_altaMedicaSi.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) >= 14) {
             fecha1 = LocalDate.now();
-        } else if (jRadio_altaMedicaSi.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) < 14){
+        } else if (jRadio_altaMedicaSi.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) < 14) {
             fecha1 = fecha.plusDays(14);
-        } else if (jRadio_altaMedicaNo.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) >= 28){
+        } else if (jRadio_altaMedicaNo.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) >= 28) {
             fecha1 = LocalDate.now();
-        } else if (jRadio_altaMedicaNo.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) < 28){
+        } else if (jRadio_altaMedicaNo.isSelected() && ChronoUnit.DAYS.between(fecha, LocalDate.now()) < 28) {
             fecha1 = fecha.plusDays(28);
         }
-        if (fecha1.isEqual(LocalDate.now())){
+        if (fecha1.isEqual(LocalDate.now())) {
             fecha1 = fecha1.plusDays(1);
         }
 
@@ -1379,7 +1359,7 @@ waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
             } while (turnos_libres <= 0);
             jDC_dosis.setDate(java.sql.Date.valueOf(fecha1.minusDays(1)));
             buscarHorariosLibres(jDC_dosis.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-         }
+        }
     }
 
     private void buscarHorariosLibres(LocalDate date) {
@@ -1418,40 +1398,40 @@ waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
         }
     }
 
-    private void controlFlujoInfo(){
-        if (jDC_fechaNacimiento.getDate() == null){
+    private void controlFlujoInfo() {
+        if (jDC_fechaNacimiento.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Formato de fecha nacimiento incorrecto");
         } else {
             try {
-            if (!jTexto_email.getText().contains("@") || !jTexto_email.getText().contains(".com")) {
-                JOptionPane.showMessageDialog(null, "Formato de E-mail incorrecto");
-            } else {
-                Integer.parseInt(jTexto_celular.getText());
-                if (!jTexto_email.getText().isEmpty() && !jTexto_celular.getText().isEmpty() && jCB_ambitoTrabajo.getSelectedItem() != null && masCercano != null) {
-                    JOptionPane.showMessageDialog(null, "Actualizacion de datos correcta");
-                    jButton_Siguiente.setEnabled(true);
+                if (!jTexto_email.getText().contains("@") || !jTexto_email.getText().contains(".com")) {
+                    JOptionPane.showMessageDialog(null, "Formato de E-mail incorrecto");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Complete todos los datos");
+                    Integer.parseInt(jTexto_celular.getText());
+                    if (!jTexto_email.getText().isEmpty() && !jTexto_celular.getText().isEmpty() && jCB_ambitoTrabajo.getSelectedItem() != null && masCercano != null) {
+                        JOptionPane.showMessageDialog(null, "Actualizacion de datos correcta");
+                        jButton_Siguiente.setEnabled(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Complete todos los datos");
+                    }
                 }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Formato de telefono incorrecto");
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Formato de telefono incorrecto");
         }
     }
-}
-    
-    private void armarjDC_ATr(LocalDate fechaNacmiento){
+
+    private void armarjDC_ATr(LocalDate fechaNacmiento) {
         DefaultComboBoxModel ambitos;
-       String[] trabajos;
-        if (ChronoUnit.YEARS.between(fechaNacmiento, LocalDate.now()) > 17 ){
-            trabajos = new String[] {"Sanidad y Medicina", "Educación", "Estudiante", "Servicios Financieros", "Gobierno y Administración Pública", "Arte y Entretenimiento","Agricultura y Agroindustria", "Construcción y Arquitectura", "Monotributista", "Trabajo Informal", "Privado", "Estudiante Java", "Desempleado","Otro"}; ;
+        String[] trabajos;
+        if (ChronoUnit.YEARS.between(fechaNacmiento, LocalDate.now()) > 17) {
+            trabajos = new String[]{"Sanidad y Medicina", "Educación", "Estudiante", "Servicios Financieros", "Gobierno y Administración Pública", "Arte y Entretenimiento", "Agricultura y Agroindustria", "Construcción y Arquitectura", "Monotributista", "Trabajo Informal", "Privado", "Estudiante Java", "Desempleado", "Otro"};;
             jLabel17.setText("Ámbito de Trabajo");
             ambitos = new DefaultComboBoxModel(trabajos);
-          } else {
-        jLabel17.setText("Ciclo educacion");
-         trabajos = new String[] {"Estudiante Inicial","Estudiante Primaria","Educacion Secundaria","Otro","Abandono"};
-         ambitos = new DefaultComboBoxModel(trabajos);
-        }        
+        } else {
+            jLabel17.setText("Ciclo educacion");
+            trabajos = new String[]{"Estudiante Inicial", "Estudiante Primaria", "Educacion Secundaria", "Otro", "Abandono"};
+            ambitos = new DefaultComboBoxModel(trabajos);
+        }
         jCB_ambitoTrabajo.setModel(ambitos);
     }
 }
