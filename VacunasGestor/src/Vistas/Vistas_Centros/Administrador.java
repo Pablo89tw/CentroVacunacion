@@ -1005,6 +1005,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         }
      
     private void tomarNuevoTurno(LocalDate fecha1){
+        turno_nuevo = new Turno();
         turno_nuevo.setFecha(fecha1.atStartOfDay());
         turno_nuevo.setVacunatorio(turno1.getVacunatorio());
       

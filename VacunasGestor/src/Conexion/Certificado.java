@@ -56,12 +56,6 @@ public class Certificado {
             PDPage page2 = document.getPage(0);
             PDPageContentStream contentStream2 = null;
 
-            PDPage page3 = document.getPage(1);
-            PDPageContentStream contentStream3 = new PDPageContentStream(document, page3, PDPageContentStream.AppendMode.APPEND, true);
-
-            PDPage page4 = document.getPage(1);
-            PDPageContentStream contentStream4 = null;
-
             contentStream1.setFont(PDType1Font.HELVETICA_BOLD, 12);
             contentStream1.beginText();
             contentStream1.newLineAtOffset(294, 585);
@@ -75,6 +69,7 @@ public class Certificado {
 
             contentStream1.beginText();
             contentStream1.newLineAtOffset(294, 510);
+            
             if (c1.getFechaNacimiento() != null) {
                 contentStream1.showText(c1.getFechaNacimiento().toString());
             } else {
@@ -95,12 +90,20 @@ public class Certificado {
 
                 generateText(contentStream2, 199, 293, t1.getVial().getMarca());
                 generateText(contentStream2, 199, 250, Integer.toString(t1.getVial().getNumeroSerie()));
-                generateText(contentStream2, 199, 203, t1.getVacunatorio().getNombre() + " " + t1.getVacunatorio().getDireccion());
+                generateText(contentStream2, 199, 203, t1.getVacunatorio().getNombre());
                 generateText(contentStream2, 392, 294, "Primera");
                 generateText(contentStream2, 392, 250, t1.getVial().getFechaColocacion().toLocalDate().toString());
 
                 contentStream2.close();
             }
+            
+            if (document.getNumberOfPages()>1){
+            PDPage page3 = document.getPage(1);
+            PDPageContentStream contentStream3 = new PDPageContentStream(document, page3, PDPageContentStream.AppendMode.APPEND, true);
+
+            PDPage page4 = document.getPage(1);
+            PDPageContentStream contentStream4 = null;
+            
 
             if (t2 != null) {
                 contentStream3.setFont(PDType1Font.HELVETICA_BOLD, 12);
@@ -110,7 +113,7 @@ public class Certificado {
                 contentStream3.endText();
 
                 generateText(contentStream3, 199, 530, Integer.toString(t2.getVial().getNumeroSerie()));
-                generateText(contentStream3, 199, 483, t2.getVacunatorio().getNombre() + " " + t2.getVacunatorio().getDireccion());
+                generateText(contentStream3, 199, 483, t2.getVacunatorio().getNombre());
                 generateText(contentStream3, 392, 575, "Segunda");
                 generateText(contentStream3, 392, 530, t2.getVial().getFechaColocacion().toLocalDate().toString());
 
@@ -122,13 +125,13 @@ public class Certificado {
 
                 generateText(contentStream4, 199, 293, t3.getVial().getMarca());
                 generateText(contentStream4, 199, 250, Integer.toString(t3.getVial().getNumeroSerie()));
-                generateText(contentStream4, 199, 203, t3.getVacunatorio().getNombre() + " " + t3.getVacunatorio().getDireccion());
+                generateText(contentStream4, 199, 203, t3.getVacunatorio().getNombre());
                 generateText(contentStream4, 392, 294, "Tercera");
                 generateText(contentStream4, 392, 250, t3.getVial().getFechaColocacion().toLocalDate().toString());
 
                 contentStream4.close();
             }
-
+            }
             String nombreArchivo = c1.getApellido() + "_" + c1.getNombre().charAt(0) + "_" + "certificado.pdf";
 
             JFileChooser fileChooser = new JFileChooser();
