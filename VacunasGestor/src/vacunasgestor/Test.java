@@ -19,6 +19,9 @@ public class Test extends java.awt.Frame {
         Seleccion_Centros sC = new Seleccion_Centros();
         jDesktopPane1.add(sC);
         sC.setVisible(true);
+        
+      
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

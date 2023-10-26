@@ -99,5 +99,17 @@ public class ArmadoDatosBD {
         }
     }
     
+    public void corregirAntigenos(){
+        String sql = "UPDATE viales SET Antigeno = ? WHERE Antigeno = ?";
+        
+        PreparedStatement ps = null;
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setString(2, "Adenovirus rAd26 con gliproteina S del virus SARS-CoV-2");
+            ps.setString(1,"Adenovirus rAd26::S de SARS-CoV-2");
+            int resultado = ps.executeUpdate();
+        }catch (SQLException e){}
+    }
     
 }

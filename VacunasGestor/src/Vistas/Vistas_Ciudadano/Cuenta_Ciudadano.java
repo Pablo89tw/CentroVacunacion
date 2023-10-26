@@ -52,11 +52,14 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
            jTabbedPane1.setEnabledAt(3,false);
         }
         if (c1.getDosisAplicadas()==1) {
-            jTabbedPane1.setEnabledAt(2,false);
+           jTabbedPane1.setEnabledAt(2,false);
            jTabbedPane1.setEnabledAt(3,false);
+           jTabbedPane1.setEnabledAt(1,true);
         }
         if (c1.getDosisAplicadas()==2)  {
           jTabbedPane1.setEnabledAt(3,false);
+          jTabbedPane1.setEnabledAt(1,true);
+          jTabbedPane1.setEnabledAt(2,true);
         }
     }
 

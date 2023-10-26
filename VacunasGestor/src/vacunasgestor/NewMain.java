@@ -24,8 +24,12 @@ import java.time.LocalDate;
 public class NewMain {
 
      public static void main(String[] args) throws IOException {
-
-               
+            ArmadoDatosBD aD = new ArmadoDatosBD();
+           for (int i = 0; i < 100; i++) {
+              aD.corregirAntigenos();
+             i++;
+         }
+             
     }
 }
      
