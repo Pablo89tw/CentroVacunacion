@@ -103,6 +103,9 @@
           <Image iconType="3" name="/Vistas/Imagenes/BOTON MINISTERIO 02-02.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_MINESTERIOActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boton_CENTRO">
       <Properties>

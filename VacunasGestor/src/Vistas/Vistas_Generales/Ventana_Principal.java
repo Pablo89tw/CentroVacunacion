@@ -52,6 +52,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
         boton_MINESTERIO.setMargin(new java.awt.Insets(0, 0, 0, 0));
         boton_MINESTERIO.setPreferredSize(new java.awt.Dimension(480, 75));
         boton_MINESTERIO.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON MINISTERIO 02-02.png"))); // NOI18N
+        boton_MINESTERIO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_MINESTERIOActionPerformed(evt);
+            }
+        });
 
         boton_CENTRO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/BOTON CENTRO 01-02.png"))); // NOI18N
         boton_CENTRO.setToolTipText("");
@@ -119,6 +124,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
        Vistas.Vistas_Centros.Centro_Principal centro = new Vistas.Vistas_Centros.Centro_Principal();
         centro.setVisible(true);
     }//GEN-LAST:event_boton_CENTROActionPerformed
+
+    private void boton_MINESTERIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_MINESTERIOActionPerformed
+        Vistas.Vistas_ADM.Ministerio_Salud ministerio = new Vistas.Vistas_ADM.Ministerio_Salud();
+        ministerio.setVisible(true);
+    }//GEN-LAST:event_boton_MINESTERIOActionPerformed
 
     /**
      * @param args the command line arguments

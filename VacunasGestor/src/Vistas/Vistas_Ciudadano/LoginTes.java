@@ -38,6 +38,7 @@ public class LoginTes extends javax.swing.JFrame {
         jPas_logIN = new javax.swing.JPasswordField();
         INGRESAR = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        showPass = new javax.swing.JToggleButton();
         img_Pantalla_Ciudadano = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -67,14 +68,20 @@ public class LoginTes extends javax.swing.JFrame {
                 jText_usuLINFocusLost(evt);
             }
         });
+        jDesktopPane1.add(jText_usuLIN);
+        jText_usuLIN.setBounds(140, 288, 272, 22);
 
         jPas_logIN.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPas_logIN.setForeground(new java.awt.Color(85, 106, 124));
         jPas_logIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPas_logIN.setBorder(null);
+        jDesktopPane1.add(jPas_logIN);
+        jPas_logIN.setBounds(140, 362, 272, 22);
 
         INGRESAR.setFont(new java.awt.Font("ArianLT-Bold", 2, 14)); // NOI18N
         INGRESAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INGRESAR_01-05.png"))); // NOI18N
+        INGRESAR.setBorder(null);
+        INGRESAR.setBorderPainted(false);
         INGRESAR.setPreferredSize(new java.awt.Dimension(98, 34));
         INGRESAR.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INGRESAR_02-05.png"))); // NOI18N
         INGRESAR.addActionListener(new java.awt.event.ActionListener() {
@@ -82,59 +89,42 @@ public class LoginTes extends javax.swing.JFrame {
                 INGRESARActionPerformed(evt);
             }
         });
+        jDesktopPane1.add(INGRESAR);
+        INGRESAR.setBounds(330, 425, 98, 34);
 
         jCheckBox1.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFocusPainted(false);
         jCheckBox1.setFocusable(false);
         jCheckBox1.setOpaque(false);
+        jDesktopPane1.add(jCheckBox1);
+        jCheckBox1.setBounds(140, 433, 21, 21);
+
+        showPass.setBackground(new java.awt.Color(255, 255, 255));
+        showPass.setForeground(new java.awt.Color(255, 255, 255));
+        showPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/OJO 01-05.png"))); // NOI18N
+        showPass.setBorder(null);
+        showPass.setBorderPainted(false);
+        showPass.setContentAreaFilled(false);
+        showPass.setDisabledIcon(null);
+        showPass.setFocusPainted(false);
+        showPass.setFocusable(false);
+        showPass.setPreferredSize(new java.awt.Dimension(34, 34));
+        showPass.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/OJO 02-05.png"))); // NOI18N
+        showPass.setRolloverEnabled(false);
+        showPass.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/OJO 02-05.png"))); // NOI18N
+        showPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPassActionPerformed(evt);
+            }
+        });
+        jDesktopPane1.add(showPass);
+        showPass.setBounds(430, 357, 40, 34);
 
         img_Pantalla_Ciudadano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/FONDO_LOGIN-04.png"))); // NOI18N
         img_Pantalla_Ciudadano.setPreferredSize(new java.awt.Dimension(550, 600));
-
-        jDesktopPane1.setLayer(jText_usuLIN, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jPas_logIN, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(INGRESAR, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(img_Pantalla_Ciudadano, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jCheckBox1))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(INGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(img_Pantalla_Ciudadano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(362, 362, 362)
-                .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(433, 433, 433)
-                .addComponent(jCheckBox1))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(425, 425, 425)
-                .addComponent(INGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(img_Pantalla_Ciudadano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        jDesktopPane1.add(img_Pantalla_Ciudadano);
+        img_Pantalla_Ciudadano.setBounds(0, 0, 551, 600);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +162,17 @@ public class LoginTes extends javax.swing.JFrame {
        inicioSesion();
     }//GEN-LAST:event_INGRESARActionPerformed
 
+    private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
+        
+        if (showPass.isSelected()) {
+            // Mostrar caracteres de la contraseña
+            jPas_logIN.setEchoChar((char) 0); // Esto quita el carácter oculto
+        } else {
+            // Ocultar caracteres de la contraseña
+            jPas_logIN.setEchoChar('•');
+        }
+    }//GEN-LAST:event_showPassActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -188,6 +189,7 @@ public class LoginTes extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JPasswordField jPas_logIN;
     private javax.swing.JTextField jText_usuLIN;
+    private javax.swing.JToggleButton showPass;
     // End of variables declaration//GEN-END:variables
 
 public void inicioSesion() {
