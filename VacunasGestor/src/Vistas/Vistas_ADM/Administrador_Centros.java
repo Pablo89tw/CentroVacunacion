@@ -673,7 +673,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -842,10 +842,10 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             jComboBox6.setEnabled(true);
             jComboBox10.setEnabled(true);
             jComboBox5.setEnabled(true);
-             jSpinner2.setEnabled(true);
-             jComboBox11.setEnabled(false);
-          jComboBox12.setEnabled(false);
-          jButton6.setEnabled(false);
+            jSpinner2.setEnabled(true);
+            jComboBox11.setEnabled(false);
+            jComboBox12.setEnabled(false);
+            jButton6.setEnabled(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed

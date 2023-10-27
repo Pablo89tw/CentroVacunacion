@@ -13,25 +13,24 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-
 
 public class Administrador extends javax.swing.JInternalFrame {
 
     private CiudadanoData cD;
     private TurnoData tD;
     private Ciudadano c1;
-    private Turno turno1; Turno turno_nuevo;
+    private Turno turno1;
+    private Turno turno_nuevo;
     private ArrayList<Turno> listaTurnos;
     private Vial vial2;
     private Vacunatorio vac;
-    DefaultTableModel modelo_tabla2 = new DefaultTableModel();
-    VialData sD = new VialData();
-    
-    
+    private DefaultTableModel modelo_tabla2 = new DefaultTableModel();
+    private VialData sD = new VialData();
+
     public Administrador(CiudadanoData cD, TurnoData tD, Vacunatorio vac) {
         this.cD = cD;
         this.tD = tD;
@@ -40,7 +39,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         armarComponentesVisuales();
     }
 
-     @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -665,9 +664,23 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jText_DNIActionPerformed
 
     private void jText_DNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jText_DNIFocusLost
-        if (!jText_DNI.getText().isEmpty()) {
-            buscarTurnosPersona();
+        try {
+            if (!jText_DNI.getText().isEmpty() && !jText_DNI.getText().trim().isEmpty()) {
+                if (!cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()), "DNI").isEmpty()) {
+                    c1 = cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()), "DNI").get(0);
+                    buscarTurnosPersona();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuario Inexistente");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
+                    jText_DNI.setText("");
+                }
+            } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
+            jText_DNI.setText("");
         }
+
     }//GEN-LAST:event_jText_DNIFocusLost
 
     private void jButton_ModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarDatosActionPerformed
@@ -681,8 +694,8 @@ public class Administrador extends javax.swing.JInternalFrame {
         } else if (!jCheckBox_apellido.isSelected()) {
             jText_Apellido.setEditable(false);
             jText_Apellido.setText(c1.getApellido());
-            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
-            jButton4.setEnabled(false);
+            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
+                jButton4.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jCheckBox_apellidoActionPerformed
@@ -694,8 +707,8 @@ public class Administrador extends javax.swing.JInternalFrame {
         } else if (!jCheckBox_dosis.isSelected()) {
             jText_Dosis.setEditable(false);
             jText_Dosis.setText(Integer.toString(c1.getDosisAplicadas()));
-             if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
-            jButton4.setEnabled(false);
+            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
+                jButton4.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jCheckBox_dosisActionPerformed
@@ -707,8 +720,8 @@ public class Administrador extends javax.swing.JInternalFrame {
         } else if (!jCheckBox_nombre.isSelected()) {
             jText_Nombre.setEditable(false);
             jText_Nombre.setText(c1.getNombre());
-             if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
-            jButton4.setEnabled(false);
+            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
+                jButton4.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jCheckBox_nombreActionPerformed
@@ -720,8 +733,8 @@ public class Administrador extends javax.swing.JInternalFrame {
         } else if (!jCheckBox_ocupacion.isSelected()) {
             jText_Ocupacion.setEditable(false);
             jText_Ocupacion.setText(c1.getAmbitoTrabajo());
-             if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
-            jButton4.setEnabled(false);
+            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
+                jButton4.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jCheckBox_ocupacionActionPerformed
@@ -732,9 +745,9 @@ public class Administrador extends javax.swing.JInternalFrame {
             jButton4.setEnabled(true);
         } else if (!jCheckBox_celular.isSelected()) {
             jText_Celular.setEditable(false);
-            jText_Celular.setText(c1.getAmbitoTrabajo());
-             if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
-            jButton4.setEnabled(false);
+            jText_Celular.setText(Integer.toString(c1.getCelular()));
+            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
+                jButton4.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jCheckBox_celularActionPerformed
@@ -745,9 +758,9 @@ public class Administrador extends javax.swing.JInternalFrame {
             jButton4.setEnabled(true);
         } else if (!jCheckBox_mail.isSelected()) {
             jText_email.setEditable(false);
-            jText_email.setText(c1.getAmbitoTrabajo());
-             if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()){
-            jButton4.setEnabled(false);
+            jText_email.setText(c1.getEmail());
+            if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
+                jButton4.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jCheckBox_mailActionPerformed
@@ -762,11 +775,11 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jCheckBox_patologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_patologiasActionPerformed
-         if (jCheckBox_patologias.isSelected()) {
-             Patologias_ADM pAD = new Patologias_ADM(c1.getDNI(),cD);
-             pAD.setVisible(true);
-             jPanel1.add(pAD);
-             pAD.moveToFront();     
+        if (jCheckBox_patologias.isSelected()) {
+            Patologias_ADM pAD = new Patologias_ADM(c1.getDNI(), cD);
+            pAD.setVisible(true);
+            jPanel1.add(pAD);
+            pAD.moveToFront();
         }
     }//GEN-LAST:event_jCheckBox_patologiasActionPerformed
 
@@ -775,17 +788,17 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jList_patologiasComponentShown
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            tomarNuevoTurno(jDC_proximoTur.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        tomarNuevoTurno(jDC_proximoTur.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinuarActionPerformed
-         if (turno1.isEstado().equalsIgnoreCase("Cancelado")){
+        if (turno1.isEstado().equalsIgnoreCase("Cancelado")) {
             JOptionPane.showMessageDialog(null, "Turno Cancelado");
-         } else if (turno1.isEstado().equalsIgnoreCase("Pendiente")){
+        } else if (turno1.isEstado().equalsIgnoreCase("Pendiente")) {
             this.vial2 = tD.buscar_VialParaAsignar(c1).get(0);
             completarDatosFinales(vial2);
             tD.actualizar_VialFecha_TurnoData(vial2, turno1, c1);
-         }
+        }
     }//GEN-LAST:event_ContinuarActionPerformed
 
     private void jButton_nuevoTur_canceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoTur_canceladoActionPerformed
@@ -801,12 +814,12 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jCheckBox_fechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_fechaNacActionPerformed
-         if (jCheckBox_patologias.isSelected()) {
-             jDC_fechaNac.setEnabled(true);
-            } else if (!jCheckBox_patologias.isSelected()){
-             jDC_fechaNac.setEnabled(false);
+        if (jCheckBox_patologias.isSelected()) {
+            jDC_fechaNac.setEnabled(true);
+        } else if (!jCheckBox_patologias.isSelected()) {
+            jDC_fechaNac.setEnabled(false);
             jDC_fechaNac.setDate(Date.valueOf(c1.getFechaNacimiento()));
-            }
+        }
     }//GEN-LAST:event_jCheckBox_fechaNacActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -905,34 +918,36 @@ public class Administrador extends javax.swing.JInternalFrame {
         jButton_ModificarDatos.setEnabled(false);
         jDC_fechaNac.setEnabled(false);
         jButton2.setEnabled(false);
-        
-          
-        String[] lista_viales = {"Centro","Total","Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
+
+        String[] lista_viales = {"Centro", "Total", "Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
         for (String lista_viale : lista_viales) {
-           modelo_tabla2.addColumn(lista_viale);
+            modelo_tabla2.addColumn(lista_viale);
         }
         jTable2.setModel(modelo_tabla2);
         calcularStocks();
+        
     }
 
     private void buscarTurnosPersona() {
+        if (c1.getDosisAplicadas() == 3){
+            jButton2.setEnabled(false);
+            jButton_nuevoTur_cancelado.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Calendario Completo");
+            }
         jButton_ModificarDatos.setEnabled(true);
-        
-        c1 = cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()),"DNI").get(0);
-        listaTurnos =tD.listar_Turnos(null,null,"DNI",null,Integer.parseInt(jText_DNI.getText()));
-        
+        listaTurnos = tD.listar_Turnos(null, null, "DNI", null, Integer.parseInt(jText_DNI.getText()));
+
         for (Turno listaTurno : listaTurnos) {
-            if (listaTurno.isEstado().equals("Pendiente")){
-               if (listaTurno.getVacunatorio().getIdVacunatorio() != vac.getIdVacunatorio()){
-                JOptionPane.showMessageDialog(null, "El centro de vacunacion no corresponde, su centro es " + listaTurno.getVacunatorio().getNombre());
-                   Continuar.setEnabled(false);
-                   jButton4.setEnabled(false);
-                   jButton_ModificarDatos.setEnabled(false);
-               }                
+            if (listaTurno.isEstado().equals("Pendiente")) {
+                if (listaTurno.getVacunatorio().getIdVacunatorio() != vac.getIdVacunatorio()) {
+                    JOptionPane.showMessageDialog(null, "El centro de vacunacion no corresponde, su centro es " + listaTurno.getVacunatorio().getNombre());
+                    Continuar.setEnabled(false);
+                    jButton4.setEnabled(false);
+                    jButton_ModificarDatos.setEnabled(false);
+                }
             }
         }
-        
-        
+
         //se muestra en pantalla los datos del ciudadano
         jText_Apellido.setText(c1.getApellido());
         jText_Nombre.setText(c1.getNombre());
@@ -941,28 +956,30 @@ public class Administrador extends javax.swing.JInternalFrame {
         jText_Celular.setText(Integer.toString(c1.getCelular()));
         jText_email.setText(c1.getEmail());
         jDC_fechaNac.setDate(Date.valueOf(c1.getFechaNacimiento()));
-        
-        
+
         DefaultListModel<String> modelo = new DefaultListModel<>();
-        for (String patologias : cD.consultaPatologias(c1.getDNI())) {
-            modelo.addElement(patologias);
-        }
+
         if (modelo.getSize() == 0) {
             modelo.addElement("No hay patologias declaradas");
+        } else {
+            for (String patologias : cD.consultaPatologias(c1.getDNI())) {
+                modelo.addElement(patologias);
+            }
         }
         jList_patologias.setModel(modelo);
-        
+
         turno1 = listaTurnos.get(0);
         for (Turno turno : listaTurnos) {
             if (turno.getFecha().isAfter(turno1.getFecha())) {
                 turno1 = turno;
-           }
+            }
         }
         jText_estadoTur.setText(turno1.isEstado());
         jText_centroTur.setText(turno1.getVacunatorio().getNombre());
         jText_fechaTur.setText(turno1.getFecha().toString());
+
     }
-    
+
     private void modificarDatosCiudadano() {
         jCheckBox_patologias.setVisible(true);
         jCheckBox_apellido.setVisible(true);
@@ -971,133 +988,156 @@ public class Administrador extends javax.swing.JInternalFrame {
         jCheckBox_ocupacion.setVisible(true);
         jCheckBox_celular.setVisible(true);
         jCheckBox_mail.setVisible(true);
-        }
-
-    private void actualizarDatos(){
-        cD.actualizarDatosCiudadano(c1, jText_Apellido.getText(), jCheckBox_apellido.isSelected(),
-                jText_Nombre.getText(), jCheckBox_nombre.isSelected(),
-                jText_Celular.getText(), jCheckBox_celular.isSelected(),
-                jText_Dosis.getText(), jCheckBox_dosis.isSelected(),
-                jText_Ocupacion.getText(), jCheckBox_ocupacion.isSelected(),
-                jText_email.getText(), jCheckBox_mail.isSelected(),
-                jDC_fechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),jCheckBox_fechaNac.isSelected());
     }
-    
-    private void completarDatosFinales(Vial vial){
+
+    private void actualizarDatos() {
+        try {
+            if (Pattern.matches("^[a-zA-Z]+$", jText_Apellido.getText()) && Pattern.matches("^[a-zA-Z]+$", jText_Nombre.getText()) && Pattern.matches("^[0-9]+$", jText_Celular.getText())) {
+                cD.actualizarDatosCiudadano(c1, jText_Apellido.getText(), jCheckBox_apellido.isSelected(),
+                        jText_Nombre.getText(), jCheckBox_nombre.isSelected(),
+                        jText_Celular.getText(), jCheckBox_celular.isSelected(),
+                        jText_Dosis.getText(), jCheckBox_dosis.isSelected(),
+                        jText_Ocupacion.getText(), jCheckBox_ocupacion.isSelected(),
+                        jText_email.getText(), jCheckBox_mail.isSelected(),
+                        jDC_fechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), jCheckBox_fechaNac.isSelected());
+            } else {
+                JOptionPane.showMessageDialog(null, "Controle los datos");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Controle los datos");
+        }
+    }
+
+    private void completarDatosFinales(Vial vial) {
         jText_antigenoVial.setText(vial.getAntigeno());
         jText_numeroVial.setText(Integer.toString(vial.getNumeroSerie()));
         jText_MarcaVial.setText(vial.getMarca());
         jText_fechaVencVial.setText(vial.getFechaVencimiento().toString());
     }
-    
-    private LocalDate nuevoTurno(){
-       if (c1.getDosisAplicadas()<3){
-       int turnos_libres;
-       LocalDate fecha1 = LocalDate.now().plusDays(28);
-       
-        do {
-            turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha1,turno1.getVacunatorio());
-            fecha1 = fecha1.plusDays(1);
-        } while (turnos_libres <= 0);
-        
-        jDC_proximoTur.setDate(java.sql.Date.valueOf(fecha1.minusDays(1)));
-        return fecha1.minusDays(1);
+
+    private LocalDate nuevoTurno() {
+        if (c1.getDosisAplicadas() < 3) {
+            int turnos_libres;
+            LocalDate fecha1 = LocalDate.now().plusDays(28);
+
+            do {
+                turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha1, turno1.getVacunatorio());
+                fecha1 = fecha1.plusDays(1);
+            } while (turnos_libres <= 0);
+
+            jDC_proximoTur.setDate(java.sql.Date.valueOf(fecha1.minusDays(1)));
+            return fecha1.minusDays(1);
         } else {
             jButton2.setEnabled(false);
+            jButton_nuevoTur_cancelado.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Calendario Completo");
             return null;
-       }
+        }
     }
-       
-     
-    private void tomarNuevoTurno(LocalDate fecha1){
+
+    private void tomarNuevoTurno(LocalDate fecha1) {
         turno_nuevo = new Turno();
         turno_nuevo.setFecha(fecha1.atStartOfDay());
         turno_nuevo.setVacunatorio(turno1.getVacunatorio());
-      
+
         tD.updateTurno_Libre(turno_nuevo);
-        
+
         c1.setTurno(turno_nuevo);
-        if (!turno1.isEstado().equalsIgnoreCase("Cancelado")){
-        c1.setDosisAplicadas(c1.getDosisAplicadas()+1);
-        } else 
-        c1.setDosisAplicadas(c1.getDosisAplicadas());
-        int updates = cD.cargarTurno(c1);
-        if (updates > 0){
-            tD.actualizarTurnero_Hora(c1.getTurno());
-        } 
-    }
-    
-    private void nuevoTurno_turno1Cancelado(){
-       int turnos_libres;
-       LocalDate fecha1 = LocalDate.now().plusDays(15);
-            
-        do {
-            turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha1,turno1.getVacunatorio());
-            fecha1 = fecha1.plusDays(1);
-        } while (turnos_libres <= 0);     
-        
-        tomarNuevoTurno(fecha1.minusDays(1));    
+        if (!turno1.isEstado().equalsIgnoreCase("Cancelado")) {
+            c1.setDosisAplicadas(c1.getDosisAplicadas() + 1);
+        } else {
+            c1.setDosisAplicadas(c1.getDosisAplicadas());
         }
-       
+        int updates = cD.cargarTurno(c1);
+        if (updates > 0) {
+            tD.actualizarTurnero_Hora(c1.getTurno());
+        }
+    }
+
+    private void nuevoTurno_turno1Cancelado() {
+        int turnos_libres;
+        LocalDate fecha1 = LocalDate.now().plusDays(15);
+
+        do {
+            turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha1, turno1.getVacunatorio());
+            fecha1 = fecha1.plusDays(1);
+        } while (turnos_libres <= 0);
+
+        tomarNuevoTurno(fecha1.minusDays(1));
+    }
+
     private void calcularStocks() {
         modelo_tabla2.setRowCount(0);
         modelo_tabla2.addRow(new Object[]{"Stock:"});
-           int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
-            for (Vial viales : sD.listarViales(0, vac.getIdVacunatorio())) {
-                switch (viales.getMarca()) {
-                    case "Sputnik V":Sputnik++;total++;break;
-                    case "Pfizer": Pfizer++;total++; break;
-                    case "Sinopharm y Sinovac":Sinopharm++;total++;break;
-                    case "Johnson_Johnson":Johnson++;total++;break;
-                    case "AstraZeneca": AstraZeneca++; total++;break;
-                }
-            }
-            modelo_tabla2.addRow(new Object[]{vac.getNombre(), total, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
-            ArrayList<Integer> turnos_pendientes = new ArrayList<>();
-            LocalDate fecha = LocalDate.now();
-            
-            int totalTur = 0;
-            while (fecha.isBefore(LocalDate.now().plusDays(7))){
-                int turnos = 0;
-                ArrayList<Turno> turnosPordia = tD.listar_Turnos(fecha, vac,"porDia_pendiente", null,0);      
-                    for (Turno turno : turnosPordia) {
-                            turnos++;
-                            totalTur++;
-                        } turnos_pendientes.add(turnos);
-                     fecha = fecha.plusDays(1);
-                }
-            modelo_tabla2.addRow(new Object[]{});
-            modelo_tabla2.addRow(new Object[]{"TURNOS:",});
-            modelo_tabla2.addRow(new Object[]{"Total:", totalTur});
-            fecha = LocalDate.now();
-            modelo_tabla2.addRow(new Object[]{"Pendientes:"});       
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d-MMM", Locale.ENGLISH);
-            modelo_tabla2.addRow(new Object[]{
-                fecha.format(dateFormatter),
-                fecha.plusDays(1).format(dateFormatter),
-                fecha.plusDays(2).format(dateFormatter),
-                fecha.plusDays(3).format(dateFormatter),
-                fecha.plusDays(4).format(dateFormatter),
-                fecha.plusDays(5).format(dateFormatter),
-                fecha.plusDays(6).format(dateFormatter)
-            });
-            modelo_tabla2.addRow(new Object[]{turnos_pendientes.get(0),turnos_pendientes.get(1),turnos_pendientes.get(2),turnos_pendientes.get(3),turnos_pendientes.get(4),turnos_pendientes.get(5),turnos_pendientes.get(6)});
-            }
-    
-    private void reprogramarTurnos(){      
-            for (Turno turno : tD.listar_Turnos(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), vac, "postergar", jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),0)) {
-                int turnos_libres = 0;
-                    LocalDate fecha = LocalDate.now().plusDays(14);
-                    while (turnos_libres == 0){
-                        turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha, vac);
-                        fecha = fecha.plusDays(1); 
-                    }
-                    turno.setFecha(fecha.minusDays(1).atStartOfDay());
-                tD.updateTurno_Libre(turno);
-                tD.actualizarFechaTurno(turno);
+        int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
+        for (Vial viales : sD.listarViales(0, vac.getIdVacunatorio())) {
+            switch (viales.getMarca()) {
+                case "Sputnik V":
+                    Sputnik++;
+                    total++;
+                    break;
+                case "Pfizer":
+                    Pfizer++;
+                    total++;
+                    break;
+                case "Sinopharm y Sinovac":
+                    Sinopharm++;
+                    total++;
+                    break;
+                case "Johnson_Johnson":
+                    Johnson++;
+                    total++;
+                    break;
+                case "AstraZeneca":
+                    AstraZeneca++;
+                    total++;
+                    break;
             }
         }
-}
-        
+        modelo_tabla2.addRow(new Object[]{vac.getNombre(), total, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
+        ArrayList<Integer> turnos_pendientes = new ArrayList<>();
+        LocalDate fecha = LocalDate.now();
 
+        int totalTur = 0;
+        while (fecha.isBefore(LocalDate.now().plusDays(7))) {
+            int turnos = 0;
+            ArrayList<Turno> turnosPordia = tD.listar_Turnos(fecha, vac, "porDia_pendiente", null, 0);
+            for (Turno turno : turnosPordia) {
+                turnos++;
+                totalTur++;
+            }
+            turnos_pendientes.add(turnos);
+            fecha = fecha.plusDays(1);
+        }
+        modelo_tabla2.addRow(new Object[]{});
+        modelo_tabla2.addRow(new Object[]{"TURNOS:",});
+        modelo_tabla2.addRow(new Object[]{"Total:", totalTur});
+        fecha = LocalDate.now();
+        modelo_tabla2.addRow(new Object[]{"Pendientes:"});
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d-MMM", Locale.ENGLISH);
+        modelo_tabla2.addRow(new Object[]{
+            fecha.format(dateFormatter),
+            fecha.plusDays(1).format(dateFormatter),
+            fecha.plusDays(2).format(dateFormatter),
+            fecha.plusDays(3).format(dateFormatter),
+            fecha.plusDays(4).format(dateFormatter),
+            fecha.plusDays(5).format(dateFormatter),
+            fecha.plusDays(6).format(dateFormatter)
+        });
+        modelo_tabla2.addRow(new Object[]{turnos_pendientes.get(0), turnos_pendientes.get(1), turnos_pendientes.get(2), turnos_pendientes.get(3), turnos_pendientes.get(4), turnos_pendientes.get(5), turnos_pendientes.get(6)});
+    }
+
+    private void reprogramarTurnos() {
+        for (Turno turno : tD.listar_Turnos(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), vac, "postergar", jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 0)) {
+            int turnos_libres = 0;
+            LocalDate fecha = LocalDate.now().plusDays(14);
+            while (turnos_libres == 0) {
+                turnos_libres = tD.buscarTurnoLibre_porTurnosLibres(fecha, vac);
+                fecha = fecha.plusDays(1);
+            }
+            turno.setFecha(fecha.minusDays(1).atStartOfDay());
+            tD.updateTurno_Libre(turno);
+            tD.actualizarFechaTurno(turno);
+        }
+    }
+}
