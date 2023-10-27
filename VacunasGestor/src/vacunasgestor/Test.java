@@ -16,10 +16,10 @@ public class Test extends java.awt.Frame {
         CiudadanoData cD = new CiudadanoData();
         TurnoData tD = new TurnoData();
         initComponents();
-        Seleccion_Centros sC = new Seleccion_Centros();
+        Administrador_Centros sC = new Administrador_Centros(tD);
         jDesktopPane1.add(sC);
         sC.setVisible(true);
-        
+            
       
         
     }
@@ -39,16 +39,11 @@ public class Test extends java.awt.Frame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Exit the Application
-     */
+    
     private void exitForm(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitForm
         System.exit(0);
     }//GEN-LAST:event_exitForm
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

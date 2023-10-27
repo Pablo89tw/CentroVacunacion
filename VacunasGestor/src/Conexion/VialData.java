@@ -1,6 +1,7 @@
 package Conexion;
 
 import Entidades.Laboratorio;
+import Entidades.Pedidos;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
 import java.sql.Connection;
@@ -284,5 +285,18 @@ public class VialData {
     }
     }
    
+    public void actualizarEstadoPedido(Pedidos pedido){
+        PreparedStatement ps;
+        String sql = "UPDATE pedidosstocks SET estado = 'Completo' WHERE idPedido = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pedido.getIdPedido());
+            
+            int update = ps.executeUpdate();
+            
+        } catch (SQLException e) {}
+        
+    }
 }
 

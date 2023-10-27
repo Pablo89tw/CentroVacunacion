@@ -1,13 +1,18 @@
 package Conexion;
 
+import Entidades.Pedidos;
 import Entidades.Ciudadano;
 import Entidades.Coordenadas;
 import Entidades.Vacunatorio;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class VacunatorioData {
@@ -155,7 +160,7 @@ public class VacunatorioData {
         return vac;
     }
     
-     public ArrayList<Vacunatorio> listarVacunatorioNombre(String nombre){
+    public ArrayList<Vacunatorio> listarVacunatorioNombre(String nombre){
         arrayVacunatorios = new ArrayList<>();
         PreparedStatement ps = null; ResultSet rs = null;
         Vacunatorio vac;
@@ -197,5 +202,92 @@ public class VacunatorioData {
     }
         return arrayVacunatorios;
     }
+     
+    public void pedirStocks(Vacunatorio vac, int Spu, boolean SpuB, int Jhon, boolean JhonB, int Syno, boolean SynoB, int Astra, boolean AstraB, int Pfi, boolean PfiB){
+        int exito = 0, comas = 0, sqlPosicion = 1;
+        String sql = "INSERT INTO pedidosstocks (idCentro";        
+        
+        if (SpuB) {sql += ", Sputnik";comas++;}
+        if (JhonB) {sql += ", Johnson_Johnson";comas++;}
+        if (SynoB) {sql += ", Sinopharm_Sinovac";comas++;}
+        if (AstraB) {sql += ", AstraZeneca";comas++;}
+        if (PfiB) {sql += ", Pfizer";comas++;}
+       
+        sql += ", fecha, estado) VALUES (";
+        if (comas!=0){sql +="?,";
+        for (int i = 0; i <= comas; i++) {
+            sql += "?,";
+                }
+            }
+        sql += "?)";
+        System.out.println(sql);
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, vac.getIdVacunatorio());
+            
+            boolean[] valores_booleano = {SpuB, JhonB, SynoB, AstraB, PfiB};
+            int[] valores_stock = {Spu, Jhon, Syno, Astra, Pfi};
+            for (int i = 1; i < valores_booleano.length; i++) {
+                if (valores_booleano[i] != false) {
+                    sqlPosicion++;
+                    ps.setInt(sqlPosicion, valores_stock[i]);
+                                 }
+            }
+            ps.setDate(sqlPosicion+1, Date.valueOf(LocalDate.now()));
+            ps.setString(sqlPosicion+2, "Pendiente");
+            
+       
+            exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Pedido Cargado.");
+            } 
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error");
+            } 
+            finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e){}
+    }
+    }
     
+    public ArrayList<Pedidos> listarPedidos(String estado){
+        ArrayList arrayPedidos = new ArrayList<>();
+        PreparedStatement ps = null; ResultSet rs = null;
+        Pedidos pedido;
+        
+        String sql = "SELECT * FROM pedidosstocks WHERE estado = ?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, estado);
+            
+            rs = ps.executeQuery();
+            
+            while (rs.next()){
+                pedido = new Pedidos();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                pedido.setCentro(buscarVacunatorio(rs.getInt("idCentro")));
+                pedido.setAstra(rs.getInt("AstraZeneca"));
+                pedido.setJhon(rs.getInt("Johnson_Johnson"));
+                pedido.setSyno(rs.getInt("Sinopharm_Sinovac"));
+                pedido.setSpuk(rs.getInt("Sputnik"));
+                pedido.setPf(rs.getInt("Pfizer"));
+                pedido.setEstado(rs.getString("estado"));
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+                arrayPedidos.add(pedido);                   
+            }
+        } catch (SQLException e){}
+            return arrayPedidos;
+     }
 }
+    
+
+    
+

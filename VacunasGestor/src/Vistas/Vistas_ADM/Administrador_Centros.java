@@ -7,6 +7,7 @@ import Conexion.VacunatorioData;
 import Conexion.VialData;
 import Entidades.Ciudadano;
 import Entidades.LogIN;
+import Entidades.Pedidos;
 import Entidades.Turno;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
@@ -15,9 +16,12 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class Administrador_Centros extends javax.swing.JInternalFrame {
@@ -33,12 +37,13 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo_tabla1 = new DefaultTableModel();
     private DefaultTableModel modelo_tabla4 = new DefaultTableModel();
     private DefaultTableModel modelo_tabla5 = new DefaultTableModel();
+    private Pedidos pedido = new Pedidos();
 
     public Administrador_Centros(TurnoData tD) {
         this.tD = tD;
         initComponents();
         armarComponentes();
-        
+
         String[] lista_viales = {"Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
         modelo_tabla5.setColumnCount(0);
         modelo_tabla5.addColumn("Donante");
@@ -48,17 +53,23 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         }
         modelo_tabla5.setRowCount(0);
         jTable5.setModel(modelo_tabla5);
-      
+
         modelo_tabla6.setColumnCount(0);
         modelo_tabla6.addColumn("Donante");
         modelo_tabla6.addColumn("Aceptor");
         for (String vial : lista_viales) {
             modelo_tabla6.addColumn(vial);
         }
-        modelo_tabla6.setRowCount(0);      
+        modelo_tabla6.setRowCount(0);
         jTable6.setModel(modelo_tabla6);
-        
+
         jRadioButton1.setSelected(true);
+
+        ButtonGroup grupo10 = new ButtonGroup();
+        grupo10.add(jRadioButton7);
+        grupo10.add(jRadioButton8);
+        jRadioButton7.setSelected(true);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +77,16 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jRB_CitasCumplidas = new javax.swing.JRadioButton();
@@ -137,6 +158,79 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 jTabbedPane1FocusGained(evt);
             }
         });
+
+        jScrollPane8.setViewportView(jList1);
+
+        jRadioButton7.setText("Pendientes");
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton8.setText("Completos");
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane9.setViewportView(jList2);
+
+        jLabel4.setText("Pedidos");
+
+        jLabel5.setText("Datos");
+
+        jButton8.setText("Cumplir pedido");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jRadioButton7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton8))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton7)
+                    .addComponent(jRadioButton8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton8)
+                .addContainerGap(240, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Pedidos Viales", jPanel8);
 
         jLabel1.setText("Ver citas:");
 
@@ -800,10 +894,10 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanel3FocusGained
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jRadioButton2.isSelected()){
-        asignarViales(jComboBox6.getSelectedItem().toString(), jComboBox5.getSelectedItem().toString(), jComboBox10.getSelectedItem().toString(), Integer.parseInt(jSpinner2.getValue().toString()));
-        } else if (jRadioButton6.isSelected()){
-             asignacionMultipleTotal();
+        if (jRadioButton2.isSelected()) {
+            asignarViales(jComboBox6.getSelectedItem().toString(), jComboBox5.getSelectedItem().toString(), jComboBox10.getSelectedItem().toString(), Integer.parseInt(jSpinner2.getValue().toString()));
+        } else if (jRadioButton6.isSelected()) {
+            asignacionMultipleTotal();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -819,7 +913,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             jComboBox3.setEnabled(false);
             jButton3.setEnabled(false);
             jTable4.setEnabled(false);
-        } 
+        }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -828,34 +922,34 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-         if (jRadioButton3.isSelected()) {
+        if (jRadioButton3.isSelected()) {
             jComboBox2.setEnabled(false);
             jComboBox4.setEnabled(false);
             jSpinner3.setEnabled(false);
             jComboBox3.setEnabled(true);
             jButton3.setEnabled(true);
             jTable4.setEnabled(true);
-        } 
+        }
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-            jComboBox6.setEnabled(true);
-            jComboBox10.setEnabled(true);
-            jComboBox5.setEnabled(true);
-            jSpinner2.setEnabled(true);
-            jComboBox11.setEnabled(false);
-            jComboBox12.setEnabled(false);
-            jButton6.setEnabled(false);
+        jComboBox6.setEnabled(true);
+        jComboBox10.setEnabled(true);
+        jComboBox5.setEnabled(true);
+        jSpinner2.setEnabled(true);
+        jComboBox11.setEnabled(false);
+        jComboBox12.setEnabled(false);
+        jButton6.setEnabled(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-            jComboBox13.setEnabled(true);
-            jComboBox7.setEnabled(true);
-            jSpinner6.setEnabled(true);
-            jComboBox8.setEnabled(false);
-            jComboBox9.setEnabled(false);
-            jButton5.setEnabled(false);
-            jTable5.setEnabled(false);
+        jComboBox13.setEnabled(true);
+        jComboBox7.setEnabled(true);
+        jSpinner6.setEnabled(true);
+        jComboBox8.setEnabled(false);
+        jComboBox9.setEnabled(false);
+        jButton5.setEnabled(false);
+        jTable5.setEnabled(false);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -875,7 +969,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             jComboBox9.setEnabled(true);
             jButton5.setEnabled(true);
             jTable5.setEnabled(true);
-        } 
+        }
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -884,22 +978,38 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-         jComboBox6.setEnabled(false);
-         jComboBox10.setEnabled(false);
-         jComboBox5.setEnabled(false);
-         jSpinner2.setEnabled(false);
-         jComboBox11.setEnabled(true);
-         jComboBox12.setEnabled(true);
-         jButton6.setEnabled(true);
+        jComboBox6.setEnabled(false);
+        jComboBox10.setEnabled(false);
+        jComboBox5.setEnabled(false);
+        jSpinner2.setEnabled(false);
+        jComboBox11.setEnabled(true);
+        jComboBox12.setEnabled(true);
+        jButton6.setEnabled(true);
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        modelo_tabla6.addRow(new Object[]{jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()}); 
+        modelo_tabla6.addRow(new Object[]{jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()});
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         habilitarCiudadanos(Integer.parseInt(jSpinner1.getValue().toString()));
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        if (jRadioButton7.isSelected()) {
+            armarListasPedidos("Pendiente");
+        }
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        if (jRadioButton8.isSelected()) {
+            armarListasPedidos("Completo");
+        }
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        darStocks();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -911,6 +1021,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
@@ -931,6 +1042,10 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -938,6 +1053,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRB_CitasCumplidas;
     private javax.swing.JRadioButton jRB_buscarPorCentro;
     private javax.swing.JRadioButton jRB_buscarTodoslosCentros;
@@ -949,6 +1065,8 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -956,6 +1074,8 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
@@ -978,13 +1098,14 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 if (jTabbedPane1.getSelectedIndex() + 1 == 3) {
                     armadoTablasStocks();
                     calcularStocks();
-                    
+
                 }
                 if (jTabbedPane1.getSelectedIndex() + 1 == 2) {
                     armadoTabla_vacunasDía();
                 }
             }
         });
+        jButton8.setEnabled(false);
         jComboBox2.setEnabled(false);
         jRB_citasVencidas.setEnabled(false);
         jRB_CitasCumplidas.setEnabled(false);
@@ -1008,11 +1129,11 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         ButtonGroup grupo3 = new ButtonGroup();
         grupo3.add(jRadioButton1);
         grupo3.add(jRadioButton3);
-        
+
         ButtonGroup grupo4 = new ButtonGroup();
         grupo4.add(jRadioButton4);
         grupo4.add(jRadioButton5);
-        
+
         ButtonGroup grupo5 = new ButtonGroup();
         grupo5.add(jRadioButton2);
         grupo5.add(jRadioButton6);
@@ -1027,7 +1148,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             jComboBox3.addItem(centros.getNombre());
             jComboBox11.addItem(centros.getNombre());
             jComboBox12.addItem(centros.getNombre());
-                    
+
             if (centros.getNombre().equals("Gobierno")) {
                 jComboBox8.addItem(centros.getNombre());
             }
@@ -1037,7 +1158,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 jComboBox1.addItem(centros.getNombre());
             }
         }
-        
+
         String[] lista_viales = {"Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
         DefaultComboBoxModel<String> modeloCB = new DefaultComboBoxModel<>(lista_viales);
         jComboBox4.setModel(modeloCB);
@@ -1069,26 +1190,35 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             modelo_tabla1.setRowCount(0);
         }
         jTable1.setModel(modelo_tabla1);
-        
+
         modelo_tabla0.setColumnCount(0);
         modelo_tabla0.addColumn("Vacuna");
         modelo_tabla0.addColumn("Cantidad Aplicadas");
         modelo_tabla0.setRowCount(0);
         jTable0.setModel(modelo_tabla0);
-        
-        ArrayList<Turno> listaTurnos = tD.listar_Turnos(LocalDate.now(), vD.listarVacunatorioNombre(jComboBox1.getSelectedItem().toString()).get(0), codigo_estadoCita,null,0);
-        
-        
+
+        ArrayList<Turno> listaTurnos = tD.listar_Turnos(LocalDate.now(), vD.listarVacunatorioNombre(jComboBox1.getSelectedItem().toString()).get(0), codigo_estadoCita, null, 0);
+
         if (jRB_buscarPorCentro.isSelected()) {
             for (Turno turno : listaTurnos) {
                 if (jRB_CitasCumplidas.isSelected()) {
                     modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie()});
                     switch (turno.getVial().getMarca()) {
-                            case "Sputnik V":Sputnik++;break;
-                            case "Pfizer":Pfizer++; break;
-                            case "Sinopharm y Sinovac":Sinopharm++;break;
-                            case "Johnson_Johnson":Johnson++;break;
-                            case "AstraZeneca":AstraZeneca++; break;
+                        case "Sputnik V":
+                            Sputnik++;
+                            break;
+                        case "Pfizer":
+                            Pfizer++;
+                            break;
+                        case "Sinopharm y Sinovac":
+                            Sinopharm++;
+                            break;
+                        case "Johnson_Johnson":
+                            Johnson++;
+                            break;
+                        case "AstraZeneca":
+                            AstraZeneca++;
+                            break;
                     }
                 } else {
                     modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha()});
@@ -1103,15 +1233,25 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             }
         } else if (jRB_buscarTodoslosCentros.isSelected()) {
             for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-                for (Turno turno : tD.listar_Turnos(LocalDate.now(), vacunatorio, codigo_estadoCita,null,0)) {
+                for (Turno turno : tD.listar_Turnos(LocalDate.now(), vacunatorio, codigo_estadoCita, null, 0)) {
                     if (jRB_CitasCumplidas.isSelected()) {
                         modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie(), vacunatorio.getNombre()});
                         switch (turno.getVial().getMarca()) {
-                            case "Sputnik V":Sputnik++;break;
-                            case "Pfizer":Pfizer++; break;
-                            case "Sinopharm y Sinovac":Sinopharm++;break;
-                            case "Johnson_Johnson":Johnson++;break;
-                            case "AstraZeneca":AstraZeneca++; break;
+                            case "Sputnik V":
+                                Sputnik++;
+                                break;
+                            case "Pfizer":
+                                Pfizer++;
+                                break;
+                            case "Sinopharm y Sinovac":
+                                Sinopharm++;
+                                break;
+                            case "Johnson_Johnson":
+                                Johnson++;
+                                break;
+                            case "AstraZeneca":
+                                AstraZeneca++;
+                                break;
                         }
                     } else {
                         modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), vacunatorio.getNombre()});
@@ -1137,12 +1277,12 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         modelo_tabla2.addColumn("Sinopharm");
         modelo_tabla2.addColumn("Johnson");
         modelo_tabla2.addColumn("AstraZeneca");
-       
+
         jTable2.setModel(modelo_tabla2);
     }
-    
-    private void armadoTablasStocks(){
-       String[] lista_viales = {"Sputnik V","Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac"};
+
+    private void armadoTablasStocks() {
+        String[] lista_viales = {"Sputnik V", "Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac"};
         modelo_tabla2.setColumnCount(0);
         modelo_tabla2.addColumn("Nombre");
         modelo_tabla2.addColumn("Total");
@@ -1151,9 +1291,9 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         modelo_tabla2.addColumn("Sinopharm");
         modelo_tabla2.addColumn("Johnson");
         modelo_tabla2.addColumn("AstraZeneca");
-       
+
         jTabla3.setModel(modelo_tabla2);
-        
+
         modelo_tabla4.setColumnCount(0);
         modelo_tabla4.addColumn("Centro");
         for (String vial : lista_viales) {
@@ -1165,18 +1305,33 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     public void listarDosis_x_Centro(LocalDate fecha) {
         modelo_tabla2.setRowCount(0);
         for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-            if (!vacunatorio.getNombre().equals("Gobierno")){
-            int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
-            for (Turno turno : tD.listar_Turnos(fecha, vacunatorio, "porDia",null,0)) {
-                switch (turno.getVial().getMarca()) {
-                    case "Sputnik V":Sputnik++;total++;break;
-                    case "Pfizer": Pfizer++;total++; break;
-                    case "Sinopharm y Sinovac":Sinopharm++;total++;break;
-                    case "Johnson_Johnson":Johnson++;total++;break;
-                    case "AstraZeneca": AstraZeneca++; total++;break;
+            if (!vacunatorio.getNombre().equals("Gobierno")) {
+                int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
+                for (Turno turno : tD.listar_Turnos(fecha, vacunatorio, "porDia", null, 0)) {
+                    switch (turno.getVial().getMarca()) {
+                        case "Sputnik V":
+                            Sputnik++;
+                            total++;
+                            break;
+                        case "Pfizer":
+                            Pfizer++;
+                            total++;
+                            break;
+                        case "Sinopharm y Sinovac":
+                            Sinopharm++;
+                            total++;
+                            break;
+                        case "Johnson_Johnson":
+                            Johnson++;
+                            total++;
+                            break;
+                        case "AstraZeneca":
+                            AstraZeneca++;
+                            total++;
+                            break;
+                    }
                 }
-            }
-            modelo_tabla2.addRow(new Object[]{vacunatorio.getNombre(), total, Sputnik, Pfizer, Johnson, AstraZeneca, Sinopharm});
+                modelo_tabla2.addRow(new Object[]{vacunatorio.getNombre(), total, Sputnik, Pfizer, Johnson, AstraZeneca, Sinopharm});
             }
         }
     }
@@ -1187,11 +1342,26 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
             for (Vial viales : sD.listarViales(0, vacunatorio.getIdVacunatorio())) {
                 switch (viales.getMarca()) {
-                    case "Sputnik V":Sputnik++;total++;break;
-                    case "Pfizer": Pfizer++;total++; break;
-                    case "Sinopharm y Sinovac":Sinopharm++;total++;break;
-                    case "Johnson_Johnson":Johnson++;total++;break;
-                    case "AstraZeneca": AstraZeneca++; total++;break;
+                    case "Sputnik V":
+                        Sputnik++;
+                        total++;
+                        break;
+                    case "Pfizer":
+                        Pfizer++;
+                        total++;
+                        break;
+                    case "Sinopharm y Sinovac":
+                        Sinopharm++;
+                        total++;
+                        break;
+                    case "Johnson_Johnson":
+                        Johnson++;
+                        total++;
+                        break;
+                    case "AstraZeneca":
+                        AstraZeneca++;
+                        total++;
+                        break;
                 }
             }
             modelo_tabla2.addRow(new Object[]{vacunatorio.getNombre(), total, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
@@ -1258,7 +1428,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     }
 
     private void asignacionVialesMultiple() {
- 
         int renglones = modelo_tabla5.getRowCount();
         int columnas = modelo_tabla5.getColumnCount();
 
@@ -1267,7 +1436,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 if (modelo_tabla5.getValueAt(r, c) != null) {
                     if (!modelo_tabla5.getValueAt(r, c).toString().trim().isEmpty()) {
                         int valor = Integer.parseInt(modelo_tabla5.getValueAt(r, c).toString());
-                                               
+
                         ArrayList<Vial> vial_reasignar = sD.listarViales(0, vD.listarVacunatorioNombre(modelo_tabla5.getValueAt(r, 0).toString()).get(0).getIdVacunatorio());
                         int asignacionesRealizadas = 0;
 
@@ -1291,10 +1460,10 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         }
         calcularStocks();
     }
-    
-    private void asignacionMultipleTotal(){
-      int renglones = modelo_tabla6.getRowCount();
-      int columnas = modelo_tabla6.getColumnCount();
+
+    private void asignacionMultipleTotal() {
+        int renglones = modelo_tabla6.getRowCount();
+        int columnas = modelo_tabla6.getColumnCount();
 
         for (int r = 0; r < renglones; r++) {
             for (int c = 2; c < columnas; c++) {
@@ -1302,14 +1471,12 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     if (!modelo_tabla6.getValueAt(r, c).toString().trim().isEmpty()) {
                         int valor = Integer.parseInt(modelo_tabla6.getValueAt(r, c).toString());
                         System.out.println(valor);
-                        
+
                         ArrayList<Vial> vial_reasignar = sD.listarViales(0, vD.listarVacunatorioNombre(modelo_tabla6.getValueAt(r, 0).toString()).get(0).getIdVacunatorio());
                         int asignacionesRealizadas = 0;
 
                         for (Vial vial : vial_reasignar) {
                             if (vial.getMarca().equals(modelo_tabla6.getColumnName(c))) {
-                                System.out.println(vial.getMarca());
-                                System.out.println(modelo_tabla6.getColumnName(c));
                                 sD.reasignarViales(vD.listarVacunatorioNombre(modelo_tabla6.getValueAt(r, 0).toString()).get(0),
                                         vD.listarVacunatorioNombre(modelo_tabla6.getValueAt(r, 1).toString()).get(0),
                                         vial);
@@ -1326,26 +1493,142 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         }
         calcularStocks();
     }
-    
-    private void habilitarCiudadanos(int valor){
+
+    private void habilitarCiudadanos(int valor) {
         ArrayList<Ciudadano> sinCuenta = new ArrayList<>();
         for (Ciudadano ciu : cD.buscarCiudadanos(0, "todos")) {
             boolean tieneUsuario = false;
             for (LogIN logIns : lD.listarUsuarios()) {
-               if (ciu.getDNI() == logIns.getUsuario()){
-                   tieneUsuario = true;
-                } 
+                if (ciu.getDNI() == logIns.getUsuario()) {
+                    tieneUsuario = true;
+                }
             }
-            if (!tieneUsuario){
+            if (!tieneUsuario) {
                 sinCuenta.add(ciu);
             }
         }
         int perro = 0;
-            for (Ciudadano ciudadano : sinCuenta) {
-                while (perro < valor) {
+        for (Ciudadano ciudadano : sinCuenta) {
+            while (perro < valor) {
                 lD.armarClavesRandom(ciudadano.getDNI());
                 perro++;
-            }       
+            }
         }
     }
-}
+
+    public void armarListasPedidos(String estado) {
+        ArrayList<Pedidos> pedidos = vD.listarPedidos(estado);
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        DefaultListModel<String> listModel2 = new DefaultListModel<>();
+        listModel.addElement("id.Pedido - id.Centro - Fecha");
+        for (Pedidos pedido : pedidos) {
+            listModel.addElement(pedido.toString());
+        }
+        jList1.setModel(listModel);
+
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                listModel2.clear();
+                if (!e.getValueIsAdjusting()) {
+                    int indice = jList1.getSelectedIndex();
+                    if (indice > 0) {
+                        String selectedValue = jList1.getModel().getElementAt(indice);
+                        String[] partesLista = selectedValue.split(" - ");
+                        if (partesLista.length == 3) {
+                            int idPedido = Integer.parseInt(partesLista[0]);
+                            for (Pedidos pedido1 : pedidos) {
+                                if (pedido1.getIdPedido() == idPedido) {
+                                    pedido = pedido1;
+                                    listModel2.addElement(pedido.getCentro().getNombre() + ": ");
+                                    listModel2.addElement("Estado: " + pedido.getEstado());
+                                    listModel2.addElement("AstraZeneca: " + Integer.toString(pedido.getAstra()));
+                                    listModel2.addElement("Sputnik V: " + Integer.toString(pedido.getSpuk()));
+                                    listModel2.addElement("Sinopharm: " + Integer.toString(pedido.getSyno()));
+                                    listModel2.addElement("Johnson: " + Integer.toString(pedido.getJhon()));
+                                    listModel2.addElement("Pfizer: " + Integer.toString(pedido.getPf()));
+                                    jButton8.setEnabled(true);
+                                    jList2.setModel(listModel2);
+                                }
+                            }
+                        }
+                    } else {
+                jButton8.setEnabled(false);
+                }
+              }
+            }
+        });
+    }
+
+    private void darStocks(){
+        int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0;
+            for (Vial viales : sD.listarViales(0, 0)) {
+                switch (viales.getMarca()) {
+                    case "Sputnik V": Sputnik++;break;
+                    case "Pfizer":Pfizer++; break;
+                    case "Sinopharm y Sinovac":Sinopharm++;break;
+                    case "Johnson_Johnson":Johnson++;break;
+                    case "AstraZeneca": AstraZeneca++; break;
+                }
+            }
+            String faltantes = "";
+            int cont = 0;
+        if (pedido.getAstra()> AstraZeneca){
+            faltantes += "AstraZeneca ";cont++;
+        } else if (pedido.getJhon() > Johnson){
+             faltantes +=((cont>0)? ",":""); faltantes += "Johnson ";cont++;
+        } else if (pedido.getPf() > Pfizer){
+            faltantes +=((cont>0)? ",":""); faltantes += " Pfizer ";cont++;
+        } else if (pedido.getSpuk() > Sputnik){
+            faltantes +=((cont>0)? ",":""); faltantes += " Sputnik ";cont++;
+        } else if (pedido.getSyno() > Sinopharm){
+            faltantes +=((cont>0)? ",":""); faltantes += " Sinopharm ";cont++;
+        } else if (cont > 0) {
+           JOptionPane.showMessageDialog(null, "Faltante de stock de los viales " + faltantes);
+        } else {    
+            asignarViales_pedido();
+        }     
+        }
+    
+    public void asignarViales_pedido(){
+        int AstraCont = 0, SputCont = 0, SinoCont = 0, JonhCont = 0, PfizCont = 0;   
+       
+        for (Vial viales : sD.listarViales(0, 0)){        
+            switch (viales.getMarca()){
+                case "AstraZeneca": 
+                    if (AstraCont < pedido.getAstra()){
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        AstraCont++;
+                    } break;
+                case "Pfizer": 
+                    if (PfizCont < pedido.getPf()){
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        PfizCont++;
+                    } break;
+                case "Sinopharm y Sinovac": 
+                    if (SinoCont < pedido.getSyno()){
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        SinoCont++;
+                    } break;
+                case "Sputnik V": 
+                    if (SputCont < pedido.getSpuk()){
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        SputCont++;
+                    } break;
+                case "Johnson_Johnson": 
+                    if (JonhCont < pedido.getJhon()){
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        JonhCont++;
+                } break;
+            }
+        }
+            if (JonhCont == pedido.getJhon() 
+                    && SputCont == pedido.getSpuk() 
+                    && SinoCont == pedido.getSyno()
+                    && PfizCont == pedido.getPf()
+                    && AstraCont == pedido.getAstra()){
+            JOptionPane.showMessageDialog(null, "Pedido Completo");
+                sD.actualizarEstadoPedido(pedido);
+            }
+     }
+ }

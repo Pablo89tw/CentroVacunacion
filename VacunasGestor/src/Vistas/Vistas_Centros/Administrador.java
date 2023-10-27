@@ -2,6 +2,7 @@ package Vistas.Vistas_Centros;
 
 import Conexion.CiudadanoData;
 import Conexion.TurnoData;
+import Conexion.VacunatorioData;
 import Conexion.VialData;
 import Entidades.Ciudadano;
 import Entidades.Turno;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Administrador extends javax.swing.JInternalFrame {
-
+    private VacunatorioData vD = new VacunatorioData();
     private CiudadanoData cD;
     private TurnoData tD;
     private Ciudadano c1;
@@ -111,6 +112,16 @@ public class Administrador extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jRB_Pfi = new javax.swing.JRadioButton();
+        jRB_jhon = new javax.swing.JRadioButton();
+        jRB_Astra = new javax.swing.JRadioButton();
+        jRB_Sino = new javax.swing.JRadioButton();
+        jRB_Spuk = new javax.swing.JRadioButton();
+        jS_Pfizer = new javax.swing.JSpinner();
+        jS_Jhon = new javax.swing.JSpinner();
+        jS_Astra = new javax.swing.JSpinner();
+        jS_Sino = new javax.swing.JSpinner();
+        jS_Spuk = new javax.swing.JSpinner();
 
         jLabel13.setText("Numero Serie");
 
@@ -559,7 +570,12 @@ public class Administrador extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        jButton6.setText("Pedir Stock");
+        jButton6.setText("Pedir");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Reprogramar Turnos");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -579,36 +595,90 @@ public class Administrador extends javax.swing.JInternalFrame {
             }
         });
 
+        jRB_Pfi.setText("Pfizer");
+        jRB_Pfi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_PfiActionPerformed(evt);
+            }
+        });
+
+        jRB_jhon.setText("Johnson Johnson");
+        jRB_jhon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_jhonActionPerformed(evt);
+            }
+        });
+
+        jRB_Astra.setText("AstraZeneca");
+        jRB_Astra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_AstraActionPerformed(evt);
+            }
+        });
+
+        jRB_Sino.setText("Sinopharm y Sinovac");
+        jRB_Sino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_SinoActionPerformed(evt);
+            }
+        });
+
+        jRB_Spuk.setText("Sputnik V");
+        jRB_Spuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRB_SpukActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRB_Astra)
+                                    .addComponent(jRB_jhon)
+                                    .addComponent(jRB_Pfi))
+                                .addGap(38, 38, 38)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jS_Astra, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jS_Jhon, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jS_Pfizer, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(31, 31, 31)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRB_Sino)
+                                            .addComponent(jRB_Spuk))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jS_Spuk, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jS_Sino, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(388, 388, 388)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -616,19 +686,42 @@ public class Administrador extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addComponent(jButton7)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jButton1))
+                .addGap(78, 78, 78)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jRB_Pfi)
+                            .addComponent(jS_Pfizer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jRB_jhon)
+                            .addComponent(jS_Jhon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jRB_Sino)
+                            .addComponent(jS_Sino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jRB_Spuk)
+                            .addComponent(jS_Spuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jRB_Astra)
+                    .addComponent(jS_Astra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Generales", jPanel4);
@@ -669,14 +762,14 @@ public class Administrador extends javax.swing.JInternalFrame {
                 if (!cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()), "DNI").isEmpty()) {
                     c1 = cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()), "DNI").get(0);
                     buscarTurnosPersona();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Usuario Inexistente");
-                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
-                    jText_DNI.setText("");
+                    JOptionPane.showMessageDialog(null, "Usuario Inexistente");
                 }
-            } catch (NumberFormatException e) {
+            } else {
+                JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
+                jText_DNI.setText("");
+            }
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
             jText_DNI.setText("");
         }
@@ -826,6 +919,59 @@ public class Administrador extends javax.swing.JInternalFrame {
         reprogramarTurnos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        pedirStocks();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jRB_PfiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_PfiActionPerformed
+        if (jRB_Pfi.isSelected()) {
+            jS_Pfizer.setEnabled(true);
+            jButton6.setEnabled(true);
+        } else {
+            jS_Pfizer.setEnabled(false);
+            jButton6.setEnabled(false);
+        }
+    }//GEN-LAST:event_jRB_PfiActionPerformed
+
+    private void jRB_jhonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_jhonActionPerformed
+        if (jRB_jhon.isSelected()) {
+            jS_Jhon.setEnabled(true);
+            jButton6.setEnabled(true);
+        } else {
+            jS_Jhon.setEnabled(false);
+            jButton6.setEnabled(false);
+        }
+    }//GEN-LAST:event_jRB_jhonActionPerformed
+
+    private void jRB_AstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_AstraActionPerformed
+        if (jRB_Astra.isSelected()) {
+            jS_Astra.setEnabled(true);
+            jButton6.setEnabled(true);
+        } else {
+            jS_Astra.setEnabled(false);
+            jButton6.setEnabled(false);
+        }
+    }//GEN-LAST:event_jRB_AstraActionPerformed
+
+    private void jRB_SinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_SinoActionPerformed
+        if (jRB_Sino.isSelected()) {
+            jS_Sino.setEnabled(true);
+            jButton6.setEnabled(true);
+        } else {
+            jS_Sino.setEnabled(false);
+            jButton6.setEnabled(false);
+        }
+    }//GEN-LAST:event_jRB_SinoActionPerformed
+
+    private void jRB_SpukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_SpukActionPerformed
+        if (jRB_Spuk.isSelected()) {
+            jS_Spuk.setEnabled(true);
+        } else {
+            jS_Spuk.setEnabled(false);
+            jButton6.setEnabled(false);
+        }
+    }//GEN-LAST:event_jRB_SpukActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Continuar;
@@ -876,6 +1022,16 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRB_Astra;
+    private javax.swing.JRadioButton jRB_Pfi;
+    private javax.swing.JRadioButton jRB_Sino;
+    private javax.swing.JRadioButton jRB_Spuk;
+    private javax.swing.JRadioButton jRB_jhon;
+    private javax.swing.JSpinner jS_Astra;
+    private javax.swing.JSpinner jS_Jhon;
+    private javax.swing.JSpinner jS_Pfizer;
+    private javax.swing.JSpinner jS_Sino;
+    private javax.swing.JSpinner jS_Spuk;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -918,6 +1074,12 @@ public class Administrador extends javax.swing.JInternalFrame {
         jButton_ModificarDatos.setEnabled(false);
         jDC_fechaNac.setEnabled(false);
         jButton2.setEnabled(false);
+        jS_Pfizer.setEnabled(false);
+        jS_Jhon.setEnabled(false);
+        jS_Astra.setEnabled(false);
+        jS_Sino.setEnabled(false);
+        jS_Spuk.setEnabled(false);
+        jButton6.setEnabled(false);
 
         String[] lista_viales = {"Centro", "Total", "Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
         for (String lista_viale : lista_viales) {
@@ -925,15 +1087,15 @@ public class Administrador extends javax.swing.JInternalFrame {
         }
         jTable2.setModel(modelo_tabla2);
         calcularStocks();
-        
+
     }
 
     private void buscarTurnosPersona() {
-        if (c1.getDosisAplicadas() == 3){
+        if (c1.getDosisAplicadas() == 3) {
             jButton2.setEnabled(false);
             jButton_nuevoTur_cancelado.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Calendario Completo");
-            }
+        }
         jButton_ModificarDatos.setEnabled(true);
         listaTurnos = tD.listar_Turnos(null, null, "DNI", null, Integer.parseInt(jText_DNI.getText()));
 
@@ -1139,5 +1301,13 @@ public class Administrador extends javax.swing.JInternalFrame {
             tD.updateTurno_Libre(turno);
             tD.actualizarFechaTurno(turno);
         }
+    }
+
+    private void pedirStocks() {
+        vD.pedirStocks(vac, Integer.parseInt(jS_Spuk.getValue().toString()), jRB_Spuk.isSelected(),
+                Integer.parseInt(jS_Jhon.getValue().toString()), jRB_jhon.isSelected(), 
+                Integer.parseInt(jS_Sino.getValue().toString()), jRB_Sino.isSelected(), 
+               Integer.parseInt(jS_Astra.getValue().toString()), jRB_Astra.isSelected(),
+                Integer.parseInt(jS_Pfizer.getValue().toString()), jRB_Pfi.isSelected());
     }
 }
