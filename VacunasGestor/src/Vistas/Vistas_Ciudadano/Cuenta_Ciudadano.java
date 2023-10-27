@@ -5,8 +5,11 @@ import Conexion.CiudadanoData;
 import Conexion.TurnoData;
 import Entidades.Ciudadano;
 import Entidades.Turno;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.io.IOException;
@@ -20,7 +23,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
@@ -32,7 +39,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
     private Turno turno1 = null;
     private Turno turno2 = null;
     private Turno turno3 = null;
- 
+
     public Cuenta_Ciudadano(CiudadanoData cD, TurnoData tD, int dni_usuario, Point localizacion, Dimension tamanio) {
         this.c1 = cD.buscarCiudadanos(dni_usuario, "DNI").get(0);
         c1.setPatologias(cD.consultaPatologias(dni_usuario));
@@ -41,26 +48,9 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         initComponents();
         armadoDosis();
         armadoTextos(dni_usuario);
-        jTabbedPane1.setBorder(null);
-        jTabbedPane1.setLocation(localizacion);
-        jTabbedPane1.setSize(tamanio);
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-       
-        if (c1.getDosisAplicadas()== 0){
-           jTabbedPane1.setEnabledAt(1,false);
-           jTabbedPane1.setEnabledAt(2,false);
-           jTabbedPane1.setEnabledAt(3,false);
-        }
-        if (c1.getDosisAplicadas()==1) {
-           jTabbedPane1.setEnabledAt(2,false);
-           jTabbedPane1.setEnabledAt(3,false);
-           jTabbedPane1.setEnabledAt(1,true);
-        }
-        if (c1.getDosisAplicadas()==2)  {
-          jTabbedPane1.setEnabledAt(3,false);
-          jTabbedPane1.setEnabledAt(1,true);
-          jTabbedPane1.setEnabledAt(2,true);
-        }
+
+        armadoVistas(localizacion, tamanio);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -139,19 +129,23 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 20, 0));
+        setBorder(null);
+        setOpaque(true);
         setPreferredSize(new java.awt.Dimension(550, 600));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 100, 1));
         jTabbedPane1.setForeground(new java.awt.Color(85, 106, 124));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setToolTipText("");
+        jTabbedPane1.setFocusable(false);
         jTabbedPane1.setFont(new java.awt.Font("Proxima Nova Alt Rg", 0, 14)); // NOI18N
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(550, 600));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(550, 600));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(550, 600));
         jTabbedPane1.setRequestFocusEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(20, 30, 40, 50), null));
         jPanel1.setMinimumSize(new java.awt.Dimension(550, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -217,7 +211,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 274, 353, 89));
         jPanel1.add(jText_Celular1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 313, 35));
 
-        jTabbedPane1.addTab("  Datos Personales  ", jPanel1);
+        jTabbedPane1.addTab("DATOS", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -313,7 +307,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Marca3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jText_FechaVencimientoD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  1° Dosis  ", jPanel2);
@@ -406,7 +400,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Marca7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_FechaVencimientoD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  2° Dosis  ", jPanel3);
@@ -498,7 +492,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Marca11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_FechaVencimientoD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  3° Dosis  ", jPanel4);
@@ -533,7 +527,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,7 +542,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  Proximo Turno  ", jPanel5);
@@ -561,10 +555,10 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -575,13 +569,14 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (c1.getDosisAplicadas() != 0){
-        try {
-            cF.ArmarCertificado(c1, turno1, turno2, turno3);
-        } catch (IOException ex) {
-            Logger.getLogger(Cuenta_Ciudadano.class.getName()).log(Level.SEVERE, null, ex);
-        }} else {
-          JOptionPane.showMessageDialog(null, "No posee dosis aplicadas aún. Vacunate Bagre!");
+        if (c1.getDosisAplicadas() != 0) {
+            try {
+                cF.ArmarCertificado(c1, turno1, turno2, turno3);
+            } catch (IOException ex) {
+                Logger.getLogger(Cuenta_Ciudadano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No posee dosis aplicadas aún. Vacunate Bagre!");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -680,14 +675,14 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_Email.setText(c1.getEmail());
 
         DefaultListModel<String> listaPatologias = new DefaultListModel<>();
-     
+
         for (String patologias : c1.getPatologias()) {
             listaPatologias.addElement(patologias);
         }
         if (listaPatologias.isEmpty()) {
             listaPatologias.addElement("No hay patologias declaradas");
         }
- 
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -829,4 +824,118 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         tD.actualizarTurnero_Hora(turno_new);
         tD.actualizarHora_Turno(turno_new);
     }
+
+    private void armadoVistas(Point localizacion, Dimension tamanio) {
+        jTabbedPane1.setBorder(null);
+        jTabbedPane1.setLocation(localizacion);
+        jTabbedPane1.setSize(tamanio);
+
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+
+        // Define los colores personalizados
+        Color selectedTabColor = new Color(255, 220, 0); // Color de fondo de la solapa seleccionada
+        Color unselectedTabColor = new Color(85, 106, 124); // Color de fondo de las solapas no seleccionadas
+
+        // Personaliza el fondo de las pestañas
+        jTabbedPane1.setUI(new BasicTabbedPaneUI() {
+            @Override
+            protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
+                Graphics2D g2 = (Graphics2D) g;
+
+                if (isSelected) {
+                    g2.setColor(selectedTabColor);
+                    jTabbedPane1.setForeground(new Color(85, 106, 124));
+
+                } else {
+                    g2.setColor(unselectedTabColor);
+                    jTabbedPane1.setForeground(new Color(255, 255, 255));
+                }
+                g2.fillRect(x, y, w, h);
+            }
+        });
+
+        JLabel p0 = new JLabel();
+        JLabel p1 = new JLabel();
+        JLabel p2 = new JLabel();
+        JLabel p3 = new JLabel();
+        JLabel p4 = new JLabel();
+
+        jTabbedPane1.setTabComponentAt(0, p0);
+        jTabbedPane1.getTabComponentAt(0).setPreferredSize(new Dimension(110, 40));
+        p0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DATOS PERSONALES 02.png")));
+
+        jTabbedPane1.setTabComponentAt(1, p1);
+        jTabbedPane1.getTabComponentAt(1).setPreferredSize(new Dimension(73, 40));
+        p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/1ra DOSIS 01.png")));
+
+        jTabbedPane1.setTabComponentAt(2, p2);
+        jTabbedPane1.getTabComponentAt(2).setPreferredSize(new Dimension(73, 40));
+        p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/2da DOSIS 01.png")));
+
+        jTabbedPane1.setTabComponentAt(3, p3);
+        jTabbedPane1.getTabComponentAt(3).setPreferredSize(new Dimension(73, 40));
+        p3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/3ra DOSIS 01.png")));
+
+        jTabbedPane1.setTabComponentAt(4, p4);
+        jTabbedPane1.getTabComponentAt(4).setPreferredSize(new Dimension(110, 40));
+        p4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROX TURNO 01.png")));
+
+        jTabbedPane1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int selectedTabIndex = jTabbedPane1.getSelectedIndex();
+
+                if (selectedTabIndex == 0) {
+                    p0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DATOS PERSONALES 02.png")));
+                } else {
+                    p0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DATOS PERSONALES 01.png")));
+                }
+
+                if (selectedTabIndex == 1) {
+                    p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/1ra DOSIS 02.png")));
+                } else {
+                    p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/1ra DOSIS 01.png")));
+                }
+
+                if (selectedTabIndex == 2) {
+                    p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/2da DOSIS 02.png")));
+                } else {
+                    p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/2da DOSIS 01.png")));
+                }
+
+                if (selectedTabIndex == 3) {
+                    p3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/3ra DOSIS 02.png")));
+                } else {
+                    p3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/3ra DOSIS 01.png")));
+                }
+
+                if (selectedTabIndex == 4) {
+                    p4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROX TURNO 02.png")));
+                } else {
+                    p4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROX TURNO 01.png")));
+                }
+
+            }
+        });
+
+        if (c1.getDosisAplicadas() == 0) {
+            jTabbedPane1.setEnabledAt(1, false);
+            p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/1ra DOSIS 03.png")));
+            jTabbedPane1.setEnabledAt(2, false);
+            p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/2da DOSIS 03.png")));
+            jTabbedPane1.setEnabledAt(3, false);
+            p3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/3ra DOSIS 03.png")));
+
+        } else if (c1.getDosisAplicadas() == 1) {
+            jTabbedPane1.setEnabledAt(2, false);
+            jTabbedPane1.setEnabledAt(3, false);
+            jTabbedPane1.setEnabledAt(1, true);
+
+        } else if (c1.getDosisAplicadas() == 2) {
+            jTabbedPane1.setEnabledAt(3, false);
+            jTabbedPane1.setEnabledAt(1, true);
+            jTabbedPane1.setEnabledAt(2, true);
+        }
+    }
+
 }
