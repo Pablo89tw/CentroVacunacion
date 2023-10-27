@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas.Vistas_ADM;
 
-/**
- *
- * @author MOLLO RAMIREZ
- */
+import Conexion.TurnoData;
+
 public class Ministerio_Salud extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ministerio_Salud
-     */
+    private TurnoData tD = new TurnoData();
     public Ministerio_Salud() {
         initComponents();
     }
@@ -81,7 +73,11 @@ public class Ministerio_Salud extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void INGRESARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INGRESARActionPerformed
-        
+            Administrador_Centros aC = new Administrador_Centros(tD);
+            jDesktopPane1.add(aC);
+            aC.setVisible(true);
+//            aC.setLocation(jLabel2.getLocationOnScreen());
+//            aC.setSize(jLabel2.getSize());           
     }//GEN-LAST:event_INGRESARActionPerformed
 
     /**

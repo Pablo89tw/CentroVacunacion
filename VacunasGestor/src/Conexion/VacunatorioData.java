@@ -220,7 +220,7 @@ public class VacunatorioData {
                 }
             }
         sql += "?)";
-        System.out.println(sql);
+        
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);

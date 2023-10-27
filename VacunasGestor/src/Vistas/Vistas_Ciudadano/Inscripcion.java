@@ -36,8 +36,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.jxmapviewer.JXMapKit;
-import org.jxmapviewer.JXMapViewer;
-import org.jxmapviewer.painter.Painter;
 import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
@@ -244,6 +242,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton_Siguiente.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente.setText("Siguiente");
@@ -935,6 +938,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
     private void jButton_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Siguiente2ActionPerformed
         ModificlarClaveIF mC = new ModificlarClaveIF(c1.getDNI());
+        jPanel1.add(mC);
         mC.setVisible(true);
     }//GEN-LAST:event_jButton_Siguiente2ActionPerformed
 
@@ -1028,6 +1032,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1235,7 +1243,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         frame.add(panel_busqueda, BorderLayout.NORTH);
         frame.setLocation(localizacion);
         
-        // Crea un WaypointPainter para gestionar las marcas
         WaypointPainter<Waypoint> punto_referencia = new WaypointPainter<Waypoint>();
         mapKit.getMainMap().setOverlayPainter(punto_referencia);
         
@@ -1251,12 +1258,14 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         waypointPainter.setWaypoints(new HashSet<>(lista_waypoints));
         mapKit.getMainMap().setOverlayPainter(waypointPainter);
 
-        
-
-         // Agregar un escuchador de eventos de clic en el mapa
+        JDialog dialog = null;
+            
         mapKit.getMainMap().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                  if (dialog != null) {
+                        return; 
+                  }
                 Point point = e.getPoint();
                 GeoPosition coordenadas1 = mapKit.getMainMap().convertPointToGeoPosition(point);
                 Waypoint waypoint = new DefaultWaypoint(coordenadas1);
@@ -1280,7 +1289,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 buttonPanel.add(rechazar);
                 panel.add(buttonPanel);
                            
-
                 aceptar.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         dtaCorda.setLatitud(coordenadas1.getLatitude());
@@ -1297,6 +1305,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                         dialog.dispose();
                     }
                 });
+
                 panel.add(aceptar);
                 panel.add(rechazar);
                 dialog.add(panel);
