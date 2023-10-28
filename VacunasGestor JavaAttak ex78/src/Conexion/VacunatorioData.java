@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class VacunatorioData {

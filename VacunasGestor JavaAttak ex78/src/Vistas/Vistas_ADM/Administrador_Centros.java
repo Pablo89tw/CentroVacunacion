@@ -1,7 +1,5 @@
 package Vistas.Vistas_ADM;
 
-import Conexion.CiudadanoData;
-import Conexion.LoginData;
 import Conexion.TurnoData;
 import Conexion.VacunatorioData;
 import Conexion.VialData;
@@ -14,64 +12,70 @@ import java.awt.Font;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 public class Administrador_Centros extends javax.swing.JInternalFrame {
 
     private VialData sD = new VialData();
     private VacunatorioData vD = new VacunatorioData();
-    private CiudadanoData cD = new CiudadanoData();
-    private LoginData lD = new LoginData();
     private TurnoData tD;
-    private DefaultTableModel modelo_tabla6 = new DefaultTableModel();
-    private DefaultTableModel modelo_tabla2 = new DefaultTableModel();
-    private DefaultTableModel modelo_tabla0 = new DefaultTableModel();
-    private DefaultTableModel modelo_tabla1 = new DefaultTableModel();
-    private DefaultTableModel modelo_tabla4 = new DefaultTableModel();
-    private DefaultTableModel modelo_tabla5 = new DefaultTableModel();
-    private DefaultTableModel modeloTabla = new DefaultTableModel();
+    private DefaultTableModel modeloT2 = new DefaultTableModel();
+    private DefaultTableModel modeloT3 = new DefaultTableModel();
+    private DefaultTableModel modeloT4 = new DefaultTableModel();
+    private DefaultTableModel modeloT5 = new DefaultTableModel();
+    private DefaultTableModel modeloT6 = new DefaultTableModel();
+    private DefaultTableModel modeloT7 = new DefaultTableModel();
     private Pedidos pedido = new Pedidos();
+    private ArrayList<Vacunatorio> vacunatorios;
+    private int Pfizer = 0;
+    private int Johnson = 0;
+    private int AstraZeneca = 0;
+    private int Sinopharm = 0;
+    private int Sputnik = 0;
 
     public Administrador_Centros(TurnoData tD) {
         this.tD = tD;
+        this.vacunatorios = vD.listarVacunatorio();
+
         initComponents();
-        armarComponentes();
+        estadoBotones();
+        grupoBotones();
+        armadoCB();
 
-        String[] lista_viales = {"Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
-        modelo_tabla5.setColumnCount(0);
-        modelo_tabla5.addColumn("Donante");
-        modelo_tabla5.addColumn("Aceptor");
-        for (String vial : lista_viales) {
-            modelo_tabla5.addColumn(vial);
-        }
-        modelo_tabla5.setRowCount(0);
-        jTable5.setModel(modelo_tabla5);
-
-        modelo_tabla6.setColumnCount(0);
-        modelo_tabla6.addColumn("Donante");
-        modelo_tabla6.addColumn("Aceptor");
-        for (String vial : lista_viales) {
-            modelo_tabla6.addColumn(vial);
-        }
-        modelo_tabla6.setRowCount(0);
-        jTable6.setModel(modelo_tabla6);
-
-        jRadioButton1.setSelected(true);
-
-        ButtonGroup grupo10 = new ButtonGroup();
-        grupo10.add(jRadioButton7);
-        grupo10.add(jRadioButton8);
-        jRadioButton7.setSelected(true);
+        jTabbedPane1.setSelectedIndex(0);
+        cargarPestania1();
+        
+        jTabbedPane1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (jTabbedPane1.getSelectedIndex() + 1 == 1) {
+                    cargarPestania1();
+                } else if (jTabbedPane1.getSelectedIndex() + 1 == 3) {
+                    armadoComponentesStocks();
+                    calcularStocks();
+                } else {
+                    listarDia_S2();
+                }
+            }
+        });
 
     }
 
@@ -79,6 +83,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane12 = new javax.swing.JScrollPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -88,68 +93,40 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jRB_buscarPorCentro = new javax.swing.JRadioButton();
         jRB_buscarTodoslosCentros = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCB_centros_p1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable0 = new javax.swing.JTable();
         jRB_citasVencidas = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jT_Totales_Res = new javax.swing.JTable();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        Buscar = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTabla_VialesRes = new javax.swing.JTable();
+        jButton7 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTabla3 = new javax.swing.JTable();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jComboBox13 = new javax.swing.JComboBox<>();
-        jSpinner6 = new javax.swing.JSpinner();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jButton5 = new javax.swing.JButton();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jPanel6 = new javax.swing.JPanel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jSpinner2 = new javax.swing.JSpinner();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jLabel18 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jComboBox11 = new javax.swing.JComboBox<>();
-        jComboBox12 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jPanel8 = new javax.swing.JPanel();
+        jButton8 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTabla_Stocks = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jT_ComprarViales = new javax.swing.JTable();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTabla_Stocks_inf = new javax.swing.JTable();
 
         jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -200,9 +177,9 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCB_centros_p1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCB_centros_p1ActionPerformed(evt);
             }
         });
 
@@ -236,29 +213,29 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jRB_buscarPorCentro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCB_centros_p1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jRB_buscarTodoslosCentros)
-                        .addGap(0, 528, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRB_CitasCumplidas)
-                                    .addComponent(jRB_cicasCanceladas)
-                                    .addComponent(jRB_citasVencidas)))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jRB_CitasCumplidas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRB_cicasCanceladas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRB_citasVencidas)))))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,30 +243,25 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRB_buscarPorCentro)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCB_centros_p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRB_buscarTodoslosCentros)
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(20, 20, 20)
-                        .addComponent(jRB_CitasCumplidas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRB_cicasCanceladas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRB_citasVencidas)
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jRB_CitasCumplidas)
+                    .addComponent(jRB_cicasCanceladas)
+                    .addComponent(jRB_citasVencidas))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resumen Citas Mes", jPanel1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jT_Totales_Res.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -300,12 +272,37 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(jT_Totales_Res);
 
-        Buscar.setText("Buscar");
-        Buscar.addActionListener(new java.awt.event.ActionListener() {
+        jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser1PropertyChange(evt);
+            }
+        });
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jTabla_VialesRes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane9.setViewportView(jTabla_VialesRes);
+
+        jButton7.setText("Agregar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
             }
         });
 
@@ -314,25 +311,34 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Buscar)))
-                .addContainerGap(351, Short.MAX_VALUE))
+                        .addComponent(jButton7))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar))
+                .addGap(23, 23, 23)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7))
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(314, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resumen del día", jPanel2);
@@ -342,386 +348,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 jPanel3FocusGained(evt);
             }
         });
-
-        jTabla3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTabla3);
-
-        jLabel12.setText("CANTIDAD ");
-
-        jRadioButton1.setText("Solicitud Simple");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable4);
-
-        jRadioButton3.setText("Solicitud Multiple");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Solicitar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Agregar Centro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton3))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(283, 283, 283))))))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-
-        jTabbedPane2.addTab("Solicitar Viales", jPanel4);
-
-        jRadioButton4.setText("Asignacion Simple");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Asignar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable5);
-
-        jRadioButton5.setText("Solicitud Multiple");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Agregar Centro");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jRadioButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jRadioButton4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton4))
-        );
-
-        jTabbedPane2.addTab("Asignar Viales a Centro", jPanel5);
-
-        jButton2.setText("Reasignar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("REASIGNAR DEL CENTRO");
-
-        jLabel18.setText("AL CENTRO");
-
-        jRadioButton2.setText("Solicitud Simple");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton6.setText("Solicitud Multiple");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Agregar Centro");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane7.setViewportView(jTable6);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jRadioButton2))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(91, 91, 91)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jRadioButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(148, 148, 148))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2))
-        );
-
-        jTabbedPane2.addTab("Reasignar Viales", jPanel6);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Stocks", jPanel3);
-
-        jScrollPane8.setViewportView(jList1);
-
-        jRadioButton7.setText("Pendientes");
-        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton7ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton8.setText("Completos");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Pedidos");
-
-        jLabel5.setText("Datos");
 
         jButton8.setText("Cumplir pedido");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -743,66 +369,231 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         ));
         jScrollPane10.setViewportView(jTable3);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(0, 714, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+        jScrollPane8.setViewportView(jList1);
+
+        jRadioButton7.setText("Pendientes");
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton8.setText("Completos");
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                                 .addComponent(jRadioButton7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton8))
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(304, Short.MAX_VALUE))))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton8))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButton7)
                         .addComponent(jRadioButton8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jRadioButton7)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jButton8)
-                .addContainerGap(307, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton8)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Pedidos Viales", jPanel8);
+        jTabla_Stocks.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTabla_Stocks);
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Agregar Centro");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setText("Comprar");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox2.setText("Asignar");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox3.setText("desAsignar");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
+
+        jT_ComprarViales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jT_ComprarViales);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBox1)
+                        .addComponent(jCheckBox2))
+                    .addComponent(jCheckBox3))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabla_Stocks_inf.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(jTabla_Stocks_inf);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Stocks", jPanel3);
+
+        jScrollPane12.setViewportView(jTabbedPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 1409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -816,118 +607,14 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         calcularStocks();
     }//GEN-LAST:event_jPanel3FocusGained
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        modelo_tabla6.addRow(new Object[]{jComboBox11.getSelectedItem().toString(), jComboBox12.getSelectedItem().toString()});
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-        jComboBox6.setEnabled(false);
-        jComboBox10.setEnabled(false);
-        jComboBox5.setEnabled(false);
-        jSpinner2.setEnabled(false);
-        jComboBox11.setEnabled(true);
-        jComboBox12.setEnabled(true);
-        jButton6.setEnabled(true);
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        jComboBox6.setEnabled(true);
-        jComboBox10.setEnabled(true);
-        jComboBox5.setEnabled(true);
-        jSpinner2.setEnabled(true);
-        jComboBox11.setEnabled(false);
-        jComboBox12.setEnabled(false);
-        jButton6.setEnabled(false);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jRadioButton2.isSelected()) {
-            asignarViales(jComboBox6.getSelectedItem().toString(), jComboBox5.getSelectedItem().toString(), jComboBox10.getSelectedItem().toString(), Integer.parseInt(jSpinner2.getValue().toString()));
-        } else if (jRadioButton6.isSelected()) {
-            asignacionMultipleTotal();
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        modelo_tabla5.addRow(new Object[]{"Gobierno", jComboBox9.getSelectedItem().toString()});
-        jComboBox9.removeItem(jComboBox9.getSelectedItem());
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        if (jRadioButton5.isSelected()) {
-            jComboBox13.setEnabled(false);
-            jComboBox7.setEnabled(false);
-            jSpinner6.setEnabled(false);
-            jComboBox8.setEnabled(true);
-            jComboBox9.setEnabled(true);
-            jButton5.setEnabled(true);
-            jTable5.setEnabled(true);
-        }
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (jRadioButton4.isSelected()) {
-            asignarViales(vD.buscarVacunatorio(0).getNombre(), jComboBox7.getSelectedItem().toString(), vD.listarVacunatorioNombre(jComboBox13.getSelectedItem().toString()).get(0).getNombre(), Integer.parseInt(jSpinner6.getValue().toString()));
-        } else if (jRadioButton5.isSelected()) {
-            asignacionVialesMultiple();
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        jComboBox13.setEnabled(true);
-        jComboBox7.setEnabled(true);
-        jSpinner6.setEnabled(true);
-        jComboBox8.setEnabled(false);
-        jComboBox9.setEnabled(false);
-        jButton5.setEnabled(false);
-        jTable5.setEnabled(false);
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        modelo_tabla4.addRow(new Object[]{jComboBox3.getSelectedItem().toString()});
-        jComboBox3.removeItem(jComboBox3.getSelectedItem());
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        adquirirViales();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        if (jRadioButton3.isSelected()) {
-            jComboBox2.setEnabled(false);
-            jComboBox4.setEnabled(false);
-            jSpinner3.setEnabled(false);
-            jComboBox3.setEnabled(true);
-            jButton3.setEnabled(true);
-            jTable4.setEnabled(true);
-        }
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        if (jRadioButton1.isSelected()) {
-            jComboBox2.setEnabled(true);
-            jComboBox4.setEnabled(true);
-            jSpinner3.setEnabled(true);
-            jComboBox3.setEnabled(false);
-            jButton3.setEnabled(false);
-            jTable4.setEnabled(false);
-        }
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        if (jDateChooser1.getDate() != null) {
-            listarDosis_x_Centro(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        }
-    }//GEN-LAST:event_BuscarActionPerformed
-
     private void jRB_citasVencidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_citasVencidasActionPerformed
-        if (jRB_citasVencidas.isSelected()) {
-            armarTabla("Ausente");
-        }
+        armarTablasS1();
+
     }//GEN-LAST:event_jRB_citasVencidasActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if (jComboBox1.getSelectedItem() != null) {
+    private void jCB_centros_p1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_centros_p1ActionPerformed
+        armarTablasS1();
+        if (jCB_centros_p1.getSelectedItem() != null) {
             jRB_citasVencidas.setEnabled(true);
             jRB_CitasCumplidas.setEnabled(true);
             jRB_cicasCanceladas.setEnabled(true);
@@ -936,38 +623,37 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             jRB_CitasCumplidas.setEnabled(false);
             jRB_cicasCanceladas.setEnabled(false);
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jCB_centros_p1ActionPerformed
 
     private void jRB_buscarTodoslosCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_buscarTodoslosCentrosActionPerformed
+        armarTablasS1();
         if (jRB_buscarTodoslosCentros.isSelected()) {
             jRB_citasVencidas.setEnabled(true);
             jRB_CitasCumplidas.setEnabled(true);
             jRB_cicasCanceladas.setEnabled(true);
+            jCB_centros_p1.setEnabled(false);
         } else {
-            jRB_citasVencidas.setEnabled(false);
-            jRB_CitasCumplidas.setEnabled(false);
-            jRB_cicasCanceladas.setEnabled(false);
+            jCB_centros_p1.setEnabled(true);
         }
+
+
     }//GEN-LAST:event_jRB_buscarTodoslosCentrosActionPerformed
 
     private void jRB_buscarPorCentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_buscarPorCentroActionPerformed
+        armarTablasS1();
         if (jRB_buscarPorCentro.isSelected())
-        jComboBox1.setEnabled(true);
+            jCB_centros_p1.setEnabled(true);
         else {
-            jComboBox1.setEnabled(false);
+            jCB_centros_p1.setEnabled(false);
         }
     }//GEN-LAST:event_jRB_buscarPorCentroActionPerformed
 
     private void jRB_cicasCanceladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_cicasCanceladasActionPerformed
-        if (jRB_cicasCanceladas.isSelected()) {
-            armarTabla("Cancelada");
-        }
+        armarTablasS1();
     }//GEN-LAST:event_jRB_cicasCanceladasActionPerformed
 
     private void jRB_CitasCumplidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_CitasCumplidasActionPerformed
-        if (jRB_CitasCumplidas.isSelected()) {
-            armarTabla("completo");
-        }
+        armarTablasS1();
     }//GEN-LAST:event_jRB_CitasCumplidasActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -978,460 +664,435 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         if (jRadioButton8.isSelected()) {
             armarListasPedidos("Completo");
             jButton8.setEnabled(false);
+            modeloT7.setRowCount(0);
         }
     }//GEN-LAST:event_jRadioButton8ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
         if (jRadioButton7.isSelected()) {
             armarListasPedidos("Pendiente");
+            modeloT7.setRowCount(0);
         }
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if (!jComboBox1.getSelectedItem().toString().equals("Todos")){
+        agregarCentro(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), vD.listarVacunatorioNombre(jComboBox1.getSelectedItem().toString()).get(0));
+        } else {
+            for (Vacunatorio vacunatorio : vacunatorios) {
+                if (!vacunatorio.getNombre().equals("0"))
+               agregarCentro(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), vacunatorio);
+            }
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
+        if (jDateChooser1.getDate() == null) {
+            jButton7.setEnabled(false);
+        } else {
+            jButton7.setEnabled(true);
+        }
+    }//GEN-LAST:event_jDateChooser1PropertyChange
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        jDateChooser1.setDate(null);
+        if (jComboBox1.getSelectedItem().toString().equals("Todos")){
+         modeloT2.setRowCount(0);
+         modeloT3.setRowCount(0);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        if (jCheckBox2.isSelected()){
+            jButton1.setText("Asignar");
+            jT_ComprarViales.setEnabled(true);
+            jComboBox3.setEnabled(true);
+            armarJCB_VialesStocks();
+            modeloT6.setRowCount(0);
+            jButton1.setEnabled(false);
+            jButton3.setEnabled(false);
+            }
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            jComboBox3.setEnabled(true);
+            jT_ComprarViales.setEnabled(true);
+            jButton1.setText("Comprar");
+            armarJCB_VialesStocks();
+            modeloT6.setRowCount(0);
+            jButton1.setEnabled(false);
+            jButton3.setEnabled(false);
+                    }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        modeloT6.addRow(new Object[]{jComboBox3.getSelectedItem().toString()});
+        jComboBox3.removeItem(jComboBox3.getSelectedItem());
+        jButton1.setEnabled(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        jButton3.setEnabled(true); 
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (verificarNumerosEnTabla(jT_ComprarViales)) {
+            manejoViales();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        modeloT6.setRowCount(0);
+        jComboBox3.setEnabled(true);
+        jButton1.setText("desAsignar");
+        jT_ComprarViales.setEnabled(true);
+        armarJCB_VialesStocks();
+        jButton1.setEnabled(false);
+        jButton3.setEnabled(false);
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Buscar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JComboBox<String> jCB_centros_p1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRB_CitasCumplidas;
     private javax.swing.JRadioButton jRB_buscarPorCentro;
     private javax.swing.JRadioButton jRB_buscarTodoslosCentros;
     private javax.swing.JRadioButton jRB_cicasCanceladas;
     private javax.swing.JRadioButton jRB_citasVencidas;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner6;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jT_ComprarViales;
+    private javax.swing.JTable jT_Totales_Res;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTabla3;
+    private javax.swing.JTable jTabla_Stocks;
+    private javax.swing.JTable jTabla_Stocks_inf;
+    private javax.swing.JTable jTabla_VialesRes;
     private javax.swing.JTable jTable0;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
     // End of variables declaration//GEN-END:variables
 
-    private void armarComponentes() {
-        jTabbedPane1.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (jTabbedPane1.getSelectedIndex() + 1 == 3) {
-                    armadoTablasStocks();
-                    calcularStocks();
-
-                }
-                if (jTabbedPane1.getSelectedIndex() + 1 == 2) {
-                    armadoTabla_vacunasDía();
-                }
-            }
-        });
+    private void estadoBotones() {
         jButton8.setEnabled(false);
-        jComboBox2.setEnabled(false);
         jRB_citasVencidas.setEnabled(false);
         jRB_CitasCumplidas.setEnabled(false);
         jRB_cicasCanceladas.setEnabled(false);
-        jComboBox1.setEnabled(false);
-        jComboBox4.setEnabled(false);
-        jSpinner3.setEnabled(false);
+        jCB_centros_p1.setEnabled(false);
         jComboBox3.setEnabled(false);
         jButton3.setEnabled(false);
-        jTable4.setEnabled(false);
-
+        jT_ComprarViales.setEnabled(false);
+        jRadioButton7.setSelected(true);
+        jButton7.setSelected(false);
+        jButton1.setEnabled(false);
+               
+        jButton1.setVisible(true);
+            jButton3.setVisible(true);
+            jComboBox3.setVisible(true);
+        }
+       
+    private void grupoBotones() {
         ButtonGroup grupo1 = new ButtonGroup();
-        grupo1.add(jRB_citasVencidas);
-        grupo1.add(jRB_CitasCumplidas);
-        grupo1.add(jRB_cicasCanceladas);
+        grupo1.add(jRB_buscarPorCentro);
+        grupo1.add(jRB_buscarTodoslosCentros);
 
         ButtonGroup grupo2 = new ButtonGroup();
-        grupo2.add(jRB_buscarPorCentro);
-        grupo2.add(jRB_buscarTodoslosCentros);
-
-        ButtonGroup grupo3 = new ButtonGroup();
-        grupo3.add(jRadioButton1);
-        grupo3.add(jRadioButton3);
+        grupo2.add(jRB_citasVencidas);
+        grupo2.add(jRB_CitasCumplidas);
+        grupo2.add(jRB_cicasCanceladas);
 
         ButtonGroup grupo4 = new ButtonGroup();
-        grupo4.add(jRadioButton4);
-        grupo4.add(jRadioButton5);
+        grupo4.add(jCheckBox2);
+        grupo4.add(jCheckBox1);
+        grupo4.add(jCheckBox3);
+        
+    
+        ButtonGroup grupo6 = new ButtonGroup();
+        grupo6.add(jRadioButton7);
+        grupo6.add(jRadioButton8);
+    }
 
-        ButtonGroup grupo5 = new ButtonGroup();
-        grupo5.add(jRadioButton2);
-        grupo5.add(jRadioButton6);
-
+    private void armadoCB() {
+        jComboBox1.addItem("Todos");
+        for (Vacunatorio centros : vacunatorios) {
+            if (!centros.getNombre().equals("0")) {
+            jCB_centros_p1.addItem(centros.getNombre());
+            jComboBox1.addItem(centros.getNombre());
+            }
+        }
+        
+       }
+    
+    private void armarJCB_VialesStocks() {
+        jComboBox3.removeAllItems();
+        for (Vacunatorio centros : vacunatorios) {
+            if (jCheckBox1.isSelected()) {
+                if (!centros.getNombre().equals("0")){
+                jComboBox3.addItem(centros.getNombre());
+                } else{
+                    jComboBox3.addItem("Gobierno");
+                }                
+            } else {
+                if (!centros.getNombre().equals("0")) {
+                    jComboBox3.addItem(centros.getNombre());
+                }
+            }
+        }
+    }
+ 
+    private void cargarPestania1() {
+        jRB_CitasCumplidas.setEnabled(true);
         jRB_CitasCumplidas.setSelected(true);
         jRB_buscarPorCentro.setSelected(true);
-
-        for (Vacunatorio centros : vD.listarVacunatorio()) {
-            jComboBox2.addItem(centros.getNombre());
-            jComboBox6.addItem(centros.getNombre());
-            jComboBox10.addItem(centros.getNombre());
-            jComboBox3.addItem(centros.getNombre());
-            jComboBox11.addItem(centros.getNombre());
-            jComboBox12.addItem(centros.getNombre());
-
-            if (centros.getNombre().equals("Gobierno")) {
-                jComboBox8.addItem(centros.getNombre());
-            }
-            if (!centros.getNombre().equals("Gobierno")) {
-                jComboBox13.addItem(centros.getNombre());
-                jComboBox9.addItem(centros.getNombre());
-                jComboBox1.addItem(centros.getNombre());
-            }
-        }
-
-        String[] lista_viales = {"Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac", "Sputnik V"};
-        DefaultComboBoxModel<String> modeloCB = new DefaultComboBoxModel<>(lista_viales);
-        jComboBox4.setModel(modeloCB);
-        jComboBox7.setModel(modeloCB);
-        jComboBox5.setModel(modeloCB);
-       
-        String[] lista_viales1 = {"Sputnik V", "Pfizer", "Johnson", "AstraZeneca", "Sinopharm"};
-        modelo_tabla2.setColumnCount(0);
-        for (String lista_viale : lista_viales1) {
-            modeloTabla.addColumn(lista_viale);
-        }
-        jTable3.setModel(modeloTabla);
-        
-        
-        
-        
+        jCB_centros_p1.setEnabled(true);
+        armarTablasS1();
     }
 
-    private void armarTabla(String codigo_estadoCita) {
-        int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0;
+    private void armarTablasS1() {
+        DefaultTableModel modelo1 = modelosTablas_noEdit(new String[]{" ", "Aplicadas"}, jTable0);
+
+        String[] columnas;
         if (jRB_CitasCumplidas.isSelected()) {
-            modelo_tabla1.setColumnCount(0);
-            modelo_tabla1.addColumn("DNI");
-            modelo_tabla1.addColumn("N° Dosis");
-            modelo_tabla1.addColumn("Fecha");
-            modelo_tabla1.addColumn("Vial");
-            modelo_tabla1.addColumn("Numero Serie");
+            columnas = new String[]{"DNI", "Dosis", "Fecha", "Vial", "N° Serie"};
             if (jRB_buscarTodoslosCentros.isSelected()) {
-                modelo_tabla1.addColumn("Centro");
+                columnas = new String[]{"DNI", "Dosis", "Fecha", "Vial", "N° Serie", "Centro"};
             }
-            modelo_tabla1.setRowCount(0);
         } else {
-            modelo_tabla1.setColumnCount(0);
-            modelo_tabla1.addColumn("DNI");
-            modelo_tabla1.addColumn("N° Dosis");
-            modelo_tabla1.addColumn("Fecha");
+            columnas = new String[]{"DNI", "Dosis", "Fecha"};
             if (jRB_buscarTodoslosCentros.isSelected()) {
-                modelo_tabla1.addColumn("Centro");
+                columnas = new String[]{"DNI", "Dosis", "Fecha", "Centro"};
             }
-            modelo_tabla1.setRowCount(0);
         }
-        jTable1.setModel(modelo_tabla1);
+        DefaultTableModel modelo2 = modelosTablas_noEdit(columnas, jTable1);
 
-        modelo_tabla0.setColumnCount(0);
-        modelo_tabla0.addColumn("Vacuna");
-        modelo_tabla0.addColumn("Cantidad Aplicadas");
-        modelo_tabla0.setRowCount(0);
-        jTable0.setModel(modelo_tabla0);
+        Pfizer = 0;
+        Johnson = 0;
+        AstraZeneca = 0;
+        Sinopharm = 0;
+        Sputnik = 0;
+        if (jRB_buscarTodoslosCentros.isSelected()) {
+            for (Vacunatorio centro : vacunatorios) {
+                calculos(modelo1, modelo2, centro);
+            }
+        } else {
+            calculos(modelo1, modelo2, vD.listarVacunatorioNombre(jCB_centros_p1.getSelectedItem().toString()).get(0));
+        }
+    }
 
-        ArrayList<Turno> listaTurnos = tD.listar_Turnos(LocalDate.now(), vD.listarVacunatorioNombre(jComboBox1.getSelectedItem().toString()).get(0), codigo_estadoCita, null, 0);
+    public void calculos(DefaultTableModel modelo1, DefaultTableModel modelo2, Vacunatorio vac) {
+        ArrayList<Turno> turnos_centros = new ArrayList();
+        String codigo = "";
+        if (jRB_CitasCumplidas.isSelected()) {
+            codigo = "Completo";
+        } else if (jRB_cicasCanceladas.isSelected()) {
+            codigo = "Cancelado";
+        } else if (jRB_citasVencidas.isSelected()) {
+            codigo = "ausente";
+        }
+        turnos_centros = tD.listar_Turnos(LocalDate.now(), vac, codigo, null, 0);
 
         if (jRB_buscarPorCentro.isSelected()) {
-            for (Turno turno : listaTurnos) {
-                if (jRB_CitasCumplidas.isSelected()) {
-                    modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie()});
-                    switch (turno.getVial().getMarca()) {
-                        case "Sputnik V":
-                            Sputnik++;
-                            break;
-                        case "Pfizer":
-                            Pfizer++;
-                            break;
-                        case "Sinopharm y Sinovac":
-                            Sinopharm++;
-                            break;
-                        case "Johnson_Johnson":
-                            Johnson++;
-                            break;
-                        case "AstraZeneca":
-                            AstraZeneca++;
-                            break;
-                    }
+            modelo2.setRowCount(0);
+        }
+        if (jRB_buscarTodoslosCentros.isSelected()) {
+            modelo1.setRowCount(0);
+        }
+
+        for (Turno turno : turnos_centros) {
+            if (jRB_CitasCumplidas.isSelected()) {
+                if (jRB_buscarTodoslosCentros.isSelected()) {
+                    modelo2.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha().toLocalDate(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie(), turno.getVacunatorio().getIdVacunatorio()});
                 } else {
-                    modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha()});
+                    modelo2.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha().toLocalDate(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie()});
+                }
+                switch (turno.getVial().getMarca()) {
+                    case "Sputnik V":Sputnik++;break;
+                    case "Pfizer":Pfizer++;break;
+                    case "Sinopharm y Sinovac":Sinopharm++;break;
+                    case "Johnson_Johnson":Johnson++; break;
+                    case "AstraZeneca":AstraZeneca++;break;
+                }
+            } else {
+                if (jRB_buscarTodoslosCentros.isSelected()) {
+                    modelo2.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha().toLocalDate(), turno.getVacunatorio().getIdVacunatorio()});
+                } else {
+                    modelo2.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha().toLocalDate()});
                 }
             }
-            if (jRB_CitasCumplidas.isSelected()) {
-                modelo_tabla0.addRow(new Object[]{"Sputnik V", Sputnik});
-                modelo_tabla0.addRow(new Object[]{"Pfizer", Pfizer});
-                modelo_tabla0.addRow(new Object[]{"Sinopharm y Sinovac", Sinopharm});
-                modelo_tabla0.addRow(new Object[]{"Johnson y Johnson", Johnson});
-                modelo_tabla0.addRow(new Object[]{"AstraZeneca", AstraZeneca});
-            }
-        } else if (jRB_buscarTodoslosCentros.isSelected()) {
-            for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-                for (Turno turno : tD.listar_Turnos(LocalDate.now(), vacunatorio, codigo_estadoCita, null, 0)) {
-                    if (jRB_CitasCumplidas.isSelected()) {
-                        modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), turno.getVial().getMarca(), turno.getVial().getNumeroSerie(), vacunatorio.getNombre()});
-                        switch (turno.getVial().getMarca()) {
-                            case "Sputnik V":
-                                Sputnik++;
-                                break;
-                            case "Pfizer":
-                                Pfizer++;
-                                break;
-                            case "Sinopharm y Sinovac":
-                                Sinopharm++;
-                                break;
-                            case "Johnson_Johnson":
-                                Johnson++;
-                                break;
-                            case "AstraZeneca":
-                                AstraZeneca++;
-                                break;
-                        }
-                    } else {
-                        modelo_tabla1.addRow(new Object[]{turno.getCiudadano().getDNI(), turno.getCodigoRefuerzo(), turno.getFecha(), vacunatorio.getNombre()});
-                    }
-                }
-            }
-            if (jRB_CitasCumplidas.isSelected()) {
-                modelo_tabla0.addRow(new Object[]{"Sputnik V", Sputnik});
-                modelo_tabla0.addRow(new Object[]{"Pfizer", Pfizer});
-                modelo_tabla0.addRow(new Object[]{"Sinopharm y Sinovac", Sinopharm});
-                modelo_tabla0.addRow(new Object[]{"Johnson y Johnson", Johnson});
-                modelo_tabla0.addRow(new Object[]{"AstraZeneca", AstraZeneca});
-            }
         }
+        if (jRB_CitasCumplidas.isSelected()) {
+            modelo1.addRow(new Object[]{"Sputnik V", Sputnik});
+            modelo1.addRow(new Object[]{"Pfizer", Pfizer});
+            modelo1.addRow(new Object[]{"Sinopharm y Sinovac", Sinopharm});
+            modelo1.addRow(new Object[]{"Johnson y Johnson", Johnson});
+            modelo1.addRow(new Object[]{"AstraZeneca", AstraZeneca});
+        }
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < jTable0.getColumnCount(); i++) {
+            jTable0.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+
     }
 
-    public void armadoTabla_vacunasDía() {
-        modelo_tabla2.setColumnCount(0);
-        modelo_tabla2.addColumn("Nombre");
-        modelo_tabla2.addColumn("Total");
-        modelo_tabla2.addColumn("Sputnik V");
-        modelo_tabla2.addColumn("Pfizer");
-        modelo_tabla2.addColumn("Sinopharm");
-        modelo_tabla2.addColumn("Johnson");
-        modelo_tabla2.addColumn("AstraZeneca");
+    private void armadoComponentesStocks() {
+        
+        String[] columnas = {"Centro", "Total"};
+        String[] columna2 = {"Centro", "Sputnik", "Pfizer", "Sinopharm", "Johnson", "AstraZeneca"};
 
-        jTable2.setModel(modelo_tabla2);
+        modeloT4 = modelosTablas_noEdit(columnas, jTabla_Stocks);
+        jTabla_Stocks.getColumnModel().getColumn(0).setPreferredWidth(150);
+
+        modeloT5 = modelosTablas_noEdit(columna2, jTabla_Stocks_inf);
+        jTabla_Stocks_inf.getColumnModel().getColumn(0).setPreferredWidth(100);
+        
+        modeloT6 = modelosTablas_Edit(columna2, jT_ComprarViales);
+        
+        String[] columna3 = {"Pfizer", "Johnson", "AstraZeneca", "Sinopharm", "Sputnik"};
+        modeloT7 = modelosTablas_noEdit(columna3, jTable3);
+        
     }
 
-    private void armadoTablasStocks() {
-        String[] lista_viales = {"Sputnik V", "Pfizer", "Johnson_Johnson", "AstraZeneca", "Sinopharm y Sinovac"};
-        modelo_tabla2.setColumnCount(0);
-        modelo_tabla2.addColumn("Nombre");
-        modelo_tabla2.addColumn("Total");
-        modelo_tabla2.addColumn("Sputnik V");
-        modelo_tabla2.addColumn("Pfizer");
-        modelo_tabla2.addColumn("Sinopharm");
-        modelo_tabla2.addColumn("Johnson");
-        modelo_tabla2.addColumn("AstraZeneca");
+    public void listarDia_S2() {
+        String[] lista_tabla2 = new String[]{"idCentro", "Fecha", "Nombre", "Total"};
+        modeloT2 = modelosTablas_noEdit(lista_tabla2, jT_Totales_Res);
 
-        jTabla3.setModel(modelo_tabla2);
-
-        modelo_tabla4.setColumnCount(0);
-        modelo_tabla4.addColumn("Centro");
-        for (String vial : lista_viales) {
-            modelo_tabla4.addColumn(vial);
-        }
-        jTable4.setModel(modelo_tabla4);
+        String[] lista_tabla3 = new String[]{"idCentro", "Sputnik", "Pfizer", "Sinopharm", "Johnson", "AstraZeneca"};
+        modeloT3 = modelosTablas_noEdit(lista_tabla3, jTabla_VialesRes);
     }
 
-    public void listarDosis_x_Centro(LocalDate fecha) {
-        modelo_tabla2.setRowCount(0);
-        for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-            if (!vacunatorio.getNombre().equals("Gobierno")) {
-                int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
-                for (Turno turno : tD.listar_Turnos(fecha, vacunatorio, "porDia", null, 0)) {
-                    switch (turno.getVial().getMarca()) {
-                        case "Sputnik V":
-                            Sputnik++;
-                            total++;
-                            break;
-                        case "Pfizer":
-                            Pfizer++;
-                            total++;
-                            break;
-                        case "Sinopharm y Sinovac":
-                            Sinopharm++;
-                            total++;
-                            break;
-                        case "Johnson_Johnson":
-                            Johnson++;
-                            total++;
-                            break;
-                        case "AstraZeneca":
-                            AstraZeneca++;
-                            total++;
-                            break;
-                    }
-                }
-                modelo_tabla2.addRow(new Object[]{vacunatorio.getNombre(), total, Sputnik, Pfizer, Johnson, AstraZeneca, Sinopharm});
+    public void agregarCentro(LocalDate fecha, Vacunatorio centro) {
+        Pfizer = 0;
+        Johnson = 0;
+        AstraZeneca = 0;
+        Sinopharm = 0;
+        Sputnik = 0;
+        int total = 0;
+        for (Turno turno : tD.listar_Turnos(fecha, centro, "porDia", null, 0)) {
+            switch (turno.getVial().getMarca()) {
+                case "Sputnik V":Sputnik++;total++;break;
+                case "Pfizer":Pfizer++;total++;break;
+                case "Sinopharm y Sinovac":Sinopharm++;total++;break;
+                case "Johnson_Johnson": Johnson++;total++;break;
+                case "AstraZeneca":AstraZeneca++;total++; break;
             }
         }
+        modeloT2.addRow(new Object[]{centro.getIdVacunatorio(), fecha.toString(), centro.getNombre(), total});
+        modeloT3.addRow(new Object[]{centro.getIdVacunatorio(), Sputnik, Pfizer, Johnson, AstraZeneca, Sinopharm});
     }
 
     private void calcularStocks() {
-        modelo_tabla2.setRowCount(0);
+       modeloT4.setRowCount(0);
+       modeloT5.setRowCount(0);
+        String nombre;
         for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-            int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0, total = 0;
+            Pfizer = 0;
+            Johnson = 0;
+            AstraZeneca = 0;
+            Sinopharm = 0;
+            Sputnik = 0;
+            int total = 0;
             for (Vial viales : sD.listarViales(0, vacunatorio.getIdVacunatorio())) {
                 switch (viales.getMarca()) {
-                    case "Sputnik V":
-                        Sputnik++;
-                        total++;
-                        break;
-                    case "Pfizer":
-                        Pfizer++;
-                        total++;
-                        break;
-                    case "Sinopharm y Sinovac":
-                        Sinopharm++;
-                        total++;
-                        break;
-                    case "Johnson_Johnson":
-                        Johnson++;
-                        total++;
-                        break;
-                    case "AstraZeneca":
-                        AstraZeneca++;
-                        total++;
-                        break;
+                    case "Sputnik V":Sputnik++;total++;break;
+                    case "Pfizer":Pfizer++;total++;break;
+                    case "Sinopharm y Sinovac":Sinopharm++;total++;break;
+                    case "Johnson_Johnson":Johnson++;total++;break;
+                    case "AstraZeneca": AstraZeneca++;total++;break;
                 }
             }
-            modelo_tabla2.addRow(new Object[]{vacunatorio.getNombre(), total, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
+            if (vacunatorio.getNombre().equals("0")) {
+                nombre = "Gobierno";
+            } else {
+                nombre = vacunatorio.getNombre();
+            }
+            modeloT4.addRow(new Object[]{nombre, total});
+            modeloT5.addRow(new Object[]{nombre, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
+
         }
     }
 
-    private void adquirirViales() {
-        int idVacunatorio = 0;
-        if (!jRadioButton3.isSelected()) {
-            if (jRadioButton1.isSelected()) {
-                idVacunatorio = vD.listarVacunatorioNombre(jComboBox2.getSelectedItem().toString()).get(0).getIdVacunatorio();
-                for (int i = 0; i < Integer.parseInt(jSpinner3.getValue().toString()); i++) {
-                    sD.compraViales(idVacunatorio, jComboBox4.getSelectedItem().toString());
-                }
-            }
-        } else if (jRadioButton3.isSelected()) {
-            int renglones = modelo_tabla4.getRowCount();
-            int columnas = modelo_tabla4.getColumnCount();
-
-            for (int r = 0; r < renglones; r++) {
-                for (int c = 1; c < columnas; c++) {
-                    if (modelo_tabla4.getValueAt(r, c) != null) {
-                        int valor = Integer.parseInt(modelo_tabla4.getValueAt(r, c).toString());
-                        for (int i = 0; i < valor; i++) {
-                            sD.compraViales(vD.listarVacunatorioNombre(modelo_tabla4.getValueAt(r, 0).toString()).get(0).getIdVacunatorio(), modelo_tabla4.getColumnName(c));
-                        }
-                    }
-                }
-            }
-        }
-        calcularStocks();
-    }
-
-    private void asignarViales(String centro_dador, String marca, String Centro_receptor, int cantidad) {
-        int viales_asignables = 0;
-        if (jRadioButton4.isSelected() || jRadioButton2.isSelected()) {
-            for (Vial viales : sD.listarViales(0, vD.listarVacunatorioNombre(centro_dador).get(0).getIdVacunatorio())) {
-                if (viales.getMarca().equalsIgnoreCase(marca)) {
-                    viales_asignables++;
-                }
-            }
-            if (viales_asignables < cantidad) {
-                JOptionPane.showMessageDialog(null, "Viales insuficientes");
-            } else if (cantidad < viales_asignables) {
-                if ((viales_asignables - cantidad) < 10) {
-                    JOptionPane.showMessageDialog(null, "Adquirir nuevos viales");
-                }
-                ArrayList<Vial> vial_reasignar = sD.listarViales(0, vD.listarVacunatorioNombre(centro_dador).get(0).getIdVacunatorio());
-                int asignacionesRealizadas = 0;
-
-                for (Vial vial : vial_reasignar) {
-                    if (vial.getMarca().equals(marca)) {
-                        sD.reasignarViales(vD.listarVacunatorioNombre(centro_dador).get(0), vD.listarVacunatorioNombre(Centro_receptor).get(0), vial);
-                        asignacionesRealizadas++;
-
-                        if (asignacionesRealizadas >= cantidad) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        calcularStocks();
-    }
-
-    private void asignacionVialesMultiple() {
-        int renglones = modelo_tabla5.getRowCount();
-        int columnas = modelo_tabla5.getColumnCount();
-
+    private void manejoViales() {
+        int renglones = modeloT6.getRowCount();
+        int columnas = modeloT6.getColumnCount();
+          
         for (int r = 0; r < renglones; r++) {
-            for (int c = 2; c < columnas; c++) {
-                if (modelo_tabla5.getValueAt(r, c) != null) {
-                    if (!modelo_tabla5.getValueAt(r, c).toString().trim().isEmpty()) {
-                        int valor = Integer.parseInt(modelo_tabla5.getValueAt(r, c).toString());
+            for (int c = 1; c < columnas; c++) {
+                Object valor = modeloT6.getValueAt(r, c);
+                if (valor != null && !valor.toString().isEmpty()) {
+                    int cantidad = Integer.parseInt(valor.toString());
 
-                        ArrayList<Vial> vial_reasignar = sD.listarViales(0, vD.listarVacunatorioNombre(modelo_tabla5.getValueAt(r, 0).toString()).get(0).getIdVacunatorio());
+                    if (jCheckBox1.isSelected()) {
+                        if (cantidad > 0) {
+                            String vacuna = nombreRealVial(modeloT6.getColumnName(c));
+                            int idVacunatorio = vD.listarVacunatorioNombre(((modeloT6.getValueAt(r, 0).equals("Gobierno")) ? "0" : modeloT6.getValueAt(r, 0).toString())).get(0).getIdVacunatorio();
+                            for (int i = 0; i < cantidad; i++) {
+                                sD.compraViales(idVacunatorio, vacuna);
+                            }
+                            jButton1.setEnabled(false);
+                            jButton3.setEnabled(false);
+                            jComboBox3.setEnabled(false);
+                        }
+                    } else if (jCheckBox2.isSelected()) {
                         int asignacionesRealizadas = 0;
-
-                        for (Vial vial : vial_reasignar) {
-                            if (vial.getMarca().equals(modelo_tabla5.getColumnName(c))) {
-                                System.out.println(vial.getMarca());
-                                System.out.println(modelo_tabla5.getColumnName(c));
-                                sD.reasignarViales(vD.listarVacunatorioNombre(modelo_tabla5.getValueAt(r, 0).toString()).get(0),
-                                        vD.listarVacunatorioNombre(modelo_tabla5.getValueAt(r, 1).toString()).get(0),
-                                        vial);
+                        Vacunatorio aceptor = vD.listarVacunatorioNombre(modeloT6.getValueAt(r, 0).toString()).get(0);
+                        Vacunatorio dador = vD.listarVacunatorioNombre("0").get(0);
+                        for (Vial vial : sD.listarViales(0, dador.getIdVacunatorio())) {
+                            if (vial.getMarca().equals(nombreRealVial(modeloT6.getColumnName(c)))) {
+                                sD.reasignarViales(dador, aceptor, vial);
                                 asignacionesRealizadas++;
-
-                                if (asignacionesRealizadas >= valor) {
+                                if (asignacionesRealizadas >= cantidad) {
+                                    jButton1.setEnabled(false);
+                                    jButton3.setEnabled(false);
+                                    jComboBox3.setEnabled(false);
+                                    break;
+                                }
+                            }
+                        }
+                    }                    
+                    else if (jCheckBox3.isSelected()){
+                        int asignacionesRealizadas = 0;
+                        Vacunatorio dador = vD.listarVacunatorioNombre(modeloT6.getValueAt(r, 0).toString()).get(0);
+                        Vacunatorio aceptor = vD.listarVacunatorioNombre("0").get(0);
+                        for (Vial vial : sD.listarViales(0, dador.getIdVacunatorio())) {
+                            if (vial.getMarca().equals(nombreRealVial(modeloT6.getColumnName(c)))) {
+                                sD.reasignarViales(dador, aceptor, vial);
+                                asignacionesRealizadas++;
+                                if (asignacionesRealizadas >= cantidad) {
+                                    jButton1.setEnabled(false);
+                                    jButton3.setEnabled(false);
+                                    jComboBox3.setEnabled(false);
                                     break;
                                 }
                             }
@@ -1443,46 +1104,12 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         calcularStocks();
     }
 
-    private void asignacionMultipleTotal() {
-        int renglones = modelo_tabla6.getRowCount();
-        int columnas = modelo_tabla6.getColumnCount();
-
-        for (int r = 0; r < renglones; r++) {
-            for (int c = 2; c < columnas; c++) {
-                if (modelo_tabla6.getValueAt(r, c) != null) {
-                    if (!modelo_tabla6.getValueAt(r, c).toString().trim().isEmpty()) {
-                        int valor = Integer.parseInt(modelo_tabla6.getValueAt(r, c).toString());
-                        System.out.println(valor);
-
-                        ArrayList<Vial> vial_reasignar = sD.listarViales(0, vD.listarVacunatorioNombre(modelo_tabla6.getValueAt(r, 0).toString()).get(0).getIdVacunatorio());
-                        int asignacionesRealizadas = 0;
-
-                        for (Vial vial : vial_reasignar) {
-                            if (vial.getMarca().equals(modelo_tabla6.getColumnName(c))) {
-                                sD.reasignarViales(vD.listarVacunatorioNombre(modelo_tabla6.getValueAt(r, 0).toString()).get(0),
-                                        vD.listarVacunatorioNombre(modelo_tabla6.getValueAt(r, 1).toString()).get(0),
-                                        vial);
-                                asignacionesRealizadas++;
-
-                                if (asignacionesRealizadas >= valor) {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        calcularStocks();
-    }
-
- 
-    public void armarListasPedidos(String estado) {     
+    public void armarListasPedidos(String estado) {
         ArrayList<Pedidos> pedidos = vD.listarPedidos(estado);
         DefaultListModel<String> listModel = new DefaultListModel<>();
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
         listModel.addElement("N° Pedido - ID Centro - Fecha Realizacion");
-        
+
         jList1.setCellRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -1494,7 +1121,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 return this;
             }
         });
-        
+
         for (Pedidos pedido : pedidos) {
             listModel.addElement(pedido.toString());
         }
@@ -1514,88 +1141,231 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                             for (Pedidos pedido1 : pedidos) {
                                 if (pedido1.getIdPedido() == idPedido) {
                                     pedido = pedido1;
-                                    modeloTabla.setRowCount(0);
-                                    modeloTabla.addRow(new Object[]{Integer.toString(pedido.getPf()), Integer.toString(pedido.getJhon()), Integer.toString(pedido.getAstra()),Integer.toString(pedido.getSyno()),Integer.toString(pedido.getSpuk())});                
-                                    jButton8.setEnabled(true);
-                                }
+                                    modeloT7.setRowCount(0);
+                                    modeloT7.addRow(new Object[]{Integer.toString(pedido.getPf()), Integer.toString(pedido.getJhon()), Integer.toString(pedido.getAstra()), Integer.toString(pedido.getSyno()), Integer.toString(pedido.getSpuk())});
+                                    if (jRadioButton7.isSelected()){
+                                            jButton8.setEnabled(true);
+                                    }
+                                } 
                             }
                         }
                     } else {
-                jButton8.setEnabled(false);
+                     jButton8.setEnabled(false);
+                    }
                 }
-              }
             }
         });
     }
 
-    private void darStocks(){
+    private void darStocks() {
         int Pfizer = 0, Johnson = 0, AstraZeneca = 0, Sinopharm = 0, Sputnik = 0;
-            for (Vial viales : sD.listarViales(0, 0)) {
-                switch (viales.getMarca()) {
-                    case "Sputnik V": Sputnik++;break;
-                    case "Pfizer":Pfizer++; break;
-                    case "Sinopharm y Sinovac":Sinopharm++;break;
-                    case "Johnson_Johnson":Johnson++;break;
-                    case "AstraZeneca": AstraZeneca++; break;
-                }
-            }
-            String faltantes = "";
-            int cont = 0;
-        if (pedido.getAstra()> AstraZeneca){
-            faltantes += "AstraZeneca ";cont++;
-        } else if (pedido.getJhon() > Johnson){
-             faltantes +=((cont>0)? ",":""); faltantes += "Johnson ";cont++;
-        } else if (pedido.getPf() > Pfizer){
-            faltantes +=((cont>0)? ",":""); faltantes += " Pfizer ";cont++;
-        } else if (pedido.getSpuk() > Sputnik){
-            faltantes +=((cont>0)? ",":""); faltantes += " Sputnik ";cont++;
-        } else if (pedido.getSyno() > Sinopharm){
-            faltantes +=((cont>0)? ",":""); faltantes += " Sinopharm ";cont++;
-        } else if (cont > 0) {
-           JOptionPane.showMessageDialog(null, "Faltante de stock de los viales " + faltantes);
-        } else {    
-            asignarViales_pedido();
-        }     
-    }
-    
-    public void asignarViales_pedido(){
-        int AstraCont = 0, SputCont = 0, SinoCont = 0, JonhCont = 0, PfizCont = 0;   
-        for (Vial viales : sD.listarViales(0, 0)){        
-            switch (viales.getMarca()){
-                case "AstraZeneca": 
-                    if (AstraCont < pedido.getAstra()){
-                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
-                        AstraCont++;
-                    } break;
-                case "Pfizer": 
-                    if (PfizCont < pedido.getPf()){
-                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
-                        PfizCont++;
-                    } break;
-                case "Sinopharm y Sinovac": 
-                    if (SinoCont < pedido.getSyno()){
-                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
-                        SinoCont++;
-                    } break;
-                case "Sputnik V": 
-                    if (SputCont < pedido.getSpuk()){
-                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
-                        SputCont++;
-                    } break;
-                case "Johnson_Johnson": 
-                    if (JonhCont < pedido.getJhon()){
-                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
-                        JonhCont++;
-                } break;
+        for (Vial viales : sD.listarViales(0, 0)) {
+            switch (viales.getMarca()) {
+                case "Sputnik V":Sputnik++;break;
+                case "Pfizer":Pfizer++;break;
+                case "Sinopharm y Sinovac":Sinopharm++;break;
+                case "Johnson_Johnson":Johnson++;break;
+                case "AstraZeneca": AstraZeneca++;break;
             }
         }
-            if (JonhCont == pedido.getJhon() 
-                    && SputCont == pedido.getSpuk() 
-                    && SinoCont == pedido.getSyno()
-                    && PfizCont == pedido.getPf()
-                    && AstraCont == pedido.getAstra()){
-            JOptionPane.showMessageDialog(null, "Pedido Completo");
-                sD.actualizarEstadoPedido(pedido);
+        String faltantes = "";
+        int cont = 0;
+        if (pedido.getAstra() > AstraZeneca) {
+            faltantes += "AstraZeneca ";
+            cont++;
+        } else if (pedido.getJhon() > Johnson) {
+            faltantes += ((cont > 0) ? "," : "");
+            faltantes += "Johnson ";
+            cont++;
+        } else if (pedido.getPf() > Pfizer) {
+            faltantes += ((cont > 0) ? "," : "");
+            faltantes += " Pfizer ";
+            cont++;
+        } else if (pedido.getSpuk() > Sputnik) {
+            faltantes += ((cont > 0) ? "," : "");
+            faltantes += " Sputnik ";
+            cont++;
+        } else if (pedido.getSyno() > Sinopharm) {
+            faltantes += ((cont > 0) ? "," : "");
+            faltantes += " Sinopharm ";
+            cont++;
+        } else if (cont > 0) {
+            JOptionPane.showMessageDialog(null, "Faltante de stock de los viales " + faltantes);
+        } else {
+            asignarViales_pedido();
+        }
+    }
+
+    public void asignarViales_pedido() {
+        int AstraCont = 0, SputCont = 0, SinoCont = 0, JonhCont = 0, PfizCont = 0;
+        for (Vial viales : sD.listarViales(0, 0)) {
+            switch (viales.getMarca()) {
+                case "AstraZeneca":
+                    if (AstraCont < pedido.getAstra()) {
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        AstraCont++;
+                    }
+                    break;
+                case "Pfizer":
+                    if (PfizCont < pedido.getPf()) {
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        PfizCont++;
+                    }
+                    break;
+                case "Sinopharm y Sinovac":
+                    if (SinoCont < pedido.getSyno()) {
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        SinoCont++;
+                    }
+                    break;
+                case "Sputnik V":
+                    if (SputCont < pedido.getSpuk()) {
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        SputCont++;
+                    }
+                    break;
+                case "Johnson_Johnson":
+                    if (JonhCont < pedido.getJhon()) {
+                        sD.reasignarViales(vD.buscarVacunatorio(0), pedido.getCentro(), viales);
+                        JonhCont++;
+                    }
+                    break;
             }
-     }
- }
+        }
+        if (JonhCont == pedido.getJhon()
+                && SputCont == pedido.getSpuk()
+                && SinoCont == pedido.getSyno()
+                && PfizCont == pedido.getPf()
+                && AstraCont == pedido.getAstra()) {
+            JOptionPane.showMessageDialog(null, "Pedido Completo");
+            sD.actualizarEstadoPedido(pedido);
+        }
+    }
+
+    private DefaultTableModel modelosTablas_noEdit(String[] columnas, JTable tabla) {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Hace que todas las celdas sean no editables
+            }
+        };
+
+        modelo.setColumnCount(0);
+        for (String nombres : columnas) {
+            modelo.addColumn(nombres);
+        }
+        tabla.setModel(modelo);
+        modeloTabla(tabla, modelo);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+        tabla.getTableHeader().setReorderingAllowed(false);
+
+        return modelo;
+    }
+       
+    private DefaultTableModel modelosTablas_Edit(String[] columnas, JTable tabla) {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column != 0;
+            }
+        };
+
+        modelo.setColumnCount(0);
+        for (String nombres : columnas) {
+            modelo.addColumn(nombres);
+        }
+        tabla.setModel(modelo);
+        modeloTabla(tabla, modelo);
+
+         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+        tabla.getTableHeader().setReorderingAllowed(false);
+        
+
+        return modelo;
+    }
+    
+    public void modeloTabla(JTable tabla, DefaultTableModel modelo) {
+        JTableHeader header = tabla.getTableHeader();
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        tabla.setShowGrid(false);
+        tabla.setShowVerticalLines(false);
+        JScrollPane scrollPane = (JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, tabla);
+        if (scrollPane != null) {
+            scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        }
+
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            int minWidth = 5;
+            int col = i;
+            int max = 0;
+
+            for (int row = 0; row < modelo.getRowCount(); row++) {
+                TableCellRenderer renderer = tabla.getCellRenderer(row, col);
+                Component comp = tabla.prepareRenderer(renderer, row, col);
+                max = Math.max(comp.getPreferredSize().width + 1, max);
+            }
+            TableColumn columna = tabla.getColumnModel().getColumn(i);
+            columna.setPreferredWidth(Math.max(max, minWidth));
+        }
+    }
+
+    public void centrarColumaDerecha(JTable tabla, int columna) {
+        DefaultTableCellRenderer rightAlignmentRenderer = new DefaultTableCellRenderer();
+        rightAlignmentRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        tabla.getColumnModel().getColumn(columna).setCellRenderer(rightAlignmentRenderer);
+    }
+    
+    private boolean verificarNumerosEnTabla(JTable tabla) {
+    DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+    int filas = modelo.getRowCount();
+    int columnas = modelo.getColumnCount();
+
+    for (int fila = 0; fila < filas; fila++) {
+        for (int columna = 1; columna < columnas; columna++) {
+            Object valor = modelo.getValueAt(fila, columna);
+            if (valor != null && !valor.toString().isEmpty()) {
+                String valorStr = valor.toString();
+                if (!esNumero(valorStr)) {
+                    JOptionPane.showMessageDialog(null, "El valor en la fila " + (fila + 1) + ", columna " + (columna + 1) + " no es un número válido.");
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+    
+    private boolean esNumero(String str) {
+    try {
+        int valor = Integer.parseInt(str);
+        return valor >= 0;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
+    
+    private String nombreRealVial(String pila){
+        String nombre;
+        switch(pila){
+            case "Sputnik": nombre = "Sputnik V"; break;
+            case "Pfizer": nombre = "Pfizer"; break;
+            case "Sinopharm": nombre = "Sinopharm y Sinovac"; break;
+            case "Johnson": nombre = "Johnson_Johnson"; break;
+            default: nombre = "AstraZeneca";
+        }
+        return nombre;
+    }
+}
