@@ -239,7 +239,6 @@ public class ModificlarClaveIF extends javax.swing.JInternalFrame {
             String contraseniaVieja = jP_cV.getText();
             String contraseniaN1 = jP_cN1.getText();
             int ret = lD.modificarClave(contraseniaVieja, contraseniaN1, usuario);
-
             if (ret == 0)
             this.dispose();
         }
@@ -268,7 +267,6 @@ public class ModificlarClaveIF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_showPass1ActionPerformed
 
     private void showPass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPass2ActionPerformed
-
         if (showPass2.isSelected()) {
             // Mostrar caracteres de la contraseña
             jP_cN2.setEchoChar((char) 0); // Esto quita el carácter oculto

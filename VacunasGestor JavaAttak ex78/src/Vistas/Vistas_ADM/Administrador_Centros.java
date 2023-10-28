@@ -39,6 +39,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo_tabla1 = new DefaultTableModel();
     private DefaultTableModel modelo_tabla4 = new DefaultTableModel();
     private DefaultTableModel modelo_tabla5 = new DefaultTableModel();
+    private DefaultTableModel modeloTabla = new DefaultTableModel();
     private Pedidos pedido = new Pedidos();
 
     public Administrador_Centros(TurnoData tD) {
@@ -144,11 +145,11 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jList1 = new javax.swing.JList<>();
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
 
         jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -239,8 +240,12 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jRB_buscarTodoslosCentros)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 528, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -251,9 +256,8 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -265,7 +269,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRB_buscarTodoslosCentros)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -280,7 +284,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resumen Citas Mes", jPanel1);
@@ -317,7 +321,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Buscar)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(351, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -715,8 +719,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane9.setViewportView(jList2);
-
         jLabel4.setText("Pedidos");
 
         jLabel5.setText("Datos");
@@ -728,6 +730,19 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
             }
         });
 
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane10.setViewportView(jTable3);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -738,20 +753,21 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel4))
+                        .addGap(0, 714, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                 .addComponent(jRadioButton7)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton8))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(292, 292, 292)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane9))
-                        .addContainerGap(59, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(304, Short.MAX_VALUE))))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -769,11 +785,11 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(jButton8)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos Viales", jPanel8);
@@ -786,7 +802,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -1002,7 +1018,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1024,6 +1039,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1031,7 +1047,6 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner6;
@@ -1041,6 +1056,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable0;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
@@ -1119,6 +1135,17 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jComboBox4.setModel(modeloCB);
         jComboBox7.setModel(modeloCB);
         jComboBox5.setModel(modeloCB);
+       
+        String[] lista_viales1 = {"Sputnik V", "Pfizer", "Johnson", "AstraZeneca", "Sinopharm"};
+        modelo_tabla2.setColumnCount(0);
+        for (String lista_viale : lista_viales1) {
+            modeloTabla.addColumn(lista_viale);
+        }
+        jTable3.setModel(modeloTabla);
+        
+        
+        
+        
     }
 
     private void armarTabla(String codigo_estadoCita) {
@@ -1450,7 +1477,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
     }
 
  
-    public void armarListasPedidos(String estado) {
+    public void armarListasPedidos(String estado) {     
         ArrayList<Pedidos> pedidos = vD.listarPedidos(estado);
         DefaultListModel<String> listModel = new DefaultListModel<>();
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
@@ -1487,15 +1514,9 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                             for (Pedidos pedido1 : pedidos) {
                                 if (pedido1.getIdPedido() == idPedido) {
                                     pedido = pedido1;
-                                    listModel2.addElement(pedido.getCentro().getNombre() + ": ");
-                                    listModel2.addElement("Estado: " + pedido.getEstado());
-                                    listModel2.addElement("AstraZeneca: " + Integer.toString(pedido.getAstra()));
-                                    listModel2.addElement("Sputnik V: " + Integer.toString(pedido.getSpuk()));
-                                    listModel2.addElement("Sinopharm: " + Integer.toString(pedido.getSyno()));
-                                    listModel2.addElement("Johnson: " + Integer.toString(pedido.getJhon()));
-                                    listModel2.addElement("Pfizer: " + Integer.toString(pedido.getPf()));
+                                    modeloTabla.setRowCount(0);
+                                    modeloTabla.addRow(new Object[]{Integer.toString(pedido.getPf()), Integer.toString(pedido.getJhon()), Integer.toString(pedido.getAstra()),Integer.toString(pedido.getSyno()),Integer.toString(pedido.getSpuk())});                
                                     jButton8.setEnabled(true);
-                                    jList2.setModel(listModel2);
                                 }
                             }
                         }
@@ -1535,11 +1556,10 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         } else {    
             asignarViales_pedido();
         }     
-        }
+    }
     
     public void asignarViales_pedido(){
         int AstraCont = 0, SputCont = 0, SinoCont = 0, JonhCont = 0, PfizCont = 0;   
-       
         for (Vial viales : sD.listarViales(0, 0)){        
             switch (viales.getMarca()){
                 case "AstraZeneca": 

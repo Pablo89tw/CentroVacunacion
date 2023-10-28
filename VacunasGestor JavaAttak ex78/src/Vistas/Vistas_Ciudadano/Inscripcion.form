@@ -946,10 +946,10 @@
                                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="102" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="jDC_covid" min="-2" pref="94" max="-2" attributes="0"/>
+                                                      <Component id="jDC_covid" min="-2" pref="123" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1089,6 +1089,9 @@
               </AuxValues>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDC_dosis">
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDC_dosisPropertyChange"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>

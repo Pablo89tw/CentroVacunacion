@@ -10,10 +10,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author MOLLO RAMIREZ
- */
 public class Centro_Principal extends javax.swing.JFrame {
 
     private DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -21,14 +17,12 @@ public class Centro_Principal extends javax.swing.JFrame {
     private CiudadanoData cD = new CiudadanoData();
     private TurnoData tD = new TurnoData();
     private boolean ingresoEnProgreso = false;
-    
-    
-    
-    public Centro_Principal() {
+      
+        public Centro_Principal() {
         initComponents();
         jList1.setModel(listModel);
     }
-
+        
        @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
