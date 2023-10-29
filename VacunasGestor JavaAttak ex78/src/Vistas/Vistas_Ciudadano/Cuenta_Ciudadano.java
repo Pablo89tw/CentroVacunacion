@@ -526,7 +526,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_FechaPT.setBorder(null);
         jText_FechaPT.setOpaque(false);
         jPanel5.add(jText_FechaPT);
-        jText_FechaPT.setBounds(130, 160, 298, 40);
+        jText_FechaPT.setBounds(130, 150, 298, 40);
 
         jText_CentroPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 17)); // NOI18N
         jText_CentroPT.setForeground(new java.awt.Color(85, 106, 124));
@@ -534,7 +534,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_CentroPT.setBorder(null);
         jText_CentroPT.setOpaque(false);
         jPanel5.add(jText_CentroPT);
-        jText_CentroPT.setBounds(120, 320, 310, 30);
+        jText_CentroPT.setBounds(120, 310, 310, 30);
 
         jText_Centro_DirPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 17)); // NOI18N
         jText_Centro_DirPT.setForeground(new java.awt.Color(85, 106, 124));
@@ -542,16 +542,21 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_Centro_DirPT.setBorder(null);
         jText_Centro_DirPT.setOpaque(false);
         jPanel5.add(jText_Centro_DirPT);
-        jText_Centro_DirPT.setBounds(120, 350, 310, 30);
+        jText_Centro_DirPT.setBounds(120, 340, 310, 30);
 
-        jButton1.setText("Cancelar Cita");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/CANCELAR TURNO 01.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setMaximumSize(new java.awt.Dimension(118, 34));
+        jButton1.setMinimumSize(new java.awt.Dimension(118, 34));
+        jButton1.setPreferredSize(new java.awt.Dimension(118, 34));
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/CANCELAR TURNO 02.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton1);
-        jButton1.setBounds(300, 390, 145, 23);
+        jButton1.setBounds(320, 380, 118, 34);
 
         jText_DosisPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
         jText_DosisPT.setForeground(new java.awt.Color(85, 106, 124));
@@ -559,16 +564,17 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_DosisPT.setBorder(null);
         jText_DosisPT.setOpaque(false);
         jPanel5.add(jText_DosisPT);
-        jText_DosisPT.setBounds(130, 80, 298, 40);
+        jText_DosisPT.setBounds(130, 70, 298, 40);
 
-        jButton2.setText("Asignar Horario");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/ASIGNAR HORARIO 01.png"))); // NOI18N
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/ASIGNAR HORARIO 02.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton2);
-        jButton2.setBounds(110, 390, 147, 23);
+        jButton2.setBounds(110, 380, 126, 34);
 
         jText_HorarioPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
         jText_HorarioPT.setForeground(new java.awt.Color(85, 106, 124));
@@ -576,7 +582,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_HorarioPT.setBorder(null);
         jText_HorarioPT.setOpaque(false);
         jPanel5.add(jText_HorarioPT);
-        jText_HorarioPT.setBounds(130, 240, 300, 40);
+        jText_HorarioPT.setBounds(130, 230, 300, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROXIMO TURNO-06.png"))); // NOI18N
         jLabel5.setText("jLabel5");
