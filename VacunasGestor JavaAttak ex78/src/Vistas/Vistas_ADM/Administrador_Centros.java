@@ -516,7 +516,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jCheckBox1)
@@ -530,7 +530,7 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabla_Stocks_inf.setModel(new javax.swing.table.DefaultTableModel(
@@ -1012,37 +1012,38 @@ public class Administrador_Centros extends javax.swing.JInternalFrame {
         modeloT2.addRow(new Object[]{centro.getIdVacunatorio(), fecha.toString(), centro.getNombre(), total});
         modeloT3.addRow(new Object[]{centro.getIdVacunatorio(), Sputnik, Pfizer, Johnson, AstraZeneca, Sinopharm});
     }
-
+  
     private void calcularStocks() {
-       modeloT4.setRowCount(0);
-       modeloT5.setRowCount(0);
+        modeloT4.setRowCount(0);
+        modeloT5.setRowCount(0);
         String nombre;
-        for (Vacunatorio vacunatorio : vD.listarVacunatorio()) {
-            Pfizer = 0;
-            Johnson = 0;
-            AstraZeneca = 0;
-            Sinopharm = 0;
-            Sputnik = 0;
-            int total = 0;
-            for (Vial viales : sD.listarViales(0, vacunatorio.getIdVacunatorio())) {
-                switch (viales.getMarca()) {
-                    case "Sputnik V":Sputnik++;total++;break;
-                    case "Pfizer":Pfizer++;total++;break;
-                    case "Sinopharm y Sinovac":Sinopharm++;total++;break;
-                    case "Johnson_Johnson":Johnson++;total++;break;
-                    case "AstraZeneca": AstraZeneca++;total++;break;
+        int total = 0;
+        ArrayList<Object[]> stocks = sD.calculadorStocks();
+        for (Vacunatorio centro : vD.listarVacunatorio()){
+        for (Object[] stock : stocks) {
+            if (stock instanceof Object[]) {
+                Object[] row = (Object[]) stock;
+                if (centro.getIdVacunatorio()== (int) row[0]){
+                    switch((String) row[1]){
+                        case "AstraZeneca": AstraZeneca = (int) row[2]; total = total + (int) row[2]; break;
+                        case "Sputnik V": Sputnik = (int) row[2];total = total + (int) row[2];break;
+                        case "Pfizer": Pfizer = (int) row[2]; total = total + (int) row[2];break;
+                        case "Sinopharm y Sinovac": Sinopharm = (int) row[2]; total = total + (int) row[2];break;
+                        case "Johnson_Johnson": Johnson = (int) row[2]; total = total + (int) row[2];break;
+                        }                  
+                    }
                 }
-            }
-            if (vacunatorio.getNombre().equals("0")) {
-                nombre = "Gobierno";
-            } else {
-                nombre = vacunatorio.getNombre();
-            }
-            modeloT4.addRow(new Object[]{nombre, total});
-            modeloT5.addRow(new Object[]{nombre, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
-
         }
-    }
+        if (centro.getNombre().equals("0")) {
+                nombre = "Gobierno";
+        } else {
+            nombre = centro.getNombre();
+        }
+        modeloT4.addRow(new Object[]{nombre, total});
+        total = 0;
+        modeloT5.addRow(new Object[]{nombre, Sputnik, Pfizer, Sinopharm, Johnson, AstraZeneca});
+       }
+     }
 
     private void manejoViales() {
         int renglones = modeloT6.getRowCount();

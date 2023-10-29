@@ -4,6 +4,7 @@ import Entidades.Laboratorio;
 import Entidades.Pedidos;
 import Entidades.Vacunatorio;
 import Entidades.Vial;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -298,5 +299,27 @@ public class VialData {
         } catch (SQLException e) {}
         
     }
+    
+    public ArrayList<Object[]> calculadorStocks(){
+       ArrayList<Object[]> resultados = new ArrayList<>();
+        PreparedStatement ps;
+        String sql = "SELECT idVacunatorio, Marca AS TipoVacuna, COUNT(*) AS CantidadViales FROM viales WHERE Estado = 0 GROUP BY idVacunatorio, Marca ORDER BY idVacunatorio, Marca";
+   
+         try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idVacunatorio = rs.getInt("idVacunatorio");
+                String tipoVacuna = rs.getString("TipoVacuna");
+                int cantidadViales = rs.getInt("CantidadViales");
+                Object[] resultado = {idVacunatorio, tipoVacuna, cantidadViales};
+                resultados.add(resultado);
+            }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } 
+    return resultados;
+}
 }
 
