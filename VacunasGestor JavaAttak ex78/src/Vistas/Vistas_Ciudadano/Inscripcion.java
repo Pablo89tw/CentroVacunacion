@@ -368,6 +368,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 34));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(550, 440));
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(550, 700));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButton11.setText("Si");
@@ -1112,6 +1116,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         panel_busqueda.setLayout(new FlowLayout());
         JTextField texto_busqueda = new JTextField(20);
         JButton buscar = new JButton("Buscar");
+        JButton salir = new JButton("Salir");
 
         buscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -1121,8 +1126,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 mapKit.setZoom(50);
             }
         });
+       
         panel_busqueda.add(texto_busqueda);
         panel_busqueda.add(buscar);
+        panel_busqueda.add(salir);
 
         mapKit.setDefaultProvider(JXMapKit.DefaultProviders.OpenStreetMaps);
 
@@ -1131,11 +1138,20 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         mapKit.setZoom(50);
 
         JFrame frame = new JFrame("Mapa");
+        frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(tamanio);
-        frame.add(panel_busqueda, BorderLayout.NORTH);
+        frame.add(panel_busqueda, BorderLayout.SOUTH);
         frame.setLocation(localizacion);
 
+        
+        salir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+            }
+        });
+        
+        
         WaypointPainter<Waypoint> punto_referencia = new WaypointPainter<Waypoint>();
         mapKit.getMainMap().setOverlayPainter(punto_referencia);
 
