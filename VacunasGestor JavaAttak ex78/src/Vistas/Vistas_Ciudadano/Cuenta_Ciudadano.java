@@ -595,12 +595,11 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         }
 
         DefaultListModel<String> listaPatologias = new DefaultListModel<>();
-        
         for (String patologias : c1.getPatologias()) {
-            listaPatologias.addElement(patologias);
+            listaPatologias.addElement(patologias);  
         }
-        if (listaPatologias.isEmpty()) {
-            listaPatologias.addElement("No hay patologias declaradas");
+        if (c1.getPatologias().isEmpty()) {
+            listaPatologias.addElement("Sin patologias declaradas");
         }
         jList1.setModel(listaPatologias);
         jList1.setBorder(null);    

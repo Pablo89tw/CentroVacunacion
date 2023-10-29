@@ -67,7 +67,7 @@ public class CiudadanoData{
         if (E) {sql += ", Embarazo";comas++;}
         if (EHC) {sql += ", Hepaticas_cronicas";comas++;}
         if (EN) {sql += ", Neurologicas";comas++;}
-        if (!otra.isEmpty()) {sql += ", otra";comas++;}
+        if (!otra.trim().isEmpty()) {sql += ", otra";comas++;}
 
         sql += ") VALUES (";
         if (comas!=0){sql +="?,";
@@ -93,7 +93,7 @@ public class CiudadanoData{
             if (otra != null) {
                 sqlPosicion++;
                 ps.setString(sqlPosicion, otra);
-                }
+            }
 
             exito = ps.executeUpdate();
 
