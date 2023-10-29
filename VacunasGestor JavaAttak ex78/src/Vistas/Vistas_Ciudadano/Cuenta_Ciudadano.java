@@ -69,51 +69,33 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_Celular1 = new javax.swing.JTextField();
         FONDO = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        Marca = new javax.swing.JLabel();
         jText_FechaD1 = new javax.swing.JTextField();
-        Marca2 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jText_MarcaD1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jText_NumeroD1 = new javax.swing.JTextField();
         jText_AntigenoD1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        Marca1 = new javax.swing.JLabel();
         jText_FechaVencimientoD1 = new javax.swing.JTextField();
-        Marca3 = new javax.swing.JLabel();
         jText_CentroD1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        FONDO_1raDOSIS = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        Marca4 = new javax.swing.JLabel();
         jText_FechaD2 = new javax.swing.JTextField();
-        Marca5 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jText_MarcaD2 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         jText_NumeroD2 = new javax.swing.JTextField();
         jText_AntigenoD2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        Marca6 = new javax.swing.JLabel();
         jText_FechaVencimientoD2 = new javax.swing.JTextField();
-        Marca7 = new javax.swing.JLabel();
         jText_CentroD2 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        FONDO_2daDOSIS = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        Marca8 = new javax.swing.JLabel();
         jText_FechaD3 = new javax.swing.JTextField();
-        Marca9 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jText_MarcaD3 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         jText_NumeroD3 = new javax.swing.JTextField();
         jText_AntigenoD3 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        Marca10 = new javax.swing.JLabel();
         jText_FechaVencimientoD3 = new javax.swing.JTextField();
-        Marca11 = new javax.swing.JLabel();
         jText_CentroD3 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        FONDO_3raDOSIS = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jText_FechaPT = new javax.swing.JTextField();
         jText_CentroPT = new javax.swing.JTextField();
@@ -122,7 +104,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_DosisPT = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jText_HorarioPT = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        FONDO_Turno = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -234,286 +216,185 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DATOS PERSONALES 02.png")), jPanel1); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
 
-        Marca.setText("Antigeno");
+        jText_FechaD1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_FechaD1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaD1.setBorder(null);
+        jText_FechaD1.setOpaque(false);
+        jText_FechaD1.setPreferredSize(new java.awt.Dimension(0, 20));
+        jPanel2.add(jText_FechaD1);
+        jText_FechaD1.setBounds(240, 350, 250, 20);
 
-        Marca2.setText("Fecha Colocacion");
+        jText_MarcaD1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_MarcaD1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_MarcaD1.setBorder(null);
+        jText_MarcaD1.setOpaque(false);
+        jText_MarcaD1.setPreferredSize(new java.awt.Dimension(0, 20));
+        jText_MarcaD1.setRequestFocusEnabled(false);
+        jPanel2.add(jText_MarcaD1);
+        jText_MarcaD1.setBounds(180, 140, 310, 20);
 
-        jLabel11.setText("Marca:");
+        jText_NumeroD1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_NumeroD1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_NumeroD1.setBorder(null);
+        jText_NumeroD1.setOpaque(false);
+        jText_NumeroD1.setPreferredSize(new java.awt.Dimension(0, 20));
+        jPanel2.add(jText_NumeroD1);
+        jText_NumeroD1.setBounds(180, 182, 310, 20);
 
-        jLabel12.setText("Numero Serie");
+        jText_AntigenoD1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_AntigenoD1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_AntigenoD1.setBorder(null);
+        jText_AntigenoD1.setOpaque(false);
+        jText_AntigenoD1.setPreferredSize(new java.awt.Dimension(0, 20));
+        jPanel2.add(jText_AntigenoD1);
+        jText_AntigenoD1.setBounds(180, 224, 310, 20);
 
-        jLabel1.setText("Datos 1° dosis:");
+        jText_FechaVencimientoD1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_FechaVencimientoD1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaVencimientoD1.setBorder(null);
+        jText_FechaVencimientoD1.setMaximumSize(new java.awt.Dimension(2147483647, 20));
+        jText_FechaVencimientoD1.setMinimumSize(new java.awt.Dimension(0, 20));
+        jText_FechaVencimientoD1.setOpaque(false);
+        jText_FechaVencimientoD1.setPreferredSize(new java.awt.Dimension(0, 20));
+        jPanel2.add(jText_FechaVencimientoD1);
+        jText_FechaVencimientoD1.setBounds(190, 266, 300, 20);
 
-        Marca1.setText("Vacunatorio");
-
-        Marca3.setText("Fecha Vencimento");
+        jText_CentroD1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_CentroD1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_CentroD1.setBorder(null);
+        jText_CentroD1.setOpaque(false);
+        jText_CentroD1.setPreferredSize(new java.awt.Dimension(350, 20));
+        jPanel2.add(jText_CentroD1);
+        jText_CentroD1.setBounds(130, 310, 350, 20);
 
         jLabel10.setText("-1° dosis sin aplicar-");
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(370, 90, 116, 14);
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(455, 87, 259, 20);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Marca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jText_AntigenoD1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jText_NumeroD1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jText_MarcaD1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Marca2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_FechaD1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Marca1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jText_CentroD1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Marca3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_FechaVencimientoD1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel10))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_MarcaD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_NumeroD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_AntigenoD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Marca2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_FechaD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Marca1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_CentroD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Marca3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_FechaVencimientoD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(122, Short.MAX_VALUE))
-        );
+        FONDO_1raDOSIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DOSIS PRIMERA.png"))); // NOI18N
+        FONDO_1raDOSIS.setMaximumSize(new java.awt.Dimension(550, 440));
+        FONDO_1raDOSIS.setMinimumSize(new java.awt.Dimension(550, 440));
+        FONDO_1raDOSIS.setPreferredSize(new java.awt.Dimension(550, 440));
+        jPanel2.add(FONDO_1raDOSIS);
+        FONDO_1raDOSIS.setBounds(0, 0, 550, 440);
 
         jTabbedPane1.addTab("  1° Dosis  ", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(null);
 
-        Marca4.setText("Antigeno");
+        jText_FechaD2.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_FechaD2.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaD2.setBorder(null);
+        jText_FechaD2.setOpaque(false);
+        jPanel3.add(jText_FechaD2);
+        jText_FechaD2.setBounds(240, 350, 250, 20);
 
-        Marca5.setText("Fecha Colocacion");
+        jText_MarcaD2.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_MarcaD2.setForeground(new java.awt.Color(85, 106, 124));
+        jText_MarcaD2.setBorder(null);
+        jText_MarcaD2.setOpaque(false);
+        jPanel3.add(jText_MarcaD2);
+        jText_MarcaD2.setBounds(180, 140, 310, 20);
 
-        jLabel13.setText("Marca:");
+        jText_NumeroD2.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_NumeroD2.setForeground(new java.awt.Color(85, 106, 124));
+        jText_NumeroD2.setBorder(null);
+        jText_NumeroD2.setOpaque(false);
+        jPanel3.add(jText_NumeroD2);
+        jText_NumeroD2.setBounds(180, 182, 310, 20);
 
-        jLabel14.setText("Numero Serie");
+        jText_AntigenoD2.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_AntigenoD2.setForeground(new java.awt.Color(85, 106, 124));
+        jText_AntigenoD2.setBorder(null);
+        jText_AntigenoD2.setOpaque(false);
+        jPanel3.add(jText_AntigenoD2);
+        jText_AntigenoD2.setBounds(180, 224, 310, 20);
 
-        jLabel2.setText("Datos 2° dosis aplicada:");
+        jText_FechaVencimientoD2.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_FechaVencimientoD2.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaVencimientoD2.setBorder(null);
+        jText_FechaVencimientoD2.setOpaque(false);
+        jPanel3.add(jText_FechaVencimientoD2);
+        jText_FechaVencimientoD2.setBounds(200, 266, 290, 20);
 
-        Marca6.setText("Vacunatorio");
-
-        Marca7.setText("Fecha Vencimento");
+        jText_CentroD2.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_CentroD2.setForeground(new java.awt.Color(85, 106, 124));
+        jText_CentroD2.setBorder(null);
+        jText_CentroD2.setOpaque(false);
+        jPanel3.add(jText_CentroD2);
+        jText_CentroD2.setBounds(130, 308, 360, 20);
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("-2° dosis sin aplicar-");
+        jPanel3.add(jLabel17);
+        jLabel17.setBounds(380, 90, 110, 14);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Marca4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jText_AntigenoD2)
-                                    .addComponent(jText_NumeroD2)
-                                    .addComponent(jText_MarcaD2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(Marca6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jText_CentroD2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(Marca7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_FechaVencimientoD2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(Marca5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_FechaD2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_MarcaD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_NumeroD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_AntigenoD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_FechaD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_CentroD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_FechaVencimientoD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(114, Short.MAX_VALUE))
-        );
+        FONDO_2daDOSIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DOSIS SEGUNDA.png"))); // NOI18N
+        FONDO_2daDOSIS.setMaximumSize(new java.awt.Dimension(550, 440));
+        FONDO_2daDOSIS.setMinimumSize(new java.awt.Dimension(550, 440));
+        FONDO_2daDOSIS.setPreferredSize(new java.awt.Dimension(550, 440));
+        jPanel3.add(FONDO_2daDOSIS);
+        FONDO_2daDOSIS.setBounds(0, 0, 550, 440);
 
         jTabbedPane1.addTab("  2° Dosis  ", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(null);
 
-        Marca8.setText("Antigeno");
+        jText_FechaD3.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_FechaD3.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaD3.setBorder(null);
+        jText_FechaD3.setOpaque(false);
+        jPanel4.add(jText_FechaD3);
+        jText_FechaD3.setBounds(240, 350, 250, 20);
 
-        Marca9.setText("Fecha Colocacion");
+        jText_MarcaD3.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_MarcaD3.setForeground(new java.awt.Color(85, 106, 124));
+        jText_MarcaD3.setBorder(null);
+        jText_MarcaD3.setOpaque(false);
+        jPanel4.add(jText_MarcaD3);
+        jText_MarcaD3.setBounds(180, 142, 310, 20);
 
-        jLabel15.setText("Marca:");
+        jText_NumeroD3.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_NumeroD3.setForeground(new java.awt.Color(85, 106, 124));
+        jText_NumeroD3.setBorder(null);
+        jText_NumeroD3.setOpaque(false);
+        jPanel4.add(jText_NumeroD3);
+        jText_NumeroD3.setBounds(179, 182, 310, 20);
 
-        jLabel16.setText("Numero Serie");
+        jText_AntigenoD3.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_AntigenoD3.setForeground(new java.awt.Color(85, 106, 124));
+        jText_AntigenoD3.setBorder(null);
+        jText_AntigenoD3.setOpaque(false);
+        jPanel4.add(jText_AntigenoD3);
+        jText_AntigenoD3.setBounds(180, 224, 310, 20);
 
-        jLabel3.setText("Datos 3° dosis aplicada:");
+        jText_FechaVencimientoD3.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_FechaVencimientoD3.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaVencimientoD3.setBorder(null);
+        jText_FechaVencimientoD3.setOpaque(false);
+        jPanel4.add(jText_FechaVencimientoD3);
+        jText_FechaVencimientoD3.setBounds(190, 266, 300, 20);
 
-        Marca10.setText("Vacunatorio");
-
-        Marca11.setText("Fecha Vencimento");
+        jText_CentroD3.setFont(new java.awt.Font("Proxima Nova Rg", 0, 14)); // NOI18N
+        jText_CentroD3.setForeground(new java.awt.Color(85, 106, 124));
+        jText_CentroD3.setBorder(null);
+        jText_CentroD3.setOpaque(false);
+        jPanel4.add(jText_CentroD3);
+        jText_CentroD3.setBounds(130, 310, 360, 20);
 
         jLabel18.setText("- 3° dosis sin aplicar -");
+        jPanel4.add(jLabel18);
+        jLabel18.setBounds(380, 90, 110, 14);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(Marca9, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_FechaD3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(Marca10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jText_CentroD3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(Marca11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_FechaVencimientoD3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Marca8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jText_AntigenoD3)
-                                    .addComponent(jText_NumeroD3)
-                                    .addComponent(jText_MarcaD3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel18))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_MarcaD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_NumeroD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_AntigenoD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_FechaD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca10, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_CentroD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Marca11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_FechaVencimientoD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
+        FONDO_3raDOSIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DOSIS TERCERA.png"))); // NOI18N
+        jPanel4.add(FONDO_3raDOSIS);
+        FONDO_3raDOSIS.setBounds(0, 0, 550, 440);
 
         jTabbedPane1.addTab("  3° Dosis  ", jPanel4);
 
@@ -567,6 +448,8 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jText_DosisPT.setBounds(130, 70, 298, 40);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/ASIGNAR HORARIO 01.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/ASIGNAR HORARIO 02.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -584,14 +467,13 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jPanel5.add(jText_HorarioPT);
         jText_HorarioPT.setBounds(130, 230, 300, 40);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROXIMO TURNO-06.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        jLabel5.setMaximumSize(new java.awt.Dimension(550, 440));
-        jLabel5.setMinimumSize(new java.awt.Dimension(550, 440));
-        jLabel5.setName(""); // NOI18N
-        jLabel5.setPreferredSize(new java.awt.Dimension(550, 440));
-        jPanel5.add(jLabel5);
-        jLabel5.setBounds(0, 0, 550, 440);
+        FONDO_Turno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROXIMO TURNO-06.png"))); // NOI18N
+        FONDO_Turno.setMaximumSize(new java.awt.Dimension(550, 440));
+        FONDO_Turno.setMinimumSize(new java.awt.Dimension(550, 440));
+        FONDO_Turno.setName(""); // NOI18N
+        FONDO_Turno.setPreferredSize(new java.awt.Dimension(550, 440));
+        jPanel5.add(FONDO_Turno);
+        FONDO_Turno.setBounds(0, 0, 550, 440);
 
         jTabbedPane1.addTab("  Proximo Turno  ", jPanel5);
 
@@ -635,36 +517,18 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FONDO;
-    private javax.swing.JLabel Marca;
-    private javax.swing.JLabel Marca1;
-    private javax.swing.JLabel Marca10;
-    private javax.swing.JLabel Marca11;
-    private javax.swing.JLabel Marca2;
-    private javax.swing.JLabel Marca3;
-    private javax.swing.JLabel Marca4;
-    private javax.swing.JLabel Marca5;
-    private javax.swing.JLabel Marca6;
-    private javax.swing.JLabel Marca7;
-    private javax.swing.JLabel Marca8;
-    private javax.swing.JLabel Marca9;
+    private javax.swing.JLabel FONDO_1raDOSIS;
+    private javax.swing.JLabel FONDO_2daDOSIS;
+    private javax.swing.JLabel FONDO_3raDOSIS;
+    private javax.swing.JLabel FONDO_Turno;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

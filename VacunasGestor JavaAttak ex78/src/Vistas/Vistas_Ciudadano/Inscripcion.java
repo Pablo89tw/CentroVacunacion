@@ -11,8 +11,11 @@ import Entidades.Turno;
 import Entidades.Vacunatorio;
 import Entidades.CustomWaypoint;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +37,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableModel;
 import org.jxmapviewer.JXMapKit;
 import org.jxmapviewer.viewer.DefaultWaypoint;
@@ -167,15 +173,23 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(551, 600));
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(150, 34));
+        jPanel1.setMinimumSize(new java.awt.Dimension(150, 34));
+        jPanel1.setName(""); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(150, 34));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         TextoApellido1.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         TextoApellido1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         TextoApellido1.setText("APELLIDO");
+        jPanel1.add(TextoApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 39, 116, -1));
 
         jTextoApellido.setFont(new java.awt.Font("ArianLT-Demi", 0, 18)); // NOI18N
         jTextoApellido.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextoApellido.setBorder(null);
         jTextoApellido.setOpaque(false);
         jTextoApellido.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        jPanel1.add(jTextoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 38, 353, 23));
 
         jLabel5.setBackground(new java.awt.Color(0, 153, 204));
         jLabel5.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -183,30 +197,36 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel5.setText(" COMPLETAR:");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setOpaque(true);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 164, 519, 19));
 
         jLabel2.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("NOMBRE");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 74, 110, -1));
 
         TextoNombre.setFont(new java.awt.Font("ArianLT-Demi", 0, 18)); // NOI18N
         TextoNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TextoNombre.setBorder(null);
         TextoNombre.setOpaque(false);
         TextoNombre.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        jPanel1.add(TextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 71, 353, -1));
 
         jLabel3.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("DNI");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 122, 108, -1));
 
         TextoDni.setFont(new java.awt.Font("ArianLT-Demi", 0, 18)); // NOI18N
         TextoDni.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         TextoDni.setBorder(null);
         TextoDni.setOpaque(false);
         TextoDni.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        jPanel1.add(TextoDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 119, 353, -1));
 
         jLabel6.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("E-mail");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 193, 108, -1));
 
         jTexto_email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTexto_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -216,10 +236,12 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jTexto_emailFocusLost(evt);
             }
         });
+        jPanel1.add(jTexto_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 193, 322, -1));
 
         jLabel8.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Telefono celular");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 256, 117, -1));
 
         jCB_ambitoTrabajo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -229,6 +251,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCB_ambitoTrabajoFocusLost(evt);
             }
         });
+        jPanel1.add(jCB_ambitoTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 322, 322, -1));
 
         jTexto_celular.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTexto_celular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -238,6 +261,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jTexto_celularFocusLost(evt);
             }
         });
+        jPanel1.add(jTexto_celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 256, 322, -1));
 
         jButton1.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton1.setText("Cerrar");
@@ -246,6 +270,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 486, -1, -1));
 
         jButton_Siguiente.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente.setText("Siguiente");
@@ -254,10 +279,12 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_SiguienteActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 486, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Ciudad");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 289, 87, -1));
 
         jButton2.setText("Buscar Domicilio");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +292,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 288, 154, -1));
 
         jButton_Siguiente1.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente1.setText("Actualizar Datos");
@@ -273,6 +301,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_Siguiente1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_Siguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 486, -1, -1));
 
         jButton_Siguiente2.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente2.setText("Actualizar Clave");
@@ -281,20 +310,24 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_Siguiente2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton_Siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 486, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Fecha Nacimiento");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 225, 134, -1));
 
         jDC_fechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDC_fechaNacimientoPropertyChange(evt);
             }
         });
+        jPanel1.add(jDC_fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 225, 151, -1));
 
         jLabel17.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Ambito Trabajo");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 321, 117, -1));
 
         jLabel18.setBackground(new java.awt.Color(0, 204, 51));
         jLabel18.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -302,111 +335,27 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel18.setText(" DATOS:");
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel18.setOpaque(true);
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 11, 519, 19));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextoApellido1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextoApellido)
-                    .addComponent(TextoNombre)
-                    .addComponent(TextoDni)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jCB_ambitoTrabajo, javax.swing.GroupLayout.Alignment.LEADING, 0, 322, Short.MAX_VALUE)
-                            .addComponent(jTexto_celular, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTexto_email, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDC_fechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Siguiente2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Siguiente1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Siguiente))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextoApellido1))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(TextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(TextoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel6)
-                    .addComponent(jTexto_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel16)
-                    .addComponent(jDC_fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel8)
-                    .addComponent(jTexto_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel9)
-                    .addComponent(jButton2))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCB_ambitoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton_Siguiente2)
-                    .addComponent(jButton_Siguiente1)
-                    .addComponent(jButton_Siguiente))
-                .addContainerGap())
-        );
+        jSolapasTurno.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_DATOS_PER_01.png")), jPanel1); // NOI18N
 
-        jSolapasTurno.addTab("Datos Personales", jPanel1);
+        jPanel2.setMaximumSize(new java.awt.Dimension(150, 34));
+        jPanel2.setMinimumSize(new java.awt.Dimension(150, 34));
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 34));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRadioButton11.setText("Si");
+        jPanel2.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 199, -1, -1));
 
         jRadioButton12.setText("No");
+        jPanel2.add(jRadioButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 199, -1, -1));
 
         jRadioButton13.setText("Si");
+        jPanel2.add(jRadioButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 232, -1, -1));
 
         Diabetes2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Diabetes2.setText("Diabetes");
+        jPanel2.add(Diabetes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 137, 28));
 
         jRadioButton14.setText("No");
         jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -414,32 +363,43 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton14ActionPerformed(evt);
             }
         });
+        jPanel2.add(jRadioButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 232, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel25.setText("Enfermedades Cardiovasculares");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 37, 225, 28));
 
         jRadioButton15.setText("Si");
+        jPanel2.add(jRadioButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 265, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel26.setText("Enfermedades Respiratorias Crónicas");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 103, 208, 28));
 
         jRadioButton16.setText("No");
+        jPanel2.add(jRadioButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 265, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel27.setText("Obesidad");
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 164, 137, 28));
 
         jRadioButton17.setText("Si");
+        jPanel2.add(jRadioButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 296, -1, -1));
 
         jLabel28.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel28.setText("Enfermedades Renales Crónicas");
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 197, 208, 28));
 
         jRadioButton18.setText("No");
+        jPanel2.add(jRadioButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 296, -1, -1));
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel29.setText("Embarazo");
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 137, 28));
 
         jLabel30.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel30.setText("Otros");
+        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 326, 57, 24));
 
         jButton_siguiente2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton_siguiente2.setText("SIGUIENTE");
@@ -448,20 +408,27 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_siguiente2ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButton_siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 490, 112, -1));
 
         jLabel31.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel31.setText("Inmunosupresion");
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 139, 137, 20));
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel32.setText("Enfermedades Hepáticas");
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 263, 208, 28));
 
         jRadioButton1.setText("Si");
+        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 39, -1, -1));
 
         jRadioButton2.setText("No");
+        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 39, 41, -1));
 
         jRadioButton3.setText("Si");
+        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 72, -1, -1));
 
         jRadioButton4.setText("No");
+        jPanel2.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 72, -1, -1));
 
         jRadioButton5.setText("Si");
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -469,10 +436,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton5ActionPerformed(evt);
             }
         });
+        jPanel2.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 105, -1, -1));
 
         jRadioButton6.setText("No");
+        jPanel2.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 105, -1, -1));
 
         jRadioButton7.setText("Si");
+        jPanel2.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 136, -1, -1));
 
         jRadioButton8.setText("No");
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -480,22 +450,28 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton8ActionPerformed(evt);
             }
         });
+        jPanel2.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 136, -1, -1));
 
         jRadioButton9.setText("Si");
+        jPanel2.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 166, -1, -1));
 
         jRadioButton10.setText("No");
+        jPanel2.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 166, -1, -1));
 
         jLabel33.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel33.setText("Enfermedades Neurológicas");
+        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 296, 208, 25));
 
         otras_Patologias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 otras_PatologiasActionPerformed(evt);
             }
         });
+        jPanel2.add(otras_Patologias, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 328, 289, 22));
 
         scrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         scrollPane1.setVisible(false);
+        jPanel2.add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 0, 0));
 
         Anterior.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Anterior.setText("ANTERIOR");
@@ -504,11 +480,15 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 AnteriorActionPerformed(evt);
             }
         });
+        jPanel2.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 490, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("El suscripto declara bajo juramento que la información precedentemente suministrada \nes auténtica y toma conocimiento de que cualquier falsedad, omisión o inexactitud en \nla misma, deliberada o no,  invalidará la asignacion del cronograma de vacunacion e \nincurrira a la aplicas sanciones administrativas y/o acciones judiciales. ");
         jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 478, 86));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 13, -1, -1));
 
         jCheckBox1.setText("Acepto");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -516,6 +496,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
+        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 456, -1, -1));
 
         jCheckBox2.setText("No Acepto");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -523,6 +504,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCheckBox2ActionPerformed(evt);
             }
         });
+        jPanel2.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 456, -1, -1));
 
         jLabel19.setBackground(new java.awt.Color(0, 204, 51));
         jLabel19.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -530,169 +512,14 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel19.setText(" Declaracion jurada de patologias preexistentes:");
         jLabel19.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel19.setOpaque(true);
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 528, 19));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(otras_Patologias))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(41, 41, 41)
-                                    .addComponent(jRadioButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(jRadioButton18)))
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Diabetes2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jRadioButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButton1))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton4)
-                                    .addComponent(jRadioButton6)
-                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(112, 112, 112)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jRadioButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton8)
-                                    .addComponent(jRadioButton10)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jRadioButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton12)
-                                    .addComponent(jRadioButton14)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jRadioButton15)
-                                .addGap(29, 29, 29)
-                                .addComponent(jRadioButton16)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(677, 677, 677))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox2))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Anterior)
-                                .addGap(275, 275, 275)
-                                .addComponent(jButton_siguiente2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(183, 183, 183))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(Diabetes2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton8)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jRadioButton9)
-                    .addComponent(jRadioButton10))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jRadioButton11)
-                    .addComponent(jRadioButton12))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jRadioButton13)
-                    .addComponent(jRadioButton14))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jRadioButton15)
-                    .addComponent(jRadioButton16)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jRadioButton18)
-                        .addComponent(jRadioButton17))
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(otras_Patologias, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_siguiente2)
-                    .addComponent(Anterior))
-                .addContainerGap())
-        );
+        jSolapasTurno.addTab("         Patologias Previas        ", jPanel2);
 
-        jSolapasTurno.addTab("Patologias Previas", jPanel2);
+        jPanel3.setMaximumSize(new java.awt.Dimension(110, 34));
+        jPanel3.setMinimumSize(new java.awt.Dimension(110, 34));
+        jPanel3.setPreferredSize(new java.awt.Dimension(110, 34));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel21.setBackground(new java.awt.Color(0, 204, 51));
         jLabel21.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -700,18 +527,24 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel21.setText("Declaracion sintomas COVID-19:");
         jLabel21.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel21.setOpaque(true);
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 547, -1));
+
+        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 420, 119, -1));
 
         jDC_dosis.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDC_dosisPropertyChange(evt);
             }
         });
+        jPanel3.add(jDC_dosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 420, 142, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("1° Dosis");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 420, 71, 22));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Direccion:");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 359, 83, 29));
 
         Actualizar_3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Actualizar_3.setText("Tomar Turno");
@@ -720,9 +553,12 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 Actualizar_3ActionPerformed(evt);
             }
         });
+        jPanel3.add(Actualizar_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 460, 188, -1));
+        jPanel3.add(jText_nombreVacunatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 304, 365, 36));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("¿Fuiste diagnosticado con COVID-19 en los últimos 30 días? ");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
 
         jRadio_si.setText("Si");
         jRadio_si.addActionListener(new java.awt.event.ActionListener() {
@@ -730,6 +566,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_siActionPerformed(evt);
             }
         });
+        jPanel3.add(jRadio_si, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
 
         jRadio_no.setText("No");
         jRadio_no.addActionListener(new java.awt.event.ActionListener() {
@@ -737,17 +574,22 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_noActionPerformed(evt);
             }
         });
+        jPanel3.add(jRadio_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 76, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setText("¿Recibiste el alta medica?");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 117, -1, -1));
 
         jDC_covid.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDC_covidPropertyChange(evt);
             }
         });
+        jPanel3.add(jDC_covid, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 137, 123, -1));
 
         jLabel13.setText("Fecha");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 138, -1, -1));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 489, -1, -1));
 
         jRadio_altaMedicaSi.setText("Si");
         jRadio_altaMedicaSi.addActionListener(new java.awt.event.ActionListener() {
@@ -755,6 +597,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_altaMedicaSiActionPerformed(evt);
             }
         });
+        jPanel3.add(jRadio_altaMedicaSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
         jRadio_altaMedicaNo.setText("No");
         jRadio_altaMedicaNo.addActionListener(new java.awt.event.ActionListener() {
@@ -762,14 +605,19 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_altaMedicaNoActionPerformed(evt);
             }
         });
+        jPanel3.add(jRadio_altaMedicaNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 134, -1, -1));
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 400, -1, -1));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setText("*En caso de tener alta medica, colocar la fecha del a misma.\n*En caso de tener no tener alta medica, colocar la fecha en la que comenzaste con \nlos sintomas");
         jScrollPane3.setViewportView(jTextArea2);
 
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 168, 490, 71));
+
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel20.setText("¿Cuando?");
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 117, -1, -1));
 
         jLabel22.setBackground(new java.awt.Color(0, 153, 204));
         jLabel22.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -777,139 +625,24 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel22.setText("Asignacion turno vacunacion COVID-19:");
         jLabel22.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel22.setOpaque(true);
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 269, 545, -1));
+        jPanel3.add(jText_direccionVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 354, 365, 40));
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel23.setText("Centro Vacunacion:");
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 307, 122, 29));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                        .addGap(181, 181, 181)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel15)))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jRadio_si)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadio_no))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jRadio_altaMedicaSi)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jRadio_altaMedicaNo))
-                                            .addComponent(jLabel11))
-                                        .addGap(55, 55, 55)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel20)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jDC_covid, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(24, 24, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(12, 12, 12)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDC_dosis, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Actualizar_3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jText_direccionVac, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(2, 2, 2))
-            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jLabel21)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadio_si)
-                    .addComponent(jRadio_no))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel20))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadio_altaMedicaSi)
-                            .addComponent(jRadio_altaMedicaNo)
-                            .addComponent(jLabel13)))
-                    .addComponent(jDC_covid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jText_nombreVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_direccionVac, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDC_dosis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Actualizar_3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jLabel14)
-                .addGap(50, 50, 50))
-        );
-
-        jSolapasTurno.addTab("Turno", jPanel3);
+        jSolapasTurno.addTab("            Turno           ", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSolapasTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(jSolapasTurno, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSolapasTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSolapasTurno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
         pack();
@@ -1244,6 +977,80 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jDC_fechaNacimiento.setMinSelectableDate(Date.from((LocalDate.now().minusYears(100).atStartOfDay(ZoneId.systemDefault()).toInstant())));
 
         Actualizar_3.setEnabled(false);
+        
+        
+        //EDICION DE PESTAÑAS
+         // Define los colores personalizados
+        Color selectedTabColor = new Color(255, 220, 0); // Color de fondo de la solapa seleccionada
+        Color unselectedTabColor = new Color(85, 106, 124); // Color de fondo de las solapas no seleccionadas
+
+        // Personaliza el fondo de las pestañas
+        jSolapasTurno.setUI(new BasicTabbedPaneUI() {
+            @Override
+            protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
+                Graphics2D g2 = (Graphics2D) g;
+
+                if (isSelected) {
+                    g2.setColor(selectedTabColor);
+                    jSolapasTurno.setForeground(new Color(85, 106, 124));
+
+                } else {
+                    g2.setColor(unselectedTabColor);
+                    jSolapasTurno.setForeground(new Color(255, 255, 255));
+                }
+                g2.fillRect(x, y, w, h);
+            }
+        });
+        
+        
+        
+        JLabel p0 = new JLabel();
+        JLabel p1 = new JLabel();
+        JLabel p2 = new JLabel();
+        
+
+        jSolapasTurno.setTabComponentAt(0, p0);
+        jSolapasTurno.getTabComponentAt(0).setPreferredSize(new Dimension(150, 40));
+        p0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_DATOS_PER_02.png")));
+
+        jSolapasTurno.setTabComponentAt(1, p1);
+        jSolapasTurno.getTabComponentAt(1).setPreferredSize(new Dimension(150, 40));
+        p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_PATOLOGIAS_01.png")));
+
+        jSolapasTurno.setTabComponentAt(2, p2);
+        jSolapasTurno.getTabComponentAt(2).setPreferredSize(new Dimension(118, 40));
+        p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_TURNOS_01.png")));
+
+        
+
+        jSolapasTurno.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int selectedTabIndex = jSolapasTurno.getSelectedIndex();
+
+                if (selectedTabIndex == 0) {
+                    p0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_DATOS_PER_02.png")));
+                } else {
+                    p0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_DATOS_PER_01.png")));
+                }
+
+                if (selectedTabIndex == 1) {
+                    p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_PATOLOGIAS_02.png")));
+                } else {
+                    p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_PATOLOGIAS_01.png")));
+                }
+
+                if (selectedTabIndex == 2) {
+                    p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_TURNOS_02.png")));
+                } else {
+                    p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_TURNOS_01.png")));
+                }
+
+            }
+        });
+        
+        
+        
     }
 
     public void armarCoodenadas() {
