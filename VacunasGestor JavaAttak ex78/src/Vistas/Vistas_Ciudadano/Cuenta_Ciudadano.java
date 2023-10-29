@@ -58,22 +58,16 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jText_Nombre_Apellido = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jText_DNI = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
         jText_DosisAplicadas = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jText_Email = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jText_Celular = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jText_Celular1 = new javax.swing.JTextField();
+        FONDO = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Marca = new javax.swing.JLabel();
         jText_FechaD1 = new javax.swing.JTextField();
@@ -123,14 +117,22 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jText_FechaPT = new javax.swing.JTextField();
         jText_CentroPT = new javax.swing.JTextField();
+        jText_Centro_DirPT = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jText_DosisPT = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jText_HorarioPT = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
+        setMaximumSize(new java.awt.Dimension(550, 600));
+        setMinimumSize(new java.awt.Dimension(550, 600));
         setOpaque(true);
         setPreferredSize(new java.awt.Dimension(550, 600));
+        setVisible(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setForeground(new java.awt.Color(85, 106, 124));
@@ -145,72 +147,91 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(20, 30, 40, 50), null));
-        jPanel1.setMinimumSize(new java.awt.Dimension(550, 600));
-        jPanel1.setPreferredSize(new java.awt.Dimension(550, 600));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setMaximumSize(new java.awt.Dimension(550, 440));
+        jPanel1.setMinimumSize(new java.awt.Dimension(550, 440));
+        jPanel1.setPreferredSize(new java.awt.Dimension(550, 440));
+        jPanel1.setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Nombre y Apellido");
-        jLabel5.setToolTipText("");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 28, 130, 28));
-        jPanel1.add(jText_Nombre_Apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 313, 35));
+        jText_Nombre_Apellido.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jText_Nombre_Apellido.setForeground(new java.awt.Color(85, 106, 124));
+        jText_Nombre_Apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_Nombre_Apellido.setBorder(null);
+        jText_Nombre_Apellido.setOpaque(false);
+        jPanel1.add(jText_Nombre_Apellido);
+        jText_Nombre_Apellido.setBounds(50, 50, 270, 30);
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("DNI");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 53, -1));
-        jPanel1.add(jText_DNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 313, 35));
+        jText_DNI.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jText_DNI.setForeground(new java.awt.Color(85, 106, 124));
+        jText_DNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_DNI.setBorder(null);
+        jText_DNI.setOpaque(false);
+        jPanel1.add(jText_DNI);
+        jText_DNI.setBounds(340, 50, 170, 30);
 
-        jLabel20.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel20.setText("Fecha Nacimiento");
-        jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 143, 28));
-        jPanel1.add(jText_DosisAplicadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 369, 353, 35));
+        jText_DosisAplicadas.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jText_DosisAplicadas.setForeground(new java.awt.Color(85, 106, 124));
+        jText_DosisAplicadas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_DosisAplicadas.setBorder(null);
+        jText_DosisAplicadas.setOpaque(false);
+        jPanel1.add(jText_DosisAplicadas);
+        jText_DosisAplicadas.setBounds(50, 315, 210, 30);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Patologias ");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 299, 104, 28));
+        jText_Email.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jText_Email.setForeground(new java.awt.Color(85, 106, 124));
+        jText_Email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_Email.setBorder(null);
+        jText_Email.setOpaque(false);
+        jPanel1.add(jText_Email);
+        jText_Email.setBounds(280, 140, 230, 30);
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Dosis Aplicadas");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 369, 104, 28));
-        jPanel1.add(jText_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 233, 353, 35));
+        jText_Celular.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jText_Celular.setForeground(new java.awt.Color(85, 106, 124));
+        jText_Celular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_Celular.setBorder(null);
+        jText_Celular.setOpaque(false);
+        jPanel1.add(jText_Celular);
+        jText_Celular.setBounds(50, 225, 210, 30);
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Celular");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 194, 104, 28));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("E-mail");
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 235, 104, 28));
-        jPanel1.add(jText_Celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 192, 353, 35));
-
-        jButton5.setText("Generar Certificado");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/GENERAR CERTIFICADO_01-05.png"))); // NOI18N
+        jButton5.setBorder(null);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setMaximumSize(new java.awt.Dimension(158, 34));
+        jButton5.setMinimumSize(new java.awt.Dimension(158, 34));
+        jButton5.setPreferredSize(new java.awt.Dimension(158, 34));
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/GENERAR CERTIFICADO_02-05.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 422, 163, -1));
+        jPanel1.add(jButton5);
+        jButton5.setBounds(330, 380, 160, 34);
 
+        jList1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jList1.setForeground(new java.awt.Color(85, 106, 124));
         jScrollPane2.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 274, 353, 89));
-        jPanel1.add(jText_Celular1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 313, 35));
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(300, 230, 200, 110);
 
-        jTabbedPane1.addTab("DATOS", jPanel1);
+        jText_Celular1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jText_Celular1.setForeground(new java.awt.Color(85, 106, 124));
+        jText_Celular1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_Celular1.setBorder(null);
+        jText_Celular1.setOpaque(false);
+        jPanel1.add(jText_Celular1);
+        jText_Celular1.setBounds(50, 140, 210, 30);
+
+        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/CIUDADANO_DATOS.png"))); // NOI18N
+        FONDO.setToolTipText("");
+        FONDO.setMaximumSize(new java.awt.Dimension(550, 440));
+        FONDO.setMinimumSize(new java.awt.Dimension(550, 440));
+        FONDO.setName(""); // NOI18N
+        FONDO.setPreferredSize(new java.awt.Dimension(550, 440));
+        jPanel1.add(FONDO);
+        FONDO.setBounds(0, 0, 550, 440);
+
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DATOS PERSONALES 02.png")), jPanel1); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -306,7 +327,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Marca3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jText_FechaVencimientoD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  1° Dosis  ", jPanel2);
@@ -399,7 +420,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Marca7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_FechaVencimientoD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  2° Dosis  ", jPanel3);
@@ -491,12 +512,37 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Marca11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_FechaVencimientoD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("  3° Dosis  ", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(null);
+
+        jText_FechaPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
+        jText_FechaPT.setForeground(new java.awt.Color(85, 106, 124));
+        jText_FechaPT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_FechaPT.setBorder(null);
+        jText_FechaPT.setOpaque(false);
+        jPanel5.add(jText_FechaPT);
+        jText_FechaPT.setBounds(130, 160, 298, 40);
+
+        jText_CentroPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 17)); // NOI18N
+        jText_CentroPT.setForeground(new java.awt.Color(85, 106, 124));
+        jText_CentroPT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_CentroPT.setBorder(null);
+        jText_CentroPT.setOpaque(false);
+        jPanel5.add(jText_CentroPT);
+        jText_CentroPT.setBounds(120, 320, 310, 30);
+
+        jText_Centro_DirPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 17)); // NOI18N
+        jText_Centro_DirPT.setForeground(new java.awt.Color(85, 106, 124));
+        jText_Centro_DirPT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_Centro_DirPT.setBorder(null);
+        jText_Centro_DirPT.setOpaque(false);
+        jPanel5.add(jText_Centro_DirPT);
+        jText_Centro_DirPT.setBounds(120, 350, 310, 30);
 
         jButton1.setText("Cancelar Cita");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -504,6 +550,16 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel5.add(jButton1);
+        jButton1.setBounds(300, 390, 145, 23);
+
+        jText_DosisPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
+        jText_DosisPT.setForeground(new java.awt.Color(85, 106, 124));
+        jText_DosisPT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_DosisPT.setBorder(null);
+        jText_DosisPT.setOpaque(false);
+        jPanel5.add(jText_DosisPT);
+        jText_DosisPT.setBounds(130, 80, 298, 40);
 
         jButton2.setText("Asignar Horario");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -511,54 +567,37 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel5.add(jButton2);
+        jButton2.setBounds(110, 390, 147, 23);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jText_DosisPT, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_CentroPT, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_FechaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(171, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jText_DosisPT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jText_FechaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jText_CentroPT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(258, Short.MAX_VALUE))
-        );
+        jText_HorarioPT.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
+        jText_HorarioPT.setForeground(new java.awt.Color(85, 106, 124));
+        jText_HorarioPT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jText_HorarioPT.setBorder(null);
+        jText_HorarioPT.setOpaque(false);
+        jPanel5.add(jText_HorarioPT);
+        jText_HorarioPT.setBounds(130, 240, 300, 40);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/PROXIMO TURNO-06.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        jLabel5.setMaximumSize(new java.awt.Dimension(550, 440));
+        jLabel5.setMinimumSize(new java.awt.Dimension(550, 440));
+        jLabel5.setName(""); // NOI18N
+        jLabel5.setPreferredSize(new java.awt.Dimension(550, 440));
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(0, 0, 550, 440);
 
         jTabbedPane1.addTab("  Proximo Turno  ", jPanel5);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 114, -1, 490));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/CIUDADANO_FONDO.png"))); // NOI18N
+        jLabel4.setText("12");
+        jLabel4.setMaximumSize(new java.awt.Dimension(550, 600));
+        jLabel4.setMinimumSize(new java.awt.Dimension(550, 600));
+        jLabel4.setName(""); // NOI18N
+        jLabel4.setPreferredSize(new java.awt.Dimension(550, 600));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -589,6 +628,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FONDO;
     private javax.swing.JLabel Marca;
     private javax.swing.JLabel Marca1;
     private javax.swing.JLabel Marca10;
@@ -616,14 +656,9 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -641,6 +676,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jText_CentroD2;
     private javax.swing.JTextField jText_CentroD3;
     private javax.swing.JTextField jText_CentroPT;
+    private javax.swing.JTextField jText_Centro_DirPT;
     private javax.swing.JTextField jText_DNI;
     private javax.swing.JTextField jText_DosisAplicadas;
     private javax.swing.JTextField jText_DosisPT;
@@ -652,6 +688,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jText_FechaVencimientoD1;
     private javax.swing.JTextField jText_FechaVencimientoD2;
     private javax.swing.JTextField jText_FechaVencimientoD3;
+    private javax.swing.JTextField jText_HorarioPT;
     private javax.swing.JTextField jText_MarcaD1;
     private javax.swing.JTextField jText_MarcaD2;
     private javax.swing.JTextField jText_MarcaD3;
@@ -696,10 +733,12 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
                             jText_FechaPT.setText("Asignar horario.");
                             jButton2.setVisible(true);
                         } else {
-                            jText_FechaPT.setText("Fecha: " + turnos.getFecha().toLocalDate().toString() + " - Horario: " + turnos.getFecha().getHour() + "hs.");
+                            jText_FechaPT.setText(turnos.getFecha().toLocalDate().toString());
+                            jText_HorarioPT.setText(turnos.getFecha().getHour() + "hs.");
                         }
-                        jText_DosisPT.setText("Dosis a aplicar: " + Integer.toString(turnos.getCodigoRefuerzo()) + " dosis.");
-                        jText_CentroPT.setText("Centro Vacunacion: " + turnos.getVacunatorio().getNombre() + " - " + turnos.getVacunatorio().getDireccion());
+                        jText_DosisPT.setText(Integer.toString(turnos.getCodigoRefuerzo()) + " dosis");
+                        jText_CentroPT.setText(turnos.getVacunatorio().getNombre());
+                        jText_Centro_DirPT.setText(turnos.getVacunatorio().getDireccion());
                     }
                 }
             }
@@ -919,11 +958,11 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
         if (c1.getDosisAplicadas() == 0) {
             jTabbedPane1.setEnabledAt(1, false);
-            p1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/1ra DOSIS 03.png")));
+            
             jTabbedPane1.setEnabledAt(2, false);
-            p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/2da DOSIS 03.png")));
+            
             jTabbedPane1.setEnabledAt(3, false);
-            p3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/3ra DOSIS 03.png")));
+            
 
         } else if (c1.getDosisAplicadas() == 1) {
             jTabbedPane1.setEnabledAt(2, false);
