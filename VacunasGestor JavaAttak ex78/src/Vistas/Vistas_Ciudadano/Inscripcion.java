@@ -341,7 +341,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jDC_fechaNacimientoPropertyChange(evt);
             }
         });
-        jPanel1.add(jDC_fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 225, 151, -1));
+        jPanel1.add(jDC_fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 225, 150, -1));
 
         jLabel17.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -591,7 +591,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jPanel3.add(jText_nombreVacunatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 304, 365, 36));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setText("¿Fuiste diagnosticado con COVID-19 en los últimos 30 días? ");
+        jLabel1.setText("¿Fuiste diagnosticado con COVID-19 en los últimos 60 días? ");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
 
         jRadio_si.setText("Si");
@@ -1031,7 +1031,9 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         jDC_fechaNacimiento.setMaxSelectableDate(Date.from((LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())));
         jDC_fechaNacimiento.setMinSelectableDate(Date.from((LocalDate.now().minusYears(100).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-
+        jDC_covid.setMaxSelectableDate(Date.from((LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        jDC_covid.setMinSelectableDate(Date.from((LocalDate.now().minusDays(75).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        
         Actualizar_3.setEnabled(false);
         
         
