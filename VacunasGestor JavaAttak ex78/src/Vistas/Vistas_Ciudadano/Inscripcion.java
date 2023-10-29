@@ -108,6 +108,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
         jRadioButton11 = new javax.swing.JRadioButton();
         jRadioButton12 = new javax.swing.JRadioButton();
         jRadioButton13 = new javax.swing.JRadioButton();
@@ -172,7 +174,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
 
         setBorder(null);
-        setPreferredSize(new java.awt.Dimension(551, 600));
+        setPreferredSize(new java.awt.Dimension(550, 600));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(150, 34));
         jPanel1.setMinimumSize(new java.awt.Dimension(150, 34));
@@ -277,7 +279,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 486, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         jButton_Siguiente.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente.setText("Siguiente");
@@ -286,7 +288,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_SiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 486, -1, -1));
+        jPanel1.add(jButton_Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("ArianLT-Bold", 0, 10)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -313,7 +315,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_Siguiente1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Siguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 486, -1, -1));
+        jPanel1.add(jButton_Siguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
 
         jButton_Siguiente2.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente2.setText("Actualizar Clave");
@@ -322,7 +324,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_Siguiente2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 486, -1, -1));
+        jPanel1.add(jButton_Siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -366,18 +368,20 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 34));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jRadioButton11.setText("Si");
-        jPanel2.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 199, -1, -1));
+        jPanel4.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 199, -1, -1));
 
         jRadioButton12.setText("No");
-        jPanel2.add(jRadioButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 199, -1, -1));
+        jPanel4.add(jRadioButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 199, -1, -1));
 
         jRadioButton13.setText("Si");
-        jPanel2.add(jRadioButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 232, -1, -1));
+        jPanel4.add(jRadioButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 232, -1, -1));
 
         Diabetes2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Diabetes2.setText("Diabetes");
-        jPanel2.add(Diabetes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 137, 28));
+        jPanel4.add(Diabetes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 137, 28));
 
         jRadioButton14.setText("No");
         jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -385,43 +389,43 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton14ActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 232, -1, -1));
+        jPanel4.add(jRadioButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 232, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel25.setText("Enfermedades Cardiovasculares");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 37, 225, 28));
+        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 37, 225, 28));
 
         jRadioButton15.setText("Si");
-        jPanel2.add(jRadioButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 265, -1, -1));
+        jPanel4.add(jRadioButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 265, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel26.setText("Enfermedades Respiratorias Crónicas");
-        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 103, 208, 28));
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 103, 208, 28));
 
         jRadioButton16.setText("No");
-        jPanel2.add(jRadioButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 265, -1, -1));
+        jPanel4.add(jRadioButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 265, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel27.setText("Obesidad");
-        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 164, 137, 28));
+        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 164, 137, 28));
 
         jRadioButton17.setText("Si");
-        jPanel2.add(jRadioButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 296, -1, -1));
+        jPanel4.add(jRadioButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 296, -1, -1));
 
         jLabel28.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel28.setText("Enfermedades Renales Crónicas");
-        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 197, 208, 28));
+        jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 197, 208, 28));
 
         jRadioButton18.setText("No");
-        jPanel2.add(jRadioButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 296, -1, -1));
+        jPanel4.add(jRadioButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 296, -1, -1));
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel29.setText("Embarazo");
-        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 137, 28));
+        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 137, 28));
 
         jLabel30.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel30.setText("Otros");
-        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 326, 57, 24));
+        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 326, 57, 24));
 
         jButton_siguiente2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton_siguiente2.setText("SIGUIENTE");
@@ -430,27 +434,27 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_siguiente2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton_siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 490, 112, -1));
+        jPanel4.add(jButton_siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 112, -1));
 
         jLabel31.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel31.setText("Inmunosupresion");
-        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 139, 137, 20));
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 139, 137, 20));
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel32.setText("Enfermedades Hepáticas");
-        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 263, 208, 28));
+        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 263, 208, 28));
 
         jRadioButton1.setText("Si");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 39, -1, -1));
+        jPanel4.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 39, -1, -1));
 
         jRadioButton2.setText("No");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 39, 41, -1));
+        jPanel4.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 39, 41, -1));
 
         jRadioButton3.setText("Si");
-        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 72, -1, -1));
+        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 72, -1, -1));
 
         jRadioButton4.setText("No");
-        jPanel2.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 72, -1, -1));
+        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 72, -1, -1));
 
         jRadioButton5.setText("Si");
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -458,13 +462,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 105, -1, -1));
+        jPanel4.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 105, -1, -1));
 
         jRadioButton6.setText("No");
-        jPanel2.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 105, -1, -1));
+        jPanel4.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 105, -1, -1));
 
         jRadioButton7.setText("Si");
-        jPanel2.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 136, -1, -1));
+        jPanel4.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 136, -1, -1));
 
         jRadioButton8.setText("No");
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -472,28 +476,28 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadioButton8ActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 136, -1, -1));
+        jPanel4.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 136, -1, -1));
 
         jRadioButton9.setText("Si");
-        jPanel2.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 166, -1, -1));
+        jPanel4.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 166, -1, -1));
 
         jRadioButton10.setText("No");
-        jPanel2.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 166, -1, -1));
+        jPanel4.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 166, -1, -1));
 
         jLabel33.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel33.setText("Enfermedades Neurológicas");
-        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 296, 208, 25));
+        jPanel4.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 296, 208, 25));
 
         otras_Patologias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 otras_PatologiasActionPerformed(evt);
             }
         });
-        jPanel2.add(otras_Patologias, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 328, 289, 22));
+        jPanel4.add(otras_Patologias, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 328, 289, 22));
 
         scrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         scrollPane1.setVisible(false);
-        jPanel2.add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 0, 0));
+        jPanel4.add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 0, 0));
 
         Anterior.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Anterior.setText("ANTERIOR");
@@ -502,15 +506,15 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 AnteriorActionPerformed(evt);
             }
         });
-        jPanel2.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 490, -1, -1));
+        jPanel4.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("El suscripto declara bajo juramento que la información precedentemente suministrada \nes auténtica y toma conocimiento de que cualquier falsedad, omisión o inexactitud en \nla misma, deliberada o no,  invalidará la asignacion del cronograma de vacunacion e \nincurrira a la aplicas sanciones administrativas y/o acciones judiciales. ");
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 478, 86));
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 13, -1, -1));
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 478, 86));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 13, -1, -1));
 
         jCheckBox1.setText("Acepto");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -518,7 +522,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 456, -1, -1));
+        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, -1, -1));
 
         jCheckBox2.setText("No Acepto");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -526,7 +530,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 456, -1, -1));
+        jPanel4.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, -1, -1));
 
         jLabel19.setBackground(new java.awt.Color(0, 204, 51));
         jLabel19.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -534,7 +538,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel19.setText(" Declaracion jurada de patologias preexistentes:");
         jLabel19.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel19.setOpaque(true);
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 528, 19));
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 528, 19));
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 440));
 
         jSolapasTurno.addTab("         Patologias Previas        ", jPanel2);
 
@@ -660,11 +668,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSolapasTurno, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(jSolapasTurno, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSolapasTurno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 84, Short.MAX_VALUE)
+                .addComponent(jSolapasTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -712,36 +722,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private void jCB_ambitoTrabajoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jCB_ambitoTrabajoFocusGained
         jButton_Siguiente.setEnabled(false);
     }//GEN-LAST:event_jCB_ambitoTrabajoFocusGained
-
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        jButton_siguiente2.setEnabled(false);
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        jButton_siguiente2.setEnabled(true);
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
-        jSolapasTurno.setSelectedIndex(0);
-    }//GEN-LAST:event_AnteriorActionPerformed
-
-    private void otras_PatologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otras_PatologiasActionPerformed
-
-    }//GEN-LAST:event_otras_PatologiasActionPerformed
-
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
-
-    private void jButton_siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_siguiente2ActionPerformed
-        jSolapasTurno.setEnabledAt(2, true);
-        armarCiudadano();
-        jSolapasTurno.setSelectedIndex(2);
-    }//GEN-LAST:event_jButton_siguiente2ActionPerformed
-
-    private void jRadioButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton14ActionPerformed
 
     private void jRadio_altaMedicaNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadio_altaMedicaNoActionPerformed
         jDC_covid.setDate(null);
@@ -804,10 +784,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_Actualizar_3ActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -841,6 +817,40 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private void jButton2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton2FocusGained
         jButton_Siguiente.setEnabled(false);
     }//GEN-LAST:event_jButton2FocusGained
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        jButton_siguiente2.setEnabled(false);
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        jButton_siguiente2.setEnabled(true);
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
+        jSolapasTurno.setSelectedIndex(0);
+    }//GEN-LAST:event_AnteriorActionPerformed
+
+    private void otras_PatologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otras_PatologiasActionPerformed
+
+    }//GEN-LAST:event_otras_PatologiasActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jButton_siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_siguiente2ActionPerformed
+        jSolapasTurno.setEnabledAt(2, true);
+        armarCiudadano();
+        jSolapasTurno.setSelectedIndex(2);
+    }//GEN-LAST:event_jButton_siguiente2ActionPerformed
+
+    private void jRadioButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton14ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -898,6 +908,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -920,6 +931,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadio_altaMedicaSi;
     private javax.swing.JRadioButton jRadio_no;
     private javax.swing.JRadioButton jRadio_si;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jSolapasTurno;
