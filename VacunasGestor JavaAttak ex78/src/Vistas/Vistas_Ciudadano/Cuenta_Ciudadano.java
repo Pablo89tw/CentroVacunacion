@@ -47,7 +47,6 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         initComponents();
         armadoDosis();
         armadoTextos(dni_usuario);
-
         armadoVistas(localizacion, tamanio);
 
     }
@@ -271,7 +270,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
         jLabel10.setText("-1° dosis sin aplicar-");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(370, 90, 116, 14);
+        jLabel10.setBounds(370, 90, 116, 16);
         jPanel2.add(jLabel19);
         jLabel19.setBounds(455, 87, 259, 20);
 
@@ -332,7 +331,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("-2° dosis sin aplicar-");
         jPanel3.add(jLabel17);
-        jLabel17.setBounds(380, 90, 110, 14);
+        jLabel17.setBounds(380, 90, 110, 16);
 
         FONDO_2daDOSIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DOSIS SEGUNDA.png"))); // NOI18N
         FONDO_2daDOSIS.setMaximumSize(new java.awt.Dimension(550, 440));
@@ -390,7 +389,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
 
         jLabel18.setText("- 3° dosis sin aplicar -");
         jPanel4.add(jLabel18);
-        jLabel18.setBounds(380, 90, 110, 14);
+        jLabel18.setBounds(380, 90, 110, 16);
 
         FONDO_3raDOSIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/DOSIS TERCERA.png"))); // NOI18N
         jPanel4.add(FONDO_3raDOSIS);
@@ -573,21 +572,39 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         jLabel10.setVisible(false);
         jLabel17.setVisible(false);
         jLabel18.setVisible(false);
-
+        jText_Nombre_Apellido.setEditable(false);
+        jText_DNI.setEditable(false);
+        jText_Celular1.setEditable(false);
+        jText_Email.setEditable(false);
+        jText_Celular.setEditable(false);
+        jText_DosisAplicadas.setEditable(false);
+        jText_DosisPT.setEditable(false);
+        jText_FechaPT.setEditable(false);
+        jText_HorarioPT.setEditable(false);
+        jText_CentroPT.setEditable(false);
+        
         jText_Nombre_Apellido.setText(c1.getApellido() + " " + c1.getNombre());
         jText_DosisAplicadas.setText(Integer.toString(c1.getDosisAplicadas()));
         jText_DNI.setText(Integer.toString(c1.getDNI()));
-        jText_Celular.setText(Integer.toString(c1.getCelular()));
+        jText_Celular.setText(Long.toString(c1.getCelular()));
         jText_Email.setText(c1.getEmail());
+        if (c1.getFechaNacimiento() != null){
+        jText_Celular1.setText(c1.getFechaNacimiento().toString());
+        } else {
+            jText_Celular1.setText("-");
+        }
 
         DefaultListModel<String> listaPatologias = new DefaultListModel<>();
-
+        
         for (String patologias : c1.getPatologias()) {
             listaPatologias.addElement(patologias);
         }
         if (listaPatologias.isEmpty()) {
             listaPatologias.addElement("No hay patologias declaradas");
         }
+        jList1.setModel(listaPatologias);
+        jList1.setBorder(null);    
+        jScrollPane2.setBorder(null);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

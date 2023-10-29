@@ -922,7 +922,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jText_DNIActionPerformed
 
     private void jText_DNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jText_DNIFocusLost
-       int turnoCA = 0;
+       int turnoCA = 0, pendiente = 0;
         try {
             if (!cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()), "DNI").isEmpty()) {
                     c1 = cD.buscarCiudadanos(Integer.parseInt(jText_DNI.getText()), "DNI").get(0);
@@ -931,12 +931,13 @@ public class Administrador extends javax.swing.JInternalFrame {
                             for (Turno listaTurno : tD.listar_Turnos(null, null, "DNI", null, Integer.parseInt(jText_DNI.getText()))) {
                                 if (listaTurno.isEstado().equals("Pendiente")) {
                                     buscarTurnosPersona();
-                                }
+                                    pendiente++;
+                                } 
                                 if (listaTurno.isEstado().equalsIgnoreCase("Ausente") || listaTurno.isEstado().equalsIgnoreCase("cancelado")){
                                    turnoCA++;
                                 }
-                            } 
-                            if (turnoCA>0){
+                                } 
+                            if (turnoCA>0 || pendiente == 0){
                                  JOptionPane.showMessageDialog(null, "Usuario sin turno pendiente asignado");
                             }
                         } else {
@@ -1016,7 +1017,7 @@ public class Administrador extends javax.swing.JInternalFrame {
             jButton4.setEnabled(true);
         } else if (!jCheckBox_celular.isSelected()) {
             jText_Celular.setEditable(false);
-            jText_Celular.setText(Integer.toString(c1.getCelular()));
+            jText_Celular.setText(Long.toString(c1.getCelular()));
             if (!jCheckBox_apellido.isSelected() && !jCheckBox_nombre.isSelected() && !jCheckBox_celular.isSelected() && !jCheckBox_dosis.isSelected() && !jCheckBox_mail.isSelected() && !jCheckBox_ocupacion.isSelected()) {
                 jButton4.setEnabled(false);
             }
@@ -1039,6 +1040,9 @@ public class Administrador extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jButton2.setEnabled(true);
         nuevoTurno();
+        jDC_proximoTur.setEnabled(true);
+        jButton8.setEnabled(true);
+        jButton2.setEnabled(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1281,6 +1285,13 @@ public class Administrador extends javax.swing.JInternalFrame {
         jS_Spuk.setEnabled(false);
         jButton6.setEnabled(false);
         jCheckBox_fechaNac.setVisible(false);
+        jDC_proximoTur.setEnabled(false);
+        jButton8.setEnabled(false);
+        jButton2.setEnabled(false);
+        jText_MarcaVial.setEditable(false);
+        jText_numeroVial.setEditable(false);
+        jText_antigenoVial.setEditable(false);
+        jText_fechaVencVial.setEditable(false);
         
         JLabel titleLabel = new JLabel("Stocks");
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1325,19 +1336,18 @@ public class Administrador extends javax.swing.JInternalFrame {
         jText_Nombre.setText(c1.getNombre());
         jText_Ocupacion.setText(c1.getAmbitoTrabajo());
         jText_Dosis.setText(Integer.toString(c1.getDosisAplicadas()));
-        jText_Celular.setText(Integer.toString(c1.getCelular()));
+        jText_Celular.setText(Long.toString(c1.getCelular()));
         jText_email.setText(c1.getEmail());
         jDC_fechaNac.setDate(Date.valueOf(c1.getFechaNacimiento()));
 
         DefaultListModel<String> modelo = new DefaultListModel<>();
-
+        for (String patologias : c1.getPatologias()){
+            modelo.addElement(patologias);
+        }
         if (modelo.getSize() == 0) {
             modelo.addElement("No hay patologias declaradas");
-        } else {
-            for (String patologias : cD.consultaPatologias(c1.getDNI())) {
-                modelo.addElement(patologias);
-            }
-        }
+        } 
+        
         jList_patologias.setModel(modelo);
 
         turno1 = listaTurnos.get(0);
@@ -1348,7 +1358,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         }
         jText_estadoTur.setText(turno1.isEstado());
         jText_centroTur.setText(turno1.getVacunatorio().getNombre());
-        jText_fechaTur.setText(turno1.getFecha().toString());
+        jText_fechaTur.setText(turno1.getFecha().toLocalDate() + " " + Integer.toString(turno1.getFecha().getHour()) + "hs");
         }
 
     private void modificarDatosCiudadano() {
@@ -1388,7 +1398,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     }
 
     private LocalDate nuevoTurno() {
-        if (c1.getDosisAplicadas() < 3) {
+        if (c1.getDosisAplicadas() < 2) {
             int turnos_libres;
             LocalDate fecha1 = LocalDate.now().plusDays(28);
 

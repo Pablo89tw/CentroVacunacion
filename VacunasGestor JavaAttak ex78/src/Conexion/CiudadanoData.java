@@ -26,13 +26,12 @@ public class CiudadanoData{
             ps.setDouble(1,c1.getCordenadas().getLatitud());
             ps.setDouble(2,c1.getCordenadas().getLongitud());
             ps.setString(3, c1.getEmail());
-            ps.setInt(4, c1.getCelular());
+            ps.setLong(4, c1.getCelular());
             ps.setString(5, c1.getAmbitoTrabajo());
             ps.setInt(6,0);
             ps.setDate(7,Date.valueOf(c1.getFechaNacimiento()));
             ps.setInt(8,c1.getDNI());
-           
-                      
+                                 
             updates = ps.executeUpdate();;
             if (updates > 0) {
                 JOptionPane.showMessageDialog(null, "Inscripcion Correcta");
@@ -78,8 +77,7 @@ public class CiudadanoData{
         }
         sql += "?)";
         
-        
-        PreparedStatement ps = null;
+                PreparedStatement ps = null;
         try {
           
             ps = con.prepareStatement(sql);
@@ -190,7 +188,7 @@ public class CiudadanoData{
              } else {
                  c1.setFechaNacimiento(null);
              }
-             
+             c1.setPatologias(consultaPatologias(dni_ciudadano));
              arrayCiudadano.add(c1);
          } 
        } catch (SQLException e){

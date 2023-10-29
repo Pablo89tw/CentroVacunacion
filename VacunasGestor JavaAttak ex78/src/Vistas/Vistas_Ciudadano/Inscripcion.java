@@ -106,6 +106,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jDC_fechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jRadioButton11 = new javax.swing.JRadioButton();
         jRadioButton12 = new javax.swing.JRadioButton();
@@ -232,6 +233,9 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jTexto_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTexto_email.setBorder(null);
         jTexto_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTexto_emailFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTexto_emailFocusLost(evt);
             }
@@ -251,12 +255,15 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCB_ambitoTrabajoFocusLost(evt);
             }
         });
-        jPanel1.add(jCB_ambitoTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 322, 322, -1));
+        jPanel1.add(jCB_ambitoTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 322, -1));
 
         jTexto_celular.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTexto_celular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTexto_celular.setBorder(null);
         jTexto_celular.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTexto_celularFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTexto_celularFocusLost(evt);
             }
@@ -281,18 +288,23 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 486, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Ciudad");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 289, 87, -1));
+        jLabel9.setFont(new java.awt.Font("ArianLT-Bold", 0, 10)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("complete con la caracteristica sin el 0 y el celular sin el 15");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 350, -1));
 
         jButton2.setText("Buscar Domicilio");
+        jButton2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButton2FocusGained(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 288, 154, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 154, -1));
 
         jButton_Siguiente1.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente1.setText("Actualizar Datos");
@@ -317,6 +329,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel16.setText("Fecha Nacimiento");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 225, 134, -1));
 
+        jDC_fechaNacimiento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jDC_fechaNacimientoFocusGained(evt);
+            }
+        });
         jDC_fechaNacimiento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDC_fechaNacimientoPropertyChange(evt);
@@ -327,7 +344,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Ambito Trabajo");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 321, 117, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 117, -1));
 
         jLabel18.setBackground(new java.awt.Color(0, 204, 51));
         jLabel18.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -336,6 +353,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel18.setOpaque(true);
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 11, 519, 19));
+
+        jLabel34.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel34.setText("Ciudad");
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 87, -1));
 
         jSolapasTurno.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_DATOS_PER_01.png")), jPanel1); // NOI18N
 
@@ -688,6 +710,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDC_fechaNacimientoPropertyChange
 
     private void jCB_ambitoTrabajoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jCB_ambitoTrabajoFocusGained
+        jButton_Siguiente.setEnabled(false);
     }//GEN-LAST:event_jCB_ambitoTrabajoFocusGained
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
@@ -803,6 +826,22 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jDC_dosisPropertyChange
 
+    private void jTexto_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTexto_emailFocusGained
+        jButton_Siguiente.setEnabled(false);
+    }//GEN-LAST:event_jTexto_emailFocusGained
+
+    private void jDC_fechaNacimientoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDC_fechaNacimientoFocusGained
+        jButton_Siguiente.setEnabled(false);
+    }//GEN-LAST:event_jDC_fechaNacimientoFocusGained
+
+    private void jTexto_celularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTexto_celularFocusGained
+        jButton_Siguiente.setEnabled(false);
+    }//GEN-LAST:event_jTexto_celularFocusGained
+
+    private void jButton2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton2FocusGained
+        jButton_Siguiente.setEnabled(false);
+    }//GEN-LAST:event_jButton2FocusGained
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Actualizar_3;
@@ -850,6 +889,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1161,7 +1201,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
     private void armarCiudadano() {
         c1.setEmail(jTexto_email.getText());
-        c1.setCelular(Integer.parseInt(jTexto_celular.getText()));
+        c1.setCelular(Long.parseLong(jTexto_celular.getText()));
         c1.setAmbitoTrabajo(jCB_ambitoTrabajo.getSelectedItem().toString());
         c1.setDosisAplicadas(0);
         c1.setFechaNacimiento(jDC_fechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
@@ -1256,7 +1296,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 if (!jTexto_email.getText().contains("@") || !jTexto_email.getText().contains(".com")) {
                     JOptionPane.showMessageDialog(null, "Formato de E-mail incorrecto");
                 } else {
-                    Integer.parseInt(jTexto_celular.getText());
+                    Long.parseLong(jTexto_celular.getText());
                     if (!jTexto_email.getText().isEmpty() && !jTexto_celular.getText().isEmpty() && jCB_ambitoTrabajo.getSelectedItem() != null && masCercano != null) {
                         jButton_Siguiente.setEnabled(true);
                     } else {

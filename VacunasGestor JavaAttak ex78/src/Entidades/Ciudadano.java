@@ -10,7 +10,7 @@ public class Ciudadano {
     private String nombre;
     private String apellido;
     private String email;
-    private int celular;
+    private long celular;
     private String ambitoTrabajo;
     private int dosisAplicadas;
     private Coordenadas cordenadas;
@@ -18,7 +18,7 @@ public class Ciudadano {
     private Turno turno;
     private LocalDate fechaNacimiento;
 
-    public Ciudadano(int DNI, String nombre, String apellido, String email, int celular, String ambitoTrabajo, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias, Turno turno, LocalDate fechaNacimiento) {
+    public Ciudadano(int DNI, String nombre, String apellido, String email, long celular, String ambitoTrabajo, int dosisAplicadas, Coordenadas cordenadas, ArrayList<String> patologias, Turno turno, LocalDate fechaNacimiento) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -75,11 +75,11 @@ public class Ciudadano {
         this.email = email;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 

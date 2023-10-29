@@ -341,7 +341,8 @@ public class TurnoData {
             if (ps != null) {
                 ps.close();
             }
-        } catch (SQLException e) {         
+        } catch (SQLException e) { 
+                System.out.println("");
         }
     }
         }
