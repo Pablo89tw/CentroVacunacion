@@ -139,6 +139,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel19 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jDC_dosis = new com.toedter.calendar.JDateChooser();
@@ -289,6 +291,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_Siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
 
+        jDC_fechaNacimiento.setBackground(new java.awt.Color(255, 255, 255));
         jDC_fechaNacimiento.setForeground(new java.awt.Color(85, 106, 124));
         jDC_fechaNacimiento.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jDC_fechaNacimiento.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
@@ -388,7 +391,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton_siguiente2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton_siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 112, -1));
+        jPanel4.add(jButton_siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 560, 112, -1));
 
         jLabel31.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel31.setText("Inmunosupresion");
@@ -460,14 +463,14 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 AnteriorActionPerformed(evt);
             }
         });
-        jPanel4.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, -1, -1));
+        jPanel4.add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("El suscripto declara bajo juramento que la información precedentemente suministrada \nes auténtica y toma conocimiento de que cualquier falsedad, omisión o inexactitud en \nla misma, deliberada o no,  invalidará la asignacion del cronograma de vacunacion e \nincurrira a la aplicas sanciones administrativas y/o acciones judiciales. ");
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 478, 86));
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 470, 86));
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 13, -1, -1));
 
         jCheckBox1.setText("Acepto");
@@ -476,7 +479,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, -1, -1));
+        jPanel4.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 510, -1, -1));
 
         jCheckBox2.setText("No Acepto");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -484,7 +487,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, -1, -1));
+        jPanel4.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, -1, -1));
 
         jLabel19.setBackground(new java.awt.Color(0, 204, 51));
         jLabel19.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -505,30 +508,42 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(110, 34));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane4.setMaximumSize(new java.awt.Dimension(550, 440));
+        jScrollPane4.setMinimumSize(new java.awt.Dimension(550, 440));
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(550, 440));
+
+        jPanel5.setMaximumSize(new java.awt.Dimension(550, 515));
+        jPanel5.setMinimumSize(new java.awt.Dimension(550, 515));
+        jPanel5.setPreferredSize(new java.awt.Dimension(550, 515));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel21.setBackground(new java.awt.Color(0, 204, 51));
         jLabel21.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Declaracion sintomas COVID-19:");
         jLabel21.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel21.setOpaque(true);
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 547, -1));
+        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 547, -1));
 
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 420, 119, -1));
+        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 420, 119, -1));
 
         jDC_dosis.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDC_dosisPropertyChange(evt);
             }
         });
-        jPanel3.add(jDC_dosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 420, 142, -1));
+        jPanel5.add(jDC_dosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 420, 142, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("1° Dosis");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 420, 71, 22));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 420, 71, 22));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Direccion:");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 359, 83, 29));
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 359, 83, 29));
 
         Actualizar_3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Actualizar_3.setText("Tomar Turno");
@@ -537,12 +552,12 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 Actualizar_3ActionPerformed(evt);
             }
         });
-        jPanel3.add(Actualizar_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 460, 188, -1));
-        jPanel3.add(jText_nombreVacunatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 304, 365, 36));
+        jPanel5.add(Actualizar_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 188, -1));
+        jPanel5.add(jText_nombreVacunatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 304, 365, 36));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("¿Fuiste diagnosticado con COVID-19 en los últimos 60 días? ");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
 
         jRadio_si.setText("Si");
         jRadio_si.addActionListener(new java.awt.event.ActionListener() {
@@ -550,7 +565,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_siActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadio_si, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
+        jPanel5.add(jRadio_si, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
 
         jRadio_no.setText("No");
         jRadio_no.addActionListener(new java.awt.event.ActionListener() {
@@ -558,22 +573,22 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_noActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadio_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 76, -1, -1));
+        jPanel5.add(jRadio_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 76, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setText("¿Recibiste el alta medica?");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 117, -1, -1));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 117, -1, -1));
 
         jDC_covid.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDC_covidPropertyChange(evt);
             }
         });
-        jPanel3.add(jDC_covid, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 137, 123, -1));
+        jPanel5.add(jDC_covid, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 137, 123, -1));
 
         jLabel13.setText("Fecha");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 138, -1, -1));
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 489, -1, -1));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 138, -1, -1));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 489, -1, -1));
 
         jRadio_altaMedicaSi.setText("Si");
         jRadio_altaMedicaSi.addActionListener(new java.awt.event.ActionListener() {
@@ -581,7 +596,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_altaMedicaSiActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadio_altaMedicaSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
+        jPanel5.add(jRadio_altaMedicaSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
         jRadio_altaMedicaNo.setText("No");
         jRadio_altaMedicaNo.addActionListener(new java.awt.event.ActionListener() {
@@ -589,19 +604,21 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jRadio_altaMedicaNoActionPerformed(evt);
             }
         });
-        jPanel3.add(jRadio_altaMedicaNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 134, -1, -1));
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 400, -1, -1));
+        jPanel5.add(jRadio_altaMedicaNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 134, -1, -1));
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 400, -1, -1));
+
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setText("*En caso de tener alta medica, colocar la fecha del a misma.\n*En caso de tener no tener alta medica, colocar la fecha en la que comenzaste con \nlos sintomas");
         jScrollPane3.setViewportView(jTextArea2);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 168, 490, 71));
+        jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 168, 490, 70));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel20.setText("¿Cuando?");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 117, -1, -1));
+        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 117, -1, -1));
 
         jLabel22.setBackground(new java.awt.Color(0, 153, 204));
         jLabel22.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
@@ -609,12 +626,16 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel22.setText("Asignacion turno vacunacion COVID-19:");
         jLabel22.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel22.setOpaque(true);
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 269, 545, -1));
-        jPanel3.add(jText_direccionVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 354, 365, 40));
+        jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 269, 545, -1));
+        jPanel5.add(jText_direccionVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 354, 365, 40));
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel23.setText("Centro Vacunacion:");
-        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 307, 122, 29));
+        jPanel5.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 307, 122, 29));
+
+        jScrollPane4.setViewportView(jPanel5);
+
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 440));
 
         jSolapasTurno.addTab("            Turno           ", jPanel3);
 
@@ -662,8 +683,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
     private void jButton_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Siguiente2ActionPerformed
         ModificlarClaveIF mC = new ModificlarClaveIF(c1.getDNI());
-        jPanel1.add(mC);
         mC.setVisible(true);
+        jPanel1.add(mC);
+        
+        
     }//GEN-LAST:event_jButton_Siguiente2ActionPerformed
 
     private void jDC_fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDC_fechaNacimientoPropertyChange
@@ -853,6 +876,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -878,6 +902,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jSolapasTurno;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
