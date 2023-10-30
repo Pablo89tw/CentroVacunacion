@@ -84,29 +84,19 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
         jSolapasTurno = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        TextoApellido1 = new javax.swing.JLabel();
         jTextoApellido = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         TextoNombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         TextoDni = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jTexto_email = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jCB_ambitoTrabajo = new javax.swing.JComboBox<>();
         jTexto_celular = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton_Siguiente = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton_Siguiente1 = new javax.swing.JButton();
         jButton_Siguiente2 = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
         jDC_fechaNacimiento = new com.toedter.calendar.JDateChooser();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
+        FONDO_INSCR_DATOS_PERSONALES = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
@@ -182,58 +172,35 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 34));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TextoApellido1.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        TextoApellido1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        TextoApellido1.setText("APELLIDO");
-        jPanel1.add(TextoApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 39, 116, -1));
-
-        jTextoApellido.setFont(new java.awt.Font("ArianLT-Demi", 0, 18)); // NOI18N
-        jTextoApellido.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextoApellido.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jTextoApellido.setForeground(new java.awt.Color(85, 106, 124));
+        jTextoApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextoApellido.setBorder(null);
         jTextoApellido.setOpaque(false);
         jTextoApellido.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jTextoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 38, 353, 23));
+        jPanel1.add(jTextoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 200, 30));
 
-        jLabel5.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel5.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText(" COMPLETAR:");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel5.setOpaque(true);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 164, 519, 19));
-
-        jLabel2.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("NOMBRE");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 74, 110, -1));
-
-        TextoNombre.setFont(new java.awt.Font("ArianLT-Demi", 0, 18)); // NOI18N
-        TextoNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        TextoNombre.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        TextoNombre.setForeground(new java.awt.Color(85, 106, 124));
+        TextoNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TextoNombre.setBorder(null);
         TextoNombre.setOpaque(false);
         TextoNombre.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        jPanel1.add(TextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 71, 353, -1));
+        jPanel1.add(TextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, 30));
 
-        jLabel3.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("DNI");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 122, 108, -1));
-
-        TextoDni.setFont(new java.awt.Font("ArianLT-Demi", 0, 18)); // NOI18N
-        TextoDni.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        TextoDni.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        TextoDni.setForeground(new java.awt.Color(85, 106, 124));
+        TextoDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TextoDni.setBorder(null);
         TextoDni.setOpaque(false);
         TextoDni.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        jPanel1.add(TextoDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 119, 353, -1));
+        jPanel1.add(TextoDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 210, 30));
 
-        jLabel6.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("E-mail");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 193, 108, -1));
-
-        jTexto_email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTexto_email.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jTexto_email.setForeground(new java.awt.Color(85, 106, 124));
         jTexto_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTexto_email.setBorder(null);
+        jTexto_email.setOpaque(false);
         jTexto_email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTexto_emailFocusGained(evt);
@@ -242,13 +209,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jTexto_emailFocusLost(evt);
             }
         });
-        jPanel1.add(jTexto_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 193, 322, -1));
+        jPanel1.add(jTexto_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 240, 30));
 
-        jLabel8.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Telefono celular");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 256, 117, -1));
-
+        jCB_ambitoTrabajo.setBorder(null);
+        jCB_ambitoTrabajo.setOpaque(false);
         jCB_ambitoTrabajo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jCB_ambitoTrabajoFocusGained(evt);
@@ -257,11 +221,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jCB_ambitoTrabajoFocusLost(evt);
             }
         });
-        jPanel1.add(jCB_ambitoTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 322, -1));
+        jPanel1.add(jCB_ambitoTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 255, 340, 30));
 
-        jTexto_celular.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTexto_celular.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jTexto_celular.setForeground(new java.awt.Color(85, 106, 124));
         jTexto_celular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTexto_celular.setBorder(null);
+        jTexto_celular.setOpaque(false);
         jTexto_celular.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTexto_celularFocusGained(evt);
@@ -270,7 +236,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jTexto_celularFocusLost(evt);
             }
         });
-        jPanel1.add(jTexto_celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 256, 322, -1));
+        jPanel1.add(jTexto_celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 160, 30));
 
         jButton1.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton1.setText("Cerrar");
@@ -290,11 +256,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("ArianLT-Bold", 0, 10)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("complete con la caracteristica sin el 0 y el celular sin el 15");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 350, -1));
-
         jButton2.setText("Buscar Domicilio");
         jButton2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -306,7 +267,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 154, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 337, 154, -1));
 
         jButton_Siguiente1.setFont(new java.awt.Font("ArianLT-Bold", 1, 12)); // NOI18N
         jButton_Siguiente1.setText("Actualizar Datos");
@@ -326,11 +287,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_Siguiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("Fecha Nacimiento");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 225, 134, -1));
-
+        jDC_fechaNacimiento.setForeground(new java.awt.Color(85, 106, 124));
+        jDC_fechaNacimiento.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jDC_fechaNacimiento.setFont(new java.awt.Font("Proxima Nova Rg", 0, 16)); // NOI18N
+        jDC_fechaNacimiento.setOpaque(false);
         jDC_fechaNacimiento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jDC_fechaNacimientoFocusGained(evt);
@@ -341,25 +301,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
                 jDC_fechaNacimientoPropertyChange(evt);
             }
         });
-        jPanel1.add(jDC_fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 225, 150, -1));
+        jPanel1.add(jDC_fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 140, 30));
 
-        jLabel17.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel17.setText("Ambito Trabajo");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 117, -1));
-
-        jLabel18.setBackground(new java.awt.Color(0, 204, 51));
-        jLabel18.setFont(new java.awt.Font("ArianLT-Bold", 3, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText(" DATOS:");
-        jLabel18.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel18.setOpaque(true);
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 11, 519, 19));
-
-        jLabel34.setFont(new java.awt.Font("ArianLT-Bold", 1, 14)); // NOI18N
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel34.setText("Ciudad");
-        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 87, -1));
+        FONDO_INSCR_DATOS_PERSONALES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_FONDO_DATOS.png"))); // NOI18N
+        FONDO_INSCR_DATOS_PERSONALES.setText("jLabel5");
+        jPanel1.add(FONDO_INSCR_DATOS_PERSONALES, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 440));
 
         jSolapasTurno.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_DATOS_PER_01.png")), jPanel1); // NOI18N
 
@@ -861,7 +807,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JButton Actualizar_3;
     private javax.swing.JButton Anterior;
     private javax.swing.JLabel Diabetes2;
-    private javax.swing.JLabel TextoApellido1;
+    private javax.swing.JLabel FONDO_INSCR_DATOS_PERSONALES;
     private javax.swing.JTextField TextoDni;
     private javax.swing.JTextField TextoNombre;
     private javax.swing.JButton jButton1;
@@ -884,11 +830,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -898,17 +840,11 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1344,10 +1280,10 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         String[] trabajos;
         if (ChronoUnit.YEARS.between(fechaNacmiento, LocalDate.now()) > 17) {
             trabajos = new String[]{"Sanidad y Medicina", "Educación", "Estudiante", "Servicios Financieros", "Gobierno y Administración Pública", "Arte y Entretenimiento", "Agricultura y Agroindustria", "Construcción y Arquitectura", "Monotributista", "Trabajo Informal", "Privado", "Estudiante Java", "Desempleado", "Otro"};;
-            jLabel17.setText("Ámbito de Trabajo");
+            //jLabel17.setText("Ámbito de Trabajo");
             ambitos = new DefaultComboBoxModel(trabajos);
         } else {
-            jLabel17.setText("Ciclo educacion");
+            //jLabel17.setText("Ciclo educacion");
             trabajos = new String[]{"Estudiante Inicial", "Estudiante Primaria", "Educacion Secundaria", "Otro", "Abandono"};
             ambitos = new DefaultComboBoxModel(trabajos);
         }
