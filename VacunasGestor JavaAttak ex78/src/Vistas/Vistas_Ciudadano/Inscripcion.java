@@ -164,6 +164,8 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
 
         setBorder(null);
+        setMaximumSize(new java.awt.Dimension(550, 600));
+        setMinimumSize(new java.awt.Dimension(550, 600));
         setPreferredSize(new java.awt.Dimension(550, 600));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(150, 34));
@@ -314,7 +316,9 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 34));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(550, 440));
 
         jPanel4.setPreferredSize(new java.awt.Dimension(550, 700));
