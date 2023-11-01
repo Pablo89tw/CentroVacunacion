@@ -39,6 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.InternalFrameAdapter;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableModel;
 import org.jxmapviewer.JXMapKit;
@@ -682,11 +683,9 @@ public class Inscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_Siguiente1ActionPerformed
 
     private void jButton_Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Siguiente2ActionPerformed
-        ModificlarClaveIF mC = new ModificlarClaveIF(c1.getDNI());
+        ModificarClave mC = new ModificarClave(c1.getDNI());
         mC.setVisible(true);
-        jPanel1.add(mC);
-        
-        
+        mC.setLocation(localizacion);
     }//GEN-LAST:event_jButton_Siguiente2ActionPerformed
 
     private void jDC_fechaNacimientoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDC_fechaNacimientoPropertyChange
@@ -1000,8 +999,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jDC_covid.setMinSelectableDate(Date.from((LocalDate.now().minusDays(75).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         
         Actualizar_3.setEnabled(false);
-        
-        
+                
         //EDICION DE PESTAÑAS
          // Define los colores personalizados
         Color selectedTabColor = new Color(255, 220, 0); // Color de fondo de la solapa seleccionada
@@ -1025,8 +1023,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
             }
         });
         
-        
-        
         JLabel p0 = new JLabel();
         JLabel p1 = new JLabel();
         JLabel p2 = new JLabel();
@@ -1043,8 +1039,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jSolapasTurno.setTabComponentAt(2, p2);
         jSolapasTurno.getTabComponentAt(2).setPreferredSize(new Dimension(118, 40));
         p2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/INSC_TURNOS_01.png")));
-
-        
 
         jSolapasTurno.addChangeListener(new ChangeListener() {
             @Override
@@ -1071,8 +1065,6 @@ public class Inscripcion extends javax.swing.JInternalFrame {
 
             }
         });
-        
-        
         
     }
 
@@ -1110,15 +1102,13 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         frame.setSize(tamanio);
         frame.add(panel_busqueda, BorderLayout.SOUTH);
         frame.setLocation(localizacion);
-
         
         salir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
             }
         });
-        
-        
+                
         WaypointPainter<Waypoint> punto_referencia = new WaypointPainter<Waypoint>();
         mapKit.getMainMap().setOverlayPainter(punto_referencia);
 

@@ -46,7 +46,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         jButton4.setEnabled(false);
         Continuar.setEnabled(false);
         jTabbedPane2.setEnabledAt(1, false);
-          }
+        }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1039,10 +1039,10 @@ public class Administrador extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jButton2.setEnabled(true);
+        jButton8.setEnabled(true);
         nuevoTurno();
         jDC_proximoTur.setEnabled(true);
-        jButton8.setEnabled(true);
-        jButton2.setEnabled(true);
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1051,10 +1051,9 @@ public class Administrador extends javax.swing.JInternalFrame {
 
     private void jCheckBox_patologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_patologiasActionPerformed
         if (jCheckBox_patologias.isSelected()) {
-            Patologias_ADM pAD = new Patologias_ADM(c1.getDNI(), cD);
+            PatologiasADM pAD = new PatologiasADM(c1.getDNI(), cD);
             pAD.setVisible(true);
-            jPanel1.add(pAD);
-            pAD.moveToFront();
+            
         }
     }//GEN-LAST:event_jCheckBox_patologiasActionPerformed
 
@@ -1411,6 +1410,7 @@ public class Administrador extends javax.swing.JInternalFrame {
             return fecha1.minusDays(1);
         } else {
             jButton2.setEnabled(false);
+            jButton2.setVisible(false);
             jButton_nuevoTur_cancelado.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Calendario Completo");
             return null;
