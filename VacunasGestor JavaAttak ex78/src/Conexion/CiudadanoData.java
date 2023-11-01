@@ -177,7 +177,7 @@ public class CiudadanoData{
              c1.setDNI(rs.getInt("DNI")); 
              c1.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
              c1.setDosisAplicadas(rs.getInt("dosisAplicadas"));
-             c1.setCelular(rs.getInt("celular"));
+             c1.setCelular(rs.getLong("celular"));
              c1.setEmail(rs.getString("email"));
              cord = new Coordenadas();
              cord.setLatitud(rs.getDouble("latitud"));
