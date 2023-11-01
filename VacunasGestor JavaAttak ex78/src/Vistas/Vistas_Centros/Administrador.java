@@ -46,6 +46,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         jButton4.setEnabled(false);
         Continuar.setEnabled(false);
         jTabbedPane2.setEnabledAt(1, false);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         }
 
     @SuppressWarnings("unchecked")

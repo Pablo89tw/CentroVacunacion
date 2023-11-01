@@ -38,8 +38,6 @@ public class Centro_Principal extends javax.swing.JFrame {
         setTitle("Centro de Salud");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(800, 628));
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
         setSize(new java.awt.Dimension(800, 628));
 
         img_Centro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/Imagenes/CENTRO-03.png"))); // NOI18N

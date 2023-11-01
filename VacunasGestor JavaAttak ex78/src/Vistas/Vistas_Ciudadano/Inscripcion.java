@@ -77,6 +77,7 @@ public class Inscripcion extends javax.swing.JInternalFrame {
         jSolapasTurno.setBorder(null);
         jSolapasTurno.setLocation(localizacion);
         jSolapasTurno.setSize(tamanio);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
     @SuppressWarnings("unchecked")

@@ -48,6 +48,7 @@ public class Cuenta_Ciudadano extends javax.swing.JInternalFrame {
         armadoDosis();
         armadoTextos(dni_usuario);
         armadoVistas(localizacion, tamanio);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
 
     }
 
